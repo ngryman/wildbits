@@ -3,10 +3,11 @@ import { keymap } from 'prosemirror-keymap'
 import { Node } from 'prosemirror-model'
 import { EditorState } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
-import { createSignal, onMount } from 'solid-js'
+import { onMount } from 'solid-js'
 import { css } from 'solid-styled-components'
 
 import { schema } from './schema'
+import atom from './utils'
 
 const styles = {
   root: css`
@@ -51,7 +52,7 @@ const initialDoc: Node = schema.node('doc', null, [
 const initialState = EditorState.create({ schema, doc: initialDoc })
 
 export function Editor() {
-  const [state, setState] = createSignal(initialState)
+  const state = atom(initialState)
   let ref!: HTMLElement
 
   onMount(() => {
@@ -59,7 +60,7 @@ export function Editor() {
       state: state(),
       plugins: [keymap(baseKeymap)],
       dispatchTransaction(tr) {
-        setState(state => {
+        state(state => {
           state = state.apply(tr)
           view.updateState(state)
           return state
