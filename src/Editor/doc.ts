@@ -1,23 +1,6 @@
-import { baseKeymap } from 'prosemirror-commands'
-import { keymap } from 'prosemirror-keymap'
-import { Node } from 'prosemirror-model'
-import { EditorState } from 'prosemirror-state'
-import { EditorView } from 'prosemirror-view'
-import { onMount } from 'solid-js'
-import { css } from 'solid-styled-components'
-
 import { schema } from './schema'
-import atom from './utils'
 
-const styles = {
-  root: css`
-    box-sizing: content-box;
-    margin: 0 auto;
-    max-width: 60ch;
-  `,
-}
-
-const initialDoc: Node = schema.node('doc', null, [
+export const doc = schema.node('doc', null, [
   schema.node('heading', null, schema.text(`The Escape Plan`)),
   schema.node(
     'paragraph',
@@ -48,26 +31,3 @@ const initialDoc: Node = schema.node('doc', null, [
     )
   ),
 ])
-
-const initialState = EditorState.create({ schema, doc: initialDoc })
-
-export function Editor() {
-  const state = atom(initialState)
-  let ref!: HTMLElement
-
-  onMount(() => {
-    const view = new EditorView(ref, {
-      state: state(),
-      plugins: [keymap(baseKeymap)],
-      dispatchTransaction(tr) {
-        state(state => {
-          state = state.apply(tr)
-          view.updateState(state)
-          return state
-        })
-      },
-    })
-  })
-
-  return <main ref={ref} class={styles.root} />
-}
