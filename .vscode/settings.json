@@ -1,3 +1,10 @@
 {
-  "cSpell.words": ["inputrules", "keymaps", "liga", "prosemirror", "textblock"]
+  "cSpell.words": [
+    "inputrules",
+    "keymaps",
+    "liga",
+    "motionone",
+    "prosemirror",
+    "textblock"
+  ]
 }

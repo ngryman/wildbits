@@ -10,7 +10,6 @@ import atom from '../utils'
 
 const styles = {
   root: css`
-    box-sizing: content-box;
     margin: 0 auto;
     max-width: 60ch;
   `,
@@ -32,7 +31,7 @@ const initialState = EditorState.create({
 
 export function Editor() {
   const state = atom(initialState)
-  let ref!: HTMLElement
+  let ref!: HTMLDivElement
 
   onMount(() => {
     const view = new EditorView(ref, {
@@ -50,5 +49,5 @@ export function Editor() {
     })
   })
 
-  return <main ref={ref} class={styles.root} />
+  return <div ref={ref} class={styles.root} />
 }
