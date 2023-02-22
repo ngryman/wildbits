@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "lib": ["esnext", "dom"],
+    "baseUrl": "./src",
+    "rootDir": "./src",
     "module": "esnext",
     "target": "esnext",
     "moduleResolution": "node",

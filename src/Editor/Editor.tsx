@@ -3,10 +3,11 @@ import { EditorView } from 'prosemirror-view'
 import { onMount } from 'solid-js'
 import { css } from 'solid-styled-components'
 
+import atom from 'utils'
+
 import { doc } from './doc'
 import { schema } from './schema'
 import { keymaps, rules } from './plugins'
-import atom from '../utils'
 
 const styles = {
   root: css`
