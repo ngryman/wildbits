@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import process from 'node:process'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import solidPlugin from 'vite-plugin-solid'
 

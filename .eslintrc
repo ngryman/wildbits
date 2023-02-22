@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/eslintrc",
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["solid"],
+  "extends": ["eslint:recommended", "plugin:solid/typescript"],
+  "rules": {
+    "no-redeclare": ["error", { "builtinGlobals": false }]
+  }
+}

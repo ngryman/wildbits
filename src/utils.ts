@@ -7,6 +7,7 @@ export default function atom<T>(value: T): Atom<T> {
 
   // XXX
   // @ts-ignore
+  // eslint-disable-next-line solid/reactivity
   return value => {
     if (value !== undefined) {
       setState(value)
