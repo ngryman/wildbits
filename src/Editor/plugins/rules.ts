@@ -59,7 +59,7 @@ function codeBlockRule(nodeType: NodeType) {
 /// the number of `#` signs.
 function headingRule(nodeType: NodeType, maxLevel: number) {
   return textblockTypeInputRule(
-    new RegExp('^(#{1,' + maxLevel + '})\\s$'),
+    new RegExp(`^(#{1,${maxLevel}})\\s$`),
     nodeType,
     match => ({ level: match[1].length })
   )
@@ -72,7 +72,7 @@ function orderedListRule(nodeType: NodeType) {
     /^(\d+)\.\s$/,
     nodeType,
     match => ({ order: +match[1] }),
-    (match, node) => node.childCount + node.attrs.order == +match[1]
+    (match, node) => node.childCount + (node.attrs.order as number) == +match[1]
   )
 }
 

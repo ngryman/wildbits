@@ -1,9 +1,28 @@
 {
   "$schema": "https://json.schemastore.org/eslintrc",
+  "root": true,
   "parser": "@typescript-eslint/parser",
   "plugins": ["solid"],
-  "extends": ["eslint:recommended", "plugin:solid/typescript"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:solid/typescript"
+  ],
+  "parserOptions": {
+    "project": ["./tsconfig.json"]
+  },
   "rules": {
-    "no-redeclare": ["error", { "builtinGlobals": false }]
+    "no-redeclare": ["error", { "builtinGlobals": false }],
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-namespace": "off"
+  },
+  "globals": {
+    // Declare VoidFunction as a global to prevent warning.
+    // It is part of `lib.dom.d.ts` but for some reason it's not
+    // a global.
+    //
+    // More context: https://github.com/lukeed/uvu/issues/89
+    "VoidFunction": "readonly"
   }
 }
