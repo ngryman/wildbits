@@ -1,0 +1,12 @@
+{
+  "name": "@mindraft/editor-extension",
+  "version": "0.0.0",
+  "description": "A library to create Mindraft editor extensions.",
+  "type": "module",
+  "module": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@mindraft/editor-utils": "workspace:*",
+    "prosemirror-inputrules": "^1.2.0"
+  }
+}

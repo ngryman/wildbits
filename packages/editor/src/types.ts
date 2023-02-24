@@ -1,3 +1,5 @@
+import { Command } from 'prosemirror-state'
+
 export type Document = {
   type: 'doc'
   content: Block[]
@@ -22,3 +24,5 @@ export type TextBlock = {
   type: 'text'
   text: string
 }
+
+export type Bindings = Record<string, Command>

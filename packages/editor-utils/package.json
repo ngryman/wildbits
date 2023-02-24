@@ -1,0 +1,11 @@
+{
+  "name": "@mindraft/editor-utils",
+  "version": "0.0.0",
+  "description": "A utility belt for the Mindraft editor",
+  "type": "module",
+  "module": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "prosemirror-inputrules": "^1.2.0"
+  }
+}

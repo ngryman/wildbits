@@ -1,7 +1,7 @@
 {
   "name": "@mindraft/utils",
   "version": "0.0.0",
-  "description": "An utility belt for Mindraft.",
+  "description": "A utility belt for Mindraft.",
   "type": "module",
   "module": "src/index.ts",
   "types": "src/index.ts",

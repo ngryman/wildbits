@@ -1,16 +1,15 @@
 import { baseKeymap, chainCommands } from 'prosemirror-commands'
-import { keymap } from 'prosemirror-keymap'
 import { splitListItem } from 'prosemirror-schema-list'
-import { Plugin } from 'prosemirror-state'
 
 import { schema } from '../schema'
+import { Bindings } from '../types'
 
-export function keymaps(): Plugin {
-  return keymap({
+export function baseBindings(): Bindings {
+  return {
     ...baseKeymap,
     ['Enter']: chainCommands(
       splitListItem(schema.nodes.list_item),
       baseKeymap['Enter']
     ),
-  })
+  }
 }

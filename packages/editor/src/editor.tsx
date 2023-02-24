@@ -1,7 +1,7 @@
 import { createAtom } from '@mindraft/utils'
 import { EditorState } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
-import { onMount } from 'solid-js'
+import { onMount, Show } from 'solid-js'
 import { css } from 'solid-styled-components'
 
 export type EditorProps = {
@@ -25,6 +25,7 @@ const styles = {
 }
 
 export function Editor(props: EditorProps) {
+  const debug = createAtom(false)
   const state = createAtom(props.initialState)
   let ref!: HTMLDivElement
 
@@ -33,6 +34,9 @@ export function Editor(props: EditorProps) {
       state: state(),
       attributes: {
         class: styles.editor,
+      },
+      handleTripleClick() {
+        debug(!debug())
       },
       dispatchTransaction(tr) {
         const editorState = view.state.apply(tr)
@@ -43,5 +47,14 @@ export function Editor(props: EditorProps) {
     })
   })
 
-  return <div ref={ref} class={styles.root} />
+  return (
+    <>
+      <div ref={ref} class={styles.root} />
+      <Show when={debug()}>
+        <textarea rows={20} cols={100}>
+          {JSON.stringify(state().doc, null, 2)}
+        </textarea>
+      </Show>
+    </>
+  )
 }
