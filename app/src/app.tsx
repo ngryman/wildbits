@@ -1,5 +1,6 @@
-import { createAtom } from '@mindraft/utils'
 import { createEditorState, Document, Editor } from '@mindraft/editor'
+import { markdownExtension } from '@mindraft/editor-extension-markdown'
+import { createAtom } from '@mindraft/utils'
 import { Show } from 'solid-js'
 import { createShortcut } from '@solid-primitives/keyboard'
 import { Presence } from '@motionone/solid'
@@ -54,7 +55,7 @@ const initialDoc: Document = {
 }
 
 export function App() {
-  const state = createEditorState(initialDoc, [])
+  const state = createEditorState(initialDoc, [markdownExtension()], [])
   const isSplit = createAtom(false)
 
   createShortcut(['Control', 'E'], () => {

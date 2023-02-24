@@ -10,10 +10,11 @@
     "lint": "eslint --cache --ignore-path .gitignore --ext .js,.ts,.tsx ."
   },
   "dependencies": {
+    "@mindraft/editor": "workspace:*",
+    "@mindraft/editor-extension-markdown": "workspace:*",
     "@mindraft/utils": "workspace:*",
     "@motionone/solid": "^10.15.5",
     "@solid-primitives/keyboard": "^1.0.7",
-    "@mindraft/editor": "workspace:*",
     "solid-js": "^1.6.10",
     "solid-styled-components": "^0.28.5"
   },

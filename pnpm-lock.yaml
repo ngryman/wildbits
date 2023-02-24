@@ -21,6 +21,7 @@ importers:
   app:
     specifiers:
       '@mindraft/editor': workspace:*
+      '@mindraft/editor-extension-markdown': workspace:*
       '@mindraft/utils': workspace:*
       '@motionone/solid': ^10.15.5
       '@solid-primitives/keyboard': ^1.0.7
@@ -31,6 +32,7 @@ importers:
       vite-tsconfig-paths: ^4.0.5
     dependencies:
       '@mindraft/editor': link:../packages/editor
+      '@mindraft/editor-extension-markdown': link:../packages/editor-extension-markdown
       '@mindraft/utils': link:../packages/utils
       '@motionone/solid': 10.15.5_solid-js@1.6.11
       '@solid-primitives/keyboard': 1.0.7_solid-js@1.6.11
@@ -43,6 +45,7 @@ importers:
 
   packages/editor:
     specifiers:
+      '@mindraft/editor-extension': workspace:*
       '@mindraft/utils': workspace:*
       prosemirror-commands: ^1.5.0
       prosemirror-inputrules: ^1.2.0
@@ -55,6 +58,7 @@ importers:
       solid-js: ^1.6.10
       solid-styled-components: ^0.28.5
     dependencies:
+      '@mindraft/editor-extension': link:../editor-extension
       '@mindraft/utils': link:../utils
       prosemirror-commands: 1.5.0
       prosemirror-inputrules: 1.2.0
@@ -67,13 +71,19 @@ importers:
       solid-js: 1.6.11
       solid-styled-components: 0.28.5_solid-js@1.6.11
 
-  packages/editor-plugin-markdown:
+  packages/editor-extension:
     specifiers:
+      '@mindraft/editor-utils': workspace:*
       prosemirror-inputrules: ^1.2.0
-      prosemirror-state: ^1.4.2
     dependencies:
+      '@mindraft/editor-utils': link:../editor-utils
       prosemirror-inputrules: 1.2.0
-      prosemirror-state: 1.4.2
+
+  packages/editor-extension-markdown:
+    specifiers:
+      '@mindraft/editor-extension': workspace:*
+    dependencies:
+      '@mindraft/editor-extension': link:../editor-extension
 
   packages/editor-plugin-placeholder:
     specifiers:
@@ -86,6 +96,18 @@ importers:
       goober: 2.1.12_csstype@3.1.1
       prosemirror-state: 1.4.2
       prosemirror-view: 1.30.1
+
+  packages/editor-utils:
+    specifiers:
+      '@mindraft/utils': workspace:^0.0.0
+      prosemirror-inputrules: ^1.2.0
+      prosemirror-model: ^1.19.0
+      prosemirror-transform: ^1.7.1
+    dependencies:
+      '@mindraft/utils': link:../utils
+      prosemirror-inputrules: 1.2.0
+      prosemirror-model: 1.19.0
+      prosemirror-transform: 1.7.1
 
   packages/utils:
     specifiers:
