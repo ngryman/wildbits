@@ -1,23 +1,24 @@
-import { createMemo, ParentProps } from 'solid-js'
+import { createMemo, type ParentProps } from 'solid-js'
 import { Motion } from '@motionone/solid'
 import { css } from 'solid-styled-components'
-
-const DEFAULT_COLOR = '#f4f0e8'
 
 export type PaneProps = ParentProps & {
   color?: string
 }
 
 export function Pane(props: PaneProps) {
-  const className = createMemo(
-    () => css`
-      background: ${props.color || DEFAULT_COLOR};
-    `
+  const className = createMemo(() =>
+    props.color
+      ? css`
+          background: ${props.color};
+        `
+      : undefined
   )
 
   return (
     <Motion.div
       class={className()}
+      style={{ background: props.color }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}

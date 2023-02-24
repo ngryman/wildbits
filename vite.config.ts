@@ -1,10 +1,14 @@
 import { defineConfig } from 'vite'
 import process from 'node:process'
-import tsconfigPaths from 'vite-tsconfig-paths'
 import solidPlugin from 'vite-plugin-solid'
+import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
-  plugins: [tsconfigPaths(), solidPlugin()],
+  plugins: [
+    // Do note remove imports, mostly for directives (https://www.solidjs.com/guides/typescript#use___)
+    solidPlugin({ typescript: { onlyRemoveTypeImports: true } }),
+    tsconfigPaths(),
+  ],
   server: {
     port: 3000,
     strictPort: true,

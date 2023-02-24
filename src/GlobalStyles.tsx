@@ -3,7 +3,8 @@ import { createGlobalStyles } from 'solid-styled-components'
 export default createGlobalStyles`
   html {
     box-sizing: border-box;
-    font-size: 28px;
+    font-size: 26px;
+    background: #fafaf6;
   }
 
   *,
@@ -15,16 +16,20 @@ export default createGlobalStyles`
 
   body {
     margin: 0;
-    font-family: Inconsolata, sans-serif;
-    line-height: 1.5;
-    background: #f5f5f5;
+    font-family: "Ubuntu Mono", sans-serif;
+    line-height: 1.6;
     color: #323f46;
   }
 
+  h1 {
+    color: #4a3500;
+  }
+
+  p  {
+    color: #563d00;
+  }
 
   ::selection {
-    /* color: #636140; */
-    /* background: #fff9ae; */
-    background: #cadbf8;
+    background: #f6e7c9;
   }
 `

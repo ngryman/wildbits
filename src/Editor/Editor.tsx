@@ -3,14 +3,13 @@ import { EditorView } from 'prosemirror-view'
 import { onMount } from 'solid-js'
 import { css } from 'solid-styled-components'
 
-import atom from 'utils'
-
 import { doc } from './doc'
 import { schema } from './schema'
-import { keymaps, rules } from './plugins'
+import { keymaps, note, rules } from './plugins'
 
 const styles = {
   root: css`
+    position: relative;
     margin: 0 auto;
     max-width: 60ch;
   `,
@@ -24,28 +23,26 @@ const styles = {
   `,
 }
 
-const initialState = EditorState.create({
-  schema,
-  doc,
-  plugins: [rules(schema), keymaps(schema)],
-})
-
 export function Editor() {
-  const state = atom(initialState)
   let ref!: HTMLDivElement
 
   onMount(() => {
-    const view = new EditorView(ref, {
-      state: state(),
+    // TODO: perhaps we should wrap this into an Atom so we can react to the editor changes outside.
+    const state = EditorState.create({
+      schema,
+      doc,
+      plugins: [keymaps(schema), note(), rules(schema)],
+    })
+
+    const view: EditorView = new EditorView(ref, {
+      state,
       attributes: {
         class: styles.editor,
       },
       dispatchTransaction(tr) {
-        state(state => {
-          state = state.apply(tr)
-          view.updateState(state)
-          return state
-        })
+        const state = view.state.apply(tr)
+        view.updateState(state)
+        return state
       },
     })
   })

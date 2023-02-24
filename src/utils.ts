@@ -2,7 +2,7 @@ import { createSignal, Accessor, Setter } from 'solid-js'
 
 export type Atom<T> = Accessor<T> & Setter<T>
 
-export default function atom<T>(value: T): Atom<T> {
+export function atom<T>(value: T): Atom<T> {
   const [state, setState] = createSignal(value)
 
   // XXX

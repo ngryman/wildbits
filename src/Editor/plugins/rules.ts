@@ -29,8 +29,8 @@ function markdownRules(schema: Schema) {
     codeBlockRule(schema.nodes.code_block),
     headingRule(schema.nodes.heading, 6),
     orderedListRule(schema.nodes.ordered_list),
-    strongRule(schema),
-    emRule(schema),
+    // emRule(schema),
+    strongRule(),
   ]
 }
 
@@ -78,15 +78,27 @@ function orderedListRule(nodeType: NodeType) {
 
 /// Return an input rule that turns words surrounded by double asterisks
 /// or underscores into a strong mark.
-function strongRule(schema: Schema) {
+function strongRule() {
   return new InputRule(
-    /(?:\*\*|__)([^*]+)(?:\*\*|__)/,
-    (state, _match, start, end) => {
-      const tr = state.tr
-      return tr
-        .addMark(start + 2, end - 1, schema.marks.strong.create())
-        .delete(start, start + 2)
-        .delete(tr.mapping.map(end - 1), tr.mapping.map(end))
+    /(?:\*\*|__)([^*_]+)(?:\*\*|__)$/,
+    (state, match, start, end) => {
+      const { tr, schema } = state
+
+      const fullMatch = match[0]
+      const captureGroup = match[1]
+
+      const textStart = start + fullMatch.indexOf(captureGroup)
+      if (textStart > start) {
+        tr.delete(start, textStart)
+      }
+
+      const textEnd = textStart + captureGroup.length
+      if (textEnd < end) {
+        tr.delete(tr.mapping.map(textEnd), tr.mapping.map(end))
+      }
+
+      const markType = schema.marks['strong']
+      return tr.addMark(start, tr.mapping.map(end), markType.create())
     }
   )
 }
