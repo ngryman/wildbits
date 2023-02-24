@@ -6,12 +6,8 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:solid/typescript"
   ],
-  "parserOptions": {
-    "project": ["./tsconfig.json"]
-  },
   "rules": {
     "no-redeclare": ["error", { "builtinGlobals": false }],
     "@typescript-eslint/ban-ts-comment": "off",

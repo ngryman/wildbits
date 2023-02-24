@@ -1,8 +1,8 @@
+import { schema } from '@mindraft/editor'
 import { render } from 'solid-js/web'
 import { ThemeProvider } from 'solid-styled-components'
 
 import { NotesProvider, type Note } from 'contexts/notes'
-import { schema } from 'editor/schema'
 
 import App from './App'
 import GlobalStyles from './GlobalStyles'

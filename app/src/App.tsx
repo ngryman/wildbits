@@ -1,9 +1,9 @@
 import { Show } from 'solid-js'
 import { createShortcut } from '@solid-primitives/keyboard'
 import { Presence } from '@motionone/solid'
+import { Editor } from '@mindraft/editor'
 
 import { atom } from 'utils'
-import { Editor } from 'editor'
 import { Pane, Workspace } from 'layout'
 
 function App() {

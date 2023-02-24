@@ -3,17 +3,44 @@ lockfileVersion: 5.4
 importers:
 
   .:
-    specifiers: {}
-
-  packages/mindraft:
     specifiers:
-      '@motionone/solid': ^10.15.5
-      '@solid-primitives/keyboard': ^1.0.7
       '@types/node': ^18.14.0
       '@typescript-eslint/eslint-plugin': ^5.53.0
       '@typescript-eslint/parser': ^5.53.0
       eslint: ^8.34.0
       eslint-plugin-solid: ^0.10.0
+      typescript: ^4.9.5
+    devDependencies:
+      '@types/node': 18.14.1
+      '@typescript-eslint/eslint-plugin': 5.53.0_ny4s7qc6yg74faf3d6xty2ofzy
+      '@typescript-eslint/parser': 5.53.0_7kw3g6rralp5ps6mg3uyzz6azm
+      eslint: 8.34.0
+      eslint-plugin-solid: 0.10.0_7kw3g6rralp5ps6mg3uyzz6azm
+      typescript: 4.9.5
+
+  app:
+    specifiers:
+      '@mindraft/editor': workspace:*
+      '@motionone/solid': ^10.15.5
+      '@solid-primitives/keyboard': ^1.0.7
+      solid-js: ^1.6.10
+      solid-styled-components: ^0.28.5
+      vite: ^4.1.1
+      vite-plugin-solid: ^2.5.0
+      vite-tsconfig-paths: ^4.0.5
+    dependencies:
+      '@mindraft/editor': link:../packages/editor
+      '@motionone/solid': 10.15.5_solid-js@1.6.11
+      '@solid-primitives/keyboard': 1.0.7_solid-js@1.6.11
+      solid-js: 1.6.11
+      solid-styled-components: 0.28.5_solid-js@1.6.11
+    devDependencies:
+      vite: 4.1.4
+      vite-plugin-solid: 2.5.0_solid-js@1.6.11+vite@4.1.4
+      vite-tsconfig-paths: 4.0.5
+
+  packages/editor:
+    specifiers:
       prosemirror-commands: ^1.5.0
       prosemirror-inputrules: ^1.2.0
       prosemirror-keymap: ^1.2.1
@@ -24,13 +51,10 @@ importers:
       prosemirror-view: ^1.30.1
       solid-js: ^1.6.10
       solid-styled-components: ^0.28.5
-      typescript: ^4.9.5
       vite: ^4.1.1
       vite-plugin-solid: ^2.5.0
       vite-tsconfig-paths: ^4.0.5
     dependencies:
-      '@motionone/solid': 10.15.5_solid-js@1.6.11
-      '@solid-primitives/keyboard': 1.0.7_solid-js@1.6.11
       prosemirror-commands: 1.5.0
       prosemirror-inputrules: 1.2.0
       prosemirror-keymap: 1.2.1
@@ -42,15 +66,9 @@ importers:
       solid-js: 1.6.11
       solid-styled-components: 0.28.5_solid-js@1.6.11
     devDependencies:
-      '@types/node': 18.14.1
-      '@typescript-eslint/eslint-plugin': 5.53.0_ny4s7qc6yg74faf3d6xty2ofzy
-      '@typescript-eslint/parser': 5.53.0_7kw3g6rralp5ps6mg3uyzz6azm
-      eslint: 8.34.0
-      eslint-plugin-solid: 0.10.0_7kw3g6rralp5ps6mg3uyzz6azm
-      typescript: 4.9.5
-      vite: 4.1.4_@types+node@18.14.1
+      vite: 4.1.4
       vite-plugin-solid: 2.5.0_solid-js@1.6.11+vite@4.1.4
-      vite-tsconfig-paths: 4.0.5_typescript@4.9.5
+      vite-tsconfig-paths: 4.0.5
 
 packages:
 
@@ -2333,7 +2351,7 @@ packages:
       is-number: 7.0.0
     dev: true
 
-  /tsconfck/2.0.3_typescript@4.9.5:
+  /tsconfck/2.0.3:
     resolution: {integrity: sha512-o3DsPZO1+C98KqHMdAbWs30zpxD30kj8r9OLA4ML1yghx4khNDzaaShNalfluh8ZPPhzKe3qyVCP1HiZszSAsw==}
     engines: {node: ^14.13.1 || ^16 || >=18}
     hasBin: true
@@ -2342,8 +2360,6 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
-    dependencies:
-      typescript: 4.9.5
     dev: true
 
   /tslib/1.14.1:
@@ -2432,24 +2448,24 @@ packages:
       merge-anything: 5.1.4
       solid-js: 1.6.11
       solid-refresh: 0.4.3_solid-js@1.6.11
-      vite: 4.1.4_@types+node@18.14.1
+      vite: 4.1.4
       vitefu: 0.2.4_vite@4.1.4
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /vite-tsconfig-paths/4.0.5_typescript@4.9.5:
+  /vite-tsconfig-paths/4.0.5:
     resolution: {integrity: sha512-/L/eHwySFYjwxoYt1WRJniuK/jPv+WGwgRGBYx3leciR5wBeqntQpUE6Js6+TJemChc+ter7fDBKieyEWDx4yQ==}
     dependencies:
       debug: 4.3.4
       globrex: 0.1.2
-      tsconfck: 2.0.3_typescript@4.9.5
+      tsconfck: 2.0.3
     transitivePeerDependencies:
       - supports-color
       - typescript
     dev: true
 
-  /vite/4.1.4_@types+node@18.14.1:
+  /vite/4.1.4:
     resolution: {integrity: sha512-3knk/HsbSTKEin43zHu7jTwYWv81f8kgAL99G5NWBcA1LKvtvcVAC4JjBH1arBunO9kQka+1oGbrMKOjk4ZrBg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -2474,7 +2490,6 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 18.14.1
       esbuild: 0.16.17
       postcss: 8.4.21
       resolve: 1.22.1
@@ -2491,7 +2506,7 @@ packages:
       vite:
         optional: true
     dependencies:
-      vite: 4.1.4_@types+node@18.14.1
+      vite: 4.1.4
     dev: true
 
   /w3c-keyname/2.2.6:

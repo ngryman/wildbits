@@ -5,7 +5,7 @@ import { css } from 'solid-styled-components'
 
 import { doc } from './doc'
 import { schema } from './schema'
-import { keymaps, note, rules } from './plugins'
+// import { keymaps, note, rules } from '../../../plugins'
 
 const styles = {
   root: css`
@@ -31,7 +31,7 @@ export function Editor() {
     const state = EditorState.create({
       schema,
       doc,
-      plugins: [keymaps(schema), note(), rules(schema)],
+      // plugins: [keymaps(schema), note(), rules(schema)],
     })
 
     const view: EditorView = new EditorView(ref, {
