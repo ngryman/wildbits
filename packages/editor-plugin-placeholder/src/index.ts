@@ -1,6 +1,6 @@
 import { Plugin } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
-import { css } from 'solid-styled-components'
+import { css } from 'goober'
 
 const styles = {
   editor: css`
