@@ -10,6 +10,7 @@
     "lint": "eslint --cache --ignore-path .gitignore --ext .js,.ts,.tsx ."
   },
   "dependencies": {
+    "@mindraft/utils": "workspace:*",
     "@motionone/solid": "^10.15.5",
     "@solid-primitives/keyboard": "^1.0.7",
     "@mindraft/editor": "workspace:*",

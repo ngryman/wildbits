@@ -1,4 +1,4 @@
-import { createMemo, type ParentProps } from 'solid-js'
+import { createMemo, ParentProps } from 'solid-js'
 import { Motion } from '@motionone/solid'
 import { css } from 'solid-styled-components'
 

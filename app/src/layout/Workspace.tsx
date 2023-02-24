@@ -1,4 +1,4 @@
-import type { Component, ParentProps } from 'solid-js'
+import { Component, ParentProps } from 'solid-js'
 import { styled } from 'solid-styled-components'
 
 export type WorkspaceProps = ParentProps & {

@@ -1,11 +1,12 @@
+import { createAtom } from '@mindraft/utils'
 import { EditorState } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
 import { onMount } from 'solid-js'
 import { css } from 'solid-styled-components'
 
-import { doc } from './doc'
-import { schema } from './schema'
-// import { keymaps, note, rules } from '../../../plugins'
+export type EditorProps = {
+  initialState: EditorState
+}
 
 const styles = {
   root: css`
@@ -23,26 +24,21 @@ const styles = {
   `,
 }
 
-export function Editor() {
+export function Editor(props: EditorProps) {
+  const state = createAtom(props.initialState)
   let ref!: HTMLDivElement
 
   onMount(() => {
-    // TODO: perhaps we should wrap this into an Atom so we can react to the editor changes outside.
-    const state = EditorState.create({
-      schema,
-      doc,
-      // plugins: [keymaps(schema), note(), rules(schema)],
-    })
-
     const view: EditorView = new EditorView(ref, {
-      state,
+      state: state(),
       attributes: {
         class: styles.editor,
       },
       dispatchTransaction(tr) {
-        const state = view.state.apply(tr)
-        view.updateState(state)
-        return state
+        const editorState = view.state.apply(tr)
+        view.updateState(editorState)
+        state(editorState)
+        return editorState
       },
     })
   })

@@ -1,2 +1,2 @@
-export * from './Pane'
-export * from './Workspace'
+export * from './pane'
+export * from './workspace'

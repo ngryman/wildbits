@@ -1,6 +1,6 @@
 import { createGlobalStyles } from 'solid-styled-components'
 
-export default createGlobalStyles`
+export const GlobalStyles = createGlobalStyles`
   html {
     box-sizing: border-box;
     font-size: 26px;
