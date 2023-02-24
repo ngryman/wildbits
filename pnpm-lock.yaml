@@ -67,15 +67,25 @@ importers:
       solid-js: 1.6.11
       solid-styled-components: 0.28.5_solid-js@1.6.11
 
+  packages/editor-plugin-markdown:
+    specifiers:
+      prosemirror-inputrules: ^1.2.0
+      prosemirror-state: ^1.4.2
+    dependencies:
+      prosemirror-inputrules: 1.2.0
+      prosemirror-state: 1.4.2
+
   packages/editor-plugin-placeholder:
     specifiers:
+      csstype: ^3.1.1
+      goober: ^2.1.12
       prosemirror-state: ^1.4.2
       prosemirror-view: ^1.30.1
-      solid-styled-components: ^0.28.5
     dependencies:
+      csstype: 3.1.1
+      goober: 2.1.12_csstype@3.1.1
       prosemirror-state: 1.4.2
       prosemirror-view: 1.30.1
-      solid-styled-components: 0.28.5
 
   packages/utils:
     specifiers:
@@ -2279,15 +2289,6 @@ packages:
       '@babel/types': 7.21.2
       solid-js: 1.6.11
     dev: true
-
-  /solid-styled-components/0.28.5:
-    resolution: {integrity: sha512-vwTcdp76wZNnESIzB6rRZ3U55NgcSAQXCiiRIiEFhxTFqT0bEh/warNT1qaRZu4OkAzrBkViOngF35ktI8sc4A==}
-    peerDependencies:
-      solid-js: ^1.4.4
-    dependencies:
-      csstype: 3.1.1
-      goober: 2.1.12_csstype@3.1.1
-    dev: false
 
   /solid-styled-components/0.28.5_solid-js@1.6.11:
     resolution: {integrity: sha512-vwTcdp76wZNnESIzB6rRZ3U55NgcSAQXCiiRIiEFhxTFqT0bEh/warNT1qaRZu4OkAzrBkViOngF35ktI8sc4A==}
