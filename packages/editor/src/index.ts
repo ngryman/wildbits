@@ -1,1 +1,2 @@
-export { Editor } from './editor'
+export * from './editor'
+export * from './theme'

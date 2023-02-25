@@ -4,8 +4,12 @@ import { EditorView } from 'prosemirror-view'
 import { onMount, Show } from 'solid-js'
 import { css } from 'solid-styled-components'
 
+import { createStyle } from './create-style'
+import { EditorTheme } from './theme'
+
 export type EditorProps = {
   initialState: EditorState
+  theme: EditorTheme
 }
 
 const styles = {
@@ -33,7 +37,7 @@ export function Editor(props: EditorProps) {
     const view: EditorView = new EditorView(ref, {
       state: props.initialState,
       attributes: {
-        class: styles.editor,
+        class: createStyle(props.theme),
       },
       handleTripleClick() {
         debug(!debug())

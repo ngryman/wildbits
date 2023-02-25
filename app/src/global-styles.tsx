@@ -16,17 +16,8 @@ export const GlobalStyles = createGlobalStyles`
 
   body {
     margin: 0;
-    font-family: "Ubuntu Mono", sans-serif;
-    line-height: 1.6;
-    color: #323f46;
-  }
-
-  h1 {
-    color: #4a3500;
-  }
-
-  p  {
-    color: #563d00;
+    font: sans-serif;
+    color: #2d2000;
   }
 
   ::selection {

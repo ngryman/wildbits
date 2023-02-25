@@ -1,10 +1,11 @@
 import { Document, createEditor } from '@mindraft/create-editor'
-import { Editor } from '@mindraft/editor'
+import { Editor, EditorTheme } from '@mindraft/editor'
 import { markdownExtension } from '@mindraft/editor-extension-markdown'
 import { createAtom } from '@mindraft/utils'
-import { Show } from 'solid-js'
-import { createShortcut } from '@solid-primitives/keyboard'
 import { Presence } from '@motionone/solid'
+import { Show } from 'solid-js'
+import { useTheme } from 'solid-styled-components'
+import { createShortcut } from '@solid-primitives/keyboard'
 
 import { Pane, Workspace } from './layout'
 
@@ -56,6 +57,7 @@ const initialDoc: Document = {
 }
 
 export function App() {
+  const theme = useTheme() as EditorTheme
   const { state } = createEditor(initialDoc, [markdownExtension()])
   const isSplit = createAtom(false)
 
@@ -66,7 +68,7 @@ export function App() {
   return (
     <Workspace isSplit={isSplit()}>
       <Pane>
-        <Editor initialState={state} />
+        <Editor initialState={state} theme={theme} />
       </Pane>
       <Presence exitBeforeEnter>
         <Show when={isSplit()}>
