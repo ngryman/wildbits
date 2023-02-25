@@ -1,4 +1,4 @@
-import { RATIO_PERFECT_FOURTH } from '@mindraft/editor'
+import { RATIO_PERFECT_FOURTH } from '@mindraft/editor-theme'
 import { render } from 'solid-js/web'
 import { ThemeProvider } from 'solid-styled-components'
 
@@ -7,7 +7,7 @@ import { GlobalStyles } from './global-styles'
 
 const theme = {
   typography: {
-    verticalRhythm: {
+    rhythm: {
       baseSize: 26,
       baseLineHeight: 1.6,
       ratio: RATIO_PERFECT_FOURTH,

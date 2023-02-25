@@ -23,6 +23,7 @@ importers:
       '@mindraft/create-editor': workspace:*
       '@mindraft/editor': workspace:*
       '@mindraft/editor-extension-markdown': workspace:*
+      '@mindraft/editor-theme': workspace:*
       '@mindraft/utils': workspace:*
       '@motionone/solid': ^10.15.5
       '@solid-primitives/keyboard': ^1.0.7
@@ -35,6 +36,7 @@ importers:
       '@mindraft/create-editor': link:../packages/create-editor
       '@mindraft/editor': link:../packages/editor
       '@mindraft/editor-extension-markdown': link:../packages/editor-extension-markdown
+      '@mindraft/editor-theme': link:../packages/editor-theme
       '@mindraft/utils': link:../packages/utils
       '@motionone/solid': 10.15.5_solid-js@1.6.11
       '@solid-primitives/keyboard': 1.0.7_solid-js@1.6.11
@@ -74,12 +76,14 @@ importers:
   packages/editor:
     specifiers:
       '@mindraft/create-editor': workspace:*
+      '@mindraft/editor-theme': workspace:*
       '@mindraft/utils': workspace:*
       prosemirror-view: ^1.30.1
       solid-js: ^1.6.10
       solid-styled-components: ^0.28.5
     dependencies:
       '@mindraft/create-editor': link:../create-editor
+      '@mindraft/editor-theme': link:../editor-theme
       '@mindraft/utils': link:../utils
       prosemirror-view: 1.30.1
       solid-js: 1.6.11
@@ -90,6 +94,32 @@ importers:
       '@mindraft/editor-utils': workspace:*
     dependencies:
       '@mindraft/editor-utils': link:../editor-utils
+
+  packages/editor-theme:
+    specifiers:
+      '@mindraft/editor-utils': workspace:*
+      csstype: ^3.1.1
+      goober: ^2.1.12
+      prosemirror-commands: ^1.5.0
+      prosemirror-inputrules: ^1.2.0
+      prosemirror-keymap: ^1.2.1
+      prosemirror-model: ^1.19.0
+      prosemirror-schema-basic: ^1.2.1
+      prosemirror-schema-list: ^1.2.2
+      prosemirror-state: ^1.4.2
+      prosemirror-view: ^1.30.1
+    dependencies:
+      '@mindraft/editor-utils': link:../editor-utils
+      csstype: 3.1.1
+      goober: 2.1.12_csstype@3.1.1
+      prosemirror-commands: 1.5.0
+      prosemirror-inputrules: 1.2.0
+      prosemirror-keymap: 1.2.1
+      prosemirror-model: 1.19.0
+      prosemirror-schema-basic: 1.2.1
+      prosemirror-schema-list: 1.2.2
+      prosemirror-state: 1.4.2
+      prosemirror-view: 1.30.1
 
   packages/editor-utils:
     specifiers:

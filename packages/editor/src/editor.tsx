@@ -1,11 +1,11 @@
 import { EditorState } from '@mindraft/create-editor'
+import { EditorTheme } from '@mindraft/editor-theme'
 import { createAtom } from '@mindraft/utils'
 import { EditorView } from 'prosemirror-view'
 import { onMount, Show } from 'solid-js'
 import { css } from 'solid-styled-components'
 
 import { createStyle } from './create-style'
-import { EditorTheme } from './theme'
 
 export type EditorProps = {
   initialState: EditorState

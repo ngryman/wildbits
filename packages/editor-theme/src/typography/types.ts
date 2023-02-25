@@ -1,16 +1,14 @@
-import {
-  VerticalRhythm,
-  VerticalRhythmRootStyle,
-  VerticalRhythmStyle,
-} from './rhythm'
+import { Rhythm, RhythmRootStyle, RhythmStyle } from './rhythm'
+import { Typeface } from './typeface'
 
 export type Typography = {
-  verticalRhythm: VerticalRhythm
+  typeface: Typeface
+  rhythm: Rhythm
 }
 
-export type TypographyRootStyle = VerticalRhythmRootStyle
+export type TypographyRootStyle = RhythmRootStyle
 
-export type TypographyStyle = VerticalRhythmStyle
+export type TypographyStyle = RhythmStyle
 
 export type TypographyStyles = {
   root: TypographyRootStyle

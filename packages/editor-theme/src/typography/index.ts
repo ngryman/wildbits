@@ -1,4 +1,4 @@
-import { getVerticalRhythmRootStyle, getVerticalRhythmStyle } from './rhythm'
+import { getRhythmRootStyle, getRhythmStyle } from './rhythm'
 import {
   Typography,
   TypographyRootStyle,
@@ -25,7 +25,7 @@ export function getTypographyRootStyle(
   typography: Typography
 ): TypographyRootStyle {
   return {
-    ...getVerticalRhythmRootStyle(typography.verticalRhythm),
+    ...getRhythmRootStyle(typography.rhythm),
   }
 }
 
@@ -34,9 +34,9 @@ export function getTypographyStyle(
   level: number
 ): TypographyStyle {
   return {
-    ...getVerticalRhythmStyle(typography.verticalRhythm, level),
+    ...getRhythmStyle(typography.rhythm, level),
   }
 }
 
 export * from './types'
-export * from './presets'
+export * from './rhythm'

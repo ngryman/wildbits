@@ -12,6 +12,7 @@
   "dependencies": {
     "@mindraft/create-editor": "workspace:*",
     "@mindraft/editor": "workspace:*",
+    "@mindraft/editor-theme": "workspace:*",
     "@mindraft/editor-extension-markdown": "workspace:*",
     "@mindraft/utils": "workspace:*",
     "@motionone/solid": "^10.15.5",

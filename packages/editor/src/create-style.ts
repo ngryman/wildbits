@@ -1,6 +1,9 @@
+import {
+  EditorTheme,
+  createTypographyStyles,
+  TypographyStyles,
+} from '@mindraft/editor-theme'
 import { css } from 'solid-styled-components'
-
-import { EditorTheme, createTypographyStyles, TypographyStyles } from './theme'
 
 export function createStyle(theme: EditorTheme): string {
   const typographyStyles = createTypographyStyles(theme.typography)

@@ -1,31 +1,28 @@
-export type VerticalRhythm = {
+export * from './presets'
+
+export type Rhythm = {
   baseSize: number
   baseLineHeight: number
   ratio: number
 }
 
-export type VerticalRhythmRootStyle = {
+export type RhythmRootStyle = {
   fontSize: string
   lineHeight: string
 }
 
-export type VerticalRhythmStyle = {
+export type RhythmStyle = {
   fontSize: string
 }
 
-export function getVerticalRhythmRootStyle(
-  rhythm: VerticalRhythm
-): VerticalRhythmRootStyle {
+export function getRhythmRootStyle(rhythm: Rhythm): RhythmRootStyle {
   return {
     fontSize: `${rhythm.baseSize}px`,
     lineHeight: `${rhythm.baseLineHeight}`,
   }
 }
 
-export function getVerticalRhythmStyle(
-  rhythm: VerticalRhythm,
-  level: number
-): VerticalRhythmStyle {
+export function getRhythmStyle(rhythm: Rhythm, level: number): RhythmStyle {
   const factor = computeSize(rhythm.ratio, level)
   return {
     fontSize: `${factor}em`,
