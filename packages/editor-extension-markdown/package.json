@@ -6,6 +6,6 @@
   "module": "src/index.ts",
   "types": "src/index.ts",
   "dependencies": {
-    "@mindraft/editor-extension": "workspace:*"
+    "@mindraft/editor-utils": "workspace:*"
   }
 }

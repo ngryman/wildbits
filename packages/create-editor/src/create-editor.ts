@@ -1,4 +1,4 @@
-import { Extension } from '@mindraft/editor-extension'
+import { Extension } from '@mindraft/editor-utils'
 import { Node } from 'prosemirror-model'
 import { EditorState, Plugin } from 'prosemirror-state'
 

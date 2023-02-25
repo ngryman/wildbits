@@ -1,4 +1,4 @@
-import { Extension } from '@mindraft/editor-extension'
+import { Extension } from '@mindraft/editor-utils'
 import {
   ellipsis,
   emDash,

@@ -3,7 +3,7 @@ import {
   createMarkRule,
   createNodeRule,
   createReplaceNodeRule,
-} from '@mindraft/editor-extension'
+} from '@mindraft/editor-utils'
 
 const MAX_HEADING_LEVEL = 6
 

@@ -1,5 +1,3 @@
-export * from '@mindraft/editor-utils'
-
 import { InputRule } from 'prosemirror-inputrules'
 
 export interface ExtensionSpec {
