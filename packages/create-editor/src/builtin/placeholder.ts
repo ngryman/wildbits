@@ -14,7 +14,7 @@ const styles = {
   `,
 }
 
-export function placeholderPlugin(text: string) {
+export function createPlaceholderPlugin(text: string) {
   function update(view: EditorView) {
     if (view.state.doc.textContent) {
       view.dom.removeAttribute('data-placeholder')

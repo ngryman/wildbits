@@ -20,6 +20,7 @@ importers:
 
   app:
     specifiers:
+      '@mindraft/create-editor': workspace:*
       '@mindraft/editor': workspace:*
       '@mindraft/editor-extension-markdown': workspace:*
       '@mindraft/utils': workspace:*
@@ -31,6 +32,7 @@ importers:
       vite-plugin-solid: ^2.5.0
       vite-tsconfig-paths: ^4.0.5
     dependencies:
+      '@mindraft/create-editor': link:../packages/create-editor
       '@mindraft/editor': link:../packages/editor
       '@mindraft/editor-extension-markdown': link:../packages/editor-extension-markdown
       '@mindraft/utils': link:../packages/utils
@@ -43,10 +45,11 @@ importers:
       vite-plugin-solid: 2.5.0_solid-js@1.6.11+vite@4.1.4
       vite-tsconfig-paths: 4.0.5
 
-  packages/editor:
+  packages/create-editor:
     specifiers:
       '@mindraft/editor-extension': workspace:*
-      '@mindraft/utils': workspace:*
+      csstype: ^3.1.1
+      goober: ^2.1.12
       prosemirror-commands: ^1.5.0
       prosemirror-inputrules: ^1.2.0
       prosemirror-keymap: ^1.2.1
@@ -55,11 +58,10 @@ importers:
       prosemirror-schema-list: ^1.2.2
       prosemirror-state: ^1.4.2
       prosemirror-view: ^1.30.1
-      solid-js: ^1.6.10
-      solid-styled-components: ^0.28.5
     dependencies:
       '@mindraft/editor-extension': link:../editor-extension
-      '@mindraft/utils': link:../utils
+      csstype: 3.1.1
+      goober: 2.1.12_csstype@3.1.1
       prosemirror-commands: 1.5.0
       prosemirror-inputrules: 1.2.0
       prosemirror-keymap: 1.2.1
@@ -67,6 +69,20 @@ importers:
       prosemirror-schema-basic: 1.2.1
       prosemirror-schema-list: 1.2.2
       prosemirror-state: 1.4.2
+      prosemirror-view: 1.30.1
+
+  packages/editor:
+    specifiers:
+      '@mindraft/create-editor': workspace:*
+      '@mindraft/editor-extension': workspace:*
+      '@mindraft/utils': workspace:*
+      prosemirror-view: ^1.30.1
+      solid-js: ^1.6.10
+      solid-styled-components: ^0.28.5
+    dependencies:
+      '@mindraft/create-editor': link:../create-editor
+      '@mindraft/editor-extension': link:../editor-extension
+      '@mindraft/utils': link:../utils
       prosemirror-view: 1.30.1
       solid-js: 1.6.11
       solid-styled-components: 0.28.5_solid-js@1.6.11
@@ -85,26 +101,12 @@ importers:
     dependencies:
       '@mindraft/editor-extension': link:../editor-extension
 
-  packages/editor-plugin-placeholder:
-    specifiers:
-      csstype: ^3.1.1
-      goober: ^2.1.12
-      prosemirror-state: ^1.4.2
-      prosemirror-view: ^1.30.1
-    dependencies:
-      csstype: 3.1.1
-      goober: 2.1.12_csstype@3.1.1
-      prosemirror-state: 1.4.2
-      prosemirror-view: 1.30.1
-
   packages/editor-utils:
     specifiers:
-      '@mindraft/utils': workspace:^0.0.0
       prosemirror-inputrules: ^1.2.0
       prosemirror-model: ^1.19.0
       prosemirror-transform: ^1.7.1
     dependencies:
-      '@mindraft/utils': link:../utils
       prosemirror-inputrules: 1.2.0
       prosemirror-model: 1.19.0
       prosemirror-transform: 1.7.1

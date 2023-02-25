@@ -1,4 +1,5 @@
-import { createEditorState, Document, Editor } from '@mindraft/editor'
+import { Document, createEditor } from '@mindraft/create-editor'
+import { Editor } from '@mindraft/editor'
 import { markdownExtension } from '@mindraft/editor-extension-markdown'
 import { createAtom } from '@mindraft/utils'
 import { Show } from 'solid-js'
@@ -55,7 +56,7 @@ const initialDoc: Document = {
 }
 
 export function App() {
-  const state = createEditorState(initialDoc, [markdownExtension()], [])
+  const { state } = createEditor(initialDoc, [markdownExtension()])
   const isSplit = createAtom(false)
 
   createShortcut(['Control', 'E'], () => {

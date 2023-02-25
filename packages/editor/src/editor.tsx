@@ -1,5 +1,5 @@
+import { EditorState } from '@mindraft/create-editor'
 import { createAtom } from '@mindraft/utils'
-import { EditorState } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
 import { onMount, Show } from 'solid-js'
 import { css } from 'solid-styled-components'
@@ -26,12 +26,12 @@ const styles = {
 
 export function Editor(props: EditorProps) {
   const debug = createAtom(false)
-  const state = createAtom(props.initialState)
+  const state = createAtom(props.state)
   let ref!: HTMLDivElement
 
   onMount(() => {
     const view: EditorView = new EditorView(ref, {
-      state: state(),
+      state: props.initialState,
       attributes: {
         class: styles.editor,
       },

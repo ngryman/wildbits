@@ -10,6 +10,7 @@
     "lint": "eslint --cache --ignore-path .gitignore --ext .js,.ts,.tsx ."
   },
   "dependencies": {
+    "@mindraft/create-editor": "workspace:*",
     "@mindraft/editor": "workspace:*",
     "@mindraft/editor-extension-markdown": "workspace:*",
     "@mindraft/utils": "workspace:*",
