@@ -2,13 +2,13 @@ export * from './presets'
 
 export type Rhythm = {
   baseSize: number
-  baseLineHeight: number
-  ratio: number
+  baseLeading: number
+  scaleRatio: number
 }
 
 export type RhythmRootStyle = {
   fontSize: string
-  lineHeight: string
+  leading: string
 }
 
 export type RhythmStyle = {
@@ -18,18 +18,18 @@ export type RhythmStyle = {
 export function getRhythmRootStyle(rhythm: Rhythm): RhythmRootStyle {
   return {
     fontSize: `${rhythm.baseSize}px`,
-    lineHeight: `${rhythm.baseLineHeight}`,
+    leading: `${rhythm.baseLeading}`,
   }
 }
 
 export function getRhythmStyle(rhythm: Rhythm, level: number): RhythmStyle {
-  const factor = computeSize(rhythm.ratio, level)
+  const factor = computeSizeFactor(rhythm.scaleRatio, level)
   return {
     fontSize: `${factor}em`,
   }
 }
 
-function computeSize(ratio: number, level: number): number {
+function computeSizeFactor(ratio: number, level: number): number {
   let size = 1
   for (let i = 1; i < level; i++, size *= ratio);
   return Math.round(size * 100) / 100

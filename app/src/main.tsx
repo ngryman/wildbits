@@ -1,22 +1,24 @@
-import { RATIO_PERFECT_FIFTH } from '@mindraft/editor-theme'
+import { RATIO_PERFECT_FIFTH, Typography } from '@mindraft/editor-theme'
 import { render } from 'solid-js/web'
 import { ThemeProvider } from 'solid-styled-components'
 
 import { App } from './app'
 import { GlobalStyles } from './global-styles'
 
-const theme = {
+type Theme = {
+  typography: Typography
+}
+
+const theme: Theme = {
   typography: {
     font: {
       paragraph: {
-        // name: 'Ubuntu Mono',
         name: 'Droid Serif',
+        weight: 'normal',
+        style: 'normal',
+        tracking: 'normal',
       },
       heading: {
-        // name: 'Stint Ultra Expanded',
-        // name: 'Press Start 2P',
-        // name: 'Tilt Prism',
-        // name: 'Droid Serif',
         name: 'Lobster',
       },
       em: {
@@ -25,8 +27,8 @@ const theme = {
     },
     rhythm: {
       baseSize: 24,
-      baseLineHeight: 1.6,
-      ratio: RATIO_PERFECT_FIFTH,
+      baseLeading: 1.6,
+      scaleRatio: RATIO_PERFECT_FIFTH,
     },
   },
 }

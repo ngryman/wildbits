@@ -2,26 +2,29 @@ export type Typeface = {
   name: string
   weight: 'normal' | 'bold'
   style: 'normal' | 'italic'
+  tracking: 'normal' | number
 }
 
 export type Font = {
   paragraph: Typeface
-  heading?: Partial<Typeface>
-  strong?: Partial<Typeface>
-  em?: Partial<Typeface>
+  heading: Partial<Typeface>
+  strong: Partial<Typeface>
+  em: Partial<Typeface>
 }
 
 export type FontStyle = {
   fontFamily: string
   fontStyle: string
   fontWeight: string
+  letterSpacing: string
 }
 
 const defaultFont: Font = {
   paragraph: {
-    name: 'Ubuntu Mono',
+    name: 'Droid Serif',
     style: 'normal',
     weight: 'normal',
+    tracking: 'normal',
   },
   heading: {
     weight: 'bold',
@@ -34,20 +37,21 @@ const defaultFont: Font = {
   },
 }
 
-export function getFontStyle(typeface: Font, type: keyof Font): FontStyle {
-  const name = typeface[type]?.name || typeface.paragraph.name
-  const style =
-    defaultFont[type]!.style ||
-    typeface.paragraph.style ||
-    defaultFont.paragraph.style
-  const weight =
-    defaultFont[type]!.weight ||
-    typeface.paragraph.weight ||
-    defaultFont.paragraph.weight
+export function getFontStyle(font: Partial<Font>, type: keyof Font): FontStyle {
+  const typeface: Typeface = {
+    ...defaultFont.paragraph,
+    ...defaultFont[type],
+    ...font.paragraph,
+    ...font[type],
+  }
 
   return {
-    fontFamily: name,
-    fontStyle: style,
-    fontWeight: weight,
+    fontFamily: typeface.name,
+    fontStyle: typeface.style,
+    fontWeight: typeface.weight,
+    letterSpacing:
+      typeface.tracking !== 'normal'
+        ? `${typeface.tracking}em`
+        : typeface.tracking,
   }
 }

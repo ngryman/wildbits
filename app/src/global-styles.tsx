@@ -23,7 +23,6 @@ export const GlobalStyles = createGlobalStyles`
 
   body {
     margin: 0;
-    font: sans-serif;
     color: #2d2000;
   }
 

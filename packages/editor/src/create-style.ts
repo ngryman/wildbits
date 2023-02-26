@@ -14,7 +14,7 @@ export function createStyle(theme: EditorTheme): string {
 
   return css`
     --font-size: ${root.fontSize};
-    --line-height: ${root.lineHeight};
+    --line-height: ${root.leading};
 
     word-wrap: break-word;
     white-space: break-spaces;
@@ -87,10 +87,11 @@ function createCSSRules(
   tagName: keyof TypographyStyles,
   styles: TypographyStyles
 ): string {
-  const { fontFamily, fontSize, fontStyle, fontWeight } = styles[tagName]
+  const style = styles[tagName]
 
   return `
-    font: ${fontStyle} ${fontWeight} ${fontSize} "${fontFamily}";
+    font: ${style.fontStyle} ${style.fontWeight} ${style.fontSize} "${style.fontFamily}";
     line-height: var(--line-height);
+    letter-spacing: ${style.letterSpacing};
   `
 }

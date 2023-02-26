@@ -2,7 +2,7 @@ import { Rhythm, RhythmRootStyle, RhythmStyle } from './rhythm'
 import { Font, FontStyle } from './font'
 
 export type Typography = {
-  font: Font
+  font: Partial<Font>
   rhythm: Rhythm
 }
 
