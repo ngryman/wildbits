@@ -61,6 +61,20 @@ export const EditorContainer = styled.div<EditorContainerProps>(props => {
       ${createCSSRules('p', styles)}
     }
 
+    blockquote {
+      ${createCSSRules('p', styles)}
+
+      p:first-of-type::before {
+        content: "\\00AB\\00A0";
+        opacity: 0.5;
+      }
+
+      p:last-of-type::after {
+        content: "\\00A0\\00BB";
+        opacity: 0.5;
+      }
+    }
+
     strong,
     b {
       ${createCSSRules('strong', styles)}
