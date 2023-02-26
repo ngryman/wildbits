@@ -2,6 +2,7 @@ import { Extension, EditorState, Plugin } from '@mindraft/editor-utils'
 
 import {
   createBindingsPlugin,
+  createObserverPlugin,
   createPlaceholderPlugin,
   createRulesPlugin,
 } from './builtin'
@@ -35,6 +36,7 @@ function createPlugins(
 ): Plugin[] {
   return [
     createBindingsPlugin(extensions),
+    createObserverPlugin(extensions),
     createRulesPlugin(extensions),
     options.placeholder
       ? createPlaceholderPlugin(options.placeholder)

@@ -1,13 +1,9 @@
 import { InputRule } from 'prosemirror-inputrules'
+import { Node } from 'prosemirror-model'
+import { Transaction } from 'prosemirror-state'
 
-export interface ExtensionSpec {
+export type Extension = {
   createRules?(): InputRule[]
-}
-
-export class Extension implements ExtensionSpec {
-  constructor(private spec: ExtensionSpec) {}
-
-  createRules(): InputRule[] {
-    return this.spec.createRules ? this.spec.createRules() : []
-  }
+  onDocumentChange?(doc: Node): void | Promise<void>
+  onTransaction?(tr: Transaction): void | Promise<void>
 }
