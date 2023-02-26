@@ -1,8 +1,7 @@
-import { Extension } from '@mindraft/editor-utils'
+import { Extension, Plugin } from '@mindraft/editor-utils'
 import { baseKeymap, chainCommands } from 'prosemirror-commands'
 import { keymap } from 'prosemirror-keymap'
 import { splitListItem } from 'prosemirror-schema-list'
-import { Plugin } from 'prosemirror-state'
 
 import { schema } from '../schema'
 

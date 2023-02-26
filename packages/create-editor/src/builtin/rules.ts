@@ -1,11 +1,10 @@
-import { Extension } from '@mindraft/editor-utils'
+import { Extension, Plugin } from '@mindraft/editor-utils'
 import {
   ellipsis,
   emDash,
   inputRules,
   smartQuotes,
 } from 'prosemirror-inputrules'
-import { Plugin } from 'prosemirror-state'
 
 const builtinRules = [...smartQuotes, ellipsis, emDash]
 

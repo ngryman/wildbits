@@ -1,6 +1,4 @@
-import { Extension } from '@mindraft/editor-utils'
-import { Node } from 'prosemirror-model'
-import { EditorState, Plugin } from 'prosemirror-state'
+import { Extension, EditorState, Plugin } from '@mindraft/editor-utils'
 
 import {
   createBindingsPlugin,

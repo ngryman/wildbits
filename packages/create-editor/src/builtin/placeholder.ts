@@ -1,6 +1,6 @@
-import { Plugin } from 'prosemirror-state'
-import { EditorView } from 'prosemirror-view'
+import { Plugin } from '@mindraft/editor-utils'
 import { css } from 'goober'
+import { EditorView } from 'prosemirror-view'
 
 const styles = {
   editor: css`
