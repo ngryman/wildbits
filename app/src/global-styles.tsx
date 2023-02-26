@@ -1,9 +1,16 @@
+import { Typography } from '@mindraft/editor-theme'
 import { createGlobalStyles } from 'solid-styled-components'
+
+type Props = {
+  theme?: {
+    typography: Typography
+  }
+}
 
 export const GlobalStyles = createGlobalStyles`
   html {
     box-sizing: border-box;
-    font-size: 26px;
+    font-size: ${(props: Props) => props.theme!.typography.rhythm.baseSize}px;
     background: #fafaf6;
   }
 

@@ -20,5 +20,8 @@ export type ParagraphBlock = {
 
 export type TextBlock = {
   type: 'text'
+  marks?: {
+    type: string
+  }[]
   text: string
 }

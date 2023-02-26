@@ -1,4 +1,5 @@
 import { getRhythmRootStyle, getRhythmStyle } from './rhythm'
+import { getFontStyle, Font } from './font'
 import {
   Typography,
   TypographyRootStyle,
@@ -6,22 +7,7 @@ import {
   TypographyStyles,
 } from './types'
 
-export function createTypographyStyles(
-  typography: Typography
-): TypographyStyles {
-  return {
-    root: getTypographyRootStyle(typography),
-    p: getTypographyStyle(typography, 1),
-    h6: getTypographyStyle(typography, 1),
-    h5: getTypographyStyle(typography, 1),
-    h4: getTypographyStyle(typography, 1),
-    h3: getTypographyStyle(typography, 1),
-    h2: getTypographyStyle(typography, 2),
-    h1: getTypographyStyle(typography, 3),
-  }
-}
-
-export function getTypographyRootStyle(
+export function createTypographyRootStyle(
   typography: Typography
 ): TypographyRootStyle {
   return {
@@ -29,11 +15,29 @@ export function getTypographyRootStyle(
   }
 }
 
+export function createTypographyStyles(
+  typography: Typography
+): TypographyStyles {
+  return {
+    h1: getTypographyStyle(typography, 'heading', 3),
+    h2: getTypographyStyle(typography, 'heading', 2),
+    h3: getTypographyStyle(typography, 'heading', 1),
+    h4: getTypographyStyle(typography, 'heading', 1),
+    h5: getTypographyStyle(typography, 'heading', 1),
+    h6: getTypographyStyle(typography, 'heading', 1),
+    p: getTypographyStyle(typography, 'paragraph', 1),
+    strong: getTypographyStyle(typography, 'strong', 1),
+    em: getTypographyStyle(typography, 'em', 1),
+  }
+}
+
 export function getTypographyStyle(
   typography: Typography,
+  type: keyof Font,
   level: number
 ): TypographyStyle {
   return {
+    ...getFontStyle(typography.font, type),
     ...getRhythmStyle(typography.rhythm, level),
   }
 }

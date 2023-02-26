@@ -1,58 +1,96 @@
 import {
   EditorTheme,
-  createTypographyStyles,
   TypographyStyles,
+  createTypographyStyles,
+  createTypographyRootStyle,
 } from '@mindraft/editor-theme'
 import { css } from 'solid-styled-components'
 
 export function createStyle(theme: EditorTheme): string {
-  const typographyStyles = createTypographyStyles(theme.typography)
+  const root = createTypographyRootStyle(theme.typography)
+  const styles = createTypographyStyles(theme.typography)
+
+  loadFonts(styles)
 
   return css`
-    --font-size: ${typographyStyles.root.fontSize}px;
-    --line-height: ${typographyStyles.root.lineHeight};
+    --font-size: ${root.fontSize};
+    --line-height: ${root.lineHeight};
 
     word-wrap: break-word;
     white-space: break-spaces;
     font-size: var(--font-size);
-    line-height: var(--line-height);
 
     h1 {
-      ${createCSSRules('h1', typographyStyles)}
+      ${createCSSRules('h1', styles)}
     }
 
     h2 {
-      ${createCSSRules('h2', typographyStyles)}
+      ${createCSSRules('h2', styles)}
     }
 
     h3 {
-      ${createCSSRules('h3', typographyStyles)}
+      ${createCSSRules('h3', styles)}
     }
 
     h4 {
-      ${createCSSRules('h4', typographyStyles)}
+      ${createCSSRules('h4', styles)}
     }
 
     h5 {
-      ${createCSSRules('h5', typographyStyles)}
+      ${createCSSRules('h5', styles)}
     }
 
     h6 {
-      ${createCSSRules('h6', typographyStyles)}
+      ${createCSSRules('h6', styles)}
     }
 
     p {
-      ${createCSSRules('p', typographyStyles)}
+      ${createCSSRules('p', styles)}
+    }
+
+    strong,
+    b {
+      ${createCSSRules('strong', styles)}
+    }
+
+    em,
+    i {
+      ${createCSSRules('em', styles)}
     }
   `
 }
 
+function loadFonts(styles: TypographyStyles) {
+  const families = getFontFamilies(styles).join('|')
+
+  let fontsEl: HTMLLinkElement | null = document.head.querySelector('#fonts')
+  if (!fontsEl) {
+    fontsEl = document.createElement('link')
+    fontsEl.id = 'fonts'
+    fontsEl.rel = 'stylesheet'
+    document.head.appendChild(fontsEl)
+  }
+  fontsEl.href = `https://fonts.googleapis.com/css?family=${families}&display=swap`
+}
+
+function getFontFamilies(styles: TypographyStyles): string[] {
+  return [
+    ...new Set(
+      Object.values(styles).map(
+        style => style.fontFamily.replace(' ', '+') + ':wght@400;700'
+      )
+    ),
+  ]
+}
+
 function createCSSRules(
   tagName: keyof TypographyStyles,
-  typographyStyles: TypographyStyles
+  styles: TypographyStyles
 ): string {
-  const typographyStyle = typographyStyles[tagName]
+  const { fontFamily, fontSize, fontStyle, fontWeight } = styles[tagName]
+
   return `
-    font-size: ${typographyStyle.fontSize};
+    font: ${fontStyle} ${fontWeight} ${fontSize} "${fontFamily}";
+    line-height: var(--line-height);
   `
 }

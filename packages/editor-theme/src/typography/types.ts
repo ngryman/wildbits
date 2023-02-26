@@ -1,22 +1,23 @@
 import { Rhythm, RhythmRootStyle, RhythmStyle } from './rhythm'
-import { Typeface } from './typeface'
+import { Font, FontStyle } from './font'
 
 export type Typography = {
-  typeface: Typeface
+  font: Font
   rhythm: Rhythm
 }
 
 export type TypographyRootStyle = RhythmRootStyle
 
-export type TypographyStyle = RhythmStyle
+export type TypographyStyle = FontStyle & RhythmStyle
 
 export type TypographyStyles = {
-  root: TypographyRootStyle
-  p: TypographyStyle
   h1: TypographyStyle
   h2: TypographyStyle
   h3: TypographyStyle
   h4: TypographyStyle
   h5: TypographyStyle
   h6: TypographyStyle
+  p: TypographyStyle
+  strong: TypographyStyle
+  em: TypographyStyle
 }

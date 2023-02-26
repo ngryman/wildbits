@@ -1,5 +1,5 @@
 import { Document, createEditor } from '@mindraft/create-editor'
-import { Editor, EditorTheme } from '@mindraft/editor'
+import { Editor } from '@mindraft/editor'
 import { markdownExtension } from '@mindraft/editor-extension-markdown'
 import { createAtom } from '@mindraft/utils'
 import { Presence } from '@motionone/solid'
@@ -8,6 +8,7 @@ import { useTheme } from 'solid-styled-components'
 import { createShortcut } from '@solid-primitives/keyboard'
 
 import { Pane, Workspace } from './layout'
+import { EditorTheme } from '@mindraft/editor-theme'
 
 const initialDoc: Document = {
   type: 'doc',
@@ -40,6 +41,11 @@ const initialDoc: Document = {
       content: [
         {
           type: 'text',
+          marks: [
+            {
+              type: 'em',
+            },
+          ],
           text: 'If you apply everything in this book, you will not be guaranteed success, but you will definitively have a meaning in your life.',
         },
       ],
