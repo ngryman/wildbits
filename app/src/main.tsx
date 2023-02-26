@@ -29,6 +29,7 @@ const theme: Theme = {
       baseSize: 24,
       baseLeading: 1.6,
       scaleRatio: RATIO_PERFECT_FIFTH,
+      lineLength: 60,
     },
   },
 }

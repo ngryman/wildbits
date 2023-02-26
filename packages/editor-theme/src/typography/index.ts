@@ -43,4 +43,5 @@ export function getTypographyStyle(
 }
 
 export * from './types'
+export * from './font'
 export * from './rhythm'

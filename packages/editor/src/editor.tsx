@@ -5,7 +5,7 @@ import { EditorView } from 'prosemirror-view'
 import { onMount, Show } from 'solid-js'
 import { css } from 'solid-styled-components'
 
-import { createStyle } from './create-style'
+import { EditorContainer } from './editor-container'
 
 export type EditorProps = {
   initialState: EditorState
@@ -13,18 +13,9 @@ export type EditorProps = {
 }
 
 const styles = {
-  root: css`
-    position: relative;
-    margin: 0 auto;
-    max-width: 60ch;
-  `,
   editor: css`
     word-wrap: break-word;
-    white-space: pre-wrap;
     white-space: break-spaces;
-    -webkit-font-variant-ligatures: none;
-    font-variant-ligatures: none;
-    font-feature-settings: 'liga' 0; /* the above doesn't seem to work in Edge */
   `,
 }
 
@@ -37,7 +28,7 @@ export function Editor(props: EditorProps) {
     const view: EditorView = new EditorView(ref, {
       state: props.initialState,
       attributes: {
-        class: createStyle(props.theme),
+        class: styles.editor,
       },
       handleTripleClick() {
         debug(!debug())
@@ -53,7 +44,7 @@ export function Editor(props: EditorProps) {
 
   return (
     <>
-      <div ref={ref} class={styles.root} />
+      <EditorContainer ref={ref} />
       <Show when={debug()}>
         <textarea rows={20} cols={100}>
           {JSON.stringify(state().doc, null, 2)}

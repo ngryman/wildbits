@@ -1,21 +1,34 @@
 import {
   EditorTheme,
   TypographyStyles,
-  createTypographyStyles,
   createTypographyRootStyle,
+  createTypographyStyles,
+  getFontFamilies,
+  loadFonts,
 } from '@mindraft/editor-theme'
-import { css } from 'solid-styled-components'
+import { Ref } from 'solid-js'
+import { styled } from 'solid-styled-components'
 
-export function createStyle(theme: EditorTheme): string {
+export type EditorContainerProps = {
+  ref: Ref<HTMLDivElement>
+}
+
+export const EditorContainer = styled.div<EditorContainerProps>(props => {
+  const theme = props.theme as EditorTheme
   const root = createTypographyRootStyle(theme.typography)
   const styles = createTypographyStyles(theme.typography)
 
-  loadFonts(styles)
+  const fontFamilies = getFontFamilies(styles)
+  loadFonts(fontFamilies)
 
-  return css`
+  return `
     --font-size: ${root.fontSize};
     --line-height: ${root.leading};
+    --line-length: ${root.lineLength};
 
+    position: relative;
+    margin: 0 auto;
+    max-width: var(--line-length);
     word-wrap: break-word;
     white-space: break-spaces;
     font-size: var(--font-size);
@@ -58,32 +71,9 @@ export function createStyle(theme: EditorTheme): string {
       ${createCSSRules('em', styles)}
     }
   `
-}
+})
 
-function loadFonts(styles: TypographyStyles) {
-  const families = getFontFamilies(styles).join('|')
-
-  let fontsEl: HTMLLinkElement | null = document.head.querySelector('#fonts')
-  if (!fontsEl) {
-    fontsEl = document.createElement('link')
-    fontsEl.id = 'fonts'
-    fontsEl.rel = 'stylesheet'
-    document.head.appendChild(fontsEl)
-  }
-  fontsEl.href = `https://fonts.googleapis.com/css?family=${families}&display=swap`
-}
-
-function getFontFamilies(styles: TypographyStyles): string[] {
-  return [
-    ...new Set(
-      Object.values(styles).map(
-        style => style.fontFamily.replace(' ', '+') + ':wght@400;700'
-      )
-    ),
-  ]
-}
-
-function createCSSRules(
+export function createCSSRules(
   tagName: keyof TypographyStyles,
   styles: TypographyStyles
 ): string {
