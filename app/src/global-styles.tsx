@@ -23,7 +23,6 @@ export const GlobalStyles = createGlobalStyles`
 
   body {
     margin: 0;
-    color: #2d2000;
   }
 
   ::selection {

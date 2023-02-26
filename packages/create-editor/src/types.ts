@@ -15,7 +15,7 @@ export type HeadingBlock = {
 
 export type ParagraphBlock = {
   type: 'paragraph'
-  content: [TextBlock]
+  content: TextBlock[]
 }
 
 export type TextBlock = {

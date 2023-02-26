@@ -83,5 +83,6 @@ export function createCSSRules(
     font: ${style.fontStyle} ${style.fontWeight} ${style.fontSize} "${style.fontFamily}";
     line-height: var(--line-height);
     letter-spacing: ${style.letterSpacing};
+    color: ${style.color};
   `
 }

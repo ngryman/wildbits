@@ -5,6 +5,7 @@ export type Typeface = {
   weight: 'normal' | 'bold'
   style: 'normal' | 'italic'
   tracking: 'normal' | number
+  color: string
 }
 
 export type Font = {
@@ -19,6 +20,7 @@ export type FontStyle = {
   fontStyle: string
   fontWeight: string
   letterSpacing: string
+  color: string
 }
 
 const defaultFont: Font = {
@@ -27,6 +29,7 @@ const defaultFont: Font = {
     style: 'normal',
     weight: 'normal',
     tracking: 'normal',
+    color: '#2d2000',
   },
   heading: {
     weight: 'bold',
@@ -42,8 +45,8 @@ const defaultFont: Font = {
 export function getFontStyle(font: Partial<Font>, type: keyof Font): FontStyle {
   const typeface: Typeface = {
     ...defaultFont.paragraph,
-    ...defaultFont[type],
     ...font.paragraph,
+    ...defaultFont[type],
     ...font[type],
   }
 
@@ -55,6 +58,7 @@ export function getFontStyle(font: Partial<Font>, type: keyof Font): FontStyle {
       typeface.tracking !== 'normal'
         ? `${typeface.tracking}em`
         : typeface.tracking,
+    color: typeface.color,
   }
 }
 

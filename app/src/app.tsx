@@ -23,7 +23,16 @@ const initialDoc: Document = {
       content: [
         {
           type: 'text',
-          text: 'Welcome to the journey that will help you escape the monotony that is your current life. It will be hard, painful, and non-rewarding. But eventually, with enough perseverance and sweat, you will finally succeed.',
+          text: 'Welcome to the journey that will help you escape the monotony that is your current life. It will be hard, painful, and non-rewarding. But eventually, with enough perseverance and sweat, ',
+        },
+        {
+          type: 'text',
+          marks: [{ type: 'strong' }],
+          text: 'you will finally succeed',
+        },
+        {
+          type: 'text',
+          text: '.',
         },
       ],
     },
@@ -41,11 +50,7 @@ const initialDoc: Document = {
       content: [
         {
           type: 'text',
-          marks: [
-            {
-              type: 'em',
-            },
-          ],
+          marks: [{ type: 'em' }],
           text: 'If you apply everything in this book, you will not be guaranteed success, but you will definitively have a meaning in your life.',
         },
       ],

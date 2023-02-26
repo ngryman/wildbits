@@ -17,12 +17,18 @@ const theme: Theme = {
         weight: 'normal',
         style: 'normal',
         tracking: 'normal',
+        color: '#2d2000',
       },
       heading: {
         name: 'Lobster',
       },
+      strong: {
+        name: 'Luckiest Guy',
+        color: '#000',
+      },
       em: {
         name: 'Mynerve',
+        color: 'gray',
       },
     },
     rhythm: {
