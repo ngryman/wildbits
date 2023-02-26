@@ -14,6 +14,7 @@
     "@mindraft/editor": "workspace:*",
     "@mindraft/editor-theme": "workspace:*",
     "@mindraft/editor-extension-markdown": "workspace:*",
+    "@mindraft/editor-extension-persistence": "workspace:*",
     "@mindraft/utils": "workspace:*",
     "@motionone/solid": "^10.15.5",
     "@solid-primitives/keyboard": "^1.0.7",

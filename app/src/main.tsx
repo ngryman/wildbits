@@ -1,3 +1,4 @@
+import { PersistenceProvider } from '@mindraft/editor-extension-persistence'
 import { RATIO_PERFECT_FIFTH, Typography } from '@mindraft/editor-theme'
 import { render } from 'solid-js/web'
 import { ThemeProvider } from 'solid-styled-components'
@@ -43,8 +44,10 @@ const theme: Theme = {
 render(
   () => (
     <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <App />
+      <PersistenceProvider>
+        <GlobalStyles />
+        <App />
+      </PersistenceProvider>
     </ThemeProvider>
   ),
   document.body

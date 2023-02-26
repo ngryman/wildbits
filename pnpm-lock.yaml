@@ -23,6 +23,7 @@ importers:
       '@mindraft/create-editor': workspace:*
       '@mindraft/editor': workspace:*
       '@mindraft/editor-extension-markdown': workspace:*
+      '@mindraft/editor-extension-persistence': workspace:*
       '@mindraft/editor-theme': workspace:*
       '@mindraft/utils': workspace:*
       '@motionone/solid': ^10.15.5
@@ -36,6 +37,7 @@ importers:
       '@mindraft/create-editor': link:../packages/create-editor
       '@mindraft/editor': link:../packages/editor
       '@mindraft/editor-extension-markdown': link:../packages/editor-extension-markdown
+      '@mindraft/editor-extension-persistence': link:../packages/editor-extension-persistence
       '@mindraft/editor-theme': link:../packages/editor-theme
       '@mindraft/utils': link:../packages/utils
       '@motionone/solid': 10.15.5_solid-js@1.6.11
@@ -55,10 +57,8 @@ importers:
       prosemirror-commands: ^1.5.0
       prosemirror-inputrules: ^1.2.0
       prosemirror-keymap: ^1.2.1
-      prosemirror-model: ^1.19.0
       prosemirror-schema-basic: ^1.2.1
       prosemirror-schema-list: ^1.2.2
-      prosemirror-state: ^1.4.2
       prosemirror-view: ^1.30.1
     dependencies:
       '@mindraft/editor-utils': link:../editor-utils
@@ -67,16 +67,15 @@ importers:
       prosemirror-commands: 1.5.0
       prosemirror-inputrules: 1.2.0
       prosemirror-keymap: 1.2.1
-      prosemirror-model: 1.19.0
       prosemirror-schema-basic: 1.2.1
       prosemirror-schema-list: 1.2.2
-      prosemirror-state: 1.4.2
       prosemirror-view: 1.30.1
 
   packages/editor:
     specifiers:
       '@mindraft/create-editor': workspace:*
       '@mindraft/editor-theme': workspace:*
+      '@mindraft/editor-utils': workspace:*
       '@mindraft/utils': workspace:*
       prosemirror-view: ^1.30.1
       solid-js: ^1.6.10
@@ -84,6 +83,7 @@ importers:
     dependencies:
       '@mindraft/create-editor': link:../create-editor
       '@mindraft/editor-theme': link:../editor-theme
+      '@mindraft/editor-utils': link:../editor-utils
       '@mindraft/utils': link:../utils
       prosemirror-view: 1.30.1
       solid-js: 1.6.11
@@ -95,40 +95,31 @@ importers:
     dependencies:
       '@mindraft/editor-utils': link:../editor-utils
 
-  packages/editor-theme:
+  packages/editor-extension-persistence:
     specifiers:
       '@mindraft/editor-utils': workspace:*
-      csstype: ^3.1.1
-      goober: ^2.1.12
-      prosemirror-commands: ^1.5.0
-      prosemirror-inputrules: ^1.2.0
-      prosemirror-keymap: ^1.2.1
-      prosemirror-model: ^1.19.0
-      prosemirror-schema-basic: ^1.2.1
-      prosemirror-schema-list: ^1.2.2
-      prosemirror-state: ^1.4.2
-      prosemirror-view: ^1.30.1
+      '@mindraft/utils': workspace:*
+      acebase: ^1.27.0
+      solid-js: ^1.6.10
     dependencies:
       '@mindraft/editor-utils': link:../editor-utils
-      csstype: 3.1.1
-      goober: 2.1.12_csstype@3.1.1
-      prosemirror-commands: 1.5.0
-      prosemirror-inputrules: 1.2.0
-      prosemirror-keymap: 1.2.1
-      prosemirror-model: 1.19.0
-      prosemirror-schema-basic: 1.2.1
-      prosemirror-schema-list: 1.2.2
-      prosemirror-state: 1.4.2
-      prosemirror-view: 1.30.1
+      '@mindraft/utils': link:../utils
+      acebase: 1.27.0
+      solid-js: 1.6.11
+
+  packages/editor-theme:
+    specifiers: {}
 
   packages/editor-utils:
     specifiers:
       prosemirror-inputrules: ^1.2.0
       prosemirror-model: ^1.19.0
+      prosemirror-state: ^1.4.2
       prosemirror-transform: ^1.7.1
     dependencies:
       prosemirror-inputrules: 1.2.0
       prosemirror-model: 1.19.0
+      prosemirror-state: 1.4.2
       prosemirror-transform: 1.7.1
 
   packages/utils:
@@ -996,6 +987,19 @@ packages:
       '@typescript-eslint/types': 5.53.0
       eslint-visitor-keys: 3.3.0
     dev: true
+
+  /acebase-core/1.25.1:
+    resolution: {integrity: sha512-U6WY6QwhsXypqZQqt7kNxsLvjucJrcJM8TxOydv95+lJyBkv2UoURhwRjaWA9+0DNRfAOhUuPgjNxBhHShl4hg==}
+    optionalDependencies:
+      rxjs: 7.8.0
+    dev: false
+
+  /acebase/1.27.0:
+    resolution: {integrity: sha512-bnd8NhMrBg3jgbLRtMVRE9yahhSVm6mPGiwQis/gtpBORvJamlNbwQvv+xd6wA+K2SClvv23TkyLhBe7WLBqzA==}
+    dependencies:
+      acebase-core: 1.25.1
+      unidecode: 0.1.8
+    dev: false
 
   /acorn-jsx/5.3.2_acorn@8.8.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -2272,6 +2276,14 @@ packages:
       queue-microtask: 1.2.3
     dev: true
 
+  /rxjs/7.8.0:
+    resolution: {integrity: sha512-F2+gxDshqmIub1KdvZkaEfGDwLNpPvk9Fs6LD/MyQxNgMds/WH9OdDDXOmxUZpME+iSK3rQCctkL0DYyytUqMg==}
+    requiresBuild: true
+    dependencies:
+      tslib: 2.5.0
+    dev: false
+    optional: true
+
   /safe-regex-test/1.0.0:
     resolution: {integrity: sha512-JBUUzyOgEwXQY1NuPtvcj/qcBDbDmEvWufhlnXZIm75DEHp+afM1r1ujJpJsV/gSM4t59tpDyPi1sd6ZaPFfsA==}
     dependencies:
@@ -2481,6 +2493,11 @@ packages:
       has-symbols: 1.0.3
       which-boxed-primitive: 1.0.2
     dev: true
+
+  /unidecode/0.1.8:
+    resolution: {integrity: sha512-SdoZNxCWpN2tXTCrGkPF/0rL2HEq+i2gwRG1ReBvx8/0yTzC3enHfugOf8A9JBShVwwrRIkLX0YcDUGbzjbVCA==}
+    engines: {node: '>= 0.4.12'}
+    dev: false
 
   /update-browserslist-db/1.0.10_browserslist@4.21.5:
     resolution: {integrity: sha512-OztqDenkfFkbSG+tRxBeAnCVPckDBcvibKd35yDONx6OU8N7sqgwc7rCbkJ/WcYtVRZ4ba68d6byhC21GFh7sQ==}

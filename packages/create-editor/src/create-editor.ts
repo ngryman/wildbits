@@ -7,7 +7,6 @@ import {
   createRulesPlugin,
 } from './builtin'
 import { schema } from './schema'
-import { Document } from './types'
 
 export type CreateEditorOptions = {
   placeholder?: string
@@ -20,13 +19,11 @@ export type Editor = {
 export const defaultOptions: CreateEditorOptions = {}
 
 export function createEditor(
-  content: Document,
   extensions: Extension[],
   options: CreateEditorOptions = defaultOptions
 ): Editor {
-  const doc = Node.fromJSON(schema, content)
   const plugins = createPlugins(extensions, options)
-  const state = EditorState.create({ schema, doc, plugins })
+  const state = EditorState.create({ schema, plugins })
   return { state }
 }
 
