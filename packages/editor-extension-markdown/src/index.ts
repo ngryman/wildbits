@@ -63,10 +63,10 @@ const blockRules = [
   }),
 ]
 
-export function markdownExtension() {
-  return new Extension({
+export function markdownExtension(): Extension {
+  return {
     createRules() {
       return [...markRules, ...blockRules]
     },
-  })
+  }
 }
