@@ -1,8 +1,0 @@
-{
-  "name": "@mindraft/editor-theme",
-  "version": "0.0.0",
-  "description": "The Mindraft editor theme.",
-  "type": "module",
-  "module": "src/index.ts",
-  "types": "src/index.ts"
-}

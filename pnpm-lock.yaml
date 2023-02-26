@@ -24,7 +24,7 @@ importers:
       '@mindraft/editor': workspace:*
       '@mindraft/editor-extension-markdown': workspace:*
       '@mindraft/editor-extension-persistence': workspace:*
-      '@mindraft/editor-theme': workspace:*
+      '@mindraft/ui-theme': workspace:*
       '@mindraft/utils': workspace:*
       '@motionone/solid': ^10.15.5
       '@solid-primitives/keyboard': ^1.0.7
@@ -38,7 +38,7 @@ importers:
       '@mindraft/editor': link:../packages/editor
       '@mindraft/editor-extension-markdown': link:../packages/editor-extension-markdown
       '@mindraft/editor-extension-persistence': link:../packages/editor-extension-persistence
-      '@mindraft/editor-theme': link:../packages/editor-theme
+      '@mindraft/ui-theme': link:../packages/ui-theme
       '@mindraft/utils': link:../packages/utils
       '@motionone/solid': 10.15.5_solid-js@1.6.11
       '@solid-primitives/keyboard': 1.0.7_solid-js@1.6.11
@@ -74,16 +74,16 @@ importers:
   packages/editor:
     specifiers:
       '@mindraft/create-editor': workspace:*
-      '@mindraft/editor-theme': workspace:*
       '@mindraft/editor-utils': workspace:*
+      '@mindraft/ui-theme': workspace:*
       '@mindraft/utils': workspace:*
       prosemirror-view: ^1.30.1
       solid-js: ^1.6.10
       solid-styled-components: ^0.28.5
     dependencies:
       '@mindraft/create-editor': link:../create-editor
-      '@mindraft/editor-theme': link:../editor-theme
       '@mindraft/editor-utils': link:../editor-utils
+      '@mindraft/ui-theme': link:../ui-theme
       '@mindraft/utils': link:../utils
       prosemirror-view: 1.30.1
       solid-js: 1.6.11
@@ -107,9 +107,6 @@ importers:
       acebase: 1.27.0
       solid-js: 1.6.11
 
-  packages/editor-theme:
-    specifiers: {}
-
   packages/editor-utils:
     specifiers:
       prosemirror-inputrules: ^1.2.0
@@ -121,6 +118,14 @@ importers:
       prosemirror-model: 1.19.0
       prosemirror-state: 1.4.2
       prosemirror-transform: 1.7.1
+
+  packages/ui-theme:
+    specifiers:
+      '@mindraft/utils': workspace:*
+      solid-js: ^1.6.10
+    dependencies:
+      '@mindraft/utils': link:../utils
+      solid-js: 1.6.11
 
   packages/utils:
     specifiers:

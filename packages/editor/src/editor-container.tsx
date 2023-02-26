@@ -1,93 +1,102 @@
 import {
-  EditorTheme,
+  Theme,
   TypographyStyles,
   createTypographyRootStyle,
   createTypographyStyles,
-  getFontFamilies,
-  loadFonts,
-} from '@mindraft/editor-theme'
-import { Ref } from 'solid-js'
-import { styled } from 'solid-styled-components'
+  useTheme,
+} from '@mindraft/ui-theme'
+import { Ref, createMemo } from 'solid-js'
+import { css } from 'solid-styled-components'
 
 export type EditorContainerProps = {
   ref: Ref<HTMLDivElement>
 }
 
-export const EditorContainer = styled.div<EditorContainerProps>(props => {
-  const theme = props.theme as EditorTheme
-  const root = createTypographyRootStyle(theme.typography)
-  const styles = createTypographyStyles(theme.typography)
+export function EditorContainer(props: EditorContainerProps) {
+  const theme = useTheme()
 
-  const fontFamilies = getFontFamilies(styles)
-  loadFonts(fontFamilies)
+  const rootStyles = createMemo(() =>
+    createTypographyRootStyle(theme().editor.typography)
+  )
+  const styles = createMemo(() =>
+    createTypographyStyles(theme().editor.typography)
+  )
 
-  return `
-    --line-height: ${root.leading};
+  return (
+    <div
+      ref={props.ref}
+      class={css`
+        --line-height: ${rootStyles().leading};
 
-    position: relative;
-    margin: 0 auto;
-    max-width: ${root.lineLength};
-    word-wrap: break-word;
-    white-space: break-spaces;
-    
-    ${createCSSRules('body', styles)}
+        position: relative;
+        margin: 0 auto;
+        max-width: ${rootStyles().lineLength};
+        word-wrap: break-word;
+        white-space: break-spaces;
 
-    h1 {
-      ${createCSSRules('h1', styles)}
-    }
+        ${createCSSRules('body', styles(), theme())}
 
-    h2 {
-      ${createCSSRules('h2', styles)}
-    }
+        h1 {
+          ${createCSSRules('h1', styles(), theme())}
+        }
 
-    h3 {
-      ${createCSSRules('h3', styles)}
-    }
+        h2 {
+          ${createCSSRules('h2', styles(), theme())}
+        }
 
-    blockquote {
-      p:first-of-type::before {
-        content: "\\00AB\\00A0";
-        opacity: 0.5;
-      }
+        h3 {
+          ${createCSSRules('h3', styles(), theme())}
+        }
 
-      p:last-of-type::after {
-        content: "\\00A0\\00BB";
-        opacity: 0.5;
-      }
-    }
+        blockquote {
+          p:first-of-type::before {
+            content: '\\00AB\\00A0';
+            opacity: 0.5;
+          }
 
-    li {
-      &::marker {
-        opacity: 0.5;
-      }
+          p:last-of-type::after {
+            content: '\\00A0\\00BB';
+            opacity: 0.5;
+          }
+        }
 
-      p {
-        margin: 0;
-      }
-    }
+        li {
+          &::marker {
+            opacity: 0.5;
+          }
 
-    strong,
-    b {
-      ${createCSSRules('strong', styles)}
-    }
+          p {
+            margin: 0;
+          }
+        }
 
-    em,
-    i {
-      ${createCSSRules('em', styles)}
-    }
-  `
-})
+        strong,
+        b {
+          ${createCSSRules('strong', styles(), theme())}
+        }
+
+        em,
+        i {
+          ${createCSSRules('em', styles(), theme())}
+        }
+      `}
+    />
+  )
+}
 
 export function createCSSRules(
   tagName: keyof TypographyStyles,
-  styles: TypographyStyles
+  styles: TypographyStyles,
+  theme: Theme
 ): string {
   const style = styles[tagName]
 
   return `
-    font: ${style.fontStyle} ${style.fontWeight} ${style.fontSize} "${style.fontFamily}";
+    font: ${style.fontStyle} ${style.fontWeight} ${style.fontSize} "${
+    style.fontFamily
+  }";
     line-height: var(--line-height);
     letter-spacing: ${style.letterSpacing};
-    color: ${style.color};
+    color: ${style.color[theme.mode]};
   `
 }

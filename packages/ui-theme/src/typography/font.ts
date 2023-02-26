@@ -1,11 +1,11 @@
-import { TypographyStyles } from './types'
+import { Color } from '../'
 
 export type Typeface = {
   name: string
   weight: 'normal' | 'bold'
   style: 'normal' | 'italic'
   tracking: 'normal' | number
-  color: string
+  color: Color
 }
 
 export type Font = {
@@ -20,7 +20,7 @@ export type FontStyle = {
   fontStyle: string
   fontWeight: string
   letterSpacing: string
-  color: string
+  color: Color
 }
 
 const defaultFont: Font = {
@@ -29,7 +29,10 @@ const defaultFont: Font = {
     style: 'normal',
     weight: 'normal',
     tracking: 'normal',
-    color: '#2d2000',
+    color: {
+      light: '#2d2000',
+      dark: '#e6e6e6',
+    },
   },
   heading: {
     weight: 'bold',
@@ -75,12 +78,12 @@ export function loadFonts(families: string[]) {
   fontsEl.href = `https://fonts.googleapis.com/css?family=${familyParam}&display=swap`
 }
 
-export function getFontFamilies(styles: TypographyStyles): string[] {
+export function getFontFamilies(font: Partial<Font>): string[] {
   return [
     ...new Set(
-      Object.values(styles).map(
-        style => style.fontFamily.replace(' ', '+') + ':wght@400;700'
-      )
+      Object.values(font)
+        .filter(typeface => typeface.name)
+        .map(typeface => typeface.name!.replace(' ', '+') + ':wght@400;700')
     ),
   ]
 }
