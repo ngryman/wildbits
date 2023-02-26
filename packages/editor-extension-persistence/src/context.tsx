@@ -42,7 +42,10 @@ export function usePersistence() {
 }
 
 function createDB(): AceBase {
-  const db = AceBase.WithIndexedDB('mindraft')
+  const db = AceBase.WithIndexedDB('mindraft', {
+    sponsor: true,
+    logLevel: 'error',
+  })
 
   db.types.bind('documents', Object, {
     serializer: (_ref, doc) => JSON.stringify(doc),
