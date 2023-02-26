@@ -5,7 +5,7 @@ import {
   createReplaceNodeRule,
 } from '@mindraft/editor-utils'
 
-const MAX_HEADING_LEVEL = 6
+const MAX_HEADING_LEVEL = 3
 
 const markRules = [
   // Bold

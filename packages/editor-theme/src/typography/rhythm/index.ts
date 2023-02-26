@@ -8,7 +8,6 @@ export type Rhythm = {
 }
 
 export type RhythmRootStyle = {
-  fontSize: string
   leading: string
   lineLength: string
 }
@@ -19,7 +18,6 @@ export type RhythmStyle = {
 
 export function getRhythmRootStyle(rhythm: Rhythm): RhythmRootStyle {
   return {
-    fontSize: `${rhythm.baseSize}px`,
     leading: `${rhythm.baseLeading}`,
     lineLength: `${rhythm.lineLength}ch`,
   }

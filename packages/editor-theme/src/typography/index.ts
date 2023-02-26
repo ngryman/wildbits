@@ -22,10 +22,7 @@ export function createTypographyStyles(
     h1: getTypographyStyle(typography, 'heading', 3),
     h2: getTypographyStyle(typography, 'heading', 2),
     h3: getTypographyStyle(typography, 'heading', 1),
-    h4: getTypographyStyle(typography, 'heading', 1),
-    h5: getTypographyStyle(typography, 'heading', 1),
-    h6: getTypographyStyle(typography, 'heading', 1),
-    p: getTypographyStyle(typography, 'paragraph', 1),
+    body: getTypographyStyle(typography, 'body', 1),
     strong: getTypographyStyle(typography, 'strong', 1),
     em: getTypographyStyle(typography, 'em', 1),
   }

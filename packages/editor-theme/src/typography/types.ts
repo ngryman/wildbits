@@ -14,10 +14,7 @@ export type TypographyStyles = {
   h1: TypographyStyle
   h2: TypographyStyle
   h3: TypographyStyle
-  h4: TypographyStyle
-  h5: TypographyStyle
-  h6: TypographyStyle
-  p: TypographyStyle
+  body: TypographyStyle
   strong: TypographyStyle
   em: TypographyStyle
 }

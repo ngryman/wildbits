@@ -22,16 +22,15 @@ export const EditorContainer = styled.div<EditorContainerProps>(props => {
   loadFonts(fontFamilies)
 
   return `
-    --font-size: ${root.fontSize};
     --line-height: ${root.leading};
-    --line-length: ${root.lineLength};
 
     position: relative;
     margin: 0 auto;
-    max-width: var(--line-length);
+    max-width: ${root.lineLength};
     word-wrap: break-word;
     white-space: break-spaces;
-    font-size: var(--font-size);
+    
+    ${createCSSRules('body', styles)}
 
     h1 {
       ${createCSSRules('h1', styles)}
@@ -45,25 +44,7 @@ export const EditorContainer = styled.div<EditorContainerProps>(props => {
       ${createCSSRules('h3', styles)}
     }
 
-    h4 {
-      ${createCSSRules('h4', styles)}
-    }
-
-    h5 {
-      ${createCSSRules('h5', styles)}
-    }
-
-    h6 {
-      ${createCSSRules('h6', styles)}
-    }
-
-    p {
-      ${createCSSRules('p', styles)}
-    }
-
     blockquote {
-      ${createCSSRules('p', styles)}
-
       p:first-of-type::before {
         content: "\\00AB\\00A0";
         opacity: 0.5;
@@ -72,6 +53,16 @@ export const EditorContainer = styled.div<EditorContainerProps>(props => {
       p:last-of-type::after {
         content: "\\00A0\\00BB";
         opacity: 0.5;
+      }
+    }
+
+    li {
+      &::marker {
+        opacity: 0.5;
+      }
+
+      p {
+        margin: 0;
       }
     }
 

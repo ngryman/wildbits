@@ -12,7 +12,7 @@ type Theme = {
 const theme: Theme = {
   typography: {
     font: {
-      paragraph: {
+      body: {
         name: 'Droid Serif',
         weight: 'normal',
         style: 'normal',

@@ -9,7 +9,7 @@ export type Typeface = {
 }
 
 export type Font = {
-  paragraph: Typeface
+  body: Typeface
   heading: Partial<Typeface>
   strong: Partial<Typeface>
   em: Partial<Typeface>
@@ -24,7 +24,7 @@ export type FontStyle = {
 }
 
 const defaultFont: Font = {
-  paragraph: {
+  body: {
     name: 'Droid Serif',
     style: 'normal',
     weight: 'normal',
@@ -44,8 +44,8 @@ const defaultFont: Font = {
 
 export function getFontStyle(font: Partial<Font>, type: keyof Font): FontStyle {
   const typeface: Typeface = {
-    ...defaultFont.paragraph,
-    ...font.paragraph,
+    ...defaultFont.body,
+    ...font.body,
     ...defaultFont[type],
     ...font[type],
   }
