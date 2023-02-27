@@ -31,7 +31,7 @@ export function App() {
   return (
     <Workspace isSplit={isSplit()}>
       <Pane>
-        <Editor doc={doc()!} editor={editor} theme={theme} />
+        <Editor doc={doc()!} editor={editor} />
       </Pane>
       <Presence exitBeforeEnter>
         <Show when={isSplit()}>

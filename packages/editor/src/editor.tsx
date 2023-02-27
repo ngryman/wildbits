@@ -1,5 +1,4 @@
 import { Editor as EditorClass } from '@mindraft/create-editor'
-import { EditorTheme } from '@mindraft/editor-theme'
 import { Document, Node } from '@mindraft/editor-utils'
 import { EditorView } from 'prosemirror-view'
 import { createEffect, onMount } from 'solid-js'
@@ -10,7 +9,6 @@ import { EditorContainer } from './editor-container'
 export type EditorProps = {
   doc: Document
   editor: EditorClass
-  theme: EditorTheme
 }
 
 const styles = {
