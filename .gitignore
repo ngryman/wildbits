@@ -1,4 +1,5 @@
 .eslintcache
+.todo
 .research/
 dist/
 node_modules/
