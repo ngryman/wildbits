@@ -10,19 +10,13 @@ export function PersistenceProvider(props: ParentProps) {
   const db = createDB()
 
   async function loadDocument(id: string): Promise<Document> {
-    console.time('load')
-    // await new Promise(resolve => setTimeout(resolve, 3000))
     const snapshot = await db.ref(`documents/${id}`).get()
-    console.timeEnd('load')
     // XXX: for some reason, the `creator` mapping is not called
     return JSON.parse(snapshot.val())
   }
 
   async function saveDocument(id: string, doc: Document): Promise<void> {
-    console.time('save')
-    const ref = await db.ref(`documents/${id}`).set(doc)
-    console.timeEnd('save')
-    console.log(`"${ref.path}" was saved!`)
+    await db.ref(`documents/${id}`).set(doc)
   }
 
   const persistence: Persistence = {
