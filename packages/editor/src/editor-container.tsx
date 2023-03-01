@@ -48,6 +48,12 @@ export function EditorContainer(props: EditorContainerProps) {
           ${createCSSRules('h3', styles(), theme())}
         }
 
+        /* .ProseMirror > p {
+          &::first-letter {
+            font-size: 2em;
+          }
+        } */
+
         blockquote {
           p:first-of-type::before {
             content: '\\00AB\\00A0';
@@ -67,6 +73,25 @@ export function EditorContainer(props: EditorContainerProps) {
 
           p {
             margin: 0;
+          }
+        }
+
+        hr {
+          text-align: center;
+          margin: 2rem 0;
+          border: none;
+          border-top: 1px solid
+            ${theme().editor.typography.font.body!.color[theme().mode]}22;
+
+          &::before {
+            /* content: '\\2021'; */
+            content: '\\00A7';
+            position: absolute;
+            translate: 0 -1.6rem 0;
+            rotate: 90deg;
+            font-family: serif;
+            font-size: 2rem;
+            opacity: 0.5;
           }
         }
 

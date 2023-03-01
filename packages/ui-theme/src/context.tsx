@@ -68,6 +68,7 @@ export function ThemeProvider(props: ParentProps) {
             body: {
               ...t.editor.typography.font.body!,
               name: 'Droid Serif',
+              // name: 'Cinzel Decorative',
             },
             heading: {
               name: 'Lobster',

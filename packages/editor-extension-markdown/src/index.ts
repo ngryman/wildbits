@@ -39,7 +39,7 @@ const blockRules = [
   }),
   // Bullet list
   createNodeRule({
-    regexp: /^\s*([*+-])\s$/,
+    regexp: /^\s*[*+-]\s$/,
     type: 'bullet_list',
   }),
   // Ordered list
@@ -60,6 +60,11 @@ const blockRules = [
   createReplaceNodeRule({
     regexp: /^\s*```(\w*)\s$/,
     type: 'code_block',
+  }),
+  // Horizontal rule
+  createReplaceNodeRule({
+    regexp: /^\s*[-_*]{3}$/,
+    type: 'horizontal_rule',
   }),
 ]
 

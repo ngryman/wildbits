@@ -79,12 +79,17 @@ export function createReplaceNodeRule(props: RuleProps) {
       props.attrs instanceof Function ? props.attrs(match) : props.attrs
 
     const $start = state.doc.resolve(start)
+    const isTextBlock = nodeType.inlineContent
     const canReplace = $start
       .node(-1)
       .canReplaceWith($start.index(-1), $start.indexAfter(-1), nodeType)
 
+    tr.delete(start, end)
+
     return canReplace
-      ? tr.delete(start, end).setBlockType(start, start, nodeType, attrs)
+      ? isTextBlock
+        ? tr.setBlockType(start, start, nodeType, attrs)
+        : tr.replaceRangeWith(start, start, nodeType.create(attrs))
       : null
   })
 }
