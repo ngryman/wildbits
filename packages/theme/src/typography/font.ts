@@ -1,4 +1,4 @@
-import { Color } from '../'
+import { Color } from '..'
 
 export type Typeface = {
   name: string

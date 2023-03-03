@@ -1,4 +1,4 @@
-import { useTheme } from '@mindraft/ui-theme'
+import { useTheme } from '@mindraft/theme'
 import { createGlobalStyles } from 'solid-styled-components'
 
 export const GlobalStyles = createGlobalStyles(() => {

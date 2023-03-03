@@ -1,0 +1,152 @@
+.root {
+  display: flex;
+  justify-content: center;
+}
+
+.editor {
+  /* NOTE: wait for https://developer.mozilla.org/en-US/docs/Web/CSS/pow */
+  --scale-ratio: 1.33;
+  --scale-1: 1;
+  --scale-2: calc(var(--scale-1) * var(--scale-ratio));
+  --scale-3: calc(var(--scale-2) * var(--scale-ratio));
+  --scale-4: calc(var(--scale-3) * var(--scale-ratio));
+
+  --base-size: 20px;
+  --size-xxl: calc(var(--scale-4) * var(--base-size));
+  --size-xl: calc(var(--scale-3) * var(--base-size));
+  --size-l: calc(var(--scale-2) * var(--base-size));
+  --size-m: calc(var(--scale-1) * var(--base-size));
+
+  --leading: 1.6;
+  --line-length: 60ch;
+
+  --heading-font-color: inherit;
+  --heading-font-family: 'Lobster';
+  --heading-font-style: normal;
+  --heading-font-tracking: inherit;
+  --heading-font-weight: bold;
+
+  position: relative;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  white-space: break-spaces;
+  -webkit-font-variant-ligatures: none;
+  font-variant-ligatures: none;
+  font-feature-settings: 'liga' 0; /* the above doesn't seem to work in Edge */
+
+  width: var(--line-length);
+}
+
+.editor [contenteditable='false'] {
+  white-space: normal;
+}
+.editor [contenteditable='false'] [contenteditable='true'] {
+  white-space: pre-wrap;
+}
+
+.editor blockquote > p:first-of-type::before {
+  content: '\00AB\00A0';
+  opacity: 0.5;
+}
+.editor blockquote > p:last-of-type::after {
+  content: '\00A0\00BB';
+  opacity: 0.5;
+}
+
+.editor li::marker {
+  opacity: 0.5;
+}
+.editor li > p {
+  margin: 0;
+}
+
+.editor h1 {
+  font: var(--heading-font-style) var(--heading-font-weight) var(--size-xxl)
+    var(--heading-font-family);
+  color: var(--heading-font-color);
+  letter-spacing: var(--heading-font-tracking);
+  line-height: var(--leading);
+}
+
+.editor h2 {
+  font: var(--heading-font-style) var(--heading-font-weight) var(--size-xl)
+    var(--heading-font-family);
+  color: var(--heading-font-color);
+  letter-spacing: var(--heading-font-tracking);
+  line-height: var(--leading);
+}
+
+.editor h3 {
+  font: var(--heading-font-style) var(--heading-font-weight) var(--size-l)
+    var(--heading-font-family);
+  color: var(--heading-font-color);
+  letter-spacing: var(--heading-font-tracking);
+  line-height: var(--leading);
+}
+
+.editor p {
+  font: var(--base-font-style) var(--base-font-weight) var(--size-m)
+    var(--base-font-family);
+  color: var(--base-font-color);
+  letter-spacing: var(--base-font-tracking);
+  line-height: var(--leading);
+}
+
+.editor strong {
+  font: var(--strong-font-style) var(--strong-font-weight) var(--size-m)
+    var(--strong-font-family);
+  color: var(--strong-font-color);
+  letter-spacing: var(--strong-font-tracking);
+  line-height: var(--leading);
+}
+
+.editor em {
+  font: var(--em-font-style) var(--em-font-weight) var(--size-m)
+    var(--em-font-family);
+  color: var(--em-font-color);
+  letter-spacing: var(--em-font-tracking);
+  line-height: var(--leading);
+}
+
+.editor pre {
+  white-space: pre-wrap;
+}
+
+.editor ul[data-type='taskList'] {
+  padding-left: 0;
+}
+.editor ul[data-type='taskList'] li {
+  display: block;
+  align-items: center;
+}
+.editor ul[data-type='taskList'] label {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 4px;
+  border: 2px solid;
+  width: 1em;
+  height: 1em;
+  cursor: pointer;
+}
+.editor ul[data-type='taskList'] [data-checked='true'] label::after {
+  content: '\2713';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  scale: 2;
+}
+.editor ul[data-type='taskList'] input {
+  display: none;
+}
+.editor ul[data-type='taskList'] div {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 0.5em;
+}
+.editor ul[data-type='taskList'] div p {
+  display: inline;
+}

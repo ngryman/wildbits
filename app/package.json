@@ -4,17 +4,14 @@
   "description": "The Mindraft app.",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "serve": "vite preview",
     "lint": "eslint --cache --ignore-path .gitignore --ext .js,.ts,.tsx ."
   },
   "dependencies": {
-    "@mindraft/create-editor": "workspace:*",
     "@mindraft/editor": "workspace:*",
-    "@mindraft/editor-extension-markdown": "workspace:*",
-    "@mindraft/editor-extension-persistence": "workspace:*",
-    "@mindraft/ui-theme": "workspace:*",
+    "@mindraft/theme": "workspace:*",
     "@mindraft/utils": "workspace:*",
     "@motionone/solid": "^10.15.5",
     "@solid-primitives/keyboard": "^1.0.7",

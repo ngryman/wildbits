@@ -99,10 +99,10 @@ export function ThemeProvider(props: ParentProps) {
       .removeEventListener('change', handleColorModeChange)
   })
 
-  createEffect(() => {
-    const fontFamilies = getFontFamilies(theme().editor.typography.font)
-    loadFonts(fontFamilies)
-  })
+  // createEffect(() => {
+  //   const fontFamilies = getFontFamilies(theme().editor.typography.font)
+  //   loadFonts(fontFamilies)
+  // })
 
   function handleColorModeChange(e: MediaQueryListEvent) {
     const mode = e.matches ? 'dark' : 'light'

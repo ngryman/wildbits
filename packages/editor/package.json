@@ -6,12 +6,23 @@
   "module": "src/index.ts",
   "types": "src/index.ts",
   "dependencies": {
-    "@mindraft/create-editor": "workspace:*",
-    "@mindraft/editor-utils": "workspace:*",
-    "@mindraft/ui-theme": "workspace:*",
+    "@hocuspocus/provider": "^1.1.1",
     "@mindraft/utils": "workspace:*",
+    "@tiptap/core": "2.0.0-beta.220",
+    "@tiptap/extension-collaboration": "2.0.0-beta.220",
+    "@tiptap/extension-link": "2.0.0-beta.220",
+    "@tiptap/extension-task-item": "2.0.0-beta.220",
+    "@tiptap/extension-task-list": "2.0.0-beta.220",
+    "@tiptap/extension-typography": "2.0.0-beta.220",
+    "@tiptap/pm": "2.0.0-beta.220",
+    "@tiptap/starter-kit": "2.0.0-beta.220",
+    "prosemirror-model": "^1.19.0",
+    "prosemirror-state": "^1.4.2",
     "prosemirror-view": "^1.30.1",
     "solid-js": "^1.6.10",
-    "solid-styled-components": "^0.28.5"
+    "solid-tiptap": "^0.4.0",
+    "y-prosemirror": "^1.2.0",
+    "y-protocols": "^1.0.5",
+    "yjs": "^13.5.48"
   }
 }

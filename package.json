@@ -2,7 +2,7 @@
   "name": "@mindraft/monorepo",
   "private": true,
   "scripts": {
-    "dev": "pnpm --filter='@mindraft/app' run dev",
+    "dev": "FORCE_COLOR=1 pnpm run --parallel --filter app --filter server dev",
     "lint": "eslint --cache --ignore-path .gitignore --ext .js,.ts,.tsx ."
   },
   "devDependencies": {
@@ -12,5 +12,8 @@
     "eslint": "^8.34.0",
     "eslint-plugin-solid": "^0.10.0",
     "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "@hocuspocus/server": "^1.1.1"
   }
 }
