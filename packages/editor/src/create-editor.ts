@@ -27,13 +27,13 @@ const DEFAULT_TYPOGRAPHY: Typography = {
     baseSize: 26,
     leading: 1.6,
     lineLength: 60,
-    scaleRatio: 1.33,
+    scaleRatio: 1.25,
   },
 }
 
 const DEFAULT_THEME: Theme = {
   base: {
-    family: 'Inconsolata',
+    family: 'Mulish',
   },
   em: {
     family: 'Mynerve',
