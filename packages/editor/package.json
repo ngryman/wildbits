@@ -1,13 +1,13 @@
 {
-  "name": "@mindraft/editor",
+  "name": "@wildbits/editor",
   "version": "0.0.0",
-  "description": "The Mindraft editor component",
+  "description": "The Wildbits editor component",
   "type": "module",
   "module": "src/index.ts",
   "types": "src/index.ts",
   "dependencies": {
     "@hocuspocus/provider": "^1.1.1",
-    "@mindraft/utils": "workspace:*",
+    "@wildbits/utils": "workspace:*",
     "@tiptap/core": "2.0.0-beta.220",
     "@tiptap/extension-collaboration": "2.0.0-beta.220",
     "@tiptap/extension-link": "2.0.0-beta.220",

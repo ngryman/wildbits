@@ -1,7 +1,7 @@
 {
-  "name": "@mindraft/app",
+  "name": "@wildbits/app",
   "version": "0.0.0",
-  "description": "The Mindraft app.",
+  "description": "The Wildbits app.",
   "type": "module",
   "scripts": {
     "dev": "vite --host",
@@ -10,9 +10,9 @@
     "lint": "eslint --cache --ignore-path .gitignore --ext .js,.ts,.tsx ."
   },
   "dependencies": {
-    "@mindraft/editor": "workspace:*",
-    "@mindraft/theme": "workspace:*",
-    "@mindraft/utils": "workspace:*",
+    "@wildbits/editor": "workspace:*",
+    "@wildbits/theme": "workspace:*",
+    "@wildbits/utils": "workspace:*",
     "@motionone/solid": "^10.15.5",
     "@solid-primitives/keyboard": "^1.0.7",
     "@solidjs/router": "^0.7.0",

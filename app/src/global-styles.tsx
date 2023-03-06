@@ -1,4 +1,4 @@
-import { useTheme } from '@mindraft/theme'
+import { useTheme } from '@wildbits/theme'
 import { createGlobalStyles } from 'solid-styled-components'
 
 export const GlobalStyles = createGlobalStyles(() => {

@@ -1,7 +1,7 @@
 {
-  "name": "@mindraft/server",
+  "name": "@wildbits/server",
   "version": "0.0.0",
-  "description": "The Mindraft synchronization server.",
+  "description": "The Wildbits synchronization server.",
   "scripts": {
     "dev": "nodemon"
   },

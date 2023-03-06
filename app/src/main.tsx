@@ -1,4 +1,4 @@
-import { ThemeProvider } from '@mindraft/theme'
+import { ThemeProvider } from '@wildbits/theme'
 import { render } from 'solid-js/web'
 import { Router } from '@solidjs/router'
 

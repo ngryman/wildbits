@@ -1,5 +1,5 @@
 {
-  "name": "@mindraft/monorepo",
+  "name": "@wildbits/monorepo",
   "private": true,
   "scripts": {
     "dev": "FORCE_COLOR=1 pnpm run --parallel --filter app --filter server dev",

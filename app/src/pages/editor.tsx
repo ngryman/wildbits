@@ -1,5 +1,5 @@
-import { Editor, createEditor } from '@mindraft/editor'
-import { createAtom } from '@mindraft/utils'
+import { Editor, createEditor } from '@wildbits/editor'
+import { createAtom } from '@wildbits/utils'
 import { Presence } from '@motionone/solid'
 import { createShortcut } from '@solid-primitives/keyboard'
 import { useParams } from '@solidjs/router'

@@ -1,4 +1,4 @@
-import { toCSSVars } from '@mindraft/utils'
+import { toCSSVars } from '@wildbits/utils'
 
 export type Typography = {
   rhythm: Rhythm

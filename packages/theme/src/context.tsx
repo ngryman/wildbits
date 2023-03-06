@@ -1,4 +1,4 @@
-import { Atom, createAtom } from '@mindraft/utils'
+import { Atom, createAtom } from '@wildbits/utils'
 import {
   createContext,
   createEffect,
