@@ -7,6 +7,7 @@ import TypographyExt from '@tiptap/extension-typography'
 import { createEffect } from 'solid-js'
 import { createTiptapEditor } from 'solid-tiptap'
 import { Doc } from 'yjs'
+import { IndexeddbPersistence } from 'y-indexeddb'
 import { WebrtcProvider } from 'y-webrtc'
 
 import styles from './editor.module.css'
@@ -50,7 +51,10 @@ const DEFAULT_THEME: Theme = {
 
 export function createEditor(settings: () => EditorSettings) {
   return createTiptapEditor(() => {
-    const provider = new WebrtcProvider(settings().docId, new Doc())
+    const yDoc = new Doc()
+    new IndexeddbPersistence(settings().docId, yDoc)
+    new WebrtcProvider(settings().docId, yDoc)
+
     const style = () => createEditorStyle(settings())
 
     return {
@@ -64,7 +68,7 @@ export function createEditor(settings: () => EditorSettings) {
       },
       element: settings().element,
       extensions: [
-        Collaboration.configure({ document: provider.doc }),
+        Collaboration.configure({ document: yDoc }),
         Link,
         StarterKit.configure({ history: false }),
         TypographyExt,
