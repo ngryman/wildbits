@@ -15,7 +15,7 @@ import { createTypographyCSSVars, Typography } from './typography'
 
 export type EditorSettings = {
   element: HTMLElement
-  content?: string
+  docId: string
   theme?: Theme
   typography?: Partial<Typography>
 }
@@ -50,7 +50,7 @@ const DEFAULT_THEME: Theme = {
 
 export function createEditor(settings: () => EditorSettings) {
   return createTiptapEditor(() => {
-    const provider = new WebrtcProvider('main', new Doc())
+    const provider = new WebrtcProvider(settings().docId, new Doc())
     const style = () => createEditorStyle(settings())
 
     return {

@@ -28,8 +28,10 @@ importers:
       '@mindraft/utils': workspace:*
       '@motionone/solid': ^10.15.5
       '@solid-primitives/keyboard': ^1.0.7
+      '@solidjs/router': ^0.7.0
       solid-js: ^1.6.10
       solid-styled-components: ^0.28.5
+      ulid: ^2.3.0
       vite: ^4.1.1
       vite-plugin-solid: ^2.5.0
       vite-tsconfig-paths: ^4.0.5
@@ -39,8 +41,10 @@ importers:
       '@mindraft/utils': link:../packages/utils
       '@motionone/solid': 10.15.5_solid-js@1.6.11
       '@solid-primitives/keyboard': 1.0.9_solid-js@1.6.11
+      '@solidjs/router': 0.7.0_solid-js@1.6.11
       solid-js: 1.6.11
       solid-styled-components: 0.28.5_solid-js@1.6.11
+      ulid: 2.3.0
     devDependencies:
       vite: 4.1.4
       vite-plugin-solid: 2.6.1_solid-js@1.6.11+vite@4.1.4
@@ -1036,6 +1040,14 @@ packages:
     resolution: {integrity: sha512-cSya9Tnh8KW6OYtJbZYs3//CVWWQAOXhMckH9paSzMQcoM09P+R1lLUN9BhQOws4c6PMA0apPNrbWsQzqZzIEw==}
     peerDependencies:
       solid-js: ^1.6.0
+    dependencies:
+      solid-js: 1.6.11
+    dev: false
+
+  /@solidjs/router/0.7.0_solid-js@1.6.11:
+    resolution: {integrity: sha512-8HI84twe5FjYRebSLMAhtkL9bRuTDIlxJK56kjfjU9WKGoUCTaWpCnkuj8Hqde1bWZ0X+GOZxKDfNkn1CjtjxA==}
+    peerDependencies:
+      solid-js: ^1.5.3
     dependencies:
       solid-js: 1.6.11
     dev: false
@@ -3973,6 +3985,11 @@ packages:
 
   /uc.micro/1.0.6:
     resolution: {integrity: sha512-8Y75pvTYkLJW2hWQHXxoqRgV7qb9B+9vFEtidML+7koHUFapnVJAZ6cKs+Qjz5Aw3aZWHMC6u0wJE3At+nSGwA==}
+    dev: false
+
+  /ulid/2.3.0:
+    resolution: {integrity: sha512-keqHubrlpvT6G2wH0OEfSW4mquYRcbe/J8NMmveoQOjUqmo+hXtO+ORCpWhdbZ7k72UtY61BL7haGxW6enBnjw==}
+    hasBin: true
     dev: false
 
   /unbox-primitive/1.0.2:

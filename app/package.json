@@ -15,8 +15,10 @@
     "@mindraft/utils": "workspace:*",
     "@motionone/solid": "^10.15.5",
     "@solid-primitives/keyboard": "^1.0.7",
+    "@solidjs/router": "^0.7.0",
     "solid-js": "^1.6.10",
-    "solid-styled-components": "^0.28.5"
+    "solid-styled-components": "^0.28.5",
+    "ulid": "^2.3.0"
   },
   "devDependencies": {
     "vite": "^4.1.1",
