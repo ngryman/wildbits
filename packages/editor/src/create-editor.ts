@@ -4,13 +4,14 @@ import StarterKit from '@tiptap/starter-kit'
 import TaskItem from '@tiptap/extension-task-item'
 import TaskList from '@tiptap/extension-task-list'
 import TypographyExt from '@tiptap/extension-typography'
-import { HocuspocusProvider } from '@hocuspocus/provider'
+import { createEffect } from 'solid-js'
 import { createTiptapEditor } from 'solid-tiptap'
+import { Doc } from 'yjs'
+import { WebrtcProvider } from 'y-webrtc'
 
 import styles from './editor.module.css'
 import { createThemeCSSVars, getFontFamilies, loadFonts, Theme } from './theme'
 import { createTypographyCSSVars, Typography } from './typography'
-import { createEffect } from 'solid-js'
 
 export type EditorSettings = {
   element: HTMLElement
@@ -49,11 +50,7 @@ const DEFAULT_THEME: Theme = {
 
 export function createEditor(settings: () => EditorSettings) {
   return createTiptapEditor(() => {
-    const provider = new HocuspocusProvider({
-      url: 'ws://192.168.2.190:1234',
-      name: 'main',
-    })
-
+    const provider = new WebrtcProvider('main', new Doc())
     const style = () => createEditorStyle(settings())
 
     return {
@@ -67,13 +64,9 @@ export function createEditor(settings: () => EditorSettings) {
       },
       element: settings().element,
       extensions: [
-        Collaboration.configure({
-          document: provider.document,
-        }),
+        Collaboration.configure({ document: provider.doc }),
         Link,
-        StarterKit.configure({
-          history: false,
-        }),
+        StarterKit.configure({ history: false }),
         TypographyExt,
         TaskList,
         TaskItem,

@@ -23,6 +23,7 @@
     "solid-tiptap": "^0.4.0",
     "y-prosemirror": "^1.2.0",
     "y-protocols": "^1.0.5",
+    "y-webrtc": "^10.2.4",
     "yjs": "^13.5.48"
   }
 }

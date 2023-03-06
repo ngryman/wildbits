@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "FORCE_COLOR=1 pnpm run --parallel --filter app --filter server dev",
+    "dev:rtc": "pnpm run --filter app dev",
     "lint": "eslint --cache --ignore-path .gitignore --ext .js,.ts,.tsx ."
   },
   "devDependencies": {
