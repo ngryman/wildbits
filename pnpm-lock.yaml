@@ -27,7 +27,6 @@ importers:
       '@solid-primitives/keyboard': ^1.0.7
       '@solidjs/router': ^0.7.0
       '@wildbits/editor': workspace:*
-      '@wildbits/theme': workspace:*
       '@wildbits/utils': workspace:*
       solid-js: ^1.6.10
       solid-styled-components: ^0.28.5
@@ -40,7 +39,6 @@ importers:
       '@solid-primitives/keyboard': 1.0.9_solid-js@1.6.11
       '@solidjs/router': 0.7.0_solid-js@1.6.11
       '@wildbits/editor': link:../packages/editor
-      '@wildbits/theme': link:../packages/theme
       '@wildbits/utils': link:../packages/utils
       solid-js: 1.6.11
       solid-styled-components: 0.28.5_solid-js@1.6.11
@@ -93,14 +91,6 @@ importers:
       y-protocols: 1.0.5
       y-webrtc: 10.2.4
       yjs: 13.5.48
-
-  packages/theme:
-    specifiers:
-      '@wildbits/utils': workspace:*
-      solid-js: ^1.6.10
-    dependencies:
-      '@wildbits/utils': link:../utils
-      solid-js: 1.6.11
 
   packages/utils:
     specifiers:
