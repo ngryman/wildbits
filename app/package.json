@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "serve": "vite preview",
+    "preview": "vite preview",
     "lint": "eslint --cache --ignore-path .gitignore --ext .js,.ts,.tsx ."
   },
   "dependencies": {
