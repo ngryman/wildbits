@@ -2,11 +2,11 @@ import { createMemo, ParentProps } from 'solid-js'
 import { Motion } from '@motionone/solid'
 import { css } from 'solid-styled-components'
 
-export type PaneProps = ParentProps & {
+type Props = ParentProps & {
   color?: string
 }
 
-export function Pane(props: PaneProps) {
+export function Pane(props: Props) {
   const className = createMemo(() =>
     props.color
       ? css`

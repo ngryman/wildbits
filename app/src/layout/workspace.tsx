@@ -1,11 +1,11 @@
 import { Component, ParentProps } from 'solid-js'
 import { styled } from 'solid-styled-components'
 
-export type WorkspaceProps = ParentProps & {
+type Props = ParentProps & {
   isSplit: boolean
 }
 
-export const Workspace: Component<WorkspaceProps> = styled.main`
+export const Workspace: Component<Props> = styled.main`
   display: grid;
   overflow-x: hidden;
   grid-auto-flow: column;

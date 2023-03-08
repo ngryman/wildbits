@@ -14,7 +14,7 @@ import styles from './editor.module.css'
 import { createThemeCSSVars, getFontFamilies, loadFonts, Theme } from './theme'
 import { createTypographyCSSVars, Typography } from './typography'
 
-export type EditorSettings = {
+type Settings = {
   element: HTMLElement
   docId: string
   theme?: Theme
@@ -49,7 +49,7 @@ const DEFAULT_THEME: Theme = {
   },
 }
 
-export function createEditor(settings: () => EditorSettings) {
+export function createEditor(settings: () => Settings) {
   return createTiptapEditor(() => {
     const yDoc = new Doc()
     new IndexeddbPersistence(settings().docId, yDoc)
@@ -80,7 +80,7 @@ export function createEditor(settings: () => EditorSettings) {
   })
 }
 
-function createEditorStyle(settings: EditorSettings) {
+function createEditorStyle(settings: Settings) {
   const theme = { ...DEFAULT_THEME, ...settings.theme }
   const typography = { ...DEFAULT_TYPOGRAPHY, ...settings.typography }
 

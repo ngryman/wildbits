@@ -2,10 +2,10 @@ import { Ref } from 'solid-js'
 
 import styles from './editor.module.css'
 
-export type EditorProps = {
+type Props = {
   ref: Ref<HTMLDivElement>
 }
 
-export function Editor(props: EditorProps) {
+export function Editor(props: Props) {
   return <div class={styles.root} ref={props.ref} />
 }
