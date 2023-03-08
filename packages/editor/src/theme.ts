@@ -48,7 +48,6 @@ export function loadFonts(families: string[]) {
     fontsEl.rel = 'stylesheet'
     document.head.appendChild(fontsEl)
   }
-  console.log(familyParam)
   fontsEl.href = `https://fonts.googleapis.com/css?family=${familyParam}&display=swap`
 }
 

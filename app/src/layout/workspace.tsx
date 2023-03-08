@@ -10,5 +10,6 @@ export const Workspace: Component<Props> = styled.main`
   overflow-x: hidden;
   grid-auto-flow: column;
   grid-template-columns: ${props => `1fr ${props.isSplit ? 1 : 0}fr`};
+  height: 100vh;
   transition: all 300ms ease-in-out;
 `

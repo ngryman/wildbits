@@ -3,18 +3,28 @@ import { createAtom } from '@wildbits/utils'
 import { Presence } from '@motionone/solid'
 import { createShortcut } from '@solid-primitives/keyboard'
 import { useParams } from '@solidjs/router'
-import { Show } from 'solid-js'
+import { createEffect, createRenderEffect, Show } from 'solid-js'
 
 import { Pane, Workspace } from '../layout'
+import { useUser } from '../signals'
 
 export default function EditorPage() {
   let ref!: HTMLDivElement
+  const user = useUser()
   const params = useParams()
-  const _editor = createEditor(() => ({
+  const isSplit = createAtom(false)
+
+  const editor = createEditor(() => ({
     docId: params.id,
     element: ref!,
   }))
-  const isSplit = createAtom(false)
+
+  createRenderEffect(() => user())
+
+  createEffect(() => {
+    localStorage.setItem('user', JSON.stringify(user()))
+    editor().chain().focus().updateUser(user()!).run()
+  })
 
   createShortcut(['Control', 'E'], () => {
     isSplit(prev => !prev)
