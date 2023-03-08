@@ -1,12 +1,11 @@
 {
   "name": "@wildbits/editor",
   "version": "0.0.0",
-  "description": "The Wildbits editor component",
+  "description": "The Wildbits editor package",
   "type": "module",
   "module": "src/index.ts",
   "types": "src/index.ts",
   "dependencies": {
-    "@hocuspocus/provider": "^1.1.1",
     "@tiptap/core": "2.0.0-beta.220",
     "@tiptap/extension-collaboration": "2.0.0-beta.220",
     "@tiptap/extension-collaboration-cursor": "2.0.0-beta.220",
@@ -16,6 +15,7 @@
     "@tiptap/extension-typography": "2.0.0-beta.220",
     "@tiptap/pm": "2.0.0-beta.220",
     "@tiptap/starter-kit": "2.0.0-beta.220",
+    "@wildbits/collaboration": "workspace:*",
     "@wildbits/utils": "workspace:*",
     "prosemirror-model": "^1.19.0",
     "prosemirror-state": "^1.4.2",
@@ -25,7 +25,6 @@
     "y-indexeddb": "^9.0.9",
     "y-prosemirror": "^1.2.0",
     "y-protocols": "^1.0.5",
-    "y-webrtc": "^10.2.4",
     "yjs": "^13.5.48"
   }
 }

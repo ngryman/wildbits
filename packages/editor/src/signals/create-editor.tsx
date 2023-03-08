@@ -7,22 +7,14 @@ import TaskList from '@tiptap/extension-task-list'
 import TypographyExt from '@tiptap/extension-typography'
 import { Editor } from '@tiptap/core'
 import { Accessor, createEffect, createRoot, JSX, onCleanup } from 'solid-js'
-import { createTiptapEditor } from 'solid-tiptap'
-import { Doc } from 'yjs'
+import { createTiptapEditor, UseEditorOptions } from 'solid-tiptap'
 import { IndexeddbPersistence } from 'y-indexeddb'
-import { WebrtcProvider } from 'y-webrtc'
 
 import styles from '../components/editor.module.css'
 import { createThemeCSSVars, getFontFamilies, loadFonts, Theme } from '../theme'
 import { createTypographyCSSVars, Typography } from '../typography'
 import { Cursor } from '../components'
-
-type Settings = {
-  element: HTMLElement
-  docId: string
-  theme?: Theme
-  typography?: Partial<Typography>
-}
+import { Settings } from './types'
 
 /**
  * NOTE: This need to be in sync with `editor.module.css` to avoid any FOUC.
@@ -53,32 +45,29 @@ const DEFAULT_THEME: Theme = {
 }
 
 export function createEditor(settings: () => Settings): Accessor<Editor> {
+  const document = settings().provider.document
+  const _persistence = new IndexeddbPersistence(
+    settings().provider.id,
+    document
+  )
+
   return createTiptapEditor(() => {
     let destroyCursor: VoidFunction
-    const document = new Doc()
-    new IndexeddbPersistence(settings().docId, document)
-    const provider = new WebrtcProvider(settings().docId, document)
 
-    const style = () => createEditorStyle(settings())
-
-    onCleanup(() => {
-      destroyCursor()
-    })
-
-    return {
+    const props: UseEditorOptions<HTMLElement> = {
       // TODO: save the position and set `autofocus` to it
       autofocus: true,
       editorProps: {
         attributes: {
           class: styles.editor,
-          style: style(),
+          style: createEditorStyle(settings()),
         },
       },
       element: settings().element,
       extensions: [
         Collaboration.configure({ document }),
         CollaborationCursor.configure({
-          provider,
+          provider: settings().provider.webrtcProvider,
           render: user =>
             (
               createRoot(dispose => {
@@ -95,6 +84,10 @@ export function createEditor(settings: () => Settings): Accessor<Editor> {
       ],
       injectCSS: false,
     }
+
+    onCleanup(() => destroyCursor())
+
+    return props
   }) as Accessor<Editor>
 }
 

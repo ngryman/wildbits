@@ -1,3 +1,9 @@
+import {
+  Peers,
+  createPeers,
+  createProvider,
+  createUser,
+} from '@wildbits/collaboration'
 import { Editor, createEditor } from '@wildbits/editor'
 import { createAtom } from '@wildbits/utils'
 import { Presence } from '@motionone/solid'
@@ -6,37 +12,36 @@ import { useParams } from '@solidjs/router'
 import { createEffect, createRenderEffect, Show } from 'solid-js'
 
 import { Pane, Workspace } from '../layout'
-import { useUser } from '../signals'
 
 export default function EditorPage() {
   let ref!: HTMLDivElement
-  const user = useUser()
+  const split = createAtom(false)
   const params = useParams()
-  const isSplit = createAtom(false)
 
-  const editor = createEditor(() => ({
-    docId: params.id,
-    element: ref!,
-  }))
+  const provider = createProvider({ id: params.id })
+  const user = createUser()
+  const peers = createPeers(provider)
+  const editor = createEditor(() => ({ element: ref!, provider }))
 
   createRenderEffect(() => user())
 
   createEffect(() => {
     localStorage.setItem('user', JSON.stringify(user()))
-    editor().chain().focus().updateUser(user()!).run()
+    editor().chain().focus().updateUser(user()).run()
   })
 
   createShortcut(['Control', 'E'], () => {
-    isSplit(prev => !prev)
+    split(prev => !prev)
   })
 
   return (
-    <Workspace isSplit={isSplit()}>
+    <Workspace isSplit={split()}>
       <Pane>
         <Editor ref={ref} />
+        <Peers peers={peers()} />
       </Pane>
       <Presence exitBeforeEnter>
-        <Show when={isSplit()}>
+        <Show when={split()}>
           <Pane>
             <div style={{ width: '100%', height: '100%' }} />
           </Pane>

@@ -10,6 +10,7 @@
     "lint": "eslint --cache --ignore-path .gitignore --ext .js,.ts,.tsx ."
   },
   "dependencies": {
+    "@wildbits/collaboration": "workspace:*",
     "@wildbits/editor": "workspace:*",
     "@wildbits/utils": "workspace:*",
     "@motionone/solid": "^10.15.5",

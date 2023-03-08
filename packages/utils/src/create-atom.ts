@@ -1,17 +1,39 @@
-import { createSignal, Accessor, Setter } from 'solid-js'
+import {
+  createResource,
+  createSignal,
+  Accessor,
+  InitializedResource,
+  ResourceFetcher,
+  Setter,
+} from 'solid-js'
 
-export type Atom<T> = Accessor<T> & Setter<T>
+export type Atom<T, A extends VoidFunction = Accessor<T>> = A & Setter<T>
 
 export function createAtom<T>(value: T): Atom<T> {
   const [state, setState] = createSignal(value)
 
-  // XXX
-  // @ts-ignore
-  // eslint-disable-next-line solid/reactivity
-  return value => {
+  return createAtomFunction(state, setState)
+}
+
+export function createInitializedResourceAtom<T>(
+  fetcher: ResourceFetcher<true, T, unknown>,
+  value: T
+): Atom<T, InitializedResource<T>> {
+  const [resource, { mutate }] = createResource<T>(fetcher, {
+    initialValue: value,
+  })
+
+  return createAtomFunction(resource, mutate)
+}
+
+function createAtomFunction<T, A extends VoidFunction>(
+  accessor: A,
+  setter: Setter<T>
+): Atom<T, A> {
+  return (value => {
     if (value !== undefined) {
-      setState(value)
+      setter(value)
     }
-    return state()
-  }
+    return accessor()
+  }) as Atom<T, A>
 }

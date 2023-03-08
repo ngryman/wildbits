@@ -1,0 +1,19 @@
+.root {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: grid;
+  grid-auto-flow: row;
+  justify-items: end;
+  padding: 1rem;
+}
+
+.peer {
+  --color: black;
+
+  list-style: none;
+  border-radius: 6px;
+  padding: 0.2rem 0.6rem;
+  background: var(--color);
+  color: white;
+}

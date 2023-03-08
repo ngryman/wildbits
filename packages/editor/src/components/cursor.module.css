@@ -18,6 +18,7 @@
   padding: 0.2rem 0.6rem;
   background: var(--color);
   color: white;
+  font-family: var(--font-family);
   font-size: 1rem;
   white-space: nowrap;
 }

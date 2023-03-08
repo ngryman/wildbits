@@ -1,0 +1,15 @@
+{
+  "name": "@wildbits/collaboration",
+  "version": "0.0.0",
+  "description": "The Wildbits collaboration package",
+  "type": "module",
+  "module": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@wildbits/utils": "workspace:*",
+    "solid-js": "^1.6.10",
+    "y-indexeddb": "^9.0.9",
+    "y-webrtc": "^10.2.4",
+    "yjs": "^13.5.48"
+  }
+}

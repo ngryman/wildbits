@@ -26,6 +26,7 @@ importers:
       '@motionone/solid': ^10.15.5
       '@solid-primitives/keyboard': ^1.0.7
       '@solidjs/router': ^0.7.0
+      '@wildbits/collaboration': workspace:*
       '@wildbits/editor': workspace:*
       '@wildbits/utils': workspace:*
       solid-js: ^1.6.10
@@ -38,6 +39,7 @@ importers:
       '@motionone/solid': 10.15.5_solid-js@1.6.11
       '@solid-primitives/keyboard': 1.0.9_solid-js@1.6.11
       '@solidjs/router': 0.7.0_solid-js@1.6.11
+      '@wildbits/collaboration': link:../packages/collaboration
       '@wildbits/editor': link:../packages/editor
       '@wildbits/utils': link:../packages/utils
       solid-js: 1.6.11
@@ -48,9 +50,22 @@ importers:
       vite-plugin-solid: 2.6.1_solid-js@1.6.11+vite@4.1.4
       vite-tsconfig-paths: 4.0.5
 
+  packages/collaboration:
+    specifiers:
+      '@wildbits/utils': workspace:*
+      solid-js: ^1.6.10
+      y-indexeddb: ^9.0.9
+      y-webrtc: ^10.2.4
+      yjs: ^13.5.48
+    dependencies:
+      '@wildbits/utils': link:../utils
+      solid-js: 1.6.11
+      y-indexeddb: 9.0.9_yjs@13.5.48
+      y-webrtc: 10.2.4
+      yjs: 13.5.48
+
   packages/editor:
     specifiers:
-      '@hocuspocus/provider': ^1.1.1
       '@tiptap/core': 2.0.0-beta.220
       '@tiptap/extension-collaboration': 2.0.0-beta.220
       '@tiptap/extension-collaboration-cursor': 2.0.0-beta.220
@@ -60,6 +75,7 @@ importers:
       '@tiptap/extension-typography': 2.0.0-beta.220
       '@tiptap/pm': 2.0.0-beta.220
       '@tiptap/starter-kit': 2.0.0-beta.220
+      '@wildbits/collaboration': workspace:*
       '@wildbits/utils': workspace:*
       prosemirror-model: ^1.19.0
       prosemirror-state: ^1.4.2
@@ -69,10 +85,8 @@ importers:
       y-indexeddb: ^9.0.9
       y-prosemirror: ^1.2.0
       y-protocols: ^1.0.5
-      y-webrtc: ^10.2.4
       yjs: ^13.5.48
     dependencies:
-      '@hocuspocus/provider': 1.1.1_fhmqfz4ob5c6ch7ccxaeydvr2y
       '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
       '@tiptap/extension-collaboration': 2.0.0-beta.220_vghkcsy37zmnft7cy7riket6na
       '@tiptap/extension-collaboration-cursor': 2.0.0-beta.220_xurnhx2lyuimbqrywcpq5zxutu
@@ -82,6 +96,7 @@ importers:
       '@tiptap/extension-typography': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@tiptap/starter-kit': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
+      '@wildbits/collaboration': link:../collaboration
       '@wildbits/utils': link:../utils
       prosemirror-model: 1.19.0
       prosemirror-state: 1.4.2
@@ -91,7 +106,6 @@ importers:
       y-indexeddb: 9.0.9_yjs@13.5.48
       y-prosemirror: 1.2.0_64jsmk4dks7swaqguygyd5k5gm
       y-protocols: 1.0.5
-      y-webrtc: 10.2.4
       yjs: 13.5.48
 
   packages/utils:
@@ -716,19 +730,6 @@ packages:
       - yjs
     dev: false
 
-  /@hocuspocus/provider/1.1.1_fhmqfz4ob5c6ch7ccxaeydvr2y:
-    resolution: {integrity: sha512-EcBMAaFDTE4rOkHCzfz80P8Ezq/obBvJ9iDTaLx/njxOchwonhyBpF2RBhT/lJRNJR+9AUB79j4ci2zgljImwQ==}
-    peerDependencies:
-      y-protocols: ^1.0.5
-      yjs: ^13.5.29
-    dependencies:
-      '@hocuspocus/common': 1.1.1
-      '@lifeomic/attempt': 3.0.3
-      lib0: 0.2.63
-      y-protocols: 1.0.5
-      yjs: 13.5.48
-    dev: false
-
   /@hocuspocus/server/1.1.1:
     resolution: {integrity: sha512-Tw6pGX4PResKyj5sK+DJFuTWm/mmHY1c+03QopEqdC4kV7sz10UJiCwWg9PLyW03E93W5VlwUbRzxUN4Mkj1Ag==}
     peerDependencies:
@@ -835,10 +836,6 @@ packages:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
-
-  /@lifeomic/attempt/3.0.3:
-    resolution: {integrity: sha512-GlM2AbzrErd/TmLL3E8hAHmb5Q7VhDJp35vIbyPVA5Rz55LZuRr8pwL3qrwwkVNo05gMX1J44gURKb4MHQZo7w==}
-    dev: false
 
   /@linaria/core/3.0.0-beta.13:
     resolution: {integrity: sha512-3zEi5plBCOsEzUneRVuQb+2SAx3qaC1dj0FfFAI6zIJQoDWu0dlSwKijMRack7oO9tUWrchfj3OkKQAd1LBdVg==}
