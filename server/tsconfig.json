@@ -1,9 +1,6 @@
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "module": "commonjs",
-    "lib": ["dom", "dom.iterable"],
-    "jsx": "preserve",
-    "jsxImportSource": "solid-js"
+    "module": "commonjs"
   }
 }
