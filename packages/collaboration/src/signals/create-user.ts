@@ -23,7 +23,7 @@ const COLORS = [
 ]
 
 const DEFAULT_USER: User = {
-  name: 'anonymous',
+  name: `anonymous${Math.random().toString().slice(2, 6)}`,
   color: 'black',
 }
 
@@ -41,10 +41,16 @@ async function getInitialUser(): Promise<User> {
 }
 
 async function getRandomName(): Promise<string> {
-  const { nickname } = await (
-    await window.fetch('https://nicknames.ngryman.workers.dev/')
-  ).json()
-  return nickname
+  try {
+    const { nickname } = await (
+      await window.fetch('https://nicknames.ngryman.workers.dev/')
+    ).json()
+    return nickname
+  } catch {
+    // If for some reason the endpoint fails, return the `DEFAULT_USER` name.
+    // This is not a critical endpoint.
+    return DEFAULT_USER.name
+  }
 }
 
 function getRandomColor(): string {
