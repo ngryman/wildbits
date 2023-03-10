@@ -1,5 +1,5 @@
 import { Navigate } from '@solidjs/router'
-import { ulid } from 'ulid'
+import { nanoid } from 'nanoid'
 
 export default function HomePage() {
   const id = generateDocId()
@@ -8,5 +8,5 @@ export default function HomePage() {
 }
 
 function generateDocId(): string {
-  return ulid().toLowerCase()
+  return nanoid()
 }

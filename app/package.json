@@ -10,15 +10,15 @@
     "lint": "eslint --cache --ignore-path .gitignore --ext .js,.ts,.tsx ."
   },
   "dependencies": {
-    "@wildbits/collaboration": "workspace:*",
-    "@wildbits/editor": "workspace:*",
-    "@wildbits/utils": "workspace:*",
     "@motionone/solid": "^10.15.5",
     "@solid-primitives/keyboard": "^1.0.7",
     "@solidjs/router": "^0.7.0",
+    "@wildbits/collaboration": "workspace:*",
+    "@wildbits/editor": "workspace:*",
+    "@wildbits/utils": "workspace:*",
+    "nanoid": "^4.0.1",
     "solid-js": "^1.6.10",
-    "solid-styled-components": "^0.28.5",
-    "ulid": "^2.3.0"
+    "solid-styled-components": "^0.28.5"
   },
   "devDependencies": {
     "vite": "^4.1.1",
