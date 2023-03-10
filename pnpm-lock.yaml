@@ -31,7 +31,6 @@ importers:
       '@wildbits/utils': workspace:*
       nanoid: ^4.0.1
       solid-js: ^1.6.10
-      solid-styled-components: ^0.28.5
       vite: ^4.1.1
       vite-plugin-solid: ^2.5.0
       vite-tsconfig-paths: ^4.0.5
@@ -44,7 +43,6 @@ importers:
       '@wildbits/utils': link:../packages/utils
       nanoid: 4.0.1
       solid-js: 1.6.11
-      solid-styled-components: 0.28.5_solid-js@1.6.11
     devDependencies:
       vite: 4.1.4
       vite-plugin-solid: 2.6.1_solid-js@1.6.11+vite@4.1.4
@@ -2461,14 +2459,6 @@ packages:
     resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
     dev: true
 
-  /goober/2.1.12_csstype@3.1.1:
-    resolution: {integrity: sha512-yXHAvO08FU1JgTXX6Zn6sYCUFfB/OJSX8HHjDSgerZHZmFKAb08cykp5LBw5QnmyMcZyPRMqkdyHUSSzge788Q==}
-    peerDependencies:
-      csstype: ^3.0.10
-    dependencies:
-      csstype: 3.1.1
-    dev: false
-
   /gopd/1.0.1:
     resolution: {integrity: sha512-d65bNlIadxvpb/A2abVdlqKqV563juRnZ1Wtk6s1sIR8uNsXR70xqIzVqxVf1eTqDunwT2MkczEeaezCKTZhwA==}
     dependencies:
@@ -3736,16 +3726,6 @@ packages:
       '@babel/types': 7.21.2
       solid-js: 1.6.11
     dev: true
-
-  /solid-styled-components/0.28.5_solid-js@1.6.11:
-    resolution: {integrity: sha512-vwTcdp76wZNnESIzB6rRZ3U55NgcSAQXCiiRIiEFhxTFqT0bEh/warNT1qaRZu4OkAzrBkViOngF35ktI8sc4A==}
-    peerDependencies:
-      solid-js: ^1.4.4
-    dependencies:
-      csstype: 3.1.1
-      goober: 2.1.12_csstype@3.1.1
-      solid-js: 1.6.11
-    dev: false
 
   /solid-tiptap/0.4.0_3loovuybxr2t4p7wnjti2dulbm:
     resolution: {integrity: sha512-ePYFNvt4nzO9jfFJchH3+la3KcV3HdryC3aHMucxKoeoo+mFJuAKWLheVPBahBdYWAp+6P3zjGBLSF+CQ+SNfg==}

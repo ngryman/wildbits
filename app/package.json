@@ -17,8 +17,7 @@
     "@wildbits/editor": "workspace:*",
     "@wildbits/utils": "workspace:*",
     "nanoid": "^4.0.1",
-    "solid-js": "^1.6.10",
-    "solid-styled-components": "^0.28.5"
+    "solid-js": "^1.6.10"
   },
   "devDependencies": {
     "vite": "^4.1.1",

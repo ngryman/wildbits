@@ -1,24 +1,9 @@
-import { createMemo, ParentProps } from 'solid-js'
 import { Motion } from '@motionone/solid'
-import { css } from 'solid-styled-components'
+import { ParentProps } from 'solid-js'
 
-type Props = ParentProps & {
-  color?: string
-}
-
-export function Pane(props: Props) {
-  const className = createMemo(() =>
-    props.color
-      ? css`
-          background: ${props.color};
-        `
-      : undefined
-  )
-
+export function Pane(props: ParentProps) {
   return (
     <Motion.div
-      class={className()}
-      style={{ background: props.color }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}

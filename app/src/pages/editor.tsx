@@ -35,7 +35,7 @@ export default function EditorPage() {
   })
 
   return (
-    <Workspace isSplit={split()}>
+    <Workspace split={split()}>
       <Pane>
         <Editor ref={ref} />
         <Peers peers={peers()} />
