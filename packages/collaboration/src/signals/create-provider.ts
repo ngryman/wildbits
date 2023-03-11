@@ -10,8 +10,24 @@ export function createProvider(settings: Settings): Provider {
     peerOpts: {
       config: {
         iceServers: [
-          { urls: 'stun:stun.l.google.com:19302' },
-          { urls: 'stun:global.stun.twilio.com:3478?transport=udp' },
+          {
+            urls: 'stun:relay.metered.ca:80',
+          },
+          {
+            urls: 'turn:relay.metered.ca:80',
+            username: 'fc383dd5cae9548765b98b89',
+            credential: 'FtPmYMMuKpRuAtvE',
+          },
+          {
+            urls: 'turn:relay.metered.ca:443',
+            username: 'fc383dd5cae9548765b98b89',
+            credential: 'FtPmYMMuKpRuAtvE',
+          },
+          {
+            urls: 'turn:relay.metered.ca:443?transport=tcp',
+            username: 'fc383dd5cae9548765b98b89',
+            credential: 'FtPmYMMuKpRuAtvE',
+          },
         ],
       },
     },
