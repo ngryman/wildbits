@@ -12,6 +12,9 @@ export default defineConfig({
     port: 3000,
     strictPort: true,
   },
+  preview: {
+    port: 3000,
+  },
   build: {
     outDir: '../dist',
     target: ['es2021', 'chrome100', 'safari13'],

@@ -6,6 +6,7 @@
     "build": "pnpm run --filter app build",
     "dev:app": "pnpm run --filter app dev",
     "dev:server": "pnpm run --filter app dev",
+    "preview": "pnpm run --filter app preview",
     "lint": "eslint --cache --ignore-path .gitignore --ext .js,.ts,.tsx ."
   },
   "devDependencies": {
