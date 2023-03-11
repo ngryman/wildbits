@@ -18,7 +18,11 @@ export default function EditorPage() {
   const split = createAtom(false)
   const params = useParams()
 
-  const provider = createProvider({ id: params.id })
+  const provider = createProvider({
+    id: params.id,
+    // TODO: create a config provider with all the env vars in there
+    signalingServer: import.meta.env.VITE_COLLABORATION_SIGNALING_SERVER,
+  })
   const user = createUser()
   const peers = createPeers(provider)
   const editor = createEditor(() => ({ element: ref!, provider }))

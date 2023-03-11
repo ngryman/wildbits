@@ -3,6 +3,7 @@ import { WebrtcProvider } from 'y-webrtc'
 
 export type Settings = {
   id: string
+  signalingServer: string
 }
 
 export type Provider = {
