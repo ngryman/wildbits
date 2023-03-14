@@ -8,7 +8,7 @@ import { Editor, createEditor } from '@wildbits/editor'
 import { createAtom } from '@wildbits/utils'
 import { Presence } from '@motionone/solid'
 import { createShortcut } from '@solid-primitives/keyboard'
-import { useParams } from '@solidjs/router'
+import { useParams, useLocation } from '@solidjs/router'
 import { createEffect, createRenderEffect, Show } from 'solid-js'
 
 import { Pane, Workspace } from '../layout'
@@ -17,9 +17,12 @@ export default function EditorPage() {
   let ref!: HTMLDivElement
   const split = createAtom(false)
   const params = useParams()
+  const location = useLocation()
 
+  const cryptoKey = location.hash.slice(1)
   const provider = createProvider({
-    id: params.id,
+    documentId: params.id,
+    cryptoKey,
     // TODO: create a config provider with all the env vars in there
     signalingServer: import.meta.env.VITE_COLLABORATION_SIGNALING_SERVER,
   })

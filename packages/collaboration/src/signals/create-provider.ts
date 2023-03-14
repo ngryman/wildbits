@@ -5,7 +5,8 @@ import { Provider, Settings } from './types'
 
 export function createProvider(settings: Settings): Provider {
   const document = new Doc()
-  const webrtcProvider = new WebrtcProvider(settings.id, document, {
+  const webrtcProvider = new WebrtcProvider(settings.documentId, document, {
+    password: settings.cryptoKey,
     signaling: [settings.signalingServer],
     peerOpts: {
       config: {
@@ -34,7 +35,7 @@ export function createProvider(settings: Settings): Provider {
   })
 
   return {
-    id: settings.id,
+    documentId: settings.documentId,
     document,
     webrtcProvider,
   }

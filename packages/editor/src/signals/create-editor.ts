@@ -11,7 +11,6 @@ import {
   createComponent,
   createEffect,
   createRoot,
-  JSX,
   onCleanup,
 } from 'solid-js'
 import { createTiptapEditor, UseEditorOptions } from 'solid-tiptap'
@@ -54,7 +53,7 @@ const DEFAULT_THEME: Theme = {
 export function createEditor(settings: () => Settings): Accessor<Editor> {
   const document = settings().provider.document
   const _persistence = new IndexeddbPersistence(
-    settings().provider.id,
+    settings().provider.documentId,
     document
   )
 
