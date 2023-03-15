@@ -40,6 +40,12 @@ export default function EditorPage() {
   createShortcut(['Control', 'E'], () => {
     split(prev => !prev)
   })
+  createShortcut(['Control', '2'], () => {
+    editor().chain().focus().setGrid(2).run()
+  })
+  createShortcut(['Control', '3'], () => {
+    editor().chain().focus().setGrid(3).run()
+  })
 
   return (
     <Workspace split={split()}>

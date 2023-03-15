@@ -16,6 +16,7 @@ import styles from '../components/editor.module.css'
 import { createThemeCSSVars, getFontFamilies, loadFonts, Theme } from '../theme'
 import { createTypographyCSSVars, Typography } from '../typography'
 import { Cursor } from '../components'
+import { Layout } from '../extensions'
 import { Settings } from './types'
 
 /**
@@ -81,9 +82,8 @@ export function createEditor(settings: () => Settings): Accessor<Editor> {
             return (typeof el === 'function' ? el() : el) as HTMLElement
           },
         }),
-        Image.configure({
-          allowBase64: true,
-        }),
+        Image.configure({ allowBase64: true }),
+        Layout,
         Link,
         StarterKit.configure({ history: false }),
         TypographyExt,
