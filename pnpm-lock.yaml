@@ -72,6 +72,7 @@ importers:
       '@tiptap/extension-task-item': 2.0.0-beta.220
       '@tiptap/extension-task-list': 2.0.0-beta.220
       '@tiptap/extension-typography': 2.0.0-beta.220
+      '@tiptap/extension-youtube': 2.0.0-beta.220
       '@tiptap/pm': 2.0.0-beta.220
       '@tiptap/starter-kit': 2.0.0-beta.220
       '@wildbits/collaboration': workspace:*
@@ -94,6 +95,7 @@ importers:
       '@tiptap/extension-task-item': 2.0.0-beta.220_ohumfzynigfck3hzagxvh2a4ky
       '@tiptap/extension-task-list': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@tiptap/extension-typography': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
+      '@tiptap/extension-youtube': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@tiptap/starter-kit': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
       '@wildbits/collaboration': link:../collaboration
@@ -1266,6 +1268,14 @@ packages:
 
   /@tiptap/extension-typography/2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q:
     resolution: {integrity: sha512-MsQ5WFPUzoC/l8kxnUEYc2dR2eWgve0Ga8+qAJ/s0CLcf7UYGGoFGGobSYwjk++fgNUJMPKEvTpZU2eqjTYAPA==}
+    peerDependencies:
+      '@tiptap/core': ^2.0.0-beta.209
+    dependencies:
+      '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
+    dev: false
+
+  /@tiptap/extension-youtube/2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q:
+    resolution: {integrity: sha512-UBAXBiv1RESQToawIIek/L+rcIdSuhAKkD3LmR0WyoxQAoramqeAabbgm9Ucewp5KSk9T/dPRmX/vRIaEfFsPQ==}
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.209
     dependencies:

@@ -6,6 +6,7 @@ import StarterKit from '@tiptap/starter-kit'
 import TaskItem from '@tiptap/extension-task-item'
 import TaskList from '@tiptap/extension-task-list'
 import TypographyExt from '@tiptap/extension-typography'
+import Youtube from '@tiptap/extension-youtube'
 import { Editor } from '@tiptap/core'
 import {
   Accessor,
@@ -97,6 +98,7 @@ export function createEditor(settings: () => Settings): Accessor<Editor> {
         TypographyExt,
         TaskList,
         TaskItem,
+        Youtube,
       ],
       injectCSS: false,
     }
