@@ -14,7 +14,7 @@ export type Rhythm = {
 export function createTypographyCSSVars(typography: Typography): string {
   return toCSSVars({
     baseSize: `${typography.rhythm.baseSize}px`,
-    leading: typography.rhythm.leading,
+    leading: `${typography.rhythm.leading}em`,
     lineLength: `${typography.rhythm.lineLength}ch`,
     scaleRatio: typography.rhythm.scaleRatio,
   })

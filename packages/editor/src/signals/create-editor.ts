@@ -98,7 +98,7 @@ export function createEditor(settings: () => Settings): Accessor<Editor> {
         TypographyExt,
         TaskList,
         TaskItem,
-        Youtube,
+        Youtube.configure({ modestBranding: true, width: 0, height: 0 }),
       ],
       injectCSS: false,
     }
