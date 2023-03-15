@@ -1,0 +1,47 @@
+{
+  "short_name": "Wildbits",
+  "name": "Wildbits",
+  "description": "Wildbits is a collaborative board that lets you easily write prose, organize data, and sketch diagrams.",
+  "icons": [
+    {
+      "sizes": "192x192",
+      "src": "logo-192x192.png",
+      "type": "image/png"
+    },
+    {
+      "sizes": "512x512",
+      "src": "logo-512x512.png",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#121212",
+  "background_color": "#ffffff",
+  "file_handlers": [
+    {
+      "action": "/",
+      "accept": {
+        "application/vnd.wildbits+json": [".wildbits"]
+      }
+    }
+  ],
+  "share_target": {
+    "action": "/web-share-target",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "files": [
+        {
+          "name": "file",
+          "accept": [
+            "application/vnd.wildbits+json",
+            "application/json",
+            ".wildbits"
+          ]
+        }
+      ]
+    }
+  },
+  "screenshots": []
+}
