@@ -8,13 +8,7 @@ import TaskList from '@tiptap/extension-task-list'
 import TypographyExt from '@tiptap/extension-typography'
 import Youtube from '@tiptap/extension-youtube'
 import { Editor } from '@tiptap/core'
-import {
-  Accessor,
-  createComponent,
-  createEffect,
-  createRoot,
-  onCleanup,
-} from 'solid-js'
+import { Accessor, createComponent, createEffect, onCleanup } from 'solid-js'
 import { createTiptapEditor, UseEditorOptions } from 'solid-tiptap'
 import { IndexeddbPersistence } from 'y-indexeddb'
 
@@ -77,14 +71,11 @@ export function createEditor(settings: () => Settings): Accessor<Editor> {
         CollaborationCursor.configure({
           provider: settings().provider.webrtcProvider,
           render: user => {
-            const el = createRoot(dispose => {
-              destroyCursor = dispose
-              return createComponent(Cursor, {
-                name: user.name,
-                color: user.color,
-              })
+            const el = createComponent(Cursor, {
+              name: user.name,
+              color: user.color,
             })
-            // NOTE: In production, `createRoot` returns a `JSX.FunctionElement`.
+            // NOTE: In production, it returns a `JSX.FunctionElement`.
             // In development, it returns a `JSX.Element`. I'm not exactly sure
             // why but we need to treat `el` as a thunk to avoid any exception.
             return (typeof el === 'function' ? el() : el) as HTMLElement
