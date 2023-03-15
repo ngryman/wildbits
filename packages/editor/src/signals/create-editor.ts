@@ -31,7 +31,7 @@ const DEFAULT_TYPOGRAPHY: Typography = {
   rhythm: {
     baseSize: 20,
     leading: 1.6,
-    lineLength: 60,
+    lineLength: 80,
     scaleRatio: 1.25,
   },
 }

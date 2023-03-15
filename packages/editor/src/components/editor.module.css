@@ -18,7 +18,7 @@
   --size-m: calc(var(--scale-1) * var(--base-size));
 
   --leading: 1.6em;
-  --line-length: 60ch;
+  --line-length: 80ch;
 
   --heading-font-color: inherit;
   --heading-font-family: 'Lobster';
@@ -34,13 +34,8 @@
   font-variant-ligatures: none;
   font-feature-settings: 'liga' 0; /* the above doesn't seem to work in Edge */
 
-  max-width: var(--line-length);
-}
-
-@media (max-width: 60ch) {
-  .editor {
-    width: 100vw;
-  }
+  width: var(--line-length);
+  max-width: 100vw;
 }
 
 .editor [contenteditable='false'] {
