@@ -108,6 +108,10 @@
   line-height: var(--leading);
 }
 
+.editor img {
+  width: 100%;
+}
+
 .editor pre {
   white-space: pre-wrap;
 }
