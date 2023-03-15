@@ -1,5 +1,6 @@
 import Collaboration from '@tiptap/extension-collaboration'
 import CollaborationCursor from '@tiptap/extension-collaboration-cursor'
+import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
 import StarterKit from '@tiptap/starter-kit'
 import TaskItem from '@tiptap/extension-task-item'
@@ -87,6 +88,9 @@ export function createEditor(settings: () => Settings): Accessor<Editor> {
             // why but we need to treat `el` as a thunk to avoid any exception.
             return (typeof el === 'function' ? el() : el) as HTMLElement
           },
+        }),
+        Image.configure({
+          allowBase64: true,
         }),
         Link,
         StarterKit.configure({ history: false }),
