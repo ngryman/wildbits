@@ -22,7 +22,3 @@ body {
 iframe {
   border: 0;
 }
-
-::selection {
-  background: #f6e7c9;
-}

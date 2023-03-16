@@ -39,6 +39,12 @@
   font-size: var(--size-m);
 }
 
+/* TODO: plug with theme colors */
+.editor ::selection {
+  background: #333;
+  color: #eee;
+}
+
 .editor [contenteditable='false'] {
   white-space: normal;
 }
