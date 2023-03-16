@@ -96,7 +96,7 @@ export function createEditor(settings: () => Settings): Accessor<Editor> {
         TableHeader,
         TableRow,
         TaskList,
-        TaskItem,
+        TaskItem.configure({ nested: true }),
         Youtube.configure({ modestBranding: true, width: 0, height: 0 }),
       ],
       injectCSS: false,

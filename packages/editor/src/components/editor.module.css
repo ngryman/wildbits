@@ -36,6 +36,7 @@
 
   width: var(--line-length);
   max-width: 100vw;
+  font-size: var(--size-m);
 }
 
 .editor [contenteditable='false'] {
@@ -98,7 +99,6 @@
     var(--strong-font-family);
   color: var(--strong-font-color);
   letter-spacing: var(--strong-font-tracking);
-  line-height: var(--leading);
 }
 
 .editor em {
@@ -106,7 +106,6 @@
     var(--em-font-family);
   color: var(--em-font-color);
   letter-spacing: var(--em-font-tracking);
-  line-height: var(--leading);
 }
 
 .editor img {
@@ -131,33 +130,46 @@
   padding-left: 0;
 }
 .editor ul[data-type='taskList'] li {
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-}
-.editor ul[data-type='taskList'] label {
-  position: relative;
-  border-radius: 4px;
-  border: 2px solid;
-  width: var(--leading);
-  height: var(--leading);
-  cursor: pointer;
-}
-.editor ul[data-type='taskList'] [data-checked='true'] label::after {
-  content: '\2713';
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  scale: 2;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.2em;
 }
 .editor ul[data-type='taskList'] input {
-  display: none;
+  --border: 2px;
+  --margin: 4px;
+
+  appearance: none;
+  display: grid;
+  place-content: center;
+  border-radius: 6px;
+  border: var(--border) solid;
+  margin: var(--margin);
+  width: calc(var(--leading) - 2 * var(--margin));
+  height: calc(var(--leading) - 2 * var(--margin));
+  font-size: inherit;
+  cursor: pointer;
 }
-.editor ul[data-type='taskList'] div p {
-  display: inline;
+.editor ul[data-type='taskList'] input::before {
+  content: '\2713';
+  width: 1em;
+  height: 1em;
+  text-align: center;
+  scale: 0;
+  transition: 50ms scale ease-in-out;
+}
+/*
+ * XXX: when nested, it seems only the `data-checked` attribute is set,
+ * but the checkbox themselves are not checked. This is likely a bug
+ */
+.editor ul[data-type='taskList'] [data-checked='true'] input::before,
+.editor ul[data-type='taskList'] input:checked::before {
+  scale: 1.4;
+}
+.editor ul[data-type='taskList'] p {
+  margin: 0;
+}
+.editor ul[data-type='taskList'] [data-checked='true'] p {
+  text-decoration: line-through;
 }
 
 .editor [data-youtube-video] {
