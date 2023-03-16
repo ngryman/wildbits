@@ -59,8 +59,6 @@ export function createEditor(settings: () => Settings): Accessor<Editor> {
   )
 
   return createTiptapEditor(() => {
-    let destroyCursor: VoidFunction
-
     const props: UseEditorOptions<HTMLElement> = {
       // TODO: save the position and set `autofocus` to it
       autofocus: true,
@@ -101,8 +99,6 @@ export function createEditor(settings: () => Settings): Accessor<Editor> {
       ],
       injectCSS: false,
     }
-
-    onCleanup(() => destroyCursor())
 
     return props
   }) as Accessor<Editor>
