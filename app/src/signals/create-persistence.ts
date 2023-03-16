@@ -1,16 +1,16 @@
 import { Locator } from '@wildbits/model'
 import { Accessor, createMemo } from 'solid-js'
 import { IndexeddbPersistence } from 'y-indexeddb'
-import { Doc } from 'yjs'
+import { Doc as YDoc } from 'yjs'
 
 export type PersistenceOptions = {
   locator: Locator
-  doc: Doc
+  doc: YDoc
 }
 
 export function createPersistence(
   locator: Accessor<Locator>,
-  doc: Accessor<Doc>
+  doc: Accessor<Y.Doc>
 ): Accessor<IndexeddbPersistence> {
   const persistence = createMemo<IndexeddbPersistence>(prevPersistence => {
     if (prevPersistence) {

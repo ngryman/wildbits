@@ -1,13 +1,13 @@
 import { Locator } from '@wildbits/model'
 import { Accessor, createMemo } from 'solid-js'
 import { WebrtcProvider } from 'y-webrtc'
-import { Doc } from 'yjs'
+import { Doc as YDoc } from 'yjs'
 
 export type Provider = WebrtcProvider
 
 export type ProviderOptions = {
   locator: Accessor<Locator>
-  doc: Accessor<Doc>
+  doc: Accessor<YDoc>
   signalingServer: string
 }
 

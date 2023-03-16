@@ -191,6 +191,24 @@ importers:
       '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@wildbits/utils': link:../../packages/utils
 
+  features/whiteboard:
+    specifiers:
+      '@tiptap/core': 2.0.0-beta.220
+      '@tiptap/pm': 2.0.0-beta.220
+      '@wildbits/collaboration': workspace:^0.0.0
+      '@wildbits/utils': workspace:*
+      perfect-freehand: ^1.2.0
+      solid-js: ^1.6.15
+      yjs: ^13.5.51
+    dependencies:
+      '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
+      '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
+      '@wildbits/collaboration': link:../collaboration
+      '@wildbits/utils': link:../../packages/utils
+      perfect-freehand: 1.2.0
+      solid-js: 1.6.15
+      yjs: 13.5.51
+
   packages/editor:
     specifiers:
       '@tiptap/core': 2.0.0-beta.220
@@ -213,6 +231,7 @@ importers:
       '@wildbits/katex': workspace:*
       '@wildbits/prose': workspace:*
       '@wildbits/utils': workspace:*
+      '@wildbits/whiteboard': workspace:^0.0.0
       solid-js: ^1.6.15
       yjs: ^13.5.51
     dependencies:
@@ -236,6 +255,7 @@ importers:
       '@wildbits/katex': link:../../features/katex
       '@wildbits/prose': link:../../features/prose
       '@wildbits/utils': link:../utils
+      '@wildbits/whiteboard': link:../../features/whiteboard
       solid-js: 1.6.15
       yjs: 13.5.51
 
@@ -4306,6 +4326,10 @@ packages:
   /pend/1.2.0:
     resolution: {integrity: sha512-F3asv42UuXchdzt+xXqfW1OGlVBe+mxa2mqI0pg5yAHZPvFmY3Y6drSf/GQ1A86WgWEN9Kzh/WrgKa6iGcHXLg==}
     dev: true
+
+  /perfect-freehand/1.2.0:
+    resolution: {integrity: sha512-h/0ikF1M3phW7CwpZ5MMvKnfpHficWoOEyr//KVNTxV4F6deRK1eYMtHyBKEAKFK0aXIEUK9oBvlF6PNXMDsAw==}
+    dev: false
 
   /performance-now/2.1.0:
     resolution: {integrity: sha512-7EAHlyLHI56VEIdK57uwHdHKIaAGbnXPiw0yWbarQZOKaKpvUIgW0jWRVLiatnM+XXlSwsanIBH/hzGMJulMow==}

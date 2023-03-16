@@ -41,8 +41,8 @@ export const Trailing = Extension.create<TrailingOptions>({
             return afterNodes.includes(lastChild.type)
           },
           apply: (tr, value) => {
-            const { lastChild } = tr.doc
             if (!tr.docChanged) return value
+            const { lastChild } = tr.doc
             if (!lastChild) return false
             return afterNodes.includes(lastChild.type)
           },

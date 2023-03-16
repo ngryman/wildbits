@@ -1,7 +1,7 @@
 import { Accessor, createMemo } from 'solid-js'
-import { Doc } from 'yjs'
+import * as Y from 'yjs'
 
-export function createDoc(id: Accessor<string>): Accessor<Doc> {
-  const doc = createMemo(() => new Doc({ guid: id() }))
+export function createDoc(id: Accessor<string>): Accessor<Y.Doc> {
+  const doc = createMemo(() => new Y.Doc({ guid: id() }))
   return doc
 }

@@ -15,6 +15,7 @@ import { Columns } from '@wildbits/columns'
 import { FloatingMenu } from '@wildbits/floating-menu'
 import { Image } from '@wildbits/image'
 import { Prose } from '@wildbits/prose'
+import { Whiteboard } from '@wildbits/whiteboard'
 import { Accessor, createEffect, createMemo, onCleanup } from 'solid-js'
 
 import styles from '../components/editor-view.module.css'
@@ -130,7 +131,8 @@ export function createEditor(options: EditorOptions): Accessor<Editor> {
         TableRow,
         TaskList,
         TaskItem.configure({ nested: true }),
-        UniqueId.configure({ types: ['codeBlock', 'heading', 'image', 'paragraph'] }),
+        UniqueId.configure({ types: ['codeBlock', 'heading', 'image', 'paragraph', 'whiteboard'] }),
+        Whiteboard,
         Youtube.configure({ modestBranding: true, width: 0, height: 0 }),
       ],
       injectCSS: false,

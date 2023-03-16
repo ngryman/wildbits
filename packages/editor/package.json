@@ -26,6 +26,7 @@
     "@wildbits/katex": "workspace:*",
     "@wildbits/prose": "workspace:*",
     "@wildbits/utils": "workspace:*",
+    "@wildbits/whiteboard": "workspace:^0.0.0",
     "solid-js": "^1.6.15",
     "yjs": "^13.5.51"
   }

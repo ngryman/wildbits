@@ -1,0 +1,17 @@
+{
+  "name": "@wildbits/whiteboard",
+  "version": "0.0.0",
+  "description": "The whiteboard feature of Wildbits.",
+  "type": "module",
+  "module": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@tiptap/core": "2.0.0-beta.220",
+    "@tiptap/pm": "2.0.0-beta.220",
+    "@wildbits/collaboration": "workspace:^0.0.0",
+    "@wildbits/utils": "workspace:*",
+    "perfect-freehand": "^1.2.0",
+    "solid-js": "^1.6.15",
+    "yjs": "^13.5.51"
+  }
+}

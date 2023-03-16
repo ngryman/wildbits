@@ -38,7 +38,7 @@ export const UniqueId = Extension.create<UniqueIdOptions>({
     return [
       new Plugin({
         key: new PluginKey(this.name),
-        appendTransaction: (transactions, __, state) => {
+        appendTransaction: (transactions, _, state) => {
           const { tr } = state
           const { types } = this.options
 

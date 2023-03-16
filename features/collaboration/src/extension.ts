@@ -36,4 +36,14 @@ export const Collaboration = Extension.create<CollaborationOptions>({
       }),
     ]
   },
+
+  addStorage() {
+    return {
+      provider: null,
+    }
+  },
+
+  onBeforeCreate() {
+    this.storage.provider = this.options.provider
+  },
 })

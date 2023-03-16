@@ -12,10 +12,11 @@ import { Component, createRoot } from 'solid-js'
 import { createStore, SetStoreFunction } from 'solid-js/store'
 import { Portal } from 'solid-js/web'
 
-export type NodeViewProps<Attributes> = {
+export type NodeViewProps<Attributes = null> = {
   attrs: Attributes
   children: globalThis.Node | null
   decorations: DecorationWithType[]
+  editor: Editor
   selected: boolean
   setAttributes: (attrs: Partial<Attributes>) => void
   deleteNode: VoidFunction
@@ -39,6 +40,7 @@ class SolidNodeView<Attributes> extends NodeView<Component<NodeViewProps<Attribu
         attrs: this.node.attrs as Attributes,
         children,
         decorations: this.decorations,
+        editor: this.editor,
         selected: false,
         setAttributes: attrs => this.updateAttributes(attrs),
         deleteNode: () => this.deleteNode(),
@@ -111,10 +113,6 @@ class SolidPluginView<Options> {
       this.setComponentProps = setComponentProps
 
       Portal({ children: [component(componentProps)] })
-
-      // const factory = component(componentProps)
-      // const domElement = (typeof factory === 'function' ? factory() : factory) as HTMLElement
-      // editorView.dom.parentElement!.appendChild(domElement)
     })
   }
 
