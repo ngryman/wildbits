@@ -46,6 +46,13 @@ export default function EditorPage() {
   createShortcut(['Control', '3'], () => {
     editor().chain().focus().setGrid(3).run()
   })
+  createShortcut(['Control', 'T'], () => {
+    editor()
+      .chain()
+      .focus()
+      .insertTable({ rows: 3, cols: 3, withHeaderRow: false })
+      .run()
+  })
 
   return (
     <Workspace split={split()}>

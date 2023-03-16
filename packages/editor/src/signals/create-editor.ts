@@ -3,6 +3,10 @@ import CollaborationCursor from '@tiptap/extension-collaboration-cursor'
 import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
 import StarterKit from '@tiptap/starter-kit'
+import Table from '@tiptap/extension-table'
+import TableCell from '@tiptap/extension-table-cell'
+import TableHeader from '@tiptap/extension-table-header'
+import TableRow from '@tiptap/extension-table-row'
 import TaskItem from '@tiptap/extension-task-item'
 import TaskList from '@tiptap/extension-task-list'
 import TypographyExt from '@tiptap/extension-typography'
@@ -87,6 +91,10 @@ export function createEditor(settings: () => Settings): Accessor<Editor> {
         Link,
         StarterKit.configure({ history: false }),
         TypographyExt,
+        Table.configure({ allowTableNodeSelection: true, resizable: true }),
+        TableCell,
+        TableHeader,
+        TableRow,
         TaskList,
         TaskItem,
         Youtube.configure({ modestBranding: true, width: 0, height: 0 }),
