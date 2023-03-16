@@ -12,12 +12,12 @@ import TaskList from '@tiptap/extension-task-list'
 import TypographyExt from '@tiptap/extension-typography'
 import Youtube from '@tiptap/extension-youtube'
 import { Editor } from '@tiptap/core'
-import { Accessor, createComponent, createEffect, onCleanup } from 'solid-js'
+import { Accessor, createComponent, createEffect } from 'solid-js'
 import { createTiptapEditor, UseEditorOptions } from 'solid-tiptap'
 import { IndexeddbPersistence } from 'y-indexeddb'
 
 import styles from '../components/editor.module.css'
-import { createThemeCSSVars, getFontFamilies, loadFonts, Theme } from '../theme'
+import { createThemeCSSVars, loadFonts, Theme } from '../theme'
 import { createTypographyCSSVars, Typography } from '../typography'
 import { Cursor } from '../components'
 import { Layout } from '../extensions'
@@ -109,8 +109,7 @@ function createEditorStyle(settings: Settings) {
   const typography = { ...DEFAULT_TYPOGRAPHY, ...settings.typography }
 
   createEffect(() => {
-    const fontFamilies = getFontFamilies(theme)
-    loadFonts(fontFamilies)
+    loadFonts(theme)
   })
 
   return createThemeCSSVars(theme) + createTypographyCSSVars(typography)
