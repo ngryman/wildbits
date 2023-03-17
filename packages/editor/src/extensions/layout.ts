@@ -9,14 +9,6 @@ import { times } from '@wildbits/utils'
 
 import styles from './layout.module.css'
 
-declare module '@tiptap/core' {
-  interface Commands<ReturnType> {
-    grid: {
-      setGrid: (columns: number) => ReturnType
-    }
-  }
-}
-
 export const Layout = Extension.create({
   name: 'layout',
 
@@ -74,3 +66,11 @@ export const Grid = Node.create({
     return { setGrid }
   },
 })
+
+declare module '@tiptap/core' {
+  interface Commands<ReturnType> {
+    grid: {
+      setGrid: (columns: number) => ReturnType
+    }
+  }
+}

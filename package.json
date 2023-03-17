@@ -2,19 +2,26 @@
   "name": "@wildbits/monorepo",
   "private": true,
   "scripts": {
-    "dev": "FORCE_COLOR=1 pnpm run --parallel --filter app --filter server dev",
     "build": "pnpm run --filter app build",
+    "cy:open": "cypress open --project tests",
+    "cy": "cypress run --project tests",
+    "dev": "FORCE_COLOR=1 pnpm run --parallel --filter app --filter server dev",
     "dev:app": "pnpm run --filter app dev",
     "dev:server": "pnpm run --filter app dev",
+    "lint": "eslint --cache --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "preview": "pnpm run --filter app preview",
-    "lint": "eslint --cache --ignore-path .gitignore --ext .js,.ts,.tsx ."
+    "test:open": "start-server-and-test dev:app http://localhost:3000 cy:open",
+    "test": "start-server-and-test dev:app http://localhost:3000 cy"
   },
   "devDependencies": {
     "@types/node": "^18.14.0",
     "@typescript-eslint/eslint-plugin": "^5.53.0",
     "@typescript-eslint/parser": "^5.53.0",
+    "cypress": "^12.8.1",
     "eslint": "^8.34.0",
     "eslint-plugin-solid": "^0.10.0",
+    "nanoid": "^4.0.1",
+    "start-server-and-test": "^2.0.0",
     "typescript": "^4.9.5"
   },
   "dependencies": {
