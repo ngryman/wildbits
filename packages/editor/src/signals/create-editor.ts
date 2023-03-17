@@ -12,7 +12,7 @@ import TaskList from '@tiptap/extension-task-list'
 import TypographyExt from '@tiptap/extension-typography'
 import Youtube from '@tiptap/extension-youtube'
 import { Editor } from '@tiptap/core'
-import { Italic } from '@wildbits/editor-extensions'
+import { Marks } from '@wildbits/editor-extensions'
 import { Accessor, createComponent, createEffect } from 'solid-js'
 import { createTiptapEditor, UseEditorOptions } from 'solid-tiptap'
 import { IndexeddbPersistence } from 'y-indexeddb'
@@ -85,6 +85,7 @@ export function createEditor(settings: () => Settings): Accessor<Editor> {
       },
       element: settings().element,
       extensions: [
+        Marks,
         Collaboration.configure({ document }),
         CollaborationCursor.configure({
           provider: settings().provider.webrtcProvider,
@@ -102,8 +103,7 @@ export function createEditor(settings: () => Settings): Accessor<Editor> {
         Image.configure({ allowBase64: true }),
         Layout,
         Link,
-        StarterKit.configure({ history: false, italic: false }),
-        Italic,
+        StarterKit.configure({ history: false, bold: false, italic: false }),
         TypographyExt,
         Table.configure({ allowTableNodeSelection: true, resizable: true }),
         TableCell,

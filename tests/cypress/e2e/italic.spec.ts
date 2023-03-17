@@ -33,59 +33,59 @@ describe('italic mark', () => {
   })
 
   describe('insert', () => {
-    it.skip('wraps another mark', () => {
+    it('is wrapped by another mark', () => {
       cy.typeInEditor('_**italic bold**_').should(
         'have.html',
-        `<p><em><strong>italic bold</strong></em></p>`
+        `<p><strong><em>italic bold</em></strong></p>`
       )
     })
 
-    it.only('wraps another mark with a space', () => {
+    it('is split across another mark with a space', () => {
       cy.typeInEditor('_ **italic bold** _').should(
         'have.html',
-        `<p><em> <strong>italic bold</strong> </em></p>`
+        `<p><em> </em><strong><em>italic bold</em></strong><em> </em></p>`
       )
     })
 
-    it.only('wraps another mark in the middle', () => {
+    it('is split across another mark in the middle', () => {
       cy.typeInEditor('_before**middle**after_').should(
         'have.html',
-        `<p><em>before<strong>middle</strong>after</em></p>`
+        `<p><em>before</em><strong><em>middle</em></strong><em>after</em></p>`
       )
     })
 
-    it.only('wraps another mark in the middle with space', () => {
+    it('is split across another mark in the middle with space', () => {
       cy.typeInEditor('_before **middle** after_').should(
         'have.html',
-        `<p><em>before <strong>middle</strong> after</em></p>`
+        `<p><em>before </em><strong><em>middle</em></strong><em> after</em></p>`
       )
     })
 
-    it.only('wraps another mark at the beginning', () => {
+    it('is split across another mark at the beginning', () => {
       cy.typeInEditor('_**before**after_').should(
         'have.html',
-        `<p><em><strong>before<strong>after</em></p>`
+        `<p><strong><em>before</em></strong><em>after</em></p>`
       )
     })
 
-    it.only('wraps another mark at the beginning with space', () => {
+    it('wraps another mark at the beginning with space', () => {
       cy.typeInEditor('_**before** after_').should(
         'have.html',
-        `<p><em><strong>before<strong> after</em></p>`
+        `<p><strong><em>before</em></strong><em> after</em></p>`
       )
     })
 
-    it.only('wraps another mark at the end', () => {
+    it('wraps another mark at the end', () => {
       cy.typeInEditor('_before**after**_').should(
         'have.html',
-        `<p><em>before<strong>after<strong></em></p>`
+        `<p><em>before</em><strong><em>after</em></strong></p>`
       )
     })
 
-    it.only('wraps another mark at the end with space', () => {
+    it('wraps another mark at the end with space', () => {
       cy.typeInEditor('_before **after**_').should(
         'have.html',
-        `<p><em>before <strong>after<strong></em></p>`
+        `<p><em>before </em><strong><em>after</em></strong></p>`
       )
     })
   })
