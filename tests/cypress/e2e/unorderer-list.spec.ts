@@ -39,14 +39,14 @@ describe('unordered list node', () => {
   // TODO: `{moveToStart}` doesn't seem to work, add more when it does
   describe.skip('update', () => {
     it('wraps a paragraph', () => {
-      cy.typeInEditor('paragraph{moveToStart}> ').should(
+      cy.typeInEditor('paragraph{moveToStart}* ').should(
         'have.html',
         `<ul><li><p>paragraph</p></li></ul>`
       )
     })
 
     it('does not wrap a heading', () => {
-      cy.typeInEditor('# heading{moveToStart}> ').should(
+      cy.typeInEditor('# heading{moveToStart}* ').should(
         'have.html',
         `<h1>&gt; heading</h1>`
       )

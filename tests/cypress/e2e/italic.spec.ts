@@ -20,7 +20,7 @@ describe('italic mark', () => {
   // TODO: selection doesn't work
   // https://github.com/decaporg/decap-cms/blob/a4b7481a99f58b9abe85ab5712d27593cde20096/cypress/support/commands.js
   describe.skip('shortcuts', () => {
-    it('ctrl+i sets the selected text to italic')
+    it('mod+i sets the selected text to italic')
   })
 
   describe('cursor', () => {

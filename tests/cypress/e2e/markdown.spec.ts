@@ -3,26 +3,6 @@ describe('markdown syntax', () => {
     cy.visitNewDocument()
   })
 
-  it('supports the ordered list syntax', () => {
-    // NOTE: Insert 2 line breaks avoid automatic item creation
-    cy.typeInEditor('1. first\n\n2. second\n\n3. third')
-      .first()
-      .should(
-        'have.html',
-        '<ol><li><p>first</p></li><li><p>second</p></li><li><p>third</p></li></ol>'
-      )
-  })
-
-  it('supports the unordered list syntax', () => {
-    // NOTE: Insert 2 line breaks avoid automatic item creation
-    cy.typeInEditor('- first\n\n* second\n\n+ third')
-      .first()
-      .should(
-        'have.html',
-        '<ul><li><p>first</p></li><li><p>second</p></li><li><p>third</p></li></ul>'
-      )
-  })
-
   it('supports the code syntax', () => {
     cy.typeInEditor('This is `some code`.')
       .first()

@@ -20,7 +20,7 @@ describe('bold mark', () => {
   // TODO: selection doesn't work
   // https://github.com/decaporg/decap-cms/blob/a4b7481a99f58b9abe85ab5712d27593cde20096/cypress/support/commands.js
   describe.skip('shortcuts', () => {
-    it('ctrl+b sets the selected text to bold')
+    it('mod+b sets the selected text to bold')
   })
 
   describe('cursor', () => {
