@@ -127,9 +127,13 @@ importers:
   packages/editor-extensions:
     specifiers:
       '@tiptap/core': 2.0.0-beta.220
+      '@tiptap/extension-bold': 2.0.0-beta.220
+      '@tiptap/extension-italic': 2.0.0-beta.220
       '@tiptap/pm': 2.0.0-beta.220
     dependencies:
       '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
+      '@tiptap/extension-bold': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
+      '@tiptap/extension-italic': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
 
   packages/utils:
