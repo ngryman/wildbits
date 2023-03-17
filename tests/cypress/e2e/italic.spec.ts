@@ -48,44 +48,44 @@ describe('italic mark', () => {
     })
 
     it('is split across another mark in the middle', () => {
-      cy.typeInEditor('_before**middle**after_').should(
+      cy.typeInEditor('_1**2**3_').should(
         'have.html',
-        `<p><em>before</em><strong><em>middle</em></strong><em>after</em></p>`
+        `<p><em>1</em><strong><em>2</em></strong><em>3</em></p>`
       )
     })
 
     it('is split across another mark in the middle with space', () => {
-      cy.typeInEditor('_before **middle** after_').should(
+      cy.typeInEditor('_1 **2** 3_').should(
         'have.html',
-        `<p><em>before </em><strong><em>middle</em></strong><em> after</em></p>`
+        `<p><em>1 </em><strong><em>2</em></strong><em> 3</em></p>`
       )
     })
 
     it('is split across another mark at the beginning', () => {
-      cy.typeInEditor('_**before**after_').should(
+      cy.typeInEditor('_**1**2_').should(
         'have.html',
-        `<p><strong><em>before</em></strong><em>after</em></p>`
+        `<p><strong><em>1</em></strong><em>2</em></p>`
       )
     })
 
     it('wraps another mark at the beginning with space', () => {
-      cy.typeInEditor('_**before** after_').should(
+      cy.typeInEditor('_**1** 2_').should(
         'have.html',
-        `<p><strong><em>before</em></strong><em> after</em></p>`
+        `<p><strong><em>1</em></strong><em> 2</em></p>`
       )
     })
 
     it('wraps another mark at the end', () => {
-      cy.typeInEditor('_before**after**_').should(
+      cy.typeInEditor('_1**2**_').should(
         'have.html',
-        `<p><em>before</em><strong><em>after</em></strong></p>`
+        `<p><em>1</em><strong><em>2</em></strong></p>`
       )
     })
 
     it('wraps another mark at the end with space', () => {
-      cy.typeInEditor('_before **after**_').should(
+      cy.typeInEditor('_1 **2**_').should(
         'have.html',
-        `<p><em>before </em><strong><em>after</em></strong></p>`
+        `<p><em>1 </em><strong><em>2</em></strong></p>`
       )
     })
   })

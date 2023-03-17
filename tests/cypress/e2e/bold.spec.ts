@@ -49,25 +49,25 @@ describe('bold mark', () => {
 
     // NOTE: only works with space since `_` can be part of a word.
     it('wraps another mark in the middle with space', () => {
-      cy.typeInEditor('**before _middle_ after**').should(
+      cy.typeInEditor('**1 _2_ 3**').should(
         'have.html',
-        `<p><strong>before <em>middle</em> after</strong></p>`
+        `<p><strong>1 <em>2</em> 3</strong></p>`
       )
     })
 
     // NOTE: only works with space since `_` can be part of a word.
     it('wraps another mark at the beginning with space', () => {
-      cy.typeInEditor('**_before_ after**').should(
+      cy.typeInEditor('**_1_ 3**').should(
         'have.html',
-        `<p><strong><em>before</em> after</strong></p>`
+        `<p><strong><em>1</em> 3</strong></p>`
       )
     })
 
     // NOTE: only works with space since `_` can be part of a word.
     it('wraps another mark at the end with space', () => {
-      cy.typeInEditor('**before _after_**').should(
+      cy.typeInEditor('**1 _3_**').should(
         'have.html',
-        `<p><strong>before <em>after</em></strong></p>`
+        `<p><strong>1 <em>3</em></strong></p>`
       )
     })
   })
