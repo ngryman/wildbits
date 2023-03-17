@@ -19,8 +19,8 @@ describe('bold mark', () => {
 
   // TODO: selection doesn't work
   // https://github.com/decaporg/decap-cms/blob/a4b7481a99f58b9abe85ab5712d27593cde20096/cypress/support/commands.js
-  describe('shortcuts', () => {
-    it.skip('ctrl+b sets the selected text to bold')
+  describe.skip('shortcuts', () => {
+    it('ctrl+b sets the selected text to bold')
   })
 
   describe('cursor', () => {
@@ -33,7 +33,7 @@ describe('bold mark', () => {
   })
 
   describe('insert', () => {
-    it.skip('wraps another mark', () => {
+    it('wraps another mark', () => {
       cy.typeInEditor('**_bold italic_**').should(
         'have.html',
         `<p><strong><em>bold italic</em></strong></p>`
@@ -56,7 +56,7 @@ describe('bold mark', () => {
     })
 
     // NOTE: only works with space since `_` can be part of a word.
-    it.skip('wraps another mark at the beginning with space', () => {
+    it('wraps another mark at the beginning with space', () => {
       cy.typeInEditor('**_before_ after**').should(
         'have.html',
         `<p><strong><em>before</em> after</strong></p>`

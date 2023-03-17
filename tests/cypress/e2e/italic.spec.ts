@@ -19,8 +19,8 @@ describe('italic mark', () => {
 
   // TODO: selection doesn't work
   // https://github.com/decaporg/decap-cms/blob/a4b7481a99f58b9abe85ab5712d27593cde20096/cypress/support/commands.js
-  describe('shortcuts', () => {
-    it.skip('ctrl+i sets the selected text to italic')
+  describe.skip('shortcuts', () => {
+    it('ctrl+i sets the selected text to italic')
   })
 
   describe('cursor', () => {
@@ -40,49 +40,49 @@ describe('italic mark', () => {
       )
     })
 
-    it('wraps another mark with a space', () => {
+    it.only('wraps another mark with a space', () => {
       cy.typeInEditor('_ **italic bold** _').should(
         'have.html',
         `<p><em> <strong>italic bold</strong> </em></p>`
       )
     })
 
-    it.skip('wraps another mark in the middle', () => {
+    it.only('wraps another mark in the middle', () => {
       cy.typeInEditor('_before**middle**after_').should(
         'have.html',
         `<p><em>before<strong>middle</strong>after</em></p>`
       )
     })
 
-    it.skip('wraps another mark in the middle with space', () => {
+    it.only('wraps another mark in the middle with space', () => {
       cy.typeInEditor('_before **middle** after_').should(
         'have.html',
         `<p><em>before <strong>middle</strong> after</em></p>`
       )
     })
 
-    it.skip('wraps another mark at the beginning', () => {
+    it.only('wraps another mark at the beginning', () => {
       cy.typeInEditor('_**before**after_').should(
         'have.html',
         `<p><em><strong>before<strong>after</em></p>`
       )
     })
 
-    it.skip('wraps another mark at the beginning with space', () => {
+    it.only('wraps another mark at the beginning with space', () => {
       cy.typeInEditor('_**before** after_').should(
         'have.html',
         `<p><em><strong>before<strong> after</em></p>`
       )
     })
 
-    it.skip('wraps another mark at the end', () => {
+    it.only('wraps another mark at the end', () => {
       cy.typeInEditor('_before**after**_').should(
         'have.html',
         `<p><em>before<strong>after<strong></em></p>`
       )
     })
 
-    it.skip('wraps another mark at the end with space', () => {
+    it.only('wraps another mark at the end with space', () => {
       cy.typeInEditor('_before **after**_').should(
         'have.html',
         `<p><em>before <strong>after<strong></em></p>`
