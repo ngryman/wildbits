@@ -4,3 +4,4 @@
 .research/
 dist/
 node_modules/
+tests/cypress/screenshots/
