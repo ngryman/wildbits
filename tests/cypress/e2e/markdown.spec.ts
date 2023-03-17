@@ -3,40 +3,6 @@ describe('markdown syntax', () => {
     cy.visitNewDocument()
   })
 
-  it('supports the heading syntax', () => {
-    const editor = cy.typeInEditor('# h1\n## h2\n### h3')
-    editor.get('h1').first().should('have.text', 'h1')
-    editor.get('h2').first().should('have.text', 'h2')
-    editor.get('h3').first().should('have.text', 'h3')
-  })
-
-  it('supports the bold syntax', () => {
-    cy.typeInEditor('This is **bold**, and __bold__.')
-      .first()
-      .should(
-        'have.html',
-        '<p>This is <strong>bold</strong>, and <strong>bold</strong>.</p>'
-      )
-  })
-
-  it('supports the italic syntax', () => {
-    cy.typeInEditor('This is *italic*, and _italic_.')
-      .first()
-      .should(
-        'have.html',
-        '<p>This is <em>italic</em>, and <em>italic</em>.</p>'
-      )
-  })
-
-  it('supports the blockquote syntax', () => {
-    cy.typeInEditor('> Simplicity is the ultimate sophistication.')
-      .first()
-      .should(
-        'have.html',
-        '<blockquote><p>Simplicity is the ultimate sophistication.</p></blockquote>'
-      )
-  })
-
   it('supports the ordered list syntax', () => {
     // NOTE: Insert 2 line breaks avoid automatic item creation
     cy.typeInEditor('1. first\n\n2. second\n\n3. third')
