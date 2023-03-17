@@ -36,18 +36,32 @@ const DEFAULT_TYPOGRAPHY: Typography = {
 }
 
 const DEFAULT_THEME: Theme = {
-  base: {
-    family: 'Mulish',
+  caret: {
+    color: '#f44336',
   },
-  em: {
-    family: 'Mynerve',
-    style: 'italic',
+  list: {
+    markerColor: '#f44336',
   },
-  heading: {
-    family: 'Lobster',
-  },
-  strong: {
-    weight: 'bold',
+  fonts: {
+    base: {
+      family: 'Mulish',
+    },
+    code: {
+      family: 'Inconsolata',
+    },
+    em: {
+      family: 'Mynerve',
+      style: 'italic',
+    },
+    heading: {
+      family: 'Lobster',
+    },
+    link: {
+      color: '#f44336',
+    },
+    strong: {
+      weight: 'bold',
+    },
   },
 }
 

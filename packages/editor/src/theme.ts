@@ -1,9 +1,21 @@
 import { toCSSVars } from '@wildbits/utils'
 
 export type Theme = {
+  caret: Caret
+  fonts: Fonts
+  list: List
+}
+
+export type Caret = {
+  color: string
+}
+
+export type Fonts = {
   base: Font
+  code: Font
   em: Font
   heading: Font
+  link: Font
   strong: Font
 }
 
@@ -13,6 +25,10 @@ export type Font = {
   style?: FontStyle
   tracking?: 'normal' | number
   weight?: FontWeight
+}
+
+export type List = {
+  markerColor: string
 }
 
 export type FontStyle = 'normal' | 'italic'
@@ -27,21 +43,37 @@ const WEIGHT_VALUE: Record<FontWeight, number> = {
 
 export function createThemeCSSVars(theme: Theme): string {
   return (
-    createFontCSSVars(theme, 'base') +
-    createFontCSSVars(theme, 'em') +
-    createFontCSSVars(theme, 'heading') +
-    createFontCSSVars(theme, 'strong')
+    createCaretCSSVars(theme.caret) +
+    createFontCSSVars(theme.fonts, 'base') +
+    createFontCSSVars(theme.fonts, 'code') +
+    createFontCSSVars(theme.fonts, 'em') +
+    createFontCSSVars(theme.fonts, 'heading') +
+    createFontCSSVars(theme.fonts, 'link') +
+    createFontCSSVars(theme.fonts, 'strong') +
+    createListCSSVars(theme.list)
   )
 }
 
-function createFontCSSVars(theme: Theme, key: keyof Theme): string {
-  const font = { ...theme.base, ...theme[key] }
+function createCaretCSSVars(caret: Caret): string {
+  return toCSSVars({
+    caretColor: caret.color,
+  })
+}
+
+function createFontCSSVars(fonts: Fonts, key: keyof Fonts): string {
+  const font = { ...fonts.base, ...fonts[key] }
   return toCSSVars({
     [`${key}FontColor`]: font.color || 'inherit',
     [`${key}FontFamily`]: font.family || 'sans-serif',
     [`${key}FontStyle`]: font.style || 'normal',
     [`${key}FontTracking`]: font.tracking || 'inherit',
     [`${key}FontWeight`]: font.weight || 'normal',
+  })
+}
+
+function createListCSSVars(list: List): string {
+  return toCSSVars({
+    listMarkerColor: list.markerColor,
   })
 }
 
@@ -63,8 +95,8 @@ function getFamilyWeights(theme: Theme): FamilyWeights {
   type FamilyWeightPair = [string, FontWeight]
 
   const mapper = (font: Font): FamilyWeightPair => [
-    font.family || theme.base.family!,
-    font.weight || theme.base.weight || 'normal',
+    font.family || theme.fonts.base.family!,
+    font.weight || theme.fonts.base.weight || 'normal',
   ]
 
   const reducer = (
@@ -78,7 +110,7 @@ function getFamilyWeights(theme: Theme): FamilyWeights {
     return acc
   }
 
-  return Object.values(theme).map(mapper).reduce(reducer, {})
+  return Object.values(theme.fonts).map(mapper).reduce(reducer, {})
 }
 
 function getFontQueryParam(familyWeights: FamilyWeights): string {
