@@ -2,6 +2,7 @@ import { Extension } from '@tiptap/core'
 
 import { Bold } from './bold'
 import { Italic } from './italic'
+import { Link } from './link'
 
 /**
  * NOTE: Order matters. Higher priority marks will wrap lower priority mark but
@@ -22,6 +23,6 @@ export const Marks = Extension.create({
   name: 'marks',
 
   addExtensions() {
-    return [Bold, Italic]
+    return [Bold, Italic, Link]
   },
 })
