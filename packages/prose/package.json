@@ -1,7 +1,7 @@
 {
-  "name": "@wildbits/editor-extensions",
+  "name": "@wildbits/prose",
   "version": "0.0.0",
-  "description": "Extensions for the Wildbits editor.",
+  "description": "The Wildbits prose package.",
   "type": "module",
   "module": "src/index.ts",
   "types": "src/index.ts",

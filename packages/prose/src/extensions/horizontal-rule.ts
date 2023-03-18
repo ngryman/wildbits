@@ -67,5 +67,3 @@ export const HorizontalRule = HorizontalRuleExtension.extend({
     ]
   },
 })
-
-export type { HorizontalRuleOptions } from '@tiptap/extension-horizontal-rule'

@@ -10,7 +10,7 @@ import { Typography as TypographyExtension } from '@tiptap/extension-typography'
 import { Youtube } from '@tiptap/extension-youtube'
 import { Editor } from '@tiptap/core'
 import { Collaboration } from '@wildbits/collaboration'
-import { Marks, Nodes } from '@wildbits/editor-extensions'
+import { Prose } from '@wildbits/prose'
 import { Accessor, createEffect } from 'solid-js'
 import { createTiptapEditor, UseEditorOptions } from 'solid-tiptap'
 import { IndexeddbPersistence } from 'y-indexeddb'
@@ -80,8 +80,7 @@ export function createEditor(settings: () => Settings): Accessor<Editor> {
       element: settings().element,
       extensions: [
         Collaboration.configure({ provider }),
-        Marks,
-        Nodes,
+        Prose,
         Image.configure({ allowBase64: true }),
         Layout,
         StarterKit.configure({

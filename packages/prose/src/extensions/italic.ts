@@ -1,12 +1,12 @@
-import { Bold as BoldExtension } from '@tiptap/extension-bold'
+import { Italic as ItalicExtension } from '@tiptap/extension-italic'
 import { markInputRule, markPasteRule } from '@tiptap/core'
 
-const starInputRegex = /\*\*([^*]+)\*\*$/
-const starPasteRegex = /\*\*([^*]+)\*\*/g
-const underscoreInputRegex = /__([^_]+)__$/
-const underscorePasteRegex = /__([^_]+)__/g
+const starInputRegex = /(?<!\w|\*)\*([^*]+)\*$/
+const starPasteRegex = /(?<!\w|\*)\*([^*]+)\*/g
+const underscoreInputRegex = /(?<!\w|_)_([^_]+)_$/
+const underscorePasteRegex = /(?<!\w|_)_([^_]+)_/g
 
-export const Bold = BoldExtension.extend({
+export const Italic = ItalicExtension.extend({
   addInputRules() {
     return [
       markInputRule({
@@ -33,5 +33,3 @@ export const Bold = BoldExtension.extend({
     ]
   },
 })
-
-export type { BoldOptions } from '@tiptap/extension-bold'
