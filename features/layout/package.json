@@ -1,0 +1,13 @@
+{
+  "name": "@wildbits/layout",
+  "version": "0.0.0",
+  "description": "The layout feature of Wildbits.",
+  "type": "module",
+  "module": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@tiptap/core": "2.0.0-beta.220",
+    "@tiptap/pm": "2.0.0-beta.220",
+    "@wildbits/utils": "workspace:*"
+  }
+}

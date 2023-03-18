@@ -1,7 +1,7 @@
 {
   "name": "@wildbits/prose",
   "version": "0.0.0",
-  "description": "The Wildbits prose package.",
+  "description": "The prose feature of Wildbits.",
   "type": "module",
   "module": "src/index.ts",
   "types": "src/index.ts",

@@ -1,4 +1,5 @@
 import { Accessor, createEffect, createSignal } from 'solid-js'
+
 import { Provider, Peer } from './types'
 
 export function createPeers(provider: Provider): Accessor<Peer[]> {

@@ -1,7 +1,7 @@
 {
   "name": "@wildbits/collaboration",
   "version": "0.0.0",
-  "description": "The Wildbits collaboration package.",
+  "description": "The collaboration feature of Wildbits.",
   "type": "module",
   "module": "src/index.ts",
   "types": "src/index.ts",
