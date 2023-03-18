@@ -43,7 +43,7 @@ importers:
       '@motionone/solid': 10.15.5_solid-js@1.6.11
       '@solid-primitives/keyboard': 1.0.9_solid-js@1.6.11
       '@solidjs/router': 0.7.0_solid-js@1.6.11
-      '@wildbits/collaboration': link:../packages/collaboration
+      '@wildbits/collaboration': link:../features/collaboration
       '@wildbits/editor': link:../packages/editor
       '@wildbits/utils': link:../packages/utils
       nanoid: 4.0.1
@@ -52,7 +52,7 @@ importers:
       vite: 4.1.4
       vite-plugin-solid: 2.6.1_solid-js@1.6.11+vite@4.1.4
 
-  packages/collaboration:
+  features/collaboration:
     specifiers:
       '@tiptap/core': 2.0.0-beta.220
       '@tiptap/extension-collaboration': 2.0.0-beta.220
@@ -73,7 +73,7 @@ importers:
       '@tiptap/extension-collaboration': 2.0.0-beta.220_vghkcsy37zmnft7cy7riket6na
       '@tiptap/extension-collaboration-cursor': 2.0.0-beta.220_xurnhx2lyuimbqrywcpq5zxutu
       '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
-      '@wildbits/utils': link:../utils
+      '@wildbits/utils': link:../../packages/utils
       prosemirror-model: 1.19.0
       prosemirror-state: 1.4.2
       prosemirror-view: 1.30.1
@@ -83,6 +83,22 @@ importers:
       y-protocols: 1.0.5
       y-webrtc: 10.2.4
       yjs: 13.5.48
+
+  features/prose:
+    specifiers:
+      '@tiptap/core': 2.0.0-beta.220
+      '@tiptap/extension-bold': 2.0.0-beta.220
+      '@tiptap/extension-horizontal-rule': 2.0.0-beta.220
+      '@tiptap/extension-italic': 2.0.0-beta.220
+      '@tiptap/extension-link': 2.0.0-beta.220
+      '@tiptap/pm': 2.0.0-beta.220
+    dependencies:
+      '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
+      '@tiptap/extension-bold': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
+      '@tiptap/extension-horizontal-rule': 2.0.0-beta.220_ohumfzynigfck3hzagxvh2a4ky
+      '@tiptap/extension-italic': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
+      '@tiptap/extension-link': 2.0.0-beta.220_ohumfzynigfck3hzagxvh2a4ky
+      '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
 
   packages/editor:
     specifiers:
@@ -121,8 +137,8 @@ importers:
       '@tiptap/extension-youtube': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@tiptap/starter-kit': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
-      '@wildbits/collaboration': link:../collaboration
-      '@wildbits/prose': link:../prose
+      '@wildbits/collaboration': link:../../features/collaboration
+      '@wildbits/prose': link:../../features/prose
       '@wildbits/utils': link:../utils
       prosemirror-model: 1.19.0
       prosemirror-state: 1.4.2
@@ -131,22 +147,6 @@ importers:
       solid-tiptap: 0.4.0_3loovuybxr2t4p7wnjti2dulbm
       y-indexeddb: 9.0.9_yjs@13.5.48
       yjs: 13.5.48
-
-  packages/prose:
-    specifiers:
-      '@tiptap/core': 2.0.0-beta.220
-      '@tiptap/extension-bold': 2.0.0-beta.220
-      '@tiptap/extension-horizontal-rule': 2.0.0-beta.220
-      '@tiptap/extension-italic': 2.0.0-beta.220
-      '@tiptap/extension-link': 2.0.0-beta.220
-      '@tiptap/pm': 2.0.0-beta.220
-    dependencies:
-      '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
-      '@tiptap/extension-bold': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
-      '@tiptap/extension-horizontal-rule': 2.0.0-beta.220_ohumfzynigfck3hzagxvh2a4ky
-      '@tiptap/extension-italic': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
-      '@tiptap/extension-link': 2.0.0-beta.220_ohumfzynigfck3hzagxvh2a4ky
-      '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
 
   packages/utils:
     specifiers:
