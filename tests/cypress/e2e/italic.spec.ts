@@ -5,11 +5,11 @@ describe('italic mark', () => {
 
   describe('markdown', () => {
     it('supports the * syntax', () => {
-      cy.typeInEditor('*italic*').should('have.html', '<p><em>italic</em></p>')
+      cy.typeInEditor('*italic*🥖').should('have.html', '<p><em>italic</em>🥖</p>')
     })
 
     it('supports the _ syntax', () => {
-      cy.typeInEditor('_italic_').should('have.html', '<p><em>italic</em></p>')
+      cy.typeInEditor('_italic_🥖').should('have.html', '<p><em>italic</em>🥖</p>')
     })
   })
 
@@ -19,16 +19,7 @@ describe('italic mark', () => {
     it('mod+i sets the selected text to italic')
   })
 
-  describe('cursor', () => {
-    it('puts the cursor after and outside', () => {
-      cy.typeInEditor('*italic*🤘').should(
-        'have.html',
-        `<p><em>italic</em>🤘</p>`
-      )
-    })
-  })
-
-  describe('insert', () => {
+  describe('wrapping', () => {
     it('is wrapped by another mark', () => {
       cy.typeInEditor('_**italic bold**_').should(
         'have.html',
@@ -64,21 +55,21 @@ describe('italic mark', () => {
       )
     })
 
-    it('wraps another mark at the beginning with space', () => {
+    it('is wrapped by another mark at the beginning with space', () => {
       cy.typeInEditor('_**1** 2_').should(
         'have.html',
         `<p><strong><em>1</em></strong><em> 2</em></p>`
       )
     })
 
-    it('wraps another mark at the end', () => {
+    it('is wrapped by another mark at the end', () => {
       cy.typeInEditor('_1**2**_').should(
         'have.html',
         `<p><em>1</em><strong><em>2</em></strong></p>`
       )
     })
 
-    it('wraps another mark at the end with space', () => {
+    it('is wrapped by another mark at the end with space', () => {
       cy.typeInEditor('_1 **2**_').should(
         'have.html',
         `<p><em>1 </em><strong><em>2</em></strong></p>`

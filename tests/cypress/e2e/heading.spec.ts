@@ -10,14 +10,10 @@ describe('heading node', () => {
     editor.get('h3').first().should('have.text', 'h3')
   })
 
-  it('puts the cursor at the beginning of the line', () => {
-    cy.typeInEditor('# 🤘').should('have.html', `<h1>🤘</h1>`)
-  })
-
   it('preserves nodes around', () => {
-    cy.typeInEditor('above\nbelow{uparrow}\n# 🤘').should(
+    cy.typeInEditor('above\nbelow{uparrow}\n# 🥖').should(
       'have.html',
-      `<p>above</p><h1>🤘</h1><p>below</p>`
+      `<p>above</p><h1>🥖</h1><p>below</p>`
     )
   })
 })

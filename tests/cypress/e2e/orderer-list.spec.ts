@@ -5,25 +5,13 @@ describe('ordered list node', () => {
 
   describe('markdown', () => {
     it('supports the 1. syntax', () => {
-      cy.typeInEditor('1. item').should(
-        'have.html',
-        '<ol><li><p>item</p></li></ol>'
-      )
-    })
-  })
-
-  describe('insert', () => {
-    it('puts the cursor at the beginning of the item', () => {
-      cy.typeInEditor('1. 🤘').should(
-        'have.html',
-        `<ol><li><p>🤘</p></li></ol>`
-      )
+      cy.typeInEditor('1. item').should('have.html', '<ol><li><p>item</p></li></ol>')
     })
 
     it('preserves nodes around', () => {
-      cy.typeInEditor('above\nbelow{uparrow}\n1. 🤘').should(
+      cy.typeInEditor('above\nbelow{uparrow}\n1. 🥖').should(
         'have.html',
-        `<p>above</p><ol><li><p>🤘</p></li></ol><p>below</p>`
+        `<p>above</p><ol><li><p>🥖</p></li></ol><p>below</p>`
       )
     })
   })
@@ -38,10 +26,7 @@ describe('ordered list node', () => {
     })
 
     it('does not wrap a heading', () => {
-      cy.typeInEditor('# heading{moveToStart}1. ').should(
-        'have.html',
-        `<h1>&gt; heading</h1>`
-      )
+      cy.typeInEditor('# heading{moveToStart}1. ').should('have.html', `<h1>&gt; heading</h1>`)
     })
   })
 })

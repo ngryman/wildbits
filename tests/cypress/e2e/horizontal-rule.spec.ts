@@ -5,39 +5,21 @@ describe('horizontal rule node', () => {
 
   describe('markdown', () => {
     it('supports the --- syntax', () => {
-      cy.typeInEditor('---').should(
-        'include.html',
-        '<hr contenteditable="false">'
-      )
+      cy.typeInEditor('---🥖').should('have.html', '<hr contenteditable="false"><p>🥖</p>')
     })
 
     it('supports the ___ syntax', () => {
-      cy.typeInEditor('___ ').should(
-        'include.html',
-        '<hr contenteditable="false">'
-      )
+      cy.typeInEditor('___ 🥖').should('include.html', '<hr contenteditable="false"><p>🥖</p>')
     })
 
     it('supports the *** syntax', () => {
-      cy.typeInEditor('*** ').should(
-        'include.html',
-        '<hr contenteditable="false">'
-      )
-    })
-  })
-
-  describe('insert', () => {
-    it('puts the cursor after the horizontal rule', () => {
-      cy.typeInEditor('---🤘').should(
-        'have.html',
-        `<hr contenteditable="false"><p>🤘</p>`
-      )
+      cy.typeInEditor('*** 🥖').should('include.html', '<hr contenteditable="false"><p>🥖</p>')
     })
 
     it('preserves nodes around', () => {
-      cy.typeInEditor('above\nbelow{uparrow}\n---🤘').should(
+      cy.typeInEditor('above\nbelow{uparrow}\n---🥖').should(
         'have.html',
-        `<p>above</p><hr contenteditable="false"><p>🤘</p><p>below</p>`
+        `<p>above</p><hr contenteditable="false"><p>🥖</p><p>below</p>`
       )
     })
   })
@@ -52,10 +34,7 @@ describe('horizontal rule node', () => {
     })
 
     it('does not wrap a heading', () => {
-      cy.typeInEditor('# heading{moveToStart}> ').should(
-        'have.html',
-        `<h1>&gt; heading</h1>`
-      )
+      cy.typeInEditor('# heading{moveToStart}> ').should('have.html', `<h1>&gt; heading</h1>`)
     })
   })
 })

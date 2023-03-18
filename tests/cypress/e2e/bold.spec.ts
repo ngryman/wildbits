@@ -5,17 +5,11 @@ describe('bold mark', () => {
 
   describe('markdown', () => {
     it('supports the ** syntax', () => {
-      cy.typeInEditor('**bold**').should(
-        'have.html',
-        '<p><strong>bold</strong></p>'
-      )
+      cy.typeInEditor('**bold**🥖').should('have.html', '<p><strong>bold</strong>🥖</p>')
     })
 
     it('supports the __ syntax', () => {
-      cy.typeInEditor('__bold__').should(
-        'have.html',
-        '<p><strong>bold</strong></p>'
-      )
+      cy.typeInEditor('__bold__🥖').should('have.html', '<p><strong>bold</strong>🥖</p>')
     })
   })
 
@@ -25,16 +19,7 @@ describe('bold mark', () => {
     it('mod+b sets the selected text to bold')
   })
 
-  describe('cursor', () => {
-    it('puts the cursor after and outside', () => {
-      cy.typeInEditor('**bold**🤘').should(
-        'have.html',
-        `<p><strong>bold</strong>🤘</p>`
-      )
-    })
-  })
-
-  describe('insert', () => {
+  describe('wrapping', () => {
     it('wraps another mark', () => {
       cy.typeInEditor('**_bold italic_**').should(
         'have.html',
@@ -51,26 +36,17 @@ describe('bold mark', () => {
 
     // NOTE: only works with space since `_` can be part of a word.
     it('wraps another mark in the middle with space', () => {
-      cy.typeInEditor('**1 _2_ 3**').should(
-        'have.html',
-        `<p><strong>1 <em>2</em> 3</strong></p>`
-      )
+      cy.typeInEditor('**1 _2_ 3**').should('have.html', `<p><strong>1 <em>2</em> 3</strong></p>`)
     })
 
     // NOTE: only works with space since `_` can be part of a word.
     it('wraps another mark at the beginning with space', () => {
-      cy.typeInEditor('**_1_ 3**').should(
-        'have.html',
-        `<p><strong><em>1</em> 3</strong></p>`
-      )
+      cy.typeInEditor('**_1_ 3**').should('have.html', `<p><strong><em>1</em> 3</strong></p>`)
     })
 
     // NOTE: only works with space since `_` can be part of a word.
     it('wraps another mark at the end with space', () => {
-      cy.typeInEditor('**1 _3_**').should(
-        'have.html',
-        `<p><strong>1 <em>3</em></strong></p>`
-      )
+      cy.typeInEditor('**1 _3_**').should('have.html', `<p><strong>1 <em>3</em></strong></p>`)
     })
   })
 })

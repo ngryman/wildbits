@@ -5,19 +5,7 @@ describe('blockquote node', () => {
 
   describe('markdown', () => {
     it('supports the > syntax', () => {
-      cy.typeInEditor('> blockquote').should(
-        'have.html',
-        '<blockquote><p>blockquote</p></blockquote>'
-      )
-    })
-  })
-
-  describe('insert', () => {
-    it('puts the cursor at the beginning of the line', () => {
-      cy.typeInEditor('> 🤘').should(
-        'have.html',
-        `<blockquote><p>🤘</p></blockquote>`
-      )
+      cy.typeInEditor('> 🥖').should('have.html', '<blockquote><p>🥖</p></blockquote>')
     })
 
     it('preserves nodes around', () => {
@@ -38,10 +26,7 @@ describe('blockquote node', () => {
     })
 
     it('does not wrap a heading', () => {
-      cy.typeInEditor('# heading{moveToStart}> ').should(
-        'have.html',
-        `<h1>&gt; heading</h1>`
-      )
+      cy.typeInEditor('# heading{moveToStart}> ').should('have.html', `<h1>&gt; heading</h1>`)
     })
   })
 })

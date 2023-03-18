@@ -3,15 +3,6 @@ describe('markdown syntax', () => {
     cy.visitNewDocument()
   })
 
-  // TODO: wait for a fix to `@tiptap/extension-link`
-  // https://github.com/ueberdosis/tiptap/issues/819
-  it.skip('supports the link syntax', () => {
-    cy.typeInEditor('This is [Wildbits](https://wildbits.app).').should(
-      'have.html',
-      '<p>This is <a href="https://wildbits.app">Wildbits</a>.</p>'
-    )
-  })
-
   // TODO: wait for a fix to `@tiptap/extension-image`
   it.skip('supports the image syntax', () => {
     cy.typeInEditor(
