@@ -1,7 +1,6 @@
 import Collaboration from '@tiptap/extension-collaboration'
 import CollaborationCursor from '@tiptap/extension-collaboration-cursor'
 import Image from '@tiptap/extension-image'
-import Link from '@tiptap/extension-link'
 import StarterKit from '@tiptap/starter-kit'
 import Table from '@tiptap/extension-table'
 import TableCell from '@tiptap/extension-table-cell'
@@ -100,7 +99,6 @@ export function createEditor(settings: () => Settings): Accessor<Editor> {
         }),
         Image.configure({ allowBase64: true }),
         Layout,
-        Link,
         StarterKit.configure({
           history: false,
           bold: false,
