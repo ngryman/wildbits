@@ -1,4 +1,5 @@
 import { Atom, createInitializedResourceAtom } from '@wildbits/utils'
+
 import { User } from './types'
 
 // const COLORS = [

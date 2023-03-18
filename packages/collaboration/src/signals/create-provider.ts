@@ -1,13 +1,19 @@
 import { Doc } from 'yjs'
 import { WebrtcProvider } from 'y-webrtc'
 
-import { Provider, Settings } from './types'
+import { Provider } from './types'
 
-export function createProvider(settings: Settings): Provider {
+export type ProviderOptions = {
+  documentId: string
+  cryptoKey: string
+  signalingServer: string
+}
+
+export function createProvider(options: ProviderOptions): Provider {
   const document = new Doc()
-  const webrtcProvider = new WebrtcProvider(settings.documentId, document, {
-    password: settings.cryptoKey,
-    signaling: [settings.signalingServer],
+  const webrtcProvider = new WebrtcProvider(options.documentId, document, {
+    password: options.cryptoKey,
+    signaling: [options.signalingServer],
     peerOpts: {
       config: {
         iceServers: [
@@ -35,7 +41,7 @@ export function createProvider(settings: Settings): Provider {
   })
 
   return {
-    documentId: settings.documentId,
+    documentId: options.documentId,
     document,
     webrtcProvider,
   }

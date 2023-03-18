@@ -16,8 +16,8 @@ export default function EditorPage() {
 
   const cryptoKey = location.hash.slice(1)
   const provider = createProvider({
-    documentId: params.id,
     cryptoKey,
+    documentId: params.id,
     // TODO: create a config provider with all the env vars in there
     signalingServer: import.meta.env.VITE_COLLABORATION_SIGNALING_SERVER,
   })

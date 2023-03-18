@@ -1,12 +1,6 @@
 import { Doc } from 'yjs'
 import { WebrtcProvider } from 'y-webrtc'
 
-export type Settings = {
-  documentId: string
-  cryptoKey: string
-  signalingServer: string
-}
-
 export type Provider = {
   documentId: string
   document: Doc
