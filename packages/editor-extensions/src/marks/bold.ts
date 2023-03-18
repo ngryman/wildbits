@@ -1,4 +1,4 @@
-import BoldExtension from '@tiptap/extension-bold'
+import { Bold as BoldExtension } from '@tiptap/extension-bold'
 import { markInputRule, markPasteRule } from '@tiptap/core'
 
 const starInputRegex = /\*\*([^*]+)\*\*$/

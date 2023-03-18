@@ -1,4 +1,4 @@
-import ItalicExtension from '@tiptap/extension-italic'
+import { Italic as ItalicExtension } from '@tiptap/extension-italic'
 import { markInputRule, markPasteRule } from '@tiptap/core'
 
 const starInputRegex = /(?<!\w|\*)\*([^*]+)\*$/

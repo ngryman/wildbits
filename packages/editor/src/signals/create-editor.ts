@@ -1,15 +1,15 @@
-import Collaboration from '@tiptap/extension-collaboration'
-import CollaborationCursor from '@tiptap/extension-collaboration-cursor'
-import Image from '@tiptap/extension-image'
-import StarterKit from '@tiptap/starter-kit'
-import Table from '@tiptap/extension-table'
-import TableCell from '@tiptap/extension-table-cell'
-import TableHeader from '@tiptap/extension-table-header'
-import TableRow from '@tiptap/extension-table-row'
-import TaskItem from '@tiptap/extension-task-item'
-import TaskList from '@tiptap/extension-task-list'
-import TypographyExt from '@tiptap/extension-typography'
-import Youtube from '@tiptap/extension-youtube'
+import { Collaboration } from '@tiptap/extension-collaboration'
+import { CollaborationCursor } from '@tiptap/extension-collaboration-cursor'
+import { Image } from '@tiptap/extension-image'
+import { StarterKit } from '@tiptap/starter-kit'
+import { Table } from '@tiptap/extension-table'
+import { TableCell } from '@tiptap/extension-table-cell'
+import { TableHeader } from '@tiptap/extension-table-header'
+import { TableRow } from '@tiptap/extension-table-row'
+import { TaskItem } from '@tiptap/extension-task-item'
+import { TaskList } from '@tiptap/extension-task-list'
+import { Typography as TypographyExtension } from '@tiptap/extension-typography'
+import { Youtube } from '@tiptap/extension-youtube'
 import { Editor } from '@tiptap/core'
 import { Marks, Nodes } from '@wildbits/editor-extensions'
 import { Accessor, createComponent, createEffect } from 'solid-js'
@@ -105,7 +105,7 @@ export function createEditor(settings: () => Settings): Accessor<Editor> {
           italic: false,
           horizontalRule: false,
         }),
-        TypographyExt,
+        TypographyExtension,
         Table.configure({ allowTableNodeSelection: true, resizable: true }),
         TableCell,
         TableHeader,

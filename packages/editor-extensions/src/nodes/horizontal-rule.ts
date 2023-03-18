@@ -1,4 +1,4 @@
-import HorizontalRuleExtension from '@tiptap/extension-horizontal-rule'
+import { HorizontalRule as HorizontalRuleExtension } from '@tiptap/extension-horizontal-rule'
 import { callOrReturn, ExtendedRegExpMatchArray, InputRule, InputRuleFinder } from '@tiptap/core'
 import { NodeType } from '@tiptap/pm/model'
 
