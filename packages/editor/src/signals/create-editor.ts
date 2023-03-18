@@ -68,10 +68,7 @@ const DEFAULT_THEME: Theme = {
 
 export function createEditor(settings: () => Settings): Accessor<Editor> {
   const document = settings().provider.document
-  const _persistence = new IndexeddbPersistence(
-    settings().provider.documentId,
-    document
-  )
+  const _persistence = new IndexeddbPersistence(settings().provider.documentId, document)
 
   return createTiptapEditor(() => {
     const props: UseEditorOptions<HTMLElement> = {

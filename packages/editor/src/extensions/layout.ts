@@ -1,10 +1,4 @@
-import {
-  CommandProps,
-  Extension,
-  JSONContent,
-  mergeAttributes,
-  Node,
-} from '@tiptap/core'
+import { CommandProps, Extension, JSONContent, mergeAttributes, Node } from '@tiptap/core'
 import { times } from '@wildbits/utils'
 
 import styles from './layout.module.css'

@@ -8,8 +8,6 @@ type Props = ParentProps & {
 
 export function Workspace(props: Props) {
   return (
-    <main classList={{ [styles.root]: true, [styles.split]: props.split }}>
-      {props.children}
-    </main>
+    <main classList={{ [styles.root]: true, [styles.split]: props.split }}>{props.children}</main>
   )
 }

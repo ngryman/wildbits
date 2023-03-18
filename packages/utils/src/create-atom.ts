@@ -26,10 +26,7 @@ export function createInitializedResourceAtom<T>(
   return createAtomFunction(resource, mutate)
 }
 
-function createAtomFunction<T, A extends VoidFunction>(
-  accessor: A,
-  setter: Setter<T>
-): Atom<T, A> {
+function createAtomFunction<T, A extends VoidFunction>(accessor: A, setter: Setter<T>): Atom<T, A> {
   return (value => {
     if (value !== undefined) {
       setter(value)

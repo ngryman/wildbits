@@ -1,9 +1,4 @@
-import {
-  Peers,
-  createPeers,
-  createProvider,
-  createUser,
-} from '@wildbits/collaboration'
+import { Peers, createPeers, createProvider, createUser } from '@wildbits/collaboration'
 import { Editor, createEditor } from '@wildbits/editor'
 import { createAtom } from '@wildbits/utils'
 import { Presence } from '@motionone/solid'
@@ -47,11 +42,7 @@ export default function EditorPage() {
     editor().chain().focus().setGrid(3).run()
   })
   createShortcut(['Control', 'T'], () => {
-    editor()
-      .chain()
-      .focus()
-      .insertTable({ rows: 3, cols: 3, withHeaderRow: false })
-      .run()
+    editor().chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: false }).run()
   })
 
   return (

@@ -34,11 +34,7 @@
       "files": [
         {
           "name": "file",
-          "accept": [
-            "application/vnd.wildbits+json",
-            "application/json",
-            ".wildbits"
-          ]
+          "accept": ["application/vnd.wildbits+json", "application/json", ".wildbits"]
         }
       ]
     }

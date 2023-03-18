@@ -81,16 +81,14 @@
 }
 
 .editor p {
-  font: var(--base-font-style) var(--base-font-weight) var(--size-m)
-    var(--base-font-family);
+  font: var(--base-font-style) var(--base-font-weight) var(--size-m) var(--base-font-family);
   color: var(--base-font-color);
   letter-spacing: var(--base-font-tracking);
   line-height: var(--leading);
 }
 
 .editor a {
-  font: var(--link-font-style) var(--link-font-weight) var(--size-m)
-    var(--link-font-family);
+  font: var(--link-font-style) var(--link-font-weight) var(--size-m) var(--link-font-family);
   color: var(--link-font-color);
   letter-spacing: var(--link-font-tracking);
 }
@@ -100,22 +98,19 @@
   border-radius: 4px;
   padding: 0.2em 0.5rem;
   background: #fff;
-  font: var(--code-font-style) var(--code-font-weight) var(--size-m)
-    var(--code-font-family);
+  font: var(--code-font-style) var(--code-font-weight) var(--size-m) var(--code-font-family);
   color: var(--code-font-color);
   letter-spacing: var(--code-font-tracking);
 }
 
 .editor strong {
-  font: var(--strong-font-style) var(--strong-font-weight) var(--size-m)
-    var(--strong-font-family);
+  font: var(--strong-font-style) var(--strong-font-weight) var(--size-m) var(--strong-font-family);
   color: var(--strong-font-color);
   letter-spacing: var(--strong-font-tracking);
 }
 
 .editor em {
-  font: var(--em-font-style) var(--em-font-weight) var(--size-m)
-    var(--em-font-family);
+  font: var(--em-font-style) var(--em-font-weight) var(--size-m) var(--em-font-family);
   color: var(--em-font-color);
   letter-spacing: var(--em-font-tracking);
 }
