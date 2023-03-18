@@ -1,22 +1,6 @@
 import HorizontalRuleExtension from '@tiptap/extension-horizontal-rule'
-import {
-  callOrReturn,
-  ExtendedRegExpMatchArray,
-  InputRule,
-  InputRuleFinder,
-} from '@tiptap/core'
+import { callOrReturn, ExtendedRegExpMatchArray, InputRule, InputRuleFinder } from '@tiptap/core'
 import { NodeType } from '@tiptap/pm/model'
-
-export const HorizontalRule = HorizontalRuleExtension.extend({
-  addInputRules() {
-    return [
-      patchedNodeInputRule({
-        find: /^---|—-|___\s|\*\*\*\s$/,
-        type: this.type,
-      }),
-    ]
-  },
-})
 
 /**
  * Build an input rule that adds a node when the matched text is typed into it.
@@ -38,8 +22,7 @@ function patchedNodeInputRule(config: {
   return new InputRule({
     find: config.find,
     handler: ({ state, range, match }) => {
-      const attributes =
-        callOrReturn(config.getAttributes, undefined, match) || {}
+      const attributes = callOrReturn(config.getAttributes, undefined, match) || {}
 
       const { tr } = state
       const captureGroup = match[1]
@@ -73,3 +56,16 @@ function patchedNodeInputRule(config: {
     },
   })
 }
+
+export const HorizontalRule = HorizontalRuleExtension.extend({
+  addInputRules() {
+    return [
+      patchedNodeInputRule({
+        find: /^---|—-|___\s|\*\*\*\s$/,
+        type: this.type,
+      }),
+    ]
+  },
+})
+
+export type { HorizontalRuleOptions } from '@tiptap/extension-horizontal-rule'

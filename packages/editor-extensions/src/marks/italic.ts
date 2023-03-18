@@ -33,3 +33,5 @@ export const Italic = ItalicExtension.extend({
     ]
   },
 })
+
+export type { ItalicOptions } from '@tiptap/extension-italic'
