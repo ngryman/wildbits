@@ -5,15 +5,11 @@ describe('italic mark', () => {
 
   describe('markdown', () => {
     it('supports the * syntax', () => {
-      cy.typeInEditor('*italic*')
-        .first()
-        .should('have.html', '<p><em>italic</em></p>')
+      cy.typeInEditor('*italic*').should('have.html', '<p><em>italic</em></p>')
     })
 
     it('supports the _ syntax', () => {
-      cy.typeInEditor('_italic_')
-        .first()
-        .should('have.html', '<p><em>italic</em></p>')
+      cy.typeInEditor('_italic_').should('have.html', '<p><em>italic</em></p>')
     })
   })
 

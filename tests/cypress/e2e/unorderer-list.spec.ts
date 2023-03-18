@@ -5,21 +5,24 @@ describe('unordered list node', () => {
 
   describe('markdown', () => {
     it('supports the * syntax', () => {
-      cy.typeInEditor('* item')
-        .first()
-        .should('have.html', '<ul><li><p>item</p></li></ul>')
+      cy.typeInEditor('* item').should(
+        'have.html',
+        '<ul><li><p>item</p></li></ul>'
+      )
     })
 
     it('supports the - syntax', () => {
-      cy.typeInEditor('- item')
-        .first()
-        .should('have.html', '<ul><li><p>item</p></li></ul>')
+      cy.typeInEditor('- item').should(
+        'have.html',
+        '<ul><li><p>item</p></li></ul>'
+      )
     })
 
     it('supports the + syntax', () => {
-      cy.typeInEditor('+ item')
-        .first()
-        .should('have.html', '<ul><li><p>item</p></li></ul>')
+      cy.typeInEditor('+ item').should(
+        'have.html',
+        '<ul><li><p>item</p></li></ul>'
+      )
     })
   })
 

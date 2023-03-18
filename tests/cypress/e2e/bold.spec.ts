@@ -5,15 +5,17 @@ describe('bold mark', () => {
 
   describe('markdown', () => {
     it('supports the ** syntax', () => {
-      cy.typeInEditor('**bold**')
-        .first()
-        .should('have.html', '<p><strong>bold</strong></p>')
+      cy.typeInEditor('**bold**').should(
+        'have.html',
+        '<p><strong>bold</strong></p>'
+      )
     })
 
     it('supports the __ syntax', () => {
-      cy.typeInEditor('__bold__')
-        .first()
-        .should('have.html', '<p><strong>bold</strong></p>')
+      cy.typeInEditor('__bold__').should(
+        'have.html',
+        '<p><strong>bold</strong></p>'
+      )
     })
   })
 

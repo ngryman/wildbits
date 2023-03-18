@@ -5,9 +5,10 @@ describe('blockquote node', () => {
 
   describe('markdown', () => {
     it('supports the > syntax', () => {
-      cy.typeInEditor('> blockquote')
-        .first()
-        .should('have.html', '<blockquote><p>blockquote</p></blockquote>')
+      cy.typeInEditor('> blockquote').should(
+        'have.html',
+        '<blockquote><p>blockquote</p></blockquote>'
+      )
     })
   })
 

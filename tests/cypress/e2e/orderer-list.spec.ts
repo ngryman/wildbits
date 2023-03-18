@@ -5,9 +5,10 @@ describe('ordered list node', () => {
 
   describe('markdown', () => {
     it('supports the 1. syntax', () => {
-      cy.typeInEditor('1. item')
-        .first()
-        .should('have.html', '<ol><li><p>item</p></li></ol>')
+      cy.typeInEditor('1. item').should(
+        'have.html',
+        '<ol><li><p>item</p></li></ol>'
+      )
     })
   })
 

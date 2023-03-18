@@ -5,9 +5,7 @@ describe('code mark', () => {
 
   describe('markdown', () => {
     it('supports the ` syntax', () => {
-      cy.typeInEditor('`code`')
-        .first()
-        .should('have.html', '<p><code>code</code></p>')
+      cy.typeInEditor('`code`').should('have.html', '<p><code>code</code></p>')
     })
   })
 
