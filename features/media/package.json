@@ -7,7 +7,6 @@
   "types": "src/index.ts",
   "dependencies": {
     "@tiptap/core": "2.0.0-beta.220",
-    "@tiptap/extension-image": "2.0.0-beta.220",
     "@tiptap/pm": "2.0.0-beta.220"
   }
 }

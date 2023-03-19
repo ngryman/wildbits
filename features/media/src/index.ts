@@ -3,6 +3,6 @@ import { Image } from './extensions'
 
 export const Media = Extension.create({
   addExtensions() {
-    return [Image.configure({ allowBase64: true })]
+    return [Image]
   },
 })

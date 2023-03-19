@@ -115,8 +115,12 @@
   letter-spacing: var(--em-font-tracking);
 }
 
-.editor img {
-  width: 100%;
+.editor figure {
+  text-align: center;
+}
+.editor figcaption {
+  font-size: 0.7em;
+  opacity: 0.5;
 }
 
 .editor pre {
