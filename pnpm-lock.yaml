@@ -94,6 +94,16 @@ importers:
       '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@wildbits/utils': link:../../packages/utils
 
+  features/media:
+    specifiers:
+      '@tiptap/core': 2.0.0-beta.220
+      '@tiptap/extension-image': 2.0.0-beta.220
+      '@tiptap/pm': 2.0.0-beta.220
+    dependencies:
+      '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
+      '@tiptap/extension-image': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
+      '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
+
   features/prose:
     specifiers:
       '@tiptap/core': 2.0.0-beta.220
@@ -113,7 +123,6 @@ importers:
   packages/editor:
     specifiers:
       '@tiptap/core': 2.0.0-beta.220
-      '@tiptap/extension-image': 2.0.0-beta.220
       '@tiptap/extension-table': 2.0.0-beta.220
       '@tiptap/extension-table-cell': 2.0.0-beta.220
       '@tiptap/extension-table-header': 2.0.0-beta.220
@@ -126,6 +135,7 @@ importers:
       '@tiptap/starter-kit': 2.0.0-beta.220
       '@wildbits/collaboration': workspace:*
       '@wildbits/layout': workspace:*
+      '@wildbits/media': workspace:*
       '@wildbits/prose': workspace:*
       '@wildbits/utils': workspace:*
       solid-js: ^1.6.10
@@ -134,7 +144,6 @@ importers:
       yjs: ^13.5.48
     dependencies:
       '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
-      '@tiptap/extension-image': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@tiptap/extension-table': 2.0.0-beta.220_ohumfzynigfck3hzagxvh2a4ky
       '@tiptap/extension-table-cell': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@tiptap/extension-table-header': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
@@ -147,6 +156,7 @@ importers:
       '@tiptap/starter-kit': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
       '@wildbits/collaboration': link:../../features/collaboration
       '@wildbits/layout': link:../../features/layout
+      '@wildbits/media': link:../../features/media
       '@wildbits/prose': link:../../features/prose
       '@wildbits/utils': link:../utils
       solid-js: 1.6.11

@@ -1,4 +1,3 @@
-import { Image } from '@tiptap/extension-image'
 import { StarterKit } from '@tiptap/starter-kit'
 import { Table } from '@tiptap/extension-table'
 import { TableCell } from '@tiptap/extension-table-cell'
@@ -11,6 +10,7 @@ import { Youtube } from '@tiptap/extension-youtube'
 import { Editor } from '@tiptap/core'
 import { Collaboration } from '@wildbits/collaboration'
 import { Layout } from '@wildbits/layout'
+import { Media } from '@wildbits/media'
 import { Prose } from '@wildbits/prose'
 import { Accessor, createEffect } from 'solid-js'
 import { createTiptapEditor, UseEditorOptions } from 'solid-tiptap'
@@ -81,7 +81,7 @@ export function createEditor(settings: () => Settings): Accessor<Editor> {
       extensions: [
         Collaboration.configure({ provider }),
         Prose,
-        Image.configure({ allowBase64: true }),
+        Media,
         Layout,
         StarterKit.configure({
           history: false,
