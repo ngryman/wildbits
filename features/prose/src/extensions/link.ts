@@ -108,3 +108,5 @@ export const Link = LinkExtension.extend({
     ]
   },
 })
+
+export type { LinkOptions } from '@tiptap/extension-link'

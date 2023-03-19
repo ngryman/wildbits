@@ -33,3 +33,5 @@ export const Bold = BoldExtension.extend({
     ]
   },
 })
+
+export type { BoldOptions } from '@tiptap/extension-bold'
