@@ -33,7 +33,8 @@ describe('image node', () => {
   })
 
   describe('clipboard', () => {
-    it.only('supports pasting as base64 image', () => {
+    // TODO: it should place the cursor after on paste
+    it('supports pasting as base64 image', () => {
       cy.pasteInEditor('text/html', clipboardImage)
         .type('\n🥖')
         .should(

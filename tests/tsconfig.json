@@ -1,7 +1,4 @@
 {
   "extends": "../tsconfig.base.json",
-  "compilerOptions": {
-    "types": ["cypress"]
-  },
-  "include": ["./*/*.ts", "../../**/*.ts"]
+  "include": ["cypress/support/*.ts", "../{features,packages}/tests/**/*.spec.ts"]
 }
