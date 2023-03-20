@@ -10,9 +10,13 @@ export interface CollaborationOptions {
 }
 
 export const Collaboration = Extension.create<CollaborationOptions>({
+  name: 'collaboration',
+
   addExtensions() {
     return [
-      CollaborationExtension.configure({ document: this.options.provider.document }),
+      CollaborationExtension.extend({ name: 'collaboration-internal' }).configure({
+        document: this.options.provider.document,
+      }),
       CollaborationCursor.configure({
         provider: this.options.provider.webrtcProvider,
         render: user => {
