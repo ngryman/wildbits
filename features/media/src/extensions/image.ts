@@ -11,6 +11,7 @@ import { NodeType } from '@tiptap/pm/model'
 import { Plugin } from '@tiptap/pm/state'
 import { createNodeView } from '@wildbits/utils'
 
+import styles from '../components/image.module.css'
 import { ImageView } from '../components'
 
 export interface ImageOptions {
@@ -75,6 +76,7 @@ export const Image = Node.create<ImageOptions>({
   name: 'image',
   atom: true,
   draggable: true,
+  selectable: true,
   group: 'block',
 
   addOptions() {
@@ -102,7 +104,12 @@ export const Image = Node.create<ImageOptions>({
   },
 
   renderHTML({ HTMLAttributes }) {
-    return ['img', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes)]
+    return [
+      'img',
+      mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
+        class: styles.image,
+      }),
+    ]
   },
 
   addCommands() {

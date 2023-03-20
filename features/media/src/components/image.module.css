@@ -1,0 +1,20 @@
+.figure {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  align-self: center;
+  margin: 0 1em;
+  max-width: 100%;
+}
+.figure.selected {
+  outline: 1px solid red;
+}
+
+.image {
+  max-width: 100%;
+}
+
+.caption {
+  font-size: 0.7em;
+  opacity: 0.5;
+}

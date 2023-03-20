@@ -122,22 +122,6 @@
   letter-spacing: var(--em-font-tracking);
 }
 
-.editor figure {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  align-self: center;
-  margin: 0 1em;
-  max-width: 100%;
-}
-.editor figure img {
-  max-width: 100%;
-}
-.editor figcaption {
-  font-size: 0.7em;
-  opacity: 0.5;
-}
-
 .editor pre {
   white-space: pre-wrap;
 }

@@ -1,14 +1,23 @@
-import { ParentProps, Show } from 'solid-js'
+import { NodeViewProps } from '@wildbits/utils'
+import { Show } from 'solid-js'
 import { ImageAttributes } from '../extensions'
 
-type Props = ParentProps & ImageAttributes
+import styles from './image.module.css'
 
-export function ImageView(props: Props) {
+export function ImageView(props: NodeViewProps<ImageAttributes>) {
+  const attributes = () => props.attributes
+  const selected = () => props.selected
+
   return (
-    <figure>
+    <figure
+      class={styles.figure}
+      classList={{
+        [styles.selected]: selected(),
+      }}
+    >
       {props.children}
-      <Show when={props.title || props.alt}>
-        <figcaption>{props.title || props.alt}</figcaption>
+      <Show when={attributes().title || attributes().alt}>
+        <figcaption class={styles.caption}>{attributes().title || attributes().alt}</figcaption>
       </Show>
     </figure>
   )
