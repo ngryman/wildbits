@@ -84,6 +84,7 @@ export function createEditor(settings: () => Settings): Accessor<Editor> {
         Media,
         Layout,
         StarterKit.configure({
+          gapcursor: false,
           history: false,
           bold: false,
           italic: false,
