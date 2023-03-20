@@ -164,6 +164,12 @@ importers:
       y-indexeddb: 9.0.9_yjs@13.5.48
       yjs: 13.5.48
 
+  packages/ui:
+    specifiers:
+      solid-js: ^1.6.10
+    dependencies:
+      solid-js: 1.6.11
+
   packages/utils:
     specifiers:
       '@tiptap/core': 2.0.0-beta.220

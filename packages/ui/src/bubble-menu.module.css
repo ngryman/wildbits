@@ -1,0 +1,10 @@
+.root {
+  display: flex;
+  position: absolute;
+  top: -1rem;
+  translate: 0 -100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.4rem;
+  background: #fff;
+}
