@@ -1,5 +1,7 @@
 .root {
   display: flex;
+  align-items: center;
+  gap: 0.2em;
   position: absolute;
   top: -1rem;
   translate: 0 -100%;

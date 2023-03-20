@@ -5,30 +5,23 @@
   align-items: center;
   border: 0 solid transparent;
   border-radius: 2px;
-  box-shadow: none;
-  outline: none;
+  padding: 0.6em;
   user-select: none;
   cursor: pointer;
-  /* font-size: 14px; */
-  /* font-weight: 600; */
   vertical-align: middle;
   white-space: nowrap;
 }
 
 .root.size-small {
-  padding: 0.2em;
+  font-size: 0.7em;
 }
 .root.size-normal {
-  padding: 0.6em;
+  font-size: 0.8em;
 }
 .root.size-large {
-  padding: 0.6em;
+  font-size: 1em;
 }
 
-.root.type-primary {
-}
-.root.type-primary:hover {
-}
 .root.type-normal {
   background: transparent;
   color: hsl(214deg 11% 12% / 80%);

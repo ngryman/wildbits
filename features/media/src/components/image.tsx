@@ -1,4 +1,4 @@
-import { BubbleMenu, Button, Icons } from '@wildbits/ui'
+import { BubbleMenu, Button, Divider, Icons } from '@wildbits/ui'
 import { NodeViewProps } from '@wildbits/utils'
 import { createEffect, Show } from 'solid-js'
 
@@ -19,6 +19,8 @@ export function ImageView(props: NodeViewProps<ImageAttributes>) {
   const setAlignCenter = () => setAlign('center')
   const setAlignRight = () => setAlign('right')
 
+  const deleteNode = () => props.deleteNode()
+
   createEffect(() => {
     console.log(attributes().align)
   })
@@ -37,14 +39,18 @@ export function ImageView(props: NodeViewProps<ImageAttributes>) {
       </Show>
       <Show when={selected()}>
         <BubbleMenu>
-          <Button active={attributes().align === 'left'} onClick={setAlignLeft}>
+          <Button size="small" active={attributes().align === 'left'} onClick={setAlignLeft}>
             <Icons.ImageAlignLeft />
           </Button>
-          <Button active={attributes().align === 'center'} onClick={setAlignCenter}>
+          <Button size="small" active={attributes().align === 'center'} onClick={setAlignCenter}>
             <Icons.ImageAlignCenter />
           </Button>
-          <Button active={attributes().align === 'right'} onClick={setAlignRight}>
+          <Button size="small" active={attributes().align === 'right'} onClick={setAlignRight}>
             <Icons.ImageAlignRight />
+          </Button>
+          <Divider />
+          <Button size="small" onClick={deleteNode}>
+            <Icons.Delete />
           </Button>
         </BubbleMenu>
       </Show>
