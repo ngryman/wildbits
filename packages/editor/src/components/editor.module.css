@@ -28,6 +28,8 @@
   font-variant-ligatures: none;
   font-feature-settings: 'liga' 0; /* the above doesn't seem to work in Edge */
 
+  display: flex;
+  flex-direction: column;
   width: var(--line-length);
   max-width: 100vw;
   font-size: var(--size-m);
@@ -116,7 +118,15 @@
 }
 
 .editor figure {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  align-self: center;
+  margin: 1em 0;
+  max-width: 100%;
+}
+.editor figure img {
+  max-width: 100%;
 }
 .editor figcaption {
   font-size: 0.7em;
@@ -206,4 +216,8 @@
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+:global(.ProseMirror-selectednode) {
+  outline: 1px solid var(--caret-color);
 }
