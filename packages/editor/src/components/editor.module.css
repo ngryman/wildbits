@@ -29,6 +29,7 @@
   font-feature-settings: 'liga' 0; /* the above doesn't seem to work in Edge */
 
   display: flex;
+  gap: var(--size-m);
   flex-direction: column;
   width: var(--line-length);
   max-width: 100vw;
@@ -59,6 +60,7 @@
 }
 
 .editor h1 {
+  margin: 0;
   font: var(--heading-font-style) var(--heading-font-weight) var(--size-xxl)
     var(--heading-font-family);
   color: var(--heading-font-color);
@@ -67,6 +69,7 @@
 }
 
 .editor h2 {
+  margin: 0;
   font: var(--heading-font-style) var(--heading-font-weight) var(--size-xl)
     var(--heading-font-family);
   color: var(--heading-font-color);
@@ -75,6 +78,7 @@
 }
 
 .editor h3 {
+  margin: 0;
   font: var(--heading-font-style) var(--heading-font-weight) var(--size-l)
     var(--heading-font-family);
   color: var(--heading-font-color);
@@ -83,6 +87,7 @@
 }
 
 .editor p {
+  margin: 0;
   font: var(--base-font-style) var(--base-font-weight) var(--size-m) var(--base-font-family);
   color: var(--base-font-color);
   letter-spacing: var(--base-font-tracking);
@@ -122,7 +127,7 @@
   align-items: center;
   flex-direction: column;
   align-self: center;
-  margin: 1em 0;
+  margin: 0 1em;
   max-width: 100%;
 }
 .editor figure img {
