@@ -64,6 +64,7 @@ export const inputRegex = /(?:^|\s)(!\[(.+|:?)]\((\S+)(?:(?:\s+)["â€œ'](\S+)["â€
 
 export const Image = Node.create<ImageOptions>({
   name: 'image',
+  atom: true,
   draggable: true,
   group: 'block',
 
