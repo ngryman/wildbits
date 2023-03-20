@@ -6,6 +6,9 @@
   "module": "src/index.ts",
   "types": "src/index.ts",
   "dependencies": {
+    "@tiptap/core": "2.0.0-beta.220",
+    "@tiptap/pm": "2.0.0-beta.220",
+    "prosemirror-model": "^1.19.0",
     "solid-js": "^1.6.10"
   }
 }

@@ -1,5 +1,5 @@
 import { Peers, createPeers, createProvider, createUser } from '@wildbits/collaboration'
-import { Editor, createEditor } from '@wildbits/editor'
+import { EditorView, createEditor } from '@wildbits/editor'
 import { createAtom } from '@wildbits/utils'
 import { Presence } from '@motionone/solid'
 import { createShortcut } from '@solid-primitives/keyboard'
@@ -9,7 +9,6 @@ import { createEffect, createRenderEffect, Show } from 'solid-js'
 import { Pane, Workspace } from '../layout'
 
 export default function EditorPage() {
-  let ref!: HTMLDivElement
   const split = createAtom(false)
   const params = useParams()
   const location = useLocation()
@@ -23,32 +22,32 @@ export default function EditorPage() {
   })
   const user = createUser()
   const peers = createPeers(provider)
-  const editor = createEditor(() => ({ element: ref!, provider }))
+  const editor = createEditor({ provider })
 
   createRenderEffect(() => user())
 
   createEffect(() => {
     localStorage.setItem('user', JSON.stringify(user()))
-    editor().chain().focus().updateUser(user()).run()
+    editor.chain().focus().updateUser(user()).run()
   })
 
   createShortcut(['Control', 'E'], () => {
     split(prev => !prev)
   })
   createShortcut(['Control', '2'], () => {
-    editor().chain().focus().setGrid(2).run()
+    editor.chain().focus().setGrid(2).run()
   })
   createShortcut(['Control', '3'], () => {
-    editor().chain().focus().setGrid(3).run()
+    editor.chain().focus().setGrid(3).run()
   })
   createShortcut(['Control', 'T'], () => {
-    editor().chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: false }).run()
+    editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: false }).run()
   })
 
   return (
     <Workspace split={split()}>
       <Pane>
-        <Editor ref={ref} />
+        <EditorView editor={editor} />
         <Peers peers={peers()} />
       </Pane>
       <Presence exitBeforeEnter>

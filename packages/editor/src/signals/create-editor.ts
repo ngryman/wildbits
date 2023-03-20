@@ -12,8 +12,7 @@ import { Collaboration } from '@wildbits/collaboration'
 import { Layout } from '@wildbits/layout'
 import { Media } from '@wildbits/media'
 import { Prose } from '@wildbits/prose'
-import { Accessor, createEffect } from 'solid-js'
-import { createTiptapEditor, UseEditorOptions } from 'solid-tiptap'
+import { createEffect, onCleanup } from 'solid-js'
 import { IndexeddbPersistence } from 'y-indexeddb'
 
 import styles from '../components/editor.module.css'
@@ -63,47 +62,49 @@ const DEFAULT_THEME: Theme = {
   },
 }
 
-export function createEditor(settings: () => Settings): Accessor<Editor> {
-  const provider = settings().provider
-  const _persistence = new IndexeddbPersistence(provider.documentId, provider.document)
+export function createEditor(settings: Settings): Editor {
+  const { provider } = settings
+  const { documentId, document } = provider
+  new IndexeddbPersistence(documentId, document)
 
-  return createTiptapEditor(() => {
-    const props: UseEditorOptions<HTMLElement> = {
-      // TODO: save the position and set `autofocus` to it
-      autofocus: true,
-      editorProps: {
-        attributes: {
-          class: styles.editor,
-          style: createEditorStyle(settings()),
-        },
+  const editor = new Editor({
+    // TODO: save the position and set `autofocus` to it
+    autofocus: true,
+    editorProps: {
+      attributes: {
+        class: styles.editor,
+        style: createEditorStyle(settings),
       },
-      element: settings().element,
-      extensions: [
-        Collaboration.configure({ provider }),
-        Prose,
-        Media,
-        Layout,
-        StarterKit.configure({
-          gapcursor: false,
-          history: false,
-          bold: false,
-          italic: false,
-          horizontalRule: false,
-        }),
-        TypographyExtension,
-        Table.configure({ allowTableNodeSelection: true, resizable: true }),
-        TableCell,
-        TableHeader,
-        TableRow,
-        TaskList,
-        TaskItem.configure({ nested: true }),
-        Youtube.configure({ modestBranding: true, width: 0, height: 0 }),
-      ],
-      injectCSS: false,
-    }
+    },
+    extensions: [
+      Collaboration.configure({ provider }),
+      Prose,
+      Media,
+      Layout,
+      StarterKit.configure({
+        gapcursor: false,
+        history: false,
+        bold: false,
+        italic: false,
+        horizontalRule: false,
+      }),
+      TypographyExtension,
+      Table.configure({ allowTableNodeSelection: true, resizable: true }),
+      TableCell,
+      TableHeader,
+      TableRow,
+      TaskList,
+      TaskItem.configure({ nested: true }),
+      Youtube.configure({ modestBranding: true, width: 0, height: 0 }),
+    ],
+    injectCSS: false,
+  })
 
-    return props
-  }) as Accessor<Editor>
+  onCleanup(() => {
+    editor.destroy()
+  })
+
+  return editor
 }
 
 function createEditorStyle(settings: Settings) {

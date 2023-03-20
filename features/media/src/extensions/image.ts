@@ -9,9 +9,18 @@ import {
 } from '@tiptap/core'
 import { NodeType } from '@tiptap/pm/model'
 import { Plugin } from '@tiptap/pm/state'
+import { createNodeView } from '@wildbits/utils'
+
+import { ImageView } from '../components'
 
 export interface ImageOptions {
   HTMLAttributes: Record<string, unknown>
+}
+
+export interface ImageAttributes {
+  src: string
+  alt?: string
+  title?: string
 }
 
 declare module '@tiptap/core' {
@@ -20,7 +29,7 @@ declare module '@tiptap/core' {
       /**
        * Add an image
        */
-      setImage: (options: { src: string; alt?: string; title?: string }) => ReturnType
+      setImage: (attributes: ImageAttributes) => ReturnType
     }
   }
 }
@@ -170,28 +179,7 @@ export const Image = Node.create<ImageOptions>({
     ]
   },
 
-  /**
-   * @todo Migrate to SolidJS.
-   */
   addNodeView() {
-    return ({ node }) => {
-      const figure = document.createElement('figure')
-
-      const img = document.createElement('img')
-      img.src = node.attrs.src
-      img.alt = node.attrs.alt || ''
-      if (node.attrs.title) {
-        img.title = node.attrs.title
-      }
-      figure.appendChild(img)
-
-      if (node.attrs.title || node.attrs.alt) {
-        const figCaption = document.createElement('figcaption')
-        figCaption.innerText = node.attrs.title || node.attrs.alt
-        figure.appendChild(figCaption)
-      }
-
-      return { dom: figure }
-    }
+    return createNodeView(ImageView)
   },
 })

@@ -23,7 +23,6 @@
     "@wildbits/prose": "workspace:*",
     "@wildbits/utils": "workspace:*",
     "solid-js": "^1.6.10",
-    "solid-tiptap": "^0.4.0",
     "y-indexeddb": "^9.0.9",
     "yjs": "^13.5.48"
   }

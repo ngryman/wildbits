@@ -98,9 +98,13 @@ importers:
     specifiers:
       '@tiptap/core': 2.0.0-beta.220
       '@tiptap/pm': 2.0.0-beta.220
+      '@wildbits/utils': workspace:*
+      solid-js: ^1.6.10
     dependencies:
       '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
       '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
+      '@wildbits/utils': link:../../packages/utils
+      solid-js: 1.6.11
 
   features/prose:
     specifiers:
@@ -137,7 +141,6 @@ importers:
       '@wildbits/prose': workspace:*
       '@wildbits/utils': workspace:*
       solid-js: ^1.6.10
-      solid-tiptap: ^0.4.0
       y-indexeddb: ^9.0.9
       yjs: ^13.5.48
     dependencies:
@@ -158,14 +161,19 @@ importers:
       '@wildbits/prose': link:../../features/prose
       '@wildbits/utils': link:../utils
       solid-js: 1.6.11
-      solid-tiptap: 0.4.0_3loovuybxr2t4p7wnjti2dulbm
       y-indexeddb: 9.0.9_yjs@13.5.48
       yjs: 13.5.48
 
   packages/utils:
     specifiers:
+      '@tiptap/core': 2.0.0-beta.220
+      '@tiptap/pm': 2.0.0-beta.220
+      prosemirror-model: ^1.19.0
       solid-js: ^1.6.10
     dependencies:
+      '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
+      '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
+      prosemirror-model: 1.19.0
       solid-js: 1.6.11
 
   server:
@@ -4618,17 +4626,6 @@ packages:
       '@babel/types': 7.21.2
       solid-js: 1.6.11
     dev: true
-
-  /solid-tiptap/0.4.0_3loovuybxr2t4p7wnjti2dulbm:
-    resolution: {integrity: sha512-ePYFNvt4nzO9jfFJchH3+la3KcV3HdryC3aHMucxKoeoo+mFJuAKWLheVPBahBdYWAp+6P3zjGBLSF+CQ+SNfg==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@tiptap/core': ^2.0.0-beta.199
-      solid-js: ^1.2
-    dependencies:
-      '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
-      solid-js: 1.6.11
-    dev: false
 
   /source-map-js/1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
