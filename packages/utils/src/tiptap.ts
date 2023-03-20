@@ -8,7 +8,7 @@ export type NodeViewProps<Attributes> = {
   children: Node | null
   decorations: DecorationWithType[]
   selected: boolean
-  setAttributes: (attributes: Attributes) => void
+  setAttributes: (attributes: Partial<Attributes>) => void
   deleteNode: VoidFunction
 }
 

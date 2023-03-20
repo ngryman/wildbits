@@ -7,7 +7,10 @@
 }
 
 .column {
-  padding: 0 1rem;
+  display: grid;
+  grid-auto-flow: row;
+  grid-auto-columns: 1fr;
+  padding: 1em;
   word-break: break-word;
   background: lightgoldenrodyellow;
 }

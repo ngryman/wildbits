@@ -14,14 +14,17 @@ import { createNodeView } from '@wildbits/utils'
 import styles from '../components/image.module.css'
 import { ImageView } from '../components'
 
-export interface ImageOptions {
+export type ImageOptions = {
   HTMLAttributes: Record<string, unknown>
 }
 
-export interface ImageAttributes {
+export type ImageAlign = 'left' | 'center' | 'right'
+
+export type ImageAttributes = {
   src: string
   alt?: string
   title?: string
+  align?: ImageAlign
 }
 
 declare module '@tiptap/core' {
@@ -95,6 +98,9 @@ export const Image = Node.create<ImageOptions>({
       },
       title: {
         default: null,
+      },
+      align: {
+        default: 'center',
       },
     }
   },
