@@ -2,7 +2,7 @@ import { Peers, createPeers, createProvider, createUser } from '@wildbits/collab
 import { EditorView, createEditor } from '@wildbits/editor'
 import { createAtom } from '@wildbits/utils'
 import { Presence } from '@motionone/solid'
-import { createShortcut } from '@solid-primitives/keyboard'
+// import { createShortcut } from '@solid-primitives/keyboard'
 import { useParams, useLocation } from '@solidjs/router'
 import { createEffect, createRenderEffect, Show } from 'solid-js'
 
@@ -31,18 +31,12 @@ export default function EditorPage() {
     editor.chain().focus().updateUser(user()).run()
   })
 
-  createShortcut(['Control', 'E'], () => {
-    split(prev => !prev)
-  })
-  createShortcut(['Control', '2'], () => {
-    editor.chain().focus().setGrid(2).run()
-  })
-  createShortcut(['Control', '3'], () => {
-    editor.chain().focus().setGrid(3).run()
-  })
-  createShortcut(['Control', 'T'], () => {
-    editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: false }).run()
-  })
+  // createShortcut(['Control', 'E'], () => {
+  //   split(prev => !prev)
+  // })
+  // createShortcut(['Control', 'T'], () => {
+  //   editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: false }).run()
+  // })
 
   return (
     <Workspace split={split()}>

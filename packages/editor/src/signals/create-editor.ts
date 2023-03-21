@@ -9,7 +9,7 @@ import { Typography as TypographyExtension } from '@tiptap/extension-typography'
 import { Youtube } from '@tiptap/extension-youtube'
 import { Editor } from '@tiptap/core'
 import { Collaboration } from '@wildbits/collaboration'
-import { Layout } from '@wildbits/layout'
+import { Columns } from '@wildbits/columns'
 import { Media } from '@wildbits/media'
 import { Prose } from '@wildbits/prose'
 import { createEffect, onCleanup } from 'solid-js'
@@ -78,9 +78,9 @@ export function createEditor(settings: Settings): Editor {
     },
     extensions: [
       Collaboration.configure({ provider }),
+      Columns,
       Prose,
       Media,
-      Layout,
       StarterKit.configure({
         gapcursor: false,
         history: false,
