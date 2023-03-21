@@ -68,7 +68,7 @@ export const Columns = Node.create({
 
   addKeyboardShortcuts() {
     return {
-      ['Mod-Alt-x']: ({ editor }) => editor.commands.deleteColumn(),
+      ['Mod-Alt-x']: ({ editor }) => editor.commands.removeColumn(),
       ['Mod-Alt-|']: ({ editor }) => editor.commands.setColumns(),
       ['Mod-Alt-]']: ({ editor }) => editor.commands.insertColumnAfter(),
       ['Mod-Alt-[']: ({ editor }) => editor.commands.insertColumnBefore(),
