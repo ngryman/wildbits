@@ -13,21 +13,11 @@ export const Column = Node.create({
     }
   },
 
-  addAttributes() {
-    return {
-      index: {
-        isRequired: true,
-        parseHTML: element => element.dataset.index,
-        renderHTML: ({ index }) => ({ ['data-index']: index }),
-      },
-    }
-  },
-
   parseHTML() {
-    return [{ tag: `div[data-index]` }]
+    return [{ tag: `div[data-column]` }]
   },
 
   renderHTML({ HTMLAttributes }) {
-    return ['div', mergeAttributes(HTMLAttributes, { class: styles.root }), 0]
+    return ['div', mergeAttributes(HTMLAttributes, { class: styles.root, 'data-column': true }), 0]
   },
 })

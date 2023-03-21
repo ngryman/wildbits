@@ -14,10 +14,10 @@ function insertColumnBeforeImpl({ dispatch, editor, state, tr }: CommandProps): 
   if (!dispatch) return true
 
   const { depth } = foundRoot
-  const index = $anchor.indexAfter(depth)
-  const columnPos = $anchor.posAtIndex(index - 1, depth)
+  const index = $anchor.index(depth)
+  const columnPos = $anchor.posAtIndex(index, depth)
 
-  tr.insert(columnPos, createColumn(editor.schema, index - 1)).setSelection(
+  tr.insert(columnPos, createColumn(editor.schema)).setSelection(
     TextSelection.near(tr.doc.resolve(columnPos))
   )
 

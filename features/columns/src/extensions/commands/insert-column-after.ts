@@ -1,19 +1,25 @@
 import { Command, CommandProps } from '@tiptap/core'
+import { TextSelection } from '@tiptap/pm/state'
 
-import { findParentColumn } from '../utils'
+import { createColumn, findParentColumns } from '../utils'
 
 export function insertColumnAfter(): Command {
   return ({ chain }) => chain().command(insertColumnAfterImpl).scrollIntoView().run()
 }
 
-function insertColumnAfterImpl({ dispatch, state, tr }: CommandProps): boolean {
-  const foundColumn = findParentColumn(state.selection)
-  if (!foundColumn) return false
+function insertColumnAfterImpl({ dispatch, editor, state, tr }: CommandProps): boolean {
+  const { $anchor } = state.selection
+  const foundRoot = findParentColumns(state.selection)
+  if (!foundRoot) return false
   if (!dispatch) return true
 
-  const { pos, node } = foundColumn
+  const { depth } = foundRoot
+  const index = $anchor.indexAfter(depth)
+  const columnPos = $anchor.posAtIndex(index, depth)
 
-  tr.delete(pos, node.nodeSize)
+  tr.insert(columnPos, createColumn(editor.schema)).setSelection(
+    TextSelection.near(tr.doc.resolve(columnPos))
+  )
 
   return true
 }
