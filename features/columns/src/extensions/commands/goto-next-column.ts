@@ -11,6 +11,7 @@ function gotoNextColumnImpl({ dispatch, state, tr }: CommandProps): boolean {
   const { $anchor } = state.selection
   const foundRoot = findParentColumns(state.selection)
   if (!foundRoot) return false
+  if (!dispatch) return true
 
   const { depth } = foundRoot
   const index = $anchor.indexAfter(depth)
@@ -19,9 +20,7 @@ function gotoNextColumnImpl({ dispatch, state, tr }: CommandProps): boolean {
       ? [$anchor.posAtIndex(index + 1, depth), -1]
       : [$anchor.after(depth), 1]
 
-  if (dispatch) {
-    tr.setSelection(TextSelection.near(tr.doc.resolve(nextPos), bias))
-  }
+  tr.setSelection(TextSelection.near(tr.doc.resolve(nextPos), bias))
 
   return true
 }

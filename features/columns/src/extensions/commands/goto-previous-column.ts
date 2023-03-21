@@ -11,13 +11,12 @@ export function gotoPreviousColumnImpl({ dispatch, state, tr }: CommandProps): b
   const { $anchor } = state.selection
   const foundColumn = findParentColumn(state.selection)
   if (!foundColumn) return false
+  if (!dispatch) return true
 
   const { depth } = foundColumn
   const nextPos = $anchor.before(depth)
 
-  if (dispatch) {
-    tr.setSelection(TextSelection.near(tr.doc.resolve(nextPos), -1))
-  }
+  tr.setSelection(TextSelection.near(tr.doc.resolve(nextPos), -1))
 
   return true
 }

@@ -2,6 +2,7 @@
   display: grid;
   grid-auto-flow: row;
   grid-auto-columns: 1fr;
+  align-content: start;
   padding: 1em;
   word-break: break-word;
   background: lightgoldenrodyellow;

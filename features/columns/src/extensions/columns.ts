@@ -51,29 +51,6 @@ export const Columns = Node.create({
 
   addCommands() {
     return commands
-    // return {
-    //   setColumns:
-    //     (attributes = {}) =>
-    //     ({ chain }) =>
-    //       chain()
-    //         .command(props =>
-    //           replaceSelectionWithColumns(props, attributes.count || defaultColumnCount)
-    //         )
-    //         .scrollIntoView()
-    //         .run(),
-    //   insertColumnBefore:
-    //     () =>
-    //     ({ dispatch, state }) =>
-    //       addOrDeleteCol({ dispatch, state, type: 'addBefore' }),
-    //   insertColumnAfter:
-    //     () =>
-    //     ({ dispatch, state }) =>
-    //       addOrDeleteCol({ dispatch, state, type: 'addAfter' }),
-    //   deleteColumn:
-    //     () =>
-    //     ({ dispatch, state }) =>
-    //       addOrDeleteCol({ dispatch, state, type: 'delete' }),
-    // }
   },
 
   addInputRules() {
@@ -91,7 +68,10 @@ export const Columns = Node.create({
 
   addKeyboardShortcuts() {
     return {
+      ['Mod-Alt-x']: ({ editor }) => editor.commands.deleteColumn(),
       ['Mod-Alt-|']: ({ editor }) => editor.commands.setColumns(),
+      ['Mod-Alt-]']: ({ editor }) => editor.commands.insertColumnAfter(),
+      ['Mod-Alt-[']: ({ editor }) => editor.commands.insertColumnBefore(),
       ['Tab']: ({ editor }) => editor.commands.gotoNextColumn(),
       ['Shift-Tab']: ({ editor }) => editor.commands.gotoPreviousColumn(),
     }
