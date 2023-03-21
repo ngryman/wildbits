@@ -1,22 +1,27 @@
 import { Command, CommandProps } from '@tiptap/core'
 import { TextSelection } from '@tiptap/pm/state'
 
-import { Columns } from '../columns'
+import { findParentColumns } from '../utils'
 
 export function gotoNextColumn(): Command {
   return ({ chain }) => chain().command(gotoNextColumnImpl).scrollIntoView().run()
 }
 
-function gotoNextColumnImpl({ state, tr }: CommandProps): boolean {
+function gotoNextColumnImpl({ dispatch, state, tr }: CommandProps): boolean {
   const { $anchor } = state.selection
-  const columnsNode = $anchor.node(-2)
-  if (!columnsNode || columnsNode.type.name !== Columns.name) return false
+  const foundRoot = findParentColumns(state.selection)
+  if (!foundRoot) return false
 
-  const index = $anchor.indexAfter(-2)
+  const { depth } = foundRoot
+  const index = $anchor.indexAfter(depth)
   const [nextPos, bias] =
-    index < columnsNode.childCount ? [$anchor.posAtIndex(index + 1, -2), -1] : [$anchor.after(), 1]
+    index < foundRoot.node.childCount
+      ? [$anchor.posAtIndex(index + 1, depth), -1]
+      : [$anchor.after(depth), 1]
 
-  tr.setSelection(TextSelection.near(tr.doc.resolve(nextPos), bias))
+  if (dispatch) {
+    tr.setSelection(TextSelection.near(tr.doc.resolve(nextPos), bias))
+  }
 
   return true
 }
