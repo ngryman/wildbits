@@ -11,23 +11,11 @@ import { TextSelection } from '@tiptap/pm/state'
 
 import * as commands from './commands'
 import { Column } from './column'
-import { gotoNextColumn, gotoPrevColumn } from './utils'
 
 import styles from '../components/columns.module.css'
 
 export type ColumnsAttributes = {
   count?: number
-}
-
-declare module '@tiptap/core' {
-  interface Commands<ReturnType> {
-    columns: {
-      setColumns: (attributes?: ColumnsAttributes) => ReturnType
-      insertColumnBefore: () => ReturnType
-      insertColumnAfter: () => ReturnType
-      deleteColumn: () => ReturnType
-    }
-  }
 }
 
 export const inputRegex = /(?:^|\s)(\|{2,})\s$/
@@ -105,7 +93,7 @@ export const Columns = Node.create({
     return {
       ['Mod-Alt-|']: ({ editor }) => editor.commands.setColumns(),
       ['Tab']: ({ editor }) => editor.commands.gotoNextColumn(),
-      ['Shift-Tab']: ({ editor }) => gotoPrevColumn(editor),
+      ['Shift-Tab']: ({ editor }) => editor.commands.gotoPreviousColumn(),
     }
   },
 })
