@@ -1,6 +1,6 @@
 import { BubbleMenu, Button, Divider, Icons } from '@wildbits/ui'
 import { NodeViewProps } from '@wildbits/utils'
-import { createEffect, Show } from 'solid-js'
+import { Show } from 'solid-js'
 
 import { ImageAlign, ImageAttributes } from '../extensions'
 
@@ -11,7 +11,6 @@ export function ImageView(props: NodeViewProps<ImageAttributes>) {
   const selected = () => props.selected
 
   function setAlign(align: ImageAlign) {
-    console.log('setAlign')
     props.setAttributes({ align })
   }
 
@@ -20,10 +19,6 @@ export function ImageView(props: NodeViewProps<ImageAttributes>) {
   const setAlignRight = () => setAlign('right')
 
   const deleteNode = () => props.deleteNode()
-
-  createEffect(() => {
-    console.log(attributes().align)
-  })
 
   return (
     <figure
