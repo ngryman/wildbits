@@ -15,7 +15,7 @@ import { Prose } from '@wildbits/prose'
 import { createEffect, onCleanup } from 'solid-js'
 import { IndexeddbPersistence } from 'y-indexeddb'
 
-import styles from '../components/editor.module.css'
+import styles from '../components/editor-view.module.css'
 import { createThemeCSSVars, loadFonts, Theme } from '../theme'
 import { createTypographyCSSVars, Typography } from '../typography'
 import { Settings } from './types'
@@ -103,6 +103,11 @@ export function createEditor(settings: Settings): Editor {
   onCleanup(() => {
     editor.destroy()
   })
+
+  // Expose the editor globally in development mode for debugging purpose.
+  if (import.meta.env.DEV) {
+    window.editor = editor
+  }
 
   return editor
 }

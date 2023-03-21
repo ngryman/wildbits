@@ -2,7 +2,7 @@ import { Editor } from '@tiptap/core'
 // import { attachSolidOwner } from '@wildbits/utils'
 import { onCleanup, onMount } from 'solid-js'
 
-import styles from './editor.module.css'
+import styles from './editor-view.module.css'
 
 export type EditorViewProps = {
   editor: Editor
