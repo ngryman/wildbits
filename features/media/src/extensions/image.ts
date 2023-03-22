@@ -1,6 +1,13 @@
 import { mergeAttributes, nodePasteRule, Node } from '@tiptap/core'
 import { Plugin } from '@tiptap/pm/state'
-import { createNodeView, nodeInputRule } from '@wildbits/utils'
+import {
+  createNodeView,
+  nodeInputRule,
+  createMarkInputAndPasteRegexps,
+  createMarkPasteRegexp,
+  OPENING_QUOTES,
+  CLOSING_QUOTES,
+} from '@wildbits/utils'
 
 import * as commands from './commands'
 import { ImageView } from '../components'
@@ -29,6 +36,17 @@ const [inputRegex, pasteRegex] = createMarkInputAndPasteRegexps([
   `!\\[(\\S*)\\]`,
   // url & title
   `\\((\\S+)(?:\\s+[${OPENING_QUOTES}]([^${CLOSING_QUOTES}]+)[${CLOSING_QUOTES}])?\\)`,
+])
+
+const base64Regex = createMarkPasteRegexp([
+  // prefix
+  `data:`,
+  // mime type
+  `image\\/[\\w+]+`,
+  // base64 prefix
+  `;base64,`,
+  // data
+  `[\\w+/=]+`,
 ])
 
 export const Image = Node.create<ImageOptions>({
@@ -95,7 +113,15 @@ export const Image = Node.create<ImageOptions>({
   addPasteRules() {
     return [
       nodePasteRule({
-        find: /^(data:image\/[\w+]+;base64,[\w+/=]*)$/g,
+        find: pasteRegex,
+        type: this.type,
+        getAttributes: match => {
+          const [, , alt, src, title] = match
+          return { src, alt, title }
+        },
+      }),
+      nodePasteRule({
+        find: base64Regex,
         type: this.type,
         getAttributes: match => ({ src: match.input }),
       }),

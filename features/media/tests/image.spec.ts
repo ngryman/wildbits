@@ -73,7 +73,7 @@ describe('image node', () => {
     })
 
     it('creates a new block between content', () => {
-      cy.typeInEditor(`A\nB{uparrow} ![](${imageUrl})🥖`).should(
+      cy.typeInEditor(`A\n\nB{uparrow} ![](${imageUrl})🥖`).should(
         'matchHTML',
         `<p>A</p><figure><img src="${imageUrl}"></figure><p>🥖</p><p>B</p>`
       )
@@ -81,6 +81,13 @@ describe('image node', () => {
   })
 
   describe('clipboard', () => {
+    it('supports pasting markdown', () => {
+      cy.pasteInEditor('text/plain', `![](${imageUrl})`).should(
+        'matchHTML',
+        `<figure><img src="${imageUrl}"></figure>`
+      )
+    })
+
     it('supports pasting image html tag', () => {
       cy.pasteInEditor('text/html', imageTag).should(
         'matchHTML',
