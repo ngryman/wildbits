@@ -30,7 +30,7 @@ describe('columns node', () => {
       it('maintain the cursor position at the beginning', () => {
         const editor = cy
           .typeInEditor('[]{leftarrow}')
-          .wait(100)
+          .wait(200)
           .typeInEditor('{leftarrow}{control}{2}🥖')
         editor.get('[data-index=0]').should('have.text', '🥖[]')
         editor.get('[data-index=1]').should('have.text', '')

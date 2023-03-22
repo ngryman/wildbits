@@ -1,11 +1,20 @@
-import { DecorationWithType, NodeView, NodeViewRenderer, NodeViewRendererProps } from '@tiptap/core'
-import { Attrs, DOMSerializer } from 'prosemirror-model'
+import {
+  callOrReturn,
+  DecorationWithType,
+  ExtendedRegExpMatchArray,
+  InputRule,
+  InputRuleFinder,
+  NodeView,
+  NodeViewRenderer,
+  NodeViewRendererProps,
+} from '@tiptap/core'
+import { Attrs, DOMSerializer, Node, NodeType } from '@tiptap/pm/model'
 import { Component, Setter, createRoot } from 'solid-js'
 import { createStore } from 'solid-js/store'
 
 export type NodeViewProps<Attributes> = {
   attributes: Attributes
-  children: Node | null
+  children: globalThis.Node | null
   decorations: DecorationWithType[]
   selected: boolean
   setAttributes: (attributes: Partial<Attributes>) => void
@@ -61,4 +70,27 @@ class SolidNodeView<A> extends NodeView<Component<NodeViewProps<A>>> {
 
 export function createNodeView<A>(component: Component<NodeViewProps<A>>): NodeViewRenderer {
   return (props: NodeViewRendererProps) => new SolidNodeView(component, props)
+}
+
+export function nodeInputRule<Attributes>(config: {
+  find: InputRuleFinder
+  type: NodeType | ((attrs?: Attributes) => Node)
+  getAttributes?: Attributes | ((match: ExtendedRegExpMatchArray) => Attributes) | false | null
+}) {
+  return new InputRule({
+    find: config.find,
+    handler: ({ state, range, match }) => {
+      const attrs = callOrReturn(config.getAttributes, undefined, match) || undefined
+      const node =
+        typeof config.type === 'function' ? config.type(attrs) : config.type.create(attrs)
+
+      if (node) {
+        const { selection, tr } = state
+        const shouldReplace = selection.$anchor.start() === range.from
+        const pos = shouldReplace ? range.from - 1 : range.from
+
+        tr.insert(pos, node).delete(tr.mapping.map(range.from), tr.mapping.map(range.to))
+      }
+    },
+  })
 }

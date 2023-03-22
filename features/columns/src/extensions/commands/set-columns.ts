@@ -6,8 +6,8 @@ import { createColumns } from '../utils'
 
 const defaultColumnCount = 3
 
-export function setColumns(attributes: ColumnsAttributes = {}): Command {
-  const count = attributes.count || defaultColumnCount
+export function setColumns(attrs: ColumnsAttributes = {}): Command {
+  const count = attrs.count || defaultColumnCount
   return ({ chain }) =>
     chain()
       .command(props => setColumnsImpl(props, count))
