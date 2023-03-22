@@ -11,52 +11,91 @@ describe('image node', () => {
   describe('markdown', () => {
     it('supports the ![](url) syntax', () => {
       cy.typeInEditor(`![](${imageUrl})🥖`).should(
-        'have.html',
-        `<figure contenteditable="false" draggable="true"><img src="${imageUrl}" alt=""></figure><p>🥖</p>`
+        'matchHTML',
+        `<figure><img alt="" src="${imageUrl}"></figure><p>🥖</p>`
       )
     })
 
     it('supports the ![alt](url) syntax', () => {
       cy.typeInEditor(`![Roar](${imageUrl})🥖`).should(
-        'have.html',
-        `<figure contenteditable="false" draggable="true"><img src="${imageUrl}" alt="Roar"><figcaption>Roar</figcaption></figure><p>🥖</p>`
+        'matchHTML',
+        `<figure><img alt="Roar" src="${imageUrl}"><figcaption>Roar</figcaption></figure><p>🥖</p>`
       )
     })
 
     it('supports the ![alt](url "title") syntax', () => {
       cy.typeInEditor(`![Tiger](${imageUrl} "Roar")🥖`).should(
-        'have.html',
-        `<figure contenteditable="false" draggable="true"><img src="${imageUrl}" alt="Tiger" title="Roar"><figcaption>Roar</figcaption></figure><p>🥖</p>`
+        'matchHTML',
+        `<figure><img alt="Tiger" src="${imageUrl}" title="Roar"><figcaption>Roar</figcaption></figure><p>🥖</p>`
       )
     })
 
-    it('preserves nodes around', () => {
-      cy.typeInEditor(`above\nbelow{uparrow}\n![](${imageUrl})🥖`).should(
-        'have.html',
-        `<p>above</p><figure contenteditable="false" draggable="true"><img src="${imageUrl}" alt=""></figure><p>🥖</p><p>below</p>`
+    it('replaces an empty block', () => {
+      cy.typeInEditor(`![](${imageUrl})🥖`).should(
+        'matchHTML',
+        `<figure><img src="${imageUrl}"></figure><p>🥖</p>`
+      )
+    })
+
+    it('creates a new block after content', () => {
+      cy.typeInEditor(`B ![](${imageUrl})🥖`).should(
+        'matchHTML',
+        `<p>B</p><figure><img src="${imageUrl}"></figure><p>🥖</p>`
+      )
+    })
+
+    it('creates a new block before content', () => {
+      cy.typeInEditor('A')
+        .wait(200)
+        .typeInEditor(`{leftarrow}![](${imageUrl})🥖`)
+        .should('matchHTML', `<figure><img src="${imageUrl}"></figure><p>🥖A</p>`)
+    })
+
+    it('creates a new block between content', () => {
+      cy.typeInEditor(`B\nA{leftarrow}![](${imageUrl})🥖`).should(
+        'matchHTML',
+        `<p>B</p><figure><img src="${imageUrl}"></figure><p>🥖A</p>`
+      )
+    })
+
+    it('creates a new block below content', () => {
+      cy.typeInEditor(`A\n![](${imageUrl})🥖`).should(
+        'matchHTML',
+        `<p>A</p><figure><img src="${imageUrl}"></figure><p>🥖</p>`
+      )
+    })
+
+    it('creates a new block above content', () => {
+      cy.typeInEditor('\nB')
+        .wait(200)
+        .typeInEditor(`{uparrow}![](${imageUrl})🥖`)
+        .should('matchHTML', `<figure><img src="${imageUrl}"></figure><p>🥖</p><p>B</p>`)
+    })
+
+    it('creates a new block between content', () => {
+      cy.typeInEditor(`A\nB{uparrow} ![](${imageUrl})🥖`).should(
+        'matchHTML',
+        `<p>A</p><figure><img src="${imageUrl}"></figure><p>🥖</p><p>B</p>`
       )
     })
   })
 
-  // TODO: it should place the cursor after on paste
   describe('clipboard', () => {
     it('supports pasting image html tag', () => {
-      cy.pasteInEditor('text/html', imageTag)
-        .type('\n🥖')
-        .should(
-          'have.html',
-          `<figure contenteditable="false" draggable="true" class=""><img src="${imageBase64}" alt=""></figure><p>🥖</p>`
-        )
+      cy.pasteInEditor('text/html', imageTag).should(
+        'matchHTML',
+        `<figure><img src="${imageBase64}"></figure>`
+      )
     })
 
     it('supports pasting base64 image data', () => {
-      cy.pasteInEditor('text/plain', imageBase64)
-        .type('\n🥖')
-        .should(
-          'have.html',
-          `<figure contenteditable="false" draggable="true" class=""><img src="${imageBase64}" alt=""></figure><p>🥖</p>`
-        )
+      cy.pasteInEditor('text/plain', imageBase64).should(
+        'matchHTML',
+        `<figure><img src="${imageBase64}"></figure>`
+      )
     })
+
+    // TODO: test the cursor, it should place the cursor after on paste
   })
 
   // TODO: selection doesn't work

@@ -22,7 +22,7 @@ function patchedNodeInputRule(config: {
   return new InputRule({
     find: config.find,
     handler: ({ state, range, match }) => {
-      const attributes = callOrReturn(config.getAttributes, undefined, match) || {}
+      const attrs = callOrReturn(config.getAttributes, undefined, match) || {}
 
       const { tr } = state
       const captureGroup = match[1]
@@ -46,9 +46,9 @@ function patchedNodeInputRule(config: {
         tr.insertText(lastChar, start + fullMatch.length - 1)
 
         // insert node from input rule
-        tr.replaceWith(matchStart, end, config.type.create(attributes))
+        tr.replaceWith(matchStart, end, config.type.create(attrs))
       } else if (fullMatch) {
-        tr.insert(start - 1, config.type.create(attributes)).delete(
+        tr.insert(start - 1, config.type.create(attrs)).delete(
           tr.mapping.map(start),
           tr.mapping.map(end)
         )
