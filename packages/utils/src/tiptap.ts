@@ -11,6 +11,7 @@ import {
 import { Attrs, DOMSerializer, Node, NodeType } from '@tiptap/pm/model'
 import { Component, Setter, createRoot } from 'solid-js'
 import { createStore } from 'solid-js/store'
+import { START_OR_SPACE } from './constants'
 
 export type NodeViewProps<Attributes> = {
   attributes: Attributes
@@ -93,4 +94,20 @@ export function nodeInputRule<Attributes>(config: {
       }
     },
   })
+}
+
+export function createMarkRegexp(parts: string[], flags?: string): RegExp {
+  return new RegExp([START_OR_SPACE, '(', ...parts, ')'].join(''), flags)
+}
+
+export function createMarkInputRegexp(parts: string[]): RegExp {
+  return createMarkRegexp([...parts, '$'])
+}
+
+export function createMarkPasteRegexp(parts: string[]): RegExp {
+  return createMarkRegexp(parts, 'g')
+}
+
+export function createMarkInputAndPasteRegexps(parts: string[]): [RegExp, RegExp] {
+  return [createMarkInputRegexp(parts), createMarkPasteRegexp(parts)]
 }

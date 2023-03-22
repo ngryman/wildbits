@@ -21,10 +21,15 @@ export type ImageAttributes = {
 }
 
 /**
- * The paste regex for Markdown images with title support, and multiple quotation
- * marks (required in case the `Typography` extension is being included).
+ * Regexps for Markdown images with title support, and multiple quotation marks
+ * (required in case the `Typography` extension is being included).
  */
-export const inputRegex = /(?:^|\s)(!\[(.+|:?)]\((\S+)(?:(?:\s+)["“'](\S+)["”'])?\))$/
+const [inputRegex, pasteRegex] = createMarkInputAndPasteRegexps([
+  // alt
+  `!\\[(\\S*)\\]`,
+  // url & title
+  `\\((\\S+)(?:\\s+[${OPENING_QUOTES}]([^${CLOSING_QUOTES}]+)[${CLOSING_QUOTES}])?\\)`,
+])
 
 export const Image = Node.create<ImageOptions>({
   name: 'image',
