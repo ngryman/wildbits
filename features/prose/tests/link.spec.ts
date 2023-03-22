@@ -66,7 +66,7 @@ describe('link mark', () => {
         .should('matchHTML', `<a href="${url}">${url}</a>🥖</p><p>B</p>`)
     })
 
-    it.only('creates a new mark between content', () => {
+    it('creates a new mark between content', () => {
       cy.typeInEditor(`A\n\nB{uparrow} [](${url})🥖`).should(
         'matchHTML',
         `<p>A</p><a href="${url}">${url}</a>🥖</p><p>B</p>`
