@@ -124,6 +124,10 @@
   letter-spacing: var(--em-font-tracking);
 }
 
+.editor hr {
+  width: 100%;
+}
+
 .editor pre {
   white-space: pre-wrap;
 }
