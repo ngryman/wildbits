@@ -1,17 +1,29 @@
-import { InputRule, markInputRule, markPasteRule, PasteRule } from '@tiptap/core'
+import { InputRule, markPasteRule, PasteRule } from '@tiptap/core'
 import { Link as LinkExtension } from '@tiptap/extension-link'
+import {
+  CLOSING_QUOTES,
+  createMarkInputAndPasteRegexps,
+  markInputRule,
+  MarkInputRuleConfig,
+  OPENING_QUOTES,
+} from '@wildbits/utils'
+
+type LinkAttributes = {
+  href: string
+  text: string
+  title: string
+}
 
 /**
- * The input regex for Markdown links with title support, and multiple quotation
- * marks (required in case the `Typography` extension is being included).
+ * Regexps for Markdown link with support for multiple quotation marks (required
+ * in case the `Typography` extension is being included).
  */
-const inputRegex = /(?:^|\s)\[([^\]]*)?\]\((\S+)(?: ["“](.+)["”])?\)$/
-
-/**
- * The paste regex for Markdown links with title support, and multiple quotation
- * marks (required in case the `Typography` extension is being included).
- */
-const pasteRegex = /(?:^|\s)\[([^\]]*)?\]\((\S+)(?: ["“](.+)["”])?\)/g
+const [inputRegex, pasteRegex] = createMarkInputAndPasteRegexps([
+  // text
+  `\\[(\\S*)\\]`,
+  // href & title
+  `\\((\\S+)(?:\\s+[${OPENING_QUOTES}]([^${CLOSING_QUOTES}]+)[${CLOSING_QUOTES}])?\\)`,
+])
 
 /**
  * Input rule built specifically for the `Link` extension, which ignores the
@@ -19,15 +31,14 @@ const pasteRegex = /(?:^|\s)\[([^\]]*)?\]\((\S+)(?: ["“](.+)["”])?\)/g
  *
  * @see https://github.com/ueberdosis/tiptap/discussions/1865
  */
-function linkInputRule(config: Parameters<typeof markInputRule>[0]) {
+function linkInputRule(config: MarkInputRuleConfig<LinkAttributes>) {
   const defaultMarkInputRule = markInputRule(config)
 
   return new InputRule({
     find: config.find,
     handler(props) {
-      const { tr } = props.state
       defaultMarkInputRule.handler(props)
-      tr.setMeta('preventAutolink', true)
+      props.state.tr.setMeta('preventAutolink', true)
     },
   })
 }
@@ -46,9 +57,8 @@ function linkPasteRule(config: Parameters<typeof markPasteRule>[0]) {
   return new PasteRule({
     find: config.find,
     handler(props) {
-      const { tr } = props.state
       defaultMarkInputRule.handler(props)
-      tr.setMeta('preventAutolink', true)
+      props.state.tr.setMeta('preventAutolink', true)
     },
   })
 }
@@ -74,16 +84,10 @@ export const Link = LinkExtension.extend({
       linkInputRule({
         find: inputRegex,
         type: this.type,
-
-        // We need to use `pop()` to remove the last capture groups from the
-        // match to satisfy Tiptap's `markPasteRule` expectation of having the
-        // content as the last capture group in the match (this makes the
-        // attribute order important)
-        getAttributes(match) {
-          return {
-            title: match.pop()?.trim(),
-            href: match.pop()?.trim(),
-          }
+        capture: match => match[2] || match[3],
+        attributes: match => {
+          const [, , text, href, title] = match
+          return { text, href, title }
         },
       }),
     ]
@@ -93,16 +97,9 @@ export const Link = LinkExtension.extend({
       linkPasteRule({
         find: pasteRegex,
         type: this.type,
-
-        // We need to use `pop()` to remove the last capture groups from the
-        // match to satisfy Tiptap's `markInputRule` expectation of having the
-        // content as the last capture group in the match (this makes the
-        // attribute order important)
-        getAttributes(match) {
-          return {
-            title: match.pop()?.trim(),
-            href: match.pop()?.trim(),
-          }
+        attributes: match => {
+          const [, , text, href, title] = match
+          return { text, href, title }
         },
       }),
     ]

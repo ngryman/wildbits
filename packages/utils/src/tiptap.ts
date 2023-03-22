@@ -8,7 +8,7 @@ import {
   NodeViewRenderer,
   NodeViewRendererProps,
 } from '@tiptap/core'
-import { Attrs, DOMSerializer, Node, NodeType } from '@tiptap/pm/model'
+import { Attrs, DOMSerializer, Mark, MarkType, Node, NodeType } from '@tiptap/pm/model'
 import { Component, Setter, createRoot } from 'solid-js'
 import { createStore } from 'solid-js/store'
 import { START_OR_SPACE } from './constants'
@@ -73,25 +73,60 @@ export function createNodeView<A>(component: Component<NodeViewProps<A>>): NodeV
   return (props: NodeViewRendererProps) => new SolidNodeView(component, props)
 }
 
-export function nodeInputRule<Attributes>(config: {
+export type NodeInputRuleConfig<Attributes> = {
   find: InputRuleFinder
   type: NodeType | ((attrs?: Attributes) => Node)
-  getAttributes?: Attributes | ((match: ExtendedRegExpMatchArray) => Attributes) | false | null
-}) {
+  attributes?: Attributes | ((match: ExtendedRegExpMatchArray) => Attributes) | false | null
+}
+
+export function nodeInputRule<Attributes>(config: NodeInputRuleConfig<Attributes>) {
   return new InputRule({
     find: config.find,
-    handler: ({ state, range, match }) => {
-      const attrs = callOrReturn(config.getAttributes, undefined, match) || undefined
+    handler: ({ match, range, state }) => {
+      const { selection, tr } = state
+      const attrs = callOrReturn(config.attributes, undefined, match) || undefined
       const node =
         typeof config.type === 'function' ? config.type(attrs) : config.type.create(attrs)
 
-      if (node) {
-        const { selection, tr } = state
-        const shouldReplace = selection.$anchor.start() === range.from
-        const pos = shouldReplace ? range.from - 1 : range.from
+      const shouldReplace = selection.$anchor.start() === range.from
+      const pos = shouldReplace ? range.from - 1 : range.from
 
-        tr.insert(pos, node).delete(tr.mapping.map(range.from), tr.mapping.map(range.to))
+      tr.insert(pos, node).delete(tr.mapping.map(range.from), tr.mapping.map(range.to))
+    },
+  })
+}
+
+export type MarkInputRuleConfig<Attributes> = {
+  find: InputRuleFinder
+  type: MarkType | ((attrs?: Attributes) => Mark)
+  capture?: string | ((match: ExtendedRegExpMatchArray) => string)
+  attributes?: Attributes | ((match: ExtendedRegExpMatchArray) => Attributes) | false | null
+}
+
+export function markInputRule<Attributes>(config: MarkInputRuleConfig<Attributes>) {
+  return new InputRule({
+    find: config.find,
+    handler: ({ match, range, state }) => {
+      const { tr } = state
+      const attrs = callOrReturn(config.attributes, undefined, match) || undefined
+      const capture = callOrReturn(config.capture, undefined, match) || ''
+      const mark =
+        typeof config.type === 'function' ? config.type(attrs) : config.type.create(attrs)
+
+      const fullMatch = match[0]
+      const captureGroup = capture
+
+      const textStart = range.from + fullMatch.indexOf(captureGroup)
+      if (textStart > range.from) {
+        tr.delete(range.from, textStart)
       }
+
+      const textEnd = textStart + captureGroup.length
+      if (textEnd < range.to) {
+        tr.delete(tr.mapping.map(textEnd), tr.mapping.map(range.to))
+      }
+
+      tr.addMark(range.from, tr.mapping.map(range.to), mark).removeStoredMark(mark)
     },
   })
 }
