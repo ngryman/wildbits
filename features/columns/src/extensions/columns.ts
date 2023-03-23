@@ -60,7 +60,7 @@ export const Columns = Node.create({
         find: inputRegex,
         type: this.type,
         attributes: match => {
-          const [, pipes] = match
+          const [, , pipes] = match
           return { count: pipes.length }
         },
       }),
