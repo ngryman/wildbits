@@ -1,16 +1,25 @@
-import { Node, mergeAttributes } from '@tiptap/core'
+import {
+  Node,
+  mergeAttributes,
+  InputRuleFinder,
+  ExtendedRegExpMatchArray,
+  InputRule,
+  callOrReturn,
+} from '@tiptap/core'
+import { NodeType } from '@tiptap/pm/model'
+import { TextSelection } from '@tiptap/pm/state'
+import { createInlineInputRegexp } from '@wildbits/utils'
 
 import * as commands from './commands'
 import { Column } from './column'
 
 import styles from '../components/columns.module.css'
-import { nodeInputRule } from '@wildbits/utils'
 
 export type ColumnsAttributes = {
   count?: number
 }
 
-export const inputRegex = /(?:^|\s)(\|{2,})\s$/
+const inputRegex = createInlineInputRegexp(['(\\|{2,})\\s'])
 
 export const Columns = Node.create({
   name: 'columns',
@@ -47,10 +56,10 @@ export const Columns = Node.create({
 
   addInputRules() {
     return [
-      nodeInputRule({
+      patchedNodeInputRule({
         find: inputRegex,
         type: this.type,
-        getAttributes: match => {
+        attributes: match => {
           const [, pipes] = match
           return { count: pipes.length }
         },
@@ -70,40 +79,36 @@ export const Columns = Node.create({
   },
 })
 
-// /**
-//  * Build an input rule that calls the `setColumns` command and remove the content.
-//  *
-//  * @todo I might be able to generalize this across extensions in the future.
-//  */
-// function patchedNodeInputRule(config: {
-//   find: InputRuleFinder
-//   type: NodeType
-//   getAttributes?:
-//     | ColumnsAttributes
-//     | ((match: ExtendedRegExpMatchArray) => ColumnsAttributes)
-//     | false
-//     | null
-// }) {
-//   return new InputRule({
-//     find: config.find,
-//     handler: ({ chain, match }) => {
-//       const attrs = callOrReturn(config.getAttributes, undefined, match) || {}
-//       if (!attrs) return
+/**
+ * Build an input rule that calls the `setColumns` command and remove the content.
+ *
+ * @todo I might be able to generalize this across extensions in the future.
+ */
+function patchedNodeInputRule(config: {
+  find: InputRuleFinder
+  type: NodeType
+  attributes?: (match: ExtendedRegExpMatchArray) => ColumnsAttributes
+}) {
+  return new InputRule({
+    find: config.find,
+    handler: ({ chain, match }) => {
+      const attrs = callOrReturn(config.attributes, undefined, match) || {}
+      if (!attrs) return
 
-//       chain()
-//         .setColumns(attrs)
-//         .command(({ dispatch, state, tr }) => {
-//           if (dispatch) {
-//             const range = state.selection.$anchor.blockRange()
-//             if (range) {
-//               tr.delete(range.start, range.end).setSelection(
-//                 TextSelection.near(tr.doc.resolve(range.start))
-//               )
-//             }
-//           }
-//           return true
-//         })
-//         .run()
-//     },
-//   })
-// }
+      chain()
+        .setColumns(attrs)
+        .command(({ dispatch, state, tr }) => {
+          if (dispatch) {
+            const range = state.selection.$anchor.blockRange()
+            if (range) {
+              tr.delete(range.start, range.end).setSelection(
+                TextSelection.near(tr.doc.resolve(range.start))
+              )
+            }
+          }
+          return true
+        })
+        .run()
+    },
+  })
+}
