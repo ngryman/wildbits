@@ -1,12 +1,13 @@
-import { mergeAttributes, nodePasteRule, Node } from '@tiptap/core'
+import { mergeAttributes, Node } from '@tiptap/core'
 import { Plugin } from '@tiptap/pm/state'
 import {
   createNodeView,
   nodeInputRule,
-  createMarkInputAndPasteRegexps,
-  createMarkPasteRegexp,
+  createInlineInputAndPasteRegexps,
+  createInlinePasteRegexp,
   OPENING_QUOTES,
   CLOSING_QUOTES,
+  nodePasteRule,
 } from '@wildbits/utils'
 
 import * as commands from './commands'
@@ -31,14 +32,14 @@ export type ImageAttributes = {
  * Regexps for Markdown images with title support, and multiple quotation marks
  * (required in case the `Typography` extension is being included).
  */
-const [inputRegex, pasteRegex] = createMarkInputAndPasteRegexps([
+const [inputRegex, pasteRegex] = createInlineInputAndPasteRegexps([
   // alt
   `!\\[(\\S*)\\]`,
   // url & title
   `\\((\\S+)(?:\\s+[${OPENING_QUOTES}]([^${CLOSING_QUOTES}]+)[${CLOSING_QUOTES}])?\\)`,
 ])
 
-const base64Regex = createMarkPasteRegexp([
+const base64Regex = createInlinePasteRegexp([
   // prefix
   `data:`,
   // mime type
@@ -115,7 +116,7 @@ export const Image = Node.create<ImageOptions>({
       nodePasteRule({
         find: pasteRegex,
         type: this.type,
-        getAttributes: match => {
+        attributes: match => {
           const [, , alt, src, title] = match
           return { src, alt, title }
         },
@@ -123,7 +124,7 @@ export const Image = Node.create<ImageOptions>({
       nodePasteRule({
         find: base64Regex,
         type: this.type,
-        getAttributes: match => ({ src: match.input }),
+        attributes: match => ({ src: match.input }),
       }),
     ]
   },

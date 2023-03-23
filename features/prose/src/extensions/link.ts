@@ -1,7 +1,7 @@
 import { Link as LinkExtension } from '@tiptap/extension-link'
 import {
   CLOSING_QUOTES,
-  createMarkInputAndPasteRegexps,
+  createInlineInputAndPasteRegexps,
   markInputRule,
   markPasteRule,
   OPENING_QUOTES,
@@ -11,7 +11,7 @@ import {
  * Regexps for Markdown link with support for multiple quotation marks (required
  * in case the `Typography` extension is being included).
  */
-const [inputRegex, pasteRegex] = createMarkInputAndPasteRegexps([
+const [inputRegex, pasteRegex] = createInlineInputAndPasteRegexps([
   // text
   `\\[([^\\]]*)\\]`,
   // href & title
