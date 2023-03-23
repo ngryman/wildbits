@@ -7,8 +7,11 @@ import {
   NodeView,
   NodeViewRenderer,
   NodeViewRendererProps,
+  PasteRule,
+  Range,
 } from '@tiptap/core'
 import { Attrs, DOMSerializer, Mark, MarkType, Node, NodeType } from '@tiptap/pm/model'
+import { EditorState } from '@tiptap/pm/state'
 import { Component, Setter, createRoot } from 'solid-js'
 import { createStore } from 'solid-js/store'
 import { START_OR_SPACE } from './constants'
@@ -73,13 +76,13 @@ export function createNodeView<A>(component: Component<NodeViewProps<A>>): NodeV
   return (props: NodeViewRendererProps) => new SolidNodeView(component, props)
 }
 
-export type NodeInputRuleConfig<Attributes> = {
+export type NodeRuleConfig<Attributes> = {
   find: InputRuleFinder
   type: NodeType | ((attrs?: Attributes) => Node)
   attributes?: Attributes | ((match: ExtendedRegExpMatchArray) => Attributes) | false | null
 }
 
-export function nodeInputRule<Attributes>(config: NodeInputRuleConfig<Attributes>) {
+export function nodeInputRule<Attributes>(config: NodeRuleConfig<Attributes>) {
   return new InputRule({
     find: config.find,
     handler: ({ match, range, state }) => {
@@ -96,39 +99,52 @@ export function nodeInputRule<Attributes>(config: NodeInputRuleConfig<Attributes
   })
 }
 
-export type MarkInputRuleConfig<Attributes> = {
-  find: InputRuleFinder
+export type MarkRuleConfig<Attributes> = {
+  find: RegExp
   type: MarkType | ((attrs?: Attributes) => Mark)
   capture?: string | ((match: ExtendedRegExpMatchArray) => string)
   attributes?: Attributes | ((match: ExtendedRegExpMatchArray) => Attributes) | false | null
 }
 
-export function markInputRule<Attributes>(config: MarkInputRuleConfig<Attributes>) {
+export function markInputRule<Attributes>(config: MarkRuleConfig<Attributes>) {
   return new InputRule({
     find: config.find,
-    handler: ({ match, range, state }) => {
-      const { tr } = state
-      const attrs = callOrReturn(config.attributes, undefined, match) || undefined
-      const capture = callOrReturn(config.capture, undefined, match) || ''
-      const mark =
-        typeof config.type === 'function' ? config.type(attrs) : config.type.create(attrs)
-
-      const fullMatch = match[0]
-      const captureGroup = capture
-
-      const textStart = range.from + fullMatch.indexOf(captureGroup)
-      if (textStart > range.from) {
-        tr.delete(range.from, textStart)
-      }
-
-      const textEnd = textStart + captureGroup.length
-      if (textEnd < range.to) {
-        tr.delete(tr.mapping.map(textEnd), tr.mapping.map(range.to))
-      }
-
-      tr.addMark(range.from, tr.mapping.map(range.to), mark).removeStoredMark(mark)
-    },
+    handler: ({ range, state, match }) => handleMarkRule(config, range, state, match),
   })
+}
+
+export function markPasteRule<Attributes>(config: MarkRuleConfig<Attributes>) {
+  return new PasteRule({
+    find: config.find,
+    handler: ({ range, state, match }) => handleMarkRule(config, range, state, match),
+  })
+}
+
+function handleMarkRule<Attributes>(
+  config: MarkRuleConfig<Attributes>,
+  range: Range,
+  state: EditorState,
+  match: ExtendedRegExpMatchArray
+) {
+  const { tr } = state
+  const attrs = callOrReturn(config.attributes, undefined, match) || undefined
+  const capture = callOrReturn(config.capture, undefined, match) || ''
+  const mark = typeof config.type === 'function' ? config.type(attrs) : config.type.create(attrs)
+
+  const fullMatch = match[0]
+  const captureGroup = capture
+
+  const textStart = range.from + fullMatch.indexOf(captureGroup)
+  if (textStart > range.from) {
+    tr.delete(range.from, textStart)
+  }
+
+  const textEnd = textStart + captureGroup.length
+  if (textEnd < range.to) {
+    tr.delete(tr.mapping.map(textEnd), tr.mapping.map(range.to))
+  }
+
+  tr.addMark(range.from, tr.mapping.map(range.to), mark).removeStoredMark(mark)
 }
 
 export function createMarkRegexp(parts: string[], flags?: string): RegExp {

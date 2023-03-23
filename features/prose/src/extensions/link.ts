@@ -1,18 +1,11 @@
-import { InputRule, markPasteRule, PasteRule } from '@tiptap/core'
 import { Link as LinkExtension } from '@tiptap/extension-link'
 import {
   CLOSING_QUOTES,
   createMarkInputAndPasteRegexps,
   markInputRule,
-  MarkInputRuleConfig,
+  markPasteRule,
   OPENING_QUOTES,
 } from '@wildbits/utils'
-
-type LinkAttributes = {
-  href: string
-  text: string
-  title: string
-}
 
 /**
  * Regexps for Markdown link with support for multiple quotation marks (required
@@ -26,44 +19,6 @@ const [inputRegex, pasteRegex] = createMarkInputAndPasteRegexps([
 ])
 
 /**
- * Input rule built specifically for the `Link` extension, which ignores the
- * auto-linked URL in parentheses (e.g., `(https://wildbits.app)`).
- *
- * @see https://github.com/ueberdosis/tiptap/discussions/1865
- */
-function linkInputRule(config: MarkInputRuleConfig<LinkAttributes>) {
-  const defaultMarkInputRule = markInputRule(config)
-
-  return new InputRule({
-    find: config.find,
-    handler(props) {
-      defaultMarkInputRule.handler(props)
-      props.state.tr.setMeta('preventAutolink', true)
-    },
-  })
-}
-
-/**
- * Paste rule built specifically for the `Link` extension, which ignores the
- * auto-linked URL in parentheses (e.g., `(https://wildbits.app)`). This
- * extension was inspired from the multiple implementations found in a Tiptap
- * discussion at GitHub.
- *
- * @see https://github.com/ueberdosis/tiptap/discussions/1865
- */
-function linkPasteRule(config: Parameters<typeof markPasteRule>[0]) {
-  const defaultMarkInputRule = markPasteRule(config)
-
-  return new PasteRule({
-    find: config.find,
-    handler(props) {
-      defaultMarkInputRule.handler(props)
-      props.state.tr.setMeta('preventAutolink', true)
-    },
-  })
-}
-
-/**
  * Custom extension that extends the built-in `Link` extension to add additional
  * input/paste rules for converting the Markdown link syntax (i.e.
  * `[Wildbits](https://wildbits.app)`) into links, and also adds support for the
@@ -71,6 +26,15 @@ function linkPasteRule(config: Parameters<typeof markPasteRule>[0]) {
  */
 export const Link = LinkExtension.extend({
   inclusive: false,
+
+  addOptions() {
+    return {
+      ...this.parent?.(),
+      linkOnPaste: false,
+      openOnClick: false,
+    }
+  },
+
   addAttributes() {
     return {
       ...this.parent?.(),
@@ -79,9 +43,10 @@ export const Link = LinkExtension.extend({
       },
     }
   },
+
   addInputRules() {
     return [
-      linkInputRule({
+      markInputRule({
         find: inputRegex,
         type: this.type,
         capture: match => match[2] || match[3],
@@ -92,11 +57,14 @@ export const Link = LinkExtension.extend({
       }),
     ]
   },
+
   addPasteRules() {
     return [
-      linkPasteRule({
+      ...(this.parent?.() || []),
+      markPasteRule({
         find: pasteRegex,
         type: this.type,
+        capture: match => match[2] || match[3],
         attributes: match => {
           const [, , text, href, title] = match
           return { text, href, title }

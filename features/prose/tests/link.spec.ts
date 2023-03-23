@@ -74,6 +74,29 @@ describe('link mark', () => {
     })
   })
 
+  describe('clipboard', () => {
+    it('supports pasting markdown', () => {
+      cy.pasteInEditor('text/plain', `[](${url})`).should(
+        'have.html',
+        `<p><a target="_blank" rel="noopener noreferrer nofollow" href="${url}">${url}</a></p>`
+      )
+    })
+
+    it('supports pasting anchor html tag', () => {
+      cy.pasteInEditor('text/html', `<a href="${url}">Wildbits</a>`).should(
+        'have.html',
+        `<p><a target="_blank" rel="noopener noreferrer nofollow" href="${url}">Wildbits</a></p>`
+      )
+    })
+
+    it('supports pasting a vanilla url', () => {
+      cy.pasteInEditor('text/plain', url).should(
+        'have.html',
+        `<p><a target="_blank" rel="noopener noreferrer nofollow" href="${url}">${url}</a></p>`
+      )
+    })
+  })
+
   // TODO: selection doesn't work
   // https://github.com/decaporg/decap-cms/blob/a4b7481a99f58b9abe85ab5712d27593cde20096/cypress/support/commands.js
   describe.skip('shortcuts', () => {
