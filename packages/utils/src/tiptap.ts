@@ -99,6 +99,16 @@ export function nodeInputRule<Attributes>(config: NodeRuleConfig<Attributes>) {
   })
 }
 
+/**
+ * Adapted version of Tiptap config for mark rules with the following
+ * modifications:
+ *
+ * 1. Accepts a `capture` thunk to selectively specify which capture group
+ *    should be considered as content. Tiptap uses the last one by default,
+ *    which is not very handy in situations when the capture group position may
+ *    vary.
+ * 2. Accepts a `type` thunk to give the ability to dynamically create a mark.
+ */
 export type MarkRuleConfig<Attributes> = {
   find: RegExp
   type: MarkType | ((attrs?: Attributes) => Mark)
@@ -106,6 +116,11 @@ export type MarkRuleConfig<Attributes> = {
   attributes?: Attributes | ((match: ExtendedRegExpMatchArray) => Attributes) | false | null
 }
 
+/**
+ * Adapted version of {@link @tiptap/core#markInputRule} `markInputRule` accepting a {@link MarkRuleConfig}.
+ *
+ * @see https://github.com/ueberdosis/tiptap/blob/903956711776c7c383a26833256a7c92ad38e01e/packages/core/src/inputRules/markInputRule.ts
+ */
 export function markInputRule<Attributes>(config: MarkRuleConfig<Attributes>) {
   return new InputRule({
     find: config.find,
@@ -113,6 +128,9 @@ export function markInputRule<Attributes>(config: MarkRuleConfig<Attributes>) {
   })
 }
 
+/**
+ * Adapted version of {@link @tiptap/core#markPasteRule} accepting a {@link MarkRuleConfig}.
+ */
 export function markPasteRule<Attributes>(config: MarkRuleConfig<Attributes>) {
   return new PasteRule({
     find: config.find,
@@ -120,31 +138,48 @@ export function markPasteRule<Attributes>(config: MarkRuleConfig<Attributes>) {
   })
 }
 
+/**
+ * Adapted version of Tiptap `markInputRule` and `markPasteRule` with the
+ * following modifications:
+ *
+ * 1. Accepts a `capture` thunk to selectively specify which capture group
+ *    should be considered as content. Tiptap uses the last one by default,
+ *    which is not very handy in situations when the capture group position may
+ *    vary.
+ * 2. Accepts a `type` thunk to give the ability to dynamically create a mark.
+ *
+ * @see
+ * https://github.com/ueberdosis/tiptap/blob/52e1badd364c36e0a25bb66a864c592ddaa69bdb/packages/core/src/pasteRules/markPasteRule.ts
+ */
 function handleMarkRule<Attributes>(
   config: MarkRuleConfig<Attributes>,
   range: Range,
   state: EditorState,
   match: ExtendedRegExpMatchArray
 ) {
-  const { tr } = state
   const attrs = callOrReturn(config.attributes, undefined, match) || undefined
   const capture = callOrReturn(config.capture, undefined, match) || ''
   const mark = typeof config.type === 'function' ? config.type(attrs) : config.type.create(attrs)
 
+  const { tr } = state
   const fullMatch = match[0]
-  const captureGroup = capture
 
-  const textStart = range.from + fullMatch.indexOf(captureGroup)
-  if (textStart > range.from) {
-    tr.delete(range.from, textStart)
+  if (capture) {
+    const startSpaces = fullMatch.search(/\S/)
+    const textStart = range.from + fullMatch.indexOf(capture)
+    const textEnd = textStart + capture.length
+    const markStart = range.from + startSpaces
+
+    if (textEnd < range.to) {
+      tr.delete(textEnd, range.to)
+    }
+
+    if (textStart > range.from) {
+      tr.delete(range.from + startSpaces, textStart)
+    }
+
+    tr.addMark(markStart, markStart + capture.length, mark).removeStoredMark(mark.type)
   }
-
-  const textEnd = textStart + captureGroup.length
-  if (textEnd < range.to) {
-    tr.delete(tr.mapping.map(textEnd), tr.mapping.map(range.to))
-  }
-
-  tr.addMark(range.from, tr.mapping.map(range.to), mark).removeStoredMark(mark)
 }
 
 export function createMarkRegexp(parts: string[], flags?: string): RegExp {

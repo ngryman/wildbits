@@ -13,9 +13,9 @@ import {
  */
 const [inputRegex, pasteRegex] = createMarkInputAndPasteRegexps([
   // text
-  `\\[(\\S*)\\]`,
+  `\\[([^\\]]*)\\]`,
   // href & title
-  `\\((\\S+)(?:\\s+[${OPENING_QUOTES}]([^${CLOSING_QUOTES}]+)[${CLOSING_QUOTES}])?\\)`,
+  `\\(([^)${OPENING_QUOTES}]+)(?:\\s+[${OPENING_QUOTES}]([^${CLOSING_QUOTES}]+)[${CLOSING_QUOTES}])?\\)`,
 ])
 
 /**
@@ -60,7 +60,6 @@ export const Link = LinkExtension.extend({
 
   addPasteRules() {
     return [
-      ...(this.parent?.() || []),
       markPasteRule({
         find: pasteRegex,
         type: this.type,
@@ -70,6 +69,7 @@ export const Link = LinkExtension.extend({
           return { text, href, title }
         },
       }),
+      ...(this.parent?.() || []),
     ]
   },
 })
