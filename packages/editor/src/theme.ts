@@ -113,6 +113,9 @@ function getFamilyWeights(theme: Theme): FamilyWeights {
   return Object.values(theme.fonts).map(mapper).reduce(reducer, {})
 }
 
+/**
+ * @see https://developers.google.com/fonts/docs/css2
+ */
 function getFontQueryParam(familyWeights: FamilyWeights): string {
   type FamilyWeightEntry = [string, Set<FontWeight>]
 
@@ -124,5 +127,5 @@ function getFontQueryParam(familyWeights: FamilyWeights): string {
     return `${safeFamily}:wght@${numericWeights}`
   }
 
-  return Object.entries(familyWeights).map(mapper).join('|')
+  return Object.entries(familyWeights).map(mapper).join('&family=')
 }

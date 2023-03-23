@@ -41,7 +41,9 @@ const DEFAULT_THEME: Theme = {
   },
   fonts: {
     base: {
-      family: 'Mulish',
+      family: 'Noto Serif',
+      // family: 'Droid Serif',
+      // family: 'Mulish',
     },
     code: {
       family: 'Inconsolata',
@@ -51,7 +53,8 @@ const DEFAULT_THEME: Theme = {
       style: 'italic',
     },
     heading: {
-      family: 'Lobster',
+      // family: 'Lobster',
+      weight: 'bold',
     },
     link: {
       color: '#f44336',
