@@ -1,26 +1,21 @@
 .root {
+  position: sticky;
+  top: 2.5rem;
   display: grid;
   grid-auto-flow: row;
-  grid-auto-columns: 1fr;
   align-content: start;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 2rem;
-  width: 300px;
-  height: 100vh;
-  animation: show 300ms forwards;
-}
-
-@keyframes show {
-  from {
-    opacity: 0;
-    translate: -100% 0;
-  }
 }
 
 .link {
+  padding: 0 1rem;
+  line-height: 3rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.link:hover {
+  background: #eee;
+}
+.link.active {
+  background: #eee;
 }

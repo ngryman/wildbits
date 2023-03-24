@@ -1,19 +1,14 @@
 import { createPeers, createProvider, createUser, Peers } from '@wildbits/collaboration'
 import { EditorView, createEditor } from '@wildbits/editor'
 import { Note } from '@wildbits/note'
-import { createAtom } from '@wildbits/utils'
-import { Presence } from '@motionone/solid'
-import { createShortcut } from '@solid-primitives/keyboard'
 import { useParams, useLocation } from '@solidjs/router'
-import { Accessor, createEffect, createMemo, createRenderEffect, Show } from 'solid-js'
+import { Accessor, createEffect, createMemo, createRenderEffect } from 'solid-js'
 import { Doc } from 'yjs'
 
-import { Pane, Workspace } from '../layout'
-import { Menu } from '../components'
+import { Workspace } from '../layout'
 import { createNotes, createPersistence } from '../signals'
 
 export default function EditorPage() {
-  const split = createAtom(false)
   const notes = createNotes()
   const user = createUser()
   const params = useParams()
@@ -49,25 +44,14 @@ export default function EditorPage() {
     editor().chain().focus().updateUser(user()).run()
   })
 
-  createShortcut(['Control', 'E'], () => {
-    split(prev => !prev)
-  })
-
   // createShortcut(['Control', 'T'], () => {
   //   editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: false }).run()
   // })
 
   return (
-    <Workspace>
-      <Presence exitBeforeEnter>
-        <Show when={split()}>
-          <Menu notes={notes.all()} />
-        </Show>
-      </Presence>
-      <Pane pushed={split()}>
-        <EditorView editor={editor} />
-        <Peers peers={peers} />
-      </Pane>
+    <Workspace notes={notes.all()}>
+      <EditorView editor={editor} />
+      <Peers peers={peers} />
     </Workspace>
   )
 }

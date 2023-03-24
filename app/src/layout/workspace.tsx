@@ -1,7 +1,19 @@
 import { ParentProps } from 'solid-js'
 
+import { Menu } from '../components'
+import { Note } from '../signals'
+
 import styles from './workspace.module.css'
 
-export function Workspace(props: ParentProps) {
-  return <main class={styles.root}>{props.children}</main>
+type Props = ParentProps & {
+  notes: Note[]
+}
+
+export function Workspace(props: Props) {
+  return (
+    <main class={styles.root}>
+      <Menu notes={props.notes} />
+      {props.children}
+    </main>
+  )
 }

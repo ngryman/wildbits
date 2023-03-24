@@ -1,7 +1,6 @@
 .root {
   display: grid;
-  overflow-x: hidden;
-  grid-auto-flow: column;
-  height: 100vh;
-  transition: all 300ms ease-in-out;
+  grid-template-columns: 15rem 1fr;
+  align-items: start;
+  min-height: 100vh;
 }

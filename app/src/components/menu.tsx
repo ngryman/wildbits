@@ -1,4 +1,3 @@
-import { Motion } from '@motionone/solid'
 import { A } from '@solidjs/router'
 import { For } from 'solid-js'
 
@@ -12,14 +11,14 @@ type Props = {
 
 export function Menu(props: Props) {
   return (
-    <Motion.nav class={styles.root} exit={{ opacity: 0, x: '-100%' }}>
+    <nav class={styles.root}>
       <For each={props.notes}>
         {note => (
-          <A class={styles.link} href={note.path}>
+          <A class={styles.link} activeClass={styles.active} href={note.path}>
             {note.title}
           </A>
         )}
       </For>
-    </Motion.nav>
+    </nav>
   )
 }

@@ -1,6 +1,9 @@
 .root {
   display: flex;
   justify-content: center;
+  min-height: 100%;
+  padding: 2rem;
+  /* background: #fafafa; */
 }
 
 .editor {
@@ -35,7 +38,6 @@
   align-content: start;
   gap: var(--size-m);
   width: var(--line-length);
-  max-width: 100vw;
   font-size: var(--size-m);
   caret-color: var(--caret-color);
 }
