@@ -36,6 +36,7 @@ importers:
       '@wildbits/collaboration': workspace:*
       '@wildbits/editor': workspace:*
       '@wildbits/note': workspace:*
+      '@wildbits/ui': workspace:*
       '@wildbits/utils': workspace:*
       nanoid: ^4.0.1
       solid-js: ^1.6.15
@@ -50,7 +51,8 @@ importers:
       '@solidjs/router': 0.8.1_solid-js@1.6.15
       '@wildbits/collaboration': link:../features/collaboration
       '@wildbits/editor': link:../packages/editor
-      '@wildbits/note': link:../features/core
+      '@wildbits/note': link:../features/note
+      '@wildbits/ui': link:../packages/ui
       '@wildbits/utils': link:../packages/utils
       nanoid: 4.0.1
       solid-js: 1.6.15
@@ -81,7 +83,7 @@ importers:
       '@tiptap/extension-collaboration': 2.0.0-beta.220_ynezejixgkllukncpjhwuvpzpq
       '@tiptap/extension-collaboration-cursor': 2.0.0-beta.220_esdptbacmf7cqkdw5oju3chb2u
       '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
-      '@wildbits/note': link:../core
+      '@wildbits/note': link:../note
       '@wildbits/utils': link:../../packages/utils
       prosemirror-model: 1.19.0
       prosemirror-state: 1.4.2
@@ -102,12 +104,6 @@ importers:
       '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@wildbits/utils': link:../../packages/utils
 
-  features/core:
-    specifiers:
-      yjs: ^13.5.51
-    dependencies:
-      yjs: 13.5.51
-
   features/image:
     specifiers:
       '@tiptap/core': 2.0.0-beta.220
@@ -121,6 +117,16 @@ importers:
       '@wildbits/ui': link:../../packages/ui
       '@wildbits/utils': link:../../packages/utils
       solid-js: 1.6.15
+
+  features/note:
+    specifiers:
+      '@solid-primitives/map': ^0.4.3
+      solid-js: ^1.6.15
+      yjs: ^13.5.51
+    dependencies:
+      '@solid-primitives/map': 0.4.3_solid-js@1.6.15
+      solid-js: 1.6.15
+      yjs: 13.5.51
 
   features/prose:
     specifiers:

@@ -1,12 +1,12 @@
 import { createPeers, createProvider, createUser, Peers } from '@wildbits/collaboration'
 import { EditorView, createEditor } from '@wildbits/editor'
-import { Note } from '@wildbits/note'
+import { createNotes, Note } from '@wildbits/note'
 import { useParams, useLocation } from '@solidjs/router'
 import { Accessor, createEffect, createMemo, createRenderEffect } from 'solid-js'
 import { Doc } from 'yjs'
 
 import { Workspace } from '../layout'
-import { createNotes, createPersistence } from '../signals'
+import { createPersistence } from '../signals'
 
 export default function EditorPage() {
   const notes = createNotes()
@@ -14,11 +14,9 @@ export default function EditorPage() {
   const params = useParams()
   const location = useLocation()
 
-  const note: Accessor<Note> = createMemo(() => ({
-    id: params.id,
-    key: location.hash.slice(1),
-    doc: new Doc(),
-  }))
+  const note: Accessor<Note> = createMemo(
+    () => new Note(params.id, location.hash.slice(1), 'A new beginning', new Doc())
+  )
 
   createPersistence(note)
 
