@@ -1,4 +1,9 @@
 .root {
   display: grid;
-  padding: 1rem 0;
+  padding: 2rem 0;
+  transition: all 300ms;
+}
+
+.root.pushed {
+  translate: 300px 0;
 }

@@ -1,18 +1,20 @@
-import { Motion } from '@motionone/solid'
 import { ParentProps } from 'solid-js'
 
 import styles from './pane.module.css'
 
-export function Pane(props: ParentProps) {
+type Props = ParentProps & {
+  pushed: boolean
+}
+
+export function Pane(props: Props) {
   return (
-    <Motion.div
+    <div
       class={styles.root}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.3 }}
-      exit={{ opacity: 0 }}
+      classList={{
+        [styles.pushed]: props.pushed,
+      }}
     >
       {props.children}
-    </Motion.div>
+    </div>
   )
 }

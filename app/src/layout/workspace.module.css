@@ -2,12 +2,6 @@
   display: grid;
   overflow-x: hidden;
   grid-auto-flow: column;
-  grid-template-columns: 1fr 0fr;
   height: 100vh;
-  transition: all 300ms ease-in-out;
-}
-
-.root.split {
-  grid-template-columns: 1fr 1fr;
   transition: all 300ms ease-in-out;
 }
