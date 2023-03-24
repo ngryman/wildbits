@@ -8,9 +8,9 @@
   "dependencies": {
     "@hocuspocus/extension-sqlite": "^1.1.1",
     "@hocuspocus/server": "^1.1.1",
-    "solid-js": "^1.6.10",
+    "solid-js": "^1.6.15",
     "y-protocols": "^1.0.5",
-    "yjs": "^13.5.48"
+    "yjs": "^13.5.51"
   },
   "devDependencies": {
     "@types/node": "^18.14.0",

@@ -9,17 +9,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@motionone/solid": "^10.15.5",
-    "@solid-primitives/keyboard": "^1.0.7",
-    "@solidjs/router": "^0.7.0",
+    "@motionone/solid": "^10.16.0",
+    "@solid-primitives/keyboard": "^1.0.11",
+    "@solidjs/router": "^0.8.1",
     "@wildbits/collaboration": "workspace:*",
     "@wildbits/editor": "workspace:*",
     "@wildbits/utils": "workspace:*",
     "nanoid": "^4.0.1",
-    "solid-js": "^1.6.10"
+    "solid-js": "^1.6.15",
   },
   "devDependencies": {
-    "vite": "^4.1.1",
+    "vite": "^4.2.1",
     "vite-plugin-solid": "^2.5.0"
   }
 }

@@ -14,15 +14,15 @@
     "test": "start-server-and-test dev:app http://localhost:3000 cy"
   },
   "devDependencies": {
-    "@types/node": "^18.14.0",
-    "@typescript-eslint/eslint-plugin": "^5.53.0",
-    "@typescript-eslint/parser": "^5.53.0",
+    "@types/node": "^18.15.5",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.56.0",
     "cypress": "^12.8.1",
-    "eslint": "^8.34.0",
-    "eslint-plugin-solid": "^0.10.0",
+    "eslint": "^8.36.0",
+    "eslint-plugin-solid": "^0.11.0",
     "nanoid": "^4.0.1",
     "start-server-and-test": "^2.0.0",
-    "typescript": "^4.9.5"
+    "typescript": "^5.0.2"
   },
   "dependencies": {
     "@hocuspocus/server": "^1.1.1"
