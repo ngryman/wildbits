@@ -19,7 +19,7 @@
     "@tiptap/starter-kit": "2.0.0-beta.220",
     "@wildbits/collaboration": "workspace:*",
     "@wildbits/columns": "workspace:*",
-    "@wildbits/media": "workspace:*",
+    "@wildbits/image": "workspace:*",
     "@wildbits/prose": "workspace:*",
     "@wildbits/provider": "workspace:*",
     "@wildbits/utils": "workspace:*",

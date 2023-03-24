@@ -1,4 +1,4 @@
-import { ImageAttributes } from '../image'
+import { ImageAttributes } from '../extension'
 
 export { setImage } from './set-image'
 

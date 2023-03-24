@@ -1,6 +1,6 @@
 import { Command, CommandProps } from '@tiptap/core'
 
-import { ImageAttributes } from '../image'
+import { ImageAttributes } from '../extension'
 
 export function setImage(attrs: ImageAttributes): Command {
   return ({ chain }) =>

@@ -10,7 +10,7 @@ import { Youtube } from '@tiptap/extension-youtube'
 import { Editor } from '@tiptap/core'
 import { Collaboration } from '@wildbits/collaboration'
 import { Columns } from '@wildbits/columns'
-import { Media } from '@wildbits/media'
+import { Image } from '@wildbits/image'
 import { Prose } from '@wildbits/prose'
 import { Provider } from '@wildbits/provider'
 import { Accessor, createEffect, createMemo, onCleanup } from 'solid-js'
@@ -90,8 +90,8 @@ export function createEditor(options: EditorOptions): Accessor<Editor> {
       extensions: [
         Collaboration.configure({ provider: options.provider() }),
         Columns,
+        Image,
         Prose,
-        Media,
         Metadata,
         StarterKit.configure({
           gapcursor: false,

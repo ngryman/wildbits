@@ -102,7 +102,7 @@ importers:
     dependencies:
       yjs: 13.5.51
 
-  features/media:
+  features/image:
     specifiers:
       '@tiptap/core': 2.0.0-beta.220
       '@tiptap/pm': 2.0.0-beta.220
@@ -175,7 +175,7 @@ importers:
       '@tiptap/starter-kit': 2.0.0-beta.220
       '@wildbits/collaboration': workspace:*
       '@wildbits/columns': workspace:*
-      '@wildbits/media': workspace:*
+      '@wildbits/image': workspace:*
       '@wildbits/prose': workspace:*
       '@wildbits/provider': workspace:*
       '@wildbits/utils': workspace:*
@@ -195,7 +195,7 @@ importers:
       '@tiptap/starter-kit': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
       '@wildbits/collaboration': link:../../features/collaboration
       '@wildbits/columns': link:../../features/columns
-      '@wildbits/media': link:../../features/media
+      '@wildbits/image': link:../../features/image
       '@wildbits/prose': link:../../features/prose
       '@wildbits/provider': link:../../features/provider
       '@wildbits/utils': link:../utils

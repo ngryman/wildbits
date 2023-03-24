@@ -2,7 +2,7 @@ import { BubbleMenu, Button, Divider, Icons } from '@wildbits/ui'
 import { NodeViewProps } from '@wildbits/utils'
 import { Show } from 'solid-js'
 
-import { ImageAlign, ImageAttributes } from '../extensions'
+import { ImageAlign, ImageAttributes } from '..'
 
 import styles from './image.module.css'
 

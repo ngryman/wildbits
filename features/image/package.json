@@ -1,7 +1,7 @@
 {
-  "name": "@wildbits/media",
+  "name": "@wildbits/image",
   "version": "0.0.0",
-  "description": "The media feature of Wildbits.",
+  "description": "The image feature of Wildbits.",
   "type": "module",
   "module": "src/index.ts",
   "types": "src/index.ts",
