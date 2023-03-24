@@ -1,10 +1,11 @@
 import { Route, Routes } from '@solidjs/router'
-import { lazy, Suspense } from 'solid-js'
+import { Suspense } from 'solid-js'
+
+import HomePage from './pages/home'
+import EditorPage from './pages/editor'
+// TODO: lazy load less accessed pages
 
 import './app.module.css'
-
-const HomePage = lazy(() => import('./pages/home'))
-const EditorPage = lazy(() => import('./pages/editor'))
 
 export default function App() {
   return (
