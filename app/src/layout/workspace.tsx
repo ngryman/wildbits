@@ -7,7 +7,7 @@ import styles from './workspace.module.css'
 
 type Props = ParentProps & {
   notes: Note[]
-  onDeleteNote: (note: Note) => void
+  onDeleteNote: (noteId: string) => void
 }
 
 export function Workspace(props: Props) {

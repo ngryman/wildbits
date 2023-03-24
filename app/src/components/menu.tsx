@@ -8,7 +8,7 @@ import styles from './menu.module.css'
 
 type Props = {
   notes: Note[]
-  onDeleteNote: (note: Note) => void
+  onDeleteNote: (noteId: string) => void
 }
 
 export function Menu(props: Props) {
@@ -24,7 +24,7 @@ export function Menu(props: Props) {
 
   function handleDeleteClick() {
     const note = props.notes[overIndex()]
-    props.onDeleteNote(note)
+    props.onDeleteNote(note.id)
   }
 
   return (

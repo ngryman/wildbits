@@ -1,5 +1,5 @@
 import { ReactiveMap } from '@solid-primitives/map'
-import { createEffect } from 'solid-js'
+import { Accessor, createEffect } from 'solid-js'
 
 export type Locator = {
   noteId: string
@@ -13,28 +13,41 @@ export type Note = {
   path: string
 }
 
-export type Notes = {
-  all(): Note[]
-  delete(id: string): void
-  setTitle(id: string, title: string): void
+export type NoteActions = {
+  createNoteIfNotExists(locator: Locator): void
+  deleteNote(id: string): void
+  updateNoteTitle(id: string, title: string): void
 }
 
-export function createNotes(): Notes {
+export function createNotes(): [Accessor<Note[]>, NoteActions] {
   const notes = new ReactiveMap<string, Note>(JSON.parse(localStorage.getItem('notes')!) || [])
 
   createEffect(() => {
     localStorage.setItem('notes', JSON.stringify([...notes]))
   })
 
-  return {
-    all: () => [...notes.values()],
-    delete(id) {
-      notes.delete(id)
+  return [
+    () => [...notes.values()],
+    {
+      createNoteIfNotExists(locator) {
+        const { noteId: id, key } = locator
+        if (!notes.has(id)) {
+          notes.set(id, {
+            id,
+            key,
+            title: 'A new beginning',
+            path: `/${id}#${key}`,
+          })
+        }
+      },
+      deleteNote(id) {
+        notes.delete(id)
+      },
+      updateNoteTitle(id, title) {
+        if (notes.has(id)) {
+          notes.set(id, { ...notes.get(id)!, title })
+        }
+      },
     },
-    setTitle(id, title) {
-      if (notes.has(id)) {
-        notes.set(id, { ...notes.get(id)!, title })
-      }
-    },
-  }
+  ]
 }
