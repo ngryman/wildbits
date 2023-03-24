@@ -34,8 +34,11 @@ importers:
       '@solid-primitives/map': ^0.4.3
       '@solidjs/router': ^0.8.1
       '@wildbits/collaboration': workspace:*
-      '@wildbits/core': workspace:*
       '@wildbits/editor': workspace:*
+      '@wildbits/note': workspace:*
+      '@wildbits/peers': workspace:*
+      '@wildbits/provider': workspace:*
+      '@wildbits/user': workspace:*
       '@wildbits/utils': workspace:*
       nanoid: ^4.0.1
       solid-js: ^1.6.15
@@ -49,8 +52,11 @@ importers:
       '@solid-primitives/map': 0.4.3_solid-js@1.6.15
       '@solidjs/router': 0.8.1_solid-js@1.6.15
       '@wildbits/collaboration': link:../features/collaboration
-      '@wildbits/core': link:../packages/core
       '@wildbits/editor': link:../packages/editor
+      '@wildbits/note': link:../features/core
+      '@wildbits/peers': link:../features/peers
+      '@wildbits/provider': link:../features/provider
+      '@wildbits/user': link:../features/user
       '@wildbits/utils': link:../packages/utils
       nanoid: 4.0.1
       solid-js: 1.6.15
@@ -65,32 +71,20 @@ importers:
       '@tiptap/core': 2.0.0-beta.220
       '@tiptap/extension-collaboration': 2.0.0-beta.220
       '@tiptap/extension-collaboration-cursor': 2.0.0-beta.220
-      '@tiptap/pm': 2.0.0-beta.220
-      '@wildbits/core': workspace:*
+      '@wildbits/note': workspace:*
+      '@wildbits/provider': workspace:*
       '@wildbits/utils': workspace:*
-      prosemirror-model: ^1.19.0
-      prosemirror-state: ^1.4.2
-      prosemirror-view: ^1.30.1
       solid-js: ^1.6.15
-      y-indexeddb: ^9.0.9
-      y-prosemirror: ^1.2.0
-      y-protocols: ^1.0.5
-      y-webrtc: ^10.2.4
+      y-prosemirror: ^1.0.20
     dependencies:
-      '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
-      '@tiptap/extension-collaboration': 2.0.0-beta.220_vghkcsy37zmnft7cy7riket6na
+      '@tiptap/core': 2.0.0-beta.220
+      '@tiptap/extension-collaboration': 2.0.0-beta.220_xurnhx2lyuimbqrywcpq5zxutu
       '@tiptap/extension-collaboration-cursor': 2.0.0-beta.220_xurnhx2lyuimbqrywcpq5zxutu
-      '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
-      '@wildbits/core': link:../../packages/core
+      '@wildbits/note': link:../core
+      '@wildbits/provider': link:../provider
       '@wildbits/utils': link:../../packages/utils
-      prosemirror-model: 1.19.0
-      prosemirror-state: 1.4.2
-      prosemirror-view: 1.30.1
       solid-js: 1.6.15
-      y-indexeddb: 9.0.9
-      y-prosemirror: 1.2.0_okh7tgqcalua2lboqcrhemwjae
-      y-protocols: 1.0.5
-      y-webrtc: 10.2.4
+      y-prosemirror: 1.2.0
 
   features/columns:
     specifiers:
@@ -101,6 +95,12 @@ importers:
       '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
       '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@wildbits/utils': link:../../packages/utils
+
+  features/core:
+    specifiers:
+      yjs: ^13.5.51
+    dependencies:
+      yjs: 13.5.51
 
   features/media:
     specifiers:
@@ -114,6 +114,16 @@ importers:
       '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@wildbits/ui': link:../../packages/ui
       '@wildbits/utils': link:../../packages/utils
+      solid-js: 1.6.15
+
+  features/peers:
+    specifiers:
+      '@wildbits/provider': workspace:*
+      '@wildbits/user': workspace:*
+      solid-js: ^1.6.15
+    dependencies:
+      '@wildbits/provider': link:../provider
+      '@wildbits/user': link:../user
       solid-js: 1.6.15
 
   features/prose:
@@ -134,11 +144,21 @@ importers:
       '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@wildbits/utils': link:../../packages/utils
 
-  packages/core:
+  features/provider:
     specifiers:
-      yjs: ^13.5.51
+      '@wildbits/note': workspace:*
+      solid-js: ^1.6.15
+      y-webrtc: ^10.2.4
     dependencies:
-      yjs: 13.5.51
+      '@wildbits/note': link:../core
+      solid-js: 1.6.15
+      y-webrtc: 10.2.4
+
+  features/user:
+    specifiers:
+      solid-js: ^1.6.15
+    dependencies:
+      solid-js: 1.6.15
 
   packages/editor:
     specifiers:
@@ -157,6 +177,7 @@ importers:
       '@wildbits/columns': workspace:*
       '@wildbits/media': workspace:*
       '@wildbits/prose': workspace:*
+      '@wildbits/provider': workspace:*
       '@wildbits/utils': workspace:*
       solid-js: ^1.6.15
       yjs: ^13.5.51
@@ -176,6 +197,7 @@ importers:
       '@wildbits/columns': link:../../features/columns
       '@wildbits/media': link:../../features/media
       '@wildbits/prose': link:../../features/prose
+      '@wildbits/provider': link:../../features/provider
       '@wildbits/utils': link:../utils
       solid-js: 1.6.15
       yjs: 13.5.51
@@ -1242,6 +1264,12 @@ packages:
       solid-js: 1.6.15
     dev: false
 
+  /@tiptap/core/2.0.0-beta.220:
+    resolution: {integrity: sha512-F2Q666xJqijBU5o+GqekqseNgIEMTs6BhsLDaf9DwThhljGLS8RXKnSvQxrxLNrYEPpw39n/G3Qt8YAOk5qR6w==}
+    peerDependencies:
+      '@tiptap/pm': ^2.0.0-beta.209
+    dev: false
+
   /@tiptap/core/2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220:
     resolution: {integrity: sha512-F2Q666xJqijBU5o+GqekqseNgIEMTs6BhsLDaf9DwThhljGLS8RXKnSvQxrxLNrYEPpw39n/G3Qt8YAOk5qR6w==}
     peerDependencies:
@@ -1298,20 +1326,19 @@ packages:
       '@tiptap/core': ^2.0.0-beta.209
       y-prosemirror: 1.0.20
     dependencies:
-      '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
-      y-prosemirror: 1.2.0_okh7tgqcalua2lboqcrhemwjae
+      '@tiptap/core': 2.0.0-beta.220
+      y-prosemirror: 1.2.0
     dev: false
 
-  /@tiptap/extension-collaboration/2.0.0-beta.220_vghkcsy37zmnft7cy7riket6na:
+  /@tiptap/extension-collaboration/2.0.0-beta.220_xurnhx2lyuimbqrywcpq5zxutu:
     resolution: {integrity: sha512-CE/AqrnrTSIbLxBC2FduwRdMxBOXo73uOvwqIC6Bg1NRLh06xSi+On3boSDUbyhnXtB6o3CqyuoYR4GDvETKRA==}
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.209
       '@tiptap/pm': ^2.0.0-beta.209
       y-prosemirror: 1.0.20
     dependencies:
-      '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
-      '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
-      y-prosemirror: 1.2.0_okh7tgqcalua2lboqcrhemwjae
+      '@tiptap/core': 2.0.0-beta.220
+      y-prosemirror: 1.2.0
     dev: false
 
   /@tiptap/extension-document/2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q:
@@ -5305,14 +5332,6 @@ packages:
         optional: true
     dev: false
 
-  /y-indexeddb/9.0.9:
-    resolution: {integrity: sha512-GcJbiJa2eD5hankj46Hea9z4hbDnDjvh1fT62E5SpZRsv8GcEemw34l1hwI2eknGcv5Ih9JfusT37JLx9q3LFg==}
-    peerDependencies:
-      yjs: ^13.0.0
-    dependencies:
-      lib0: 0.2.63
-    dev: false
-
   /y-indexeddb/9.0.9_yjs@13.5.51:
     resolution: {integrity: sha512-GcJbiJa2eD5hankj46Hea9z4hbDnDjvh1fT62E5SpZRsv8GcEemw34l1hwI2eknGcv5Ih9JfusT37JLx9q3LFg==}
     peerDependencies:
@@ -5322,7 +5341,7 @@ packages:
       yjs: 13.5.51
     dev: false
 
-  /y-prosemirror/1.2.0_okh7tgqcalua2lboqcrhemwjae:
+  /y-prosemirror/1.2.0:
     resolution: {integrity: sha512-t3uxuX4HIkb1GNt8jV+dplRbNH2OmQD/BNeCCbjLD3Mq0o6JEXxHedv58ZIPFDE6ma24jljlL+u8pGvN6B37XQ==}
     peerDependencies:
       prosemirror-model: ^1.7.1
@@ -5331,12 +5350,8 @@ packages:
       y-protocols: ^1.0.1
       yjs: ^13.5.38
     dependencies:
-      lib0: 0.2.63
-      prosemirror-model: 1.19.0
-      prosemirror-state: 1.4.2
-      prosemirror-view: 1.30.1
+      lib0: 0.2.73
       typescript: 4.9.5
-      y-protocols: 1.0.5
     dev: false
 
   /y-protocols/1.0.5:

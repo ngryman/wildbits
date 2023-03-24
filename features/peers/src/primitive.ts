@@ -1,11 +1,22 @@
 import { Accessor, createEffect, createSignal } from 'solid-js'
 
-import { Provider, Peer } from './types'
+import { Provider } from '@wildbits/provider'
+import { User } from '@wildbits/user'
 
-export function createPeers(provider: Accessor<Provider>): Accessor<Peer[]> {
+export type Peer = {
+  id: number
+  user: User
+}
+
+export type PeerOptions = {
+  provider: Accessor<Provider>
+}
+
+export function createPeers(options: PeerOptions): Accessor<Peer[]> {
   const [peers, setPeers] = createSignal<Peer[]>([])
 
   function handleUpdate() {
+    const { provider } = options
     const { clientID, states } = provider().awareness
 
     const peers = Array.from(states.entries())
@@ -16,6 +27,7 @@ export function createPeers(provider: Accessor<Provider>): Accessor<Peer[]> {
   }
 
   createEffect(() => {
+    const { provider } = options
     provider().awareness.on('update', handleUpdate)
   })
 

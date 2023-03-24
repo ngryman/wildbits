@@ -8,10 +8,11 @@ import { TaskList } from '@tiptap/extension-task-list'
 import { Typography as TypographyExtension } from '@tiptap/extension-typography'
 import { Youtube } from '@tiptap/extension-youtube'
 import { Editor } from '@tiptap/core'
-import { Collaboration, Provider } from '@wildbits/collaboration'
+import { Collaboration } from '@wildbits/collaboration'
 import { Columns } from '@wildbits/columns'
 import { Media } from '@wildbits/media'
 import { Prose } from '@wildbits/prose'
+import { Provider } from '@wildbits/provider'
 import { Accessor, createEffect, createMemo, onCleanup } from 'solid-js'
 
 import styles from '../components/editor-view.module.css'
@@ -20,6 +21,7 @@ import { createTypographyCSSVars, Typography } from '../typography'
 import { Metadata } from '../extensions'
 
 export type EditorOptions = {
+  debug?: boolean
   provider: Accessor<Provider>
   theme?: Theme
   typography?: Partial<Typography>
@@ -115,7 +117,7 @@ export function createEditor(options: EditorOptions): Accessor<Editor> {
     })
 
     // Expose the editor globally in development mode for debugging purpose.
-    if (import.meta.env.DEV) {
+    if (options.debug) {
       window.editor = editor
     }
 

@@ -21,6 +21,7 @@
     "@wildbits/columns": "workspace:*",
     "@wildbits/media": "workspace:*",
     "@wildbits/prose": "workspace:*",
+    "@wildbits/provider": "workspace:*",
     "@wildbits/utils": "workspace:*",
     "solid-js": "^1.6.15",
     "yjs": "^13.5.51"

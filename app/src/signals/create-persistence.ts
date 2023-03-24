@@ -1,4 +1,4 @@
-import { Note } from '@wildbits/core'
+import { Note } from '@wildbits/note'
 import { Accessor, createEffect } from 'solid-js'
 import { IndexeddbPersistence } from 'y-indexeddb'
 
@@ -9,7 +9,6 @@ export function createPersistence(note: Accessor<Note>) {
     }
 
     const { id, doc } = note()
-    console.log('persistence', doc.guid)
     return new IndexeddbPersistence(id, doc)
   })
 }

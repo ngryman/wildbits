@@ -1,10 +1,12 @@
-import { Peers, createPeers, createProvider, createUser } from '@wildbits/collaboration'
-import { Note } from '@wildbits/core'
 import { EditorView, createEditor } from '@wildbits/editor'
+import { Note } from '@wildbits/note'
 import { createAtom } from '@wildbits/utils'
 import { Presence } from '@motionone/solid'
 import { createShortcut } from '@solid-primitives/keyboard'
 import { useParams, useLocation } from '@solidjs/router'
+import { createPeers, Peers } from '@wildbits/peers'
+import { createProvider } from '@wildbits/provider'
+import { createUser } from '@wildbits/user'
 import { Accessor, createEffect, createMemo, createRenderEffect, Show } from 'solid-js'
 import { Doc } from 'yjs'
 
@@ -16,7 +18,6 @@ export default function EditorPage() {
   const split = createAtom(false)
   const notes = createNotes()
   const user = createUser()
-
   const params = useParams()
   const location = useLocation()
 
@@ -34,8 +35,8 @@ export default function EditorPage() {
     signalingServer: import.meta.env.VITE_COLLABORATION_SIGNALING_SERVER,
   })
 
-  const editor = createEditor({ provider })
-  const peers = createPeers(provider)
+  const editor = createEditor({ debug: import.meta.env.DEV, provider })
+  const peers = createPeers({ provider })
 
   createRenderEffect(() => user())
 

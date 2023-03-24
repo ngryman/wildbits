@@ -1,16 +1,9 @@
-import { Atom, createInitializedResourceAtom } from '@wildbits/utils'
+import { Accessor, createResource } from 'solid-js'
 
-import { User } from './types'
-
-// const COLORS = [
-//   '#958DF1',
-//   '#F98181',
-//   '#FBBC88',
-//   '#FAF594',
-//   '#70CFF8',
-//   '#94FADB',
-//   '#B9F18D',
-// ]
+export type User = {
+  name: string
+  color: string
+}
 
 const COLORS = [
   '#EC1D43',
@@ -23,13 +16,16 @@ const COLORS = [
   '#222222',
 ]
 
-const DEFAULT_USER: User = {
+const defaultUser: User = {
   name: `anonymous${Math.random().toString().slice(2, 6)}`,
   color: 'black',
 }
 
-export function createUser(): Atom<User> {
-  return createInitializedResourceAtom(getInitialUser, DEFAULT_USER)
+export function createUser(): Accessor<User> {
+  const [user] = createResource<User>(getInitialUser, {
+    initialValue: defaultUser,
+  })
+  return user
 }
 
 async function getInitialUser(): Promise<User> {
@@ -48,7 +44,7 @@ async function getRandomName(): Promise<string> {
   } catch {
     // If for some reason the endpoint fails, return the `DEFAULT_USER` name.
     // This is not a critical endpoint.
-    return DEFAULT_USER.name
+    return defaultUser.name
   }
 }
 

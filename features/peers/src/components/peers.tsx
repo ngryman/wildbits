@@ -1,6 +1,7 @@
 import { Accessor, For } from 'solid-js'
 
-import { Peer } from '../signals'
+import { Peer } from '..'
+
 import styles from './peers.module.css'
 
 type Props = {

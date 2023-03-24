@@ -1,7 +1,7 @@
 {
-  "name": "@wildbits/core",
+  "name": "@wildbits/note",
   "version": "0.0.0",
-  "description": "Wildbits core.",
+  "description": "The note feature of Wildbits.",
   "type": "module",
   "module": "src/index.ts",
   "types": "src/index.ts",

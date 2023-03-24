@@ -1,0 +1,13 @@
+{
+  "name": "@wildbits/peers",
+  "version": "0.0.0",
+  "description": "The peers feature of Wildbits.",
+  "type": "module",
+  "module": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@wildbits/provider": "workspace:*",
+    "@wildbits/user": "workspace:*",
+    "solid-js": "^1.6.15"
+  }
+}

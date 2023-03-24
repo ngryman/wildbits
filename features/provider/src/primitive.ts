@@ -1,8 +1,8 @@
-import { Note } from '@wildbits/core'
+import { Note } from '@wildbits/note'
 import { Accessor, createMemo } from 'solid-js'
 import { WebrtcProvider } from 'y-webrtc'
 
-import { Provider } from './types'
+export type Provider = WebrtcProvider
 
 export type ProviderOptions = {
   note: Accessor<Note>
@@ -37,7 +37,6 @@ export function createProvider(options: ProviderOptions): Accessor<Provider> {
     }
 
     const { id, key, doc } = options.note()
-    console.log('collab', doc.guid)
     return new WebrtcProvider(id, doc, {
       password: key,
       signaling: [options.signalingServer],
