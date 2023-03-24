@@ -1,12 +1,10 @@
+import { createPeers, createProvider, createUser, Peers } from '@wildbits/collaboration'
 import { EditorView, createEditor } from '@wildbits/editor'
 import { Note } from '@wildbits/note'
 import { createAtom } from '@wildbits/utils'
 import { Presence } from '@motionone/solid'
 import { createShortcut } from '@solid-primitives/keyboard'
 import { useParams, useLocation } from '@solidjs/router'
-import { createPeers, Peers } from '@wildbits/peers'
-import { createProvider } from '@wildbits/provider'
-import { createUser } from '@wildbits/user'
 import { Accessor, createEffect, createMemo, createRenderEffect, Show } from 'solid-js'
 import { Doc } from 'yjs'
 

@@ -9,10 +9,16 @@
     "@tiptap/core": "2.0.0-beta.220",
     "@tiptap/extension-collaboration": "2.0.0-beta.220",
     "@tiptap/extension-collaboration-cursor": "2.0.0-beta.220",
+    "@tiptap/pm": "2.0.0-beta.220",
     "@wildbits/note": "workspace:*",
-    "@wildbits/provider": "workspace:*",
     "@wildbits/utils": "workspace:*",
+    "prosemirror-model": "^1.19.0",
+    "prosemirror-state": "^1.4.2",
+    "prosemirror-view": "^1.4.2",
     "solid-js": "^1.6.15",
-    "y-prosemirror": "^1.0.20"
+    "y-prosemirror": "1.0.20",
+    "y-webrtc": "^10.2.4",
+    "y-protocols": "^1.0.5",
+    "yjs": "^13.5.51"
   }
 }

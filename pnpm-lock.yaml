@@ -36,9 +36,6 @@ importers:
       '@wildbits/collaboration': workspace:*
       '@wildbits/editor': workspace:*
       '@wildbits/note': workspace:*
-      '@wildbits/peers': workspace:*
-      '@wildbits/provider': workspace:*
-      '@wildbits/user': workspace:*
       '@wildbits/utils': workspace:*
       nanoid: ^4.0.1
       solid-js: ^1.6.15
@@ -54,9 +51,6 @@ importers:
       '@wildbits/collaboration': link:../features/collaboration
       '@wildbits/editor': link:../packages/editor
       '@wildbits/note': link:../features/core
-      '@wildbits/peers': link:../features/peers
-      '@wildbits/provider': link:../features/provider
-      '@wildbits/user': link:../features/user
       '@wildbits/utils': link:../packages/utils
       nanoid: 4.0.1
       solid-js: 1.6.15
@@ -71,20 +65,32 @@ importers:
       '@tiptap/core': 2.0.0-beta.220
       '@tiptap/extension-collaboration': 2.0.0-beta.220
       '@tiptap/extension-collaboration-cursor': 2.0.0-beta.220
+      '@tiptap/pm': 2.0.0-beta.220
       '@wildbits/note': workspace:*
-      '@wildbits/provider': workspace:*
       '@wildbits/utils': workspace:*
+      prosemirror-model: ^1.19.0
+      prosemirror-state: ^1.4.2
+      prosemirror-view: ^1.4.2
       solid-js: ^1.6.15
-      y-prosemirror: ^1.0.20
+      y-prosemirror: 1.0.20
+      y-protocols: ^1.0.5
+      y-webrtc: ^10.2.4
+      yjs: ^13.5.51
     dependencies:
-      '@tiptap/core': 2.0.0-beta.220
-      '@tiptap/extension-collaboration': 2.0.0-beta.220_xurnhx2lyuimbqrywcpq5zxutu
-      '@tiptap/extension-collaboration-cursor': 2.0.0-beta.220_xurnhx2lyuimbqrywcpq5zxutu
+      '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
+      '@tiptap/extension-collaboration': 2.0.0-beta.220_ynezejixgkllukncpjhwuvpzpq
+      '@tiptap/extension-collaboration-cursor': 2.0.0-beta.220_esdptbacmf7cqkdw5oju3chb2u
+      '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@wildbits/note': link:../core
-      '@wildbits/provider': link:../provider
       '@wildbits/utils': link:../../packages/utils
+      prosemirror-model: 1.19.0
+      prosemirror-state: 1.4.2
+      prosemirror-view: 1.30.1
       solid-js: 1.6.15
-      y-prosemirror: 1.2.0
+      y-prosemirror: 1.0.20_tttiofknvb72sljewyem6mu3ji
+      y-protocols: 1.0.5
+      y-webrtc: 10.2.4
+      yjs: 13.5.51
 
   features/columns:
     specifiers:
@@ -116,16 +122,6 @@ importers:
       '@wildbits/utils': link:../../packages/utils
       solid-js: 1.6.15
 
-  features/peers:
-    specifiers:
-      '@wildbits/provider': workspace:*
-      '@wildbits/user': workspace:*
-      solid-js: ^1.6.15
-    dependencies:
-      '@wildbits/provider': link:../provider
-      '@wildbits/user': link:../user
-      solid-js: 1.6.15
-
   features/prose:
     specifiers:
       '@tiptap/core': 2.0.0-beta.220
@@ -144,22 +140,6 @@ importers:
       '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@wildbits/utils': link:../../packages/utils
 
-  features/provider:
-    specifiers:
-      '@wildbits/note': workspace:*
-      solid-js: ^1.6.15
-      y-webrtc: ^10.2.4
-    dependencies:
-      '@wildbits/note': link:../core
-      solid-js: 1.6.15
-      y-webrtc: 10.2.4
-
-  features/user:
-    specifiers:
-      solid-js: ^1.6.15
-    dependencies:
-      solid-js: 1.6.15
-
   packages/editor:
     specifiers:
       '@tiptap/core': 2.0.0-beta.220
@@ -177,7 +157,6 @@ importers:
       '@wildbits/columns': workspace:*
       '@wildbits/image': workspace:*
       '@wildbits/prose': workspace:*
-      '@wildbits/provider': workspace:*
       '@wildbits/utils': workspace:*
       solid-js: ^1.6.15
       yjs: ^13.5.51
@@ -197,7 +176,6 @@ importers:
       '@wildbits/columns': link:../../features/columns
       '@wildbits/image': link:../../features/image
       '@wildbits/prose': link:../../features/prose
-      '@wildbits/provider': link:../../features/provider
       '@wildbits/utils': link:../utils
       solid-js: 1.6.15
       yjs: 13.5.51
@@ -1264,12 +1242,6 @@ packages:
       solid-js: 1.6.15
     dev: false
 
-  /@tiptap/core/2.0.0-beta.220:
-    resolution: {integrity: sha512-F2Q666xJqijBU5o+GqekqseNgIEMTs6BhsLDaf9DwThhljGLS8RXKnSvQxrxLNrYEPpw39n/G3Qt8YAOk5qR6w==}
-    peerDependencies:
-      '@tiptap/pm': ^2.0.0-beta.209
-    dev: false
-
   /@tiptap/core/2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220:
     resolution: {integrity: sha512-F2Q666xJqijBU5o+GqekqseNgIEMTs6BhsLDaf9DwThhljGLS8RXKnSvQxrxLNrYEPpw39n/G3Qt8YAOk5qR6w==}
     peerDependencies:
@@ -1320,25 +1292,26 @@ packages:
       '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
     dev: false
 
-  /@tiptap/extension-collaboration-cursor/2.0.0-beta.220_xurnhx2lyuimbqrywcpq5zxutu:
+  /@tiptap/extension-collaboration-cursor/2.0.0-beta.220_esdptbacmf7cqkdw5oju3chb2u:
     resolution: {integrity: sha512-oDZlR4Bfbl7VFcdbaXaC2wvz3a5RfHF638Vb2RKSXj7DOZc6Eay5gbLTYkXmWjHwELdjWgyHVnzFPHyn1Q71IA==}
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.209
       y-prosemirror: 1.0.20
     dependencies:
-      '@tiptap/core': 2.0.0-beta.220
-      y-prosemirror: 1.2.0
+      '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
+      y-prosemirror: 1.0.20_tttiofknvb72sljewyem6mu3ji
     dev: false
 
-  /@tiptap/extension-collaboration/2.0.0-beta.220_xurnhx2lyuimbqrywcpq5zxutu:
+  /@tiptap/extension-collaboration/2.0.0-beta.220_ynezejixgkllukncpjhwuvpzpq:
     resolution: {integrity: sha512-CE/AqrnrTSIbLxBC2FduwRdMxBOXo73uOvwqIC6Bg1NRLh06xSi+On3boSDUbyhnXtB6o3CqyuoYR4GDvETKRA==}
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.209
       '@tiptap/pm': ^2.0.0-beta.209
       y-prosemirror: 1.0.20
     dependencies:
-      '@tiptap/core': 2.0.0-beta.220
-      y-prosemirror: 1.2.0
+      '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
+      '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
+      y-prosemirror: 1.0.20_tttiofknvb72sljewyem6mu3ji
     dev: false
 
   /@tiptap/extension-document/2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q:
@@ -5055,6 +5028,7 @@ packages:
     resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
     engines: {node: '>=4.2.0'}
     hasBin: true
+    dev: true
 
   /typescript/5.0.2:
     resolution: {integrity: sha512-wVORMBGO/FAs/++blGNeAVdbNKtIh1rbBL2EyQ1+J9lClJ93KiiKe8PmFIVdXhHcyv44SL9oglmfeSsndo0jRw==}
@@ -5341,17 +5315,21 @@ packages:
       yjs: 13.5.51
     dev: false
 
-  /y-prosemirror/1.2.0:
-    resolution: {integrity: sha512-t3uxuX4HIkb1GNt8jV+dplRbNH2OmQD/BNeCCbjLD3Mq0o6JEXxHedv58ZIPFDE6ma24jljlL+u8pGvN6B37XQ==}
+  /y-prosemirror/1.0.20_tttiofknvb72sljewyem6mu3ji:
+    resolution: {integrity: sha512-LVMtu3qWo0emeYiP+0jgNcvZkqhzE/otOoro+87q0iVKxy/sMKuiJZnokfJdR4cn9qKx0Un5fIxXqbAlR2bFkA==}
     peerDependencies:
       prosemirror-model: ^1.7.1
       prosemirror-state: ^1.2.3
       prosemirror-view: ^1.9.10
       y-protocols: ^1.0.1
-      yjs: ^13.5.38
+      yjs: ^13.3.2
     dependencies:
       lib0: 0.2.73
-      typescript: 4.9.5
+      prosemirror-model: 1.19.0
+      prosemirror-state: 1.4.2
+      prosemirror-view: 1.30.1
+      y-protocols: 1.0.5
+      yjs: 13.5.51
     dev: false
 
   /y-protocols/1.0.5:
@@ -5365,7 +5343,7 @@ packages:
     engines: {node: '>=12'}
     hasBin: true
     dependencies:
-      lib0: 0.2.63
+      lib0: 0.2.73
       simple-peer: 9.11.1
       y-protocols: 1.0.5
     optionalDependencies:

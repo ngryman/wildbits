@@ -1,7 +1,6 @@
 import { Accessor, createEffect, createSignal } from 'solid-js'
 
-import { Provider } from '@wildbits/provider'
-import { User } from '@wildbits/user'
+import { Provider, User } from '.'
 
 export type Peer = {
   id: number
