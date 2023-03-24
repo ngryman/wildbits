@@ -1,7 +1,7 @@
 import { Command, CommandProps } from '@tiptap/core'
 import { TextSelection } from '@tiptap/pm/state'
 
-import { ColumnsAttributes } from '../columns'
+import { ColumnsAttributes } from '../extension'
 import { createColumns } from '../utils'
 
 const defaultColumnCount = 3

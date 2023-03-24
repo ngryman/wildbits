@@ -11,9 +11,9 @@ import { TextSelection } from '@tiptap/pm/state'
 import { createInlineInputRegexp } from '@wildbits/utils'
 
 import * as commands from './commands'
-import { Column } from './column'
+import { Column } from './extensions'
 
-import styles from '../components/columns.module.css'
+import styles from './components/columns.module.css'
 
 export type ColumnsAttributes = {
   count?: number

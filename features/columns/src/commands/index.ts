@@ -1,4 +1,4 @@
-import { ColumnsAttributes } from '../columns'
+import { ColumnsAttributes } from '../extension'
 
 export { gotoNextColumn } from './goto-next-column'
 export { gotoPreviousColumn } from './goto-previous-column'

@@ -1,1 +1,1 @@
-export { Columns } from './extensions'
+export * from './extension'

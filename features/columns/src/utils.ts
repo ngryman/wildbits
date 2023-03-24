@@ -1,8 +1,8 @@
 import { findParentNode } from '@tiptap/core'
 import { Node, Schema } from '@tiptap/pm/model'
 
-import { Column } from './column'
-import { Columns } from './columns'
+import { Column } from './extensions/column'
+import { Columns } from './extension'
 
 export const findParentColumn = findParentNode(node => node.type.name === Column.name)
 export const findParentColumns = findParentNode(node => node.type.name === Columns.name)
