@@ -19,3 +19,16 @@
 .link.active {
   background: #eee;
 }
+
+.actions {
+  --index: -1;
+
+  display: grid;
+  place-content: center;
+  position: absolute;
+  top: 0;
+  left: -2.5rem;
+  padding-right: 2.5rem;
+  height: 3rem;
+  translate: 0 calc(var(--index) * 3rem);
+}

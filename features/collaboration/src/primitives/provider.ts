@@ -1,11 +1,13 @@
-import { Note } from '@wildbits/note'
+import { Locator } from '@wildbits/note'
 import { Accessor, createMemo } from 'solid-js'
 import { WebrtcProvider } from 'y-webrtc'
+import { Doc } from 'yjs'
 
 export type Provider = WebrtcProvider
 
 export type ProviderOptions = {
-  note: Accessor<Note>
+  locator: Accessor<Locator>
+  doc: Accessor<Doc>
   signalingServer: string
 }
 
@@ -36,8 +38,8 @@ export function createProvider(options: ProviderOptions): Accessor<Provider> {
       provider.destroy()
     }
 
-    const { id, key, doc } = options.note()
-    return new WebrtcProvider(id, doc, {
+    const { noteId, key } = options.locator()
+    return new WebrtcProvider(noteId, options.doc(), {
       password: key,
       signaling: [options.signalingServer],
       peerOpts: { config: { iceServers } },

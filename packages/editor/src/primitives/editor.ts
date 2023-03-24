@@ -79,7 +79,6 @@ export function createEditor(options: EditorOptions): Accessor<Editor> {
 
     const editor = new Editor({
       // TODO: save the position and set `autofocus` to it
-      autofocus: true,
       editorProps: {
         attributes: {
           class: styles.editor,

@@ -1,44 +1,40 @@
+import { ReactiveMap } from '@solid-primitives/map'
 import { createEffect } from 'solid-js'
-import { createStore, produce } from 'solid-js/store'
-import { Doc } from 'yjs'
 
-export class Note {
-  constructor(
-    public readonly id: string,
-    public readonly key: string,
-    public title: string,
-    public readonly doc: Doc
-  ) {}
+export type Locator = {
+  noteId: string
+  key: string
+}
 
-  get path(): string {
-    return `/${this.id}#${this.key}`
-  }
+export type Note = {
+  id: string
+  key: string
+  title: string
+  path: string
 }
 
 export type Notes = {
-  all: () => Note[]
-  setTitle: (id: string, title: string) => void
+  all(): Note[]
+  delete(id: string): void
+  setTitle(id: string, title: string): void
 }
 
 export function createNotes(): Notes {
-  const initialNotes: Note[] = JSON.parse(localStorage.getItem('notes')!) || []
-  const [notes, setNotes] = createStore(initialNotes)
+  const notes = new ReactiveMap<string, Note>(JSON.parse(localStorage.getItem('notes')!) || [])
 
   createEffect(() => {
-    localStorage.setItem('notes', JSON.stringify(notes))
+    localStorage.setItem('notes', JSON.stringify([...notes]))
   })
 
   return {
-    all: () => notes,
-    setTitle: (id, title) => {
-      setNotes(
-        produce(notes => {
-          const note = notes.find(note => note.id === id)
-          if (note) {
-            note.title = title
-          }
-        })
-      )
+    all: () => [...notes.values()],
+    delete(id) {
+      notes.delete(id)
+    },
+    setTitle(id, title) {
+      if (notes.has(id)) {
+        notes.set(id, { ...notes.get(id)!, title })
+      }
     },
   }
 }
