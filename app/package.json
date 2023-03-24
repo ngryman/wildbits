@@ -11,12 +11,16 @@
   "dependencies": {
     "@motionone/solid": "^10.16.0",
     "@solid-primitives/keyboard": "^1.0.11",
+    "@solid-primitives/map": "^0.4.3",
     "@solidjs/router": "^0.8.1",
     "@wildbits/collaboration": "workspace:*",
+    "@wildbits/core": "workspace:*",
     "@wildbits/editor": "workspace:*",
     "@wildbits/utils": "workspace:*",
     "nanoid": "^4.0.1",
     "solid-js": "^1.6.15",
+    "y-indexeddb": "^9.0.9",
+    "yjs": "^13.5.51"
   },
   "devDependencies": {
     "vite": "^4.2.1",

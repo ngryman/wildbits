@@ -5,6 +5,7 @@ import { createResource, Resource, Show } from 'solid-js'
 
 export default function HomePage() {
   const path = createPath()
+
   return (
     <Show when={path()}>
       <Navigate href={path()!} />
@@ -19,5 +20,6 @@ function createPath(): Resource<string> {
 async function generatePath(): Promise<string> {
   const id = nanoid()
   const key = await generateKey()
-  return `/${id}#${key}`
+  const path = `/${id}#${key}`
+  return path
 }

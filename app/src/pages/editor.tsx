@@ -1,56 +1,74 @@
 import { Peers, createPeers, createProvider, createUser } from '@wildbits/collaboration'
+import { Note } from '@wildbits/core'
 import { EditorView, createEditor } from '@wildbits/editor'
 import { createAtom } from '@wildbits/utils'
 import { Presence } from '@motionone/solid'
-// import { createShortcut } from '@solid-primitives/keyboard'
+import { createShortcut } from '@solid-primitives/keyboard'
 import { useParams, useLocation } from '@solidjs/router'
-import { createEffect, createRenderEffect, Show } from 'solid-js'
+import { Accessor, createEffect, createMemo, createRenderEffect, Show } from 'solid-js'
+import { Doc } from 'yjs'
 
 import { Pane, Workspace } from '../layout'
+import { Menu } from '../components'
+import { createNotes, createPersistence } from '../signals'
 
 export default function EditorPage() {
   const split = createAtom(false)
+  const notes = createNotes()
+  const user = createUser()
+
   const params = useParams()
   const location = useLocation()
 
-  const cryptoKey = location.hash.slice(1)
+  const note: Accessor<Note> = createMemo(() => ({
+    id: params.id,
+    key: location.hash.slice(1),
+    doc: new Doc(),
+  }))
+
+  createPersistence(note)
+
   const provider = createProvider({
-    cryptoKey,
-    documentId: params.id,
+    note,
     // TODO: create a config provider with all the env vars in there
     signalingServer: import.meta.env.VITE_COLLABORATION_SIGNALING_SERVER,
   })
-  const user = createUser()
-  const peers = createPeers(provider)
+
   const editor = createEditor({ provider })
+  const peers = createPeers(provider)
 
   createRenderEffect(() => user())
 
   createEffect(() => {
-    localStorage.setItem('user', JSON.stringify(user()))
-    editor.chain().focus().updateUser(user()).run()
+    editor().on('update', ({ editor }) => {
+      notes.setTitle(note().id, editor.storage.metadata.title)
+    })
   })
 
-  // createShortcut(['Control', 'E'], () => {
-  //   split(prev => !prev)
-  // })
+  createEffect(() => {
+    localStorage.setItem('user', JSON.stringify(user()))
+    editor().chain().focus().updateUser(user()).run()
+  })
+
+  createShortcut(['Control', 'E'], () => {
+    split(prev => !prev)
+  })
+
   // createShortcut(['Control', 'T'], () => {
   //   editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: false }).run()
   // })
 
   return (
-    <Workspace split={split()}>
-      <Pane>
-        <EditorView editor={editor} />
-        <Peers peers={peers()} />
-      </Pane>
+    <Workspace>
       <Presence exitBeforeEnter>
         <Show when={split()}>
-          <Pane>
-            <div style={{ width: '100%', height: '100%' }} />
-          </Pane>
+          <Menu notes={notes.all()} />
         </Show>
       </Presence>
+      <Pane pushed={split()}>
+        <EditorView editor={editor} />
+        <Peers peers={peers} />
+      </Pane>
     </Workspace>
   )
 }

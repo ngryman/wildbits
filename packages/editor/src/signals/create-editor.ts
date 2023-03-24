@@ -8,17 +8,22 @@ import { TaskList } from '@tiptap/extension-task-list'
 import { Typography as TypographyExtension } from '@tiptap/extension-typography'
 import { Youtube } from '@tiptap/extension-youtube'
 import { Editor } from '@tiptap/core'
-import { Collaboration } from '@wildbits/collaboration'
+import { Collaboration, Provider } from '@wildbits/collaboration'
 import { Columns } from '@wildbits/columns'
 import { Media } from '@wildbits/media'
 import { Prose } from '@wildbits/prose'
-import { createEffect, onCleanup } from 'solid-js'
-import { IndexeddbPersistence } from 'y-indexeddb'
+import { Accessor, createEffect, createMemo, onCleanup } from 'solid-js'
 
 import styles from '../components/editor-view.module.css'
 import { createThemeCSSVars, loadFonts, Theme } from '../theme'
 import { createTypographyCSSVars, Typography } from '../typography'
-import { Settings } from './types'
+import { Metadata } from '../extensions'
+
+export type EditorOptions = {
+  provider: Accessor<Provider>
+  theme?: Theme
+  typography?: Partial<Typography>
+}
 
 /**
  * NOTE: This need to be in sync with `editor.module.css` to avoid any FOUC.
@@ -65,59 +70,64 @@ const DEFAULT_THEME: Theme = {
   },
 }
 
-export function createEditor(settings: Settings): Editor {
-  const { provider } = settings
-  const { documentId, document } = provider
-  new IndexeddbPersistence(documentId, document)
+export function createEditor(options: EditorOptions): Accessor<Editor> {
+  const editor = createMemo<Editor>(prevEditor => {
+    if (prevEditor) {
+      prevEditor.destroy()
+    }
 
-  const editor = new Editor({
-    // TODO: save the position and set `autofocus` to it
-    autofocus: true,
-    editorProps: {
-      attributes: {
-        class: styles.editor,
-        style: createEditorStyle(settings),
+    const editor = new Editor({
+      // TODO: save the position and set `autofocus` to it
+      autofocus: true,
+      editorProps: {
+        attributes: {
+          class: styles.editor,
+          style: createEditorStyle(options),
+        },
       },
-    },
-    extensions: [
-      Collaboration.configure({ provider }),
-      Columns,
-      Prose,
-      Media,
-      StarterKit.configure({
-        gapcursor: false,
-        history: false,
-        bold: false,
-        italic: false,
-        horizontalRule: false,
-      }),
-      TypographyExtension,
-      Table.configure({ allowTableNodeSelection: true, resizable: true }),
-      TableCell,
-      TableHeader,
-      TableRow,
-      TaskList,
-      TaskItem.configure({ nested: true }),
-      Youtube.configure({ modestBranding: true, width: 0, height: 0 }),
-    ],
-    injectCSS: false,
-  })
+      extensions: [
+        Collaboration.configure({ provider: options.provider() }),
+        Columns,
+        Prose,
+        Media,
+        Metadata,
+        StarterKit.configure({
+          gapcursor: false,
+          history: false,
+          bold: false,
+          italic: false,
+          horizontalRule: false,
+        }),
+        TypographyExtension,
+        Table.configure({ allowTableNodeSelection: true, resizable: true }),
+        TableCell,
+        TableHeader,
+        TableRow,
+        TaskList,
+        TaskItem.configure({ nested: true }),
+        Youtube.configure({ modestBranding: true, width: 0, height: 0 }),
+      ],
+      injectCSS: false,
+    })
 
-  onCleanup(() => {
-    editor.destroy()
-  })
+    onCleanup(() => {
+      editor.destroy()
+    })
 
-  // Expose the editor globally in development mode for debugging purpose.
-  if (import.meta.env.DEV) {
-    window.editor = editor
-  }
+    // Expose the editor globally in development mode for debugging purpose.
+    if (import.meta.env.DEV) {
+      window.editor = editor
+    }
+
+    return editor
+  })
 
   return editor
 }
 
-function createEditorStyle(settings: Settings) {
-  const theme = { ...DEFAULT_THEME, ...settings.theme }
-  const typography = { ...DEFAULT_TYPOGRAPHY, ...settings.typography }
+function createEditorStyle(options: EditorOptions) {
+  const theme = { ...DEFAULT_THEME, ...options.theme }
+  const typography = { ...DEFAULT_TYPOGRAPHY, ...options.typography }
 
   createEffect(() => {
     loadFonts(theme)
