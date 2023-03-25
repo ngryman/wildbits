@@ -34,7 +34,7 @@ export type List = {
 export type FontStyle = 'normal' | 'italic'
 export type FontWeight = 'normal' | 'bold'
 
-type FamilyWeights = Record<string, Set<FontWeight>>
+type FamilySpecs = Map<string, Set<FontWeight>>
 
 const WEIGHT_VALUE: Record<FontWeight, number> = {
   normal: 400,
@@ -78,8 +78,10 @@ function createListCSSVars(list: List): string {
 }
 
 export function loadFonts(theme: Theme) {
-  const familyWeights = getFamilyWeights(theme)
-  const fontParam = getFontQueryParam(familyWeights)
+  const specs = createFamilySpecsToLoad(theme)
+  if (specs.size === 0) return
+
+  const fontParam = getFontQueryParam(specs)
 
   let fontsEl: HTMLLinkElement | null = document.head.querySelector('#fonts')
   if (!fontsEl) {
@@ -91,32 +93,43 @@ export function loadFonts(theme: Theme) {
   fontsEl.href = `https://fonts.googleapis.com/css?family=${fontParam}&display=swap`
 }
 
-function getFamilyWeights(theme: Theme): FamilyWeights {
+const loadedFontPairs = new Map()
+
+function createFamilySpecsToLoad(theme: Theme): FamilySpecs {
   type FamilyWeightPair = [string, FontWeight]
 
-  const mapper = (font: Font): FamilyWeightPair => [
+  const createPair = (font: Font): FamilyWeightPair => [
     font.family || theme.fonts.base.family!,
     font.weight || theme.fonts.base.weight || 'normal',
   ]
 
-  const reducer = (
-    acc: FamilyWeights,
-    [family, weight]: FamilyWeightPair
-  ): Record<string, Set<FontWeight>> => {
-    if (family) {
-      acc[family] = acc[family] || new Set()
-      acc[family].add(weight!)
-    }
-    return acc
+  const filterCached = ([family, weight]: FamilyWeightPair) =>
+    !loadedFontPairs.has(`${family}:${weight}`)
+
+  const cache = (pair: FamilyWeightPair) => {
+    loadedFontPairs.set(`${pair[0]}:${pair[1]}`, true)
+    return pair
   }
 
-  return Object.values(theme.fonts).map(mapper).reduce(reducer, {})
+  const createSpecs = (specs: FamilySpecs, [family, weight]: FamilyWeightPair): FamilySpecs => {
+    if (family) {
+      specs.set(family, specs.get(family) || new Set())
+      specs.get(family)!.add(weight!)
+    }
+    return specs
+  }
+
+  return Object.values(theme.fonts)
+    .map(createPair)
+    .filter(filterCached)
+    .map(cache)
+    .reduce(createSpecs, new Map())
 }
 
 /**
  * @see https://developers.google.com/fonts/docs/css2
  */
-function getFontQueryParam(familyWeights: FamilyWeights): string {
+function getFontQueryParam(specs: FamilySpecs): string {
   type FamilyWeightEntry = [string, Set<FontWeight>]
 
   const mapper = ([family, weights]: FamilyWeightEntry): string => {
@@ -127,5 +140,5 @@ function getFontQueryParam(familyWeights: FamilyWeights): string {
     return `${safeFamily}:wght@${numericWeights}`
   }
 
-  return Object.entries(familyWeights).map(mapper).join('&family=')
+  return [...specs.entries()].map(mapper).join('&family=')
 }
