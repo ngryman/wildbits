@@ -42,7 +42,14 @@ export function ImageView(props: NodeViewProps<ImageAttributes>) {
         [styles['align-' + (attrs().align || 'center')]]: true,
       }}
     >
-      <img ref={imageEl} class={styles.image} src={attrs().src} alt={attrs().alt} width={width()} />
+      <img
+        ref={imageEl}
+        class={styles.image}
+        src={attrs().src}
+        alt={attrs().alt}
+        width={width()}
+        data-drag-handle
+      />
       <Show when={attrs().title || attrs().alt}>
         <figcaption class={styles.caption}>{attrs().title || attrs().alt}</figcaption>
       </Show>
