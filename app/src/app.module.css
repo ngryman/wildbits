@@ -26,6 +26,10 @@ a {
   text-decoration: none;
 }
 
+hr {
+  margin: 0;
+}
+
 iframe {
   border: 0;
 }

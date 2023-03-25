@@ -1,0 +1,131 @@
+.resize {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  bottom: -1px;
+  right: -1px;
+  border-radius: 4px;
+  /* border: 3px solid rgb(51 112 255); */
+  border: 3px solid #444;
+  pointer-events: none;
+}
+
+.handle {
+  position: absolute;
+  z-index: 1;
+  width: 1rem;
+  height: 1rem;
+  pointer-events: auto;
+}
+.handle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.4rem;
+  height: 0.4rem;
+  translate: -50% -50%;
+  border-radius: 50%;
+  /* outline: 2px solid rgb(51 112 255); */
+  outline: 2px solid #444;
+  background: #fff;
+  transition: all 100ms;
+}
+.handle:hover::after {
+  scale: 1.5;
+}
+.handle.north {
+  top: -1px;
+  left: calc(50% - 1px);
+  translate: -50% -50%;
+  cursor: ns-resize;
+}
+.handle.east {
+  top: calc(50% - 1px);
+  right: -1px;
+  translate: 50% -50%;
+  cursor: ew-resize;
+}
+.handle.south {
+  bottom: -1px;
+  left: calc(50% - 1px);
+  translate: -50% 50%;
+  cursor: ns-resize;
+}
+.handle.west {
+  top: calc(50% - 1px);
+  left: -1px;
+  translate: -50% -50%;
+  cursor: ew-resize;
+}
+.handle.northWest {
+  top: 0px;
+  left: 0px;
+  translate: -50% -50%;
+  cursor: nwse-resize;
+}
+.handle.northEast {
+  top: 0px;
+  right: 0px;
+  translate: 50% -50%;
+  cursor: nesw-resize;
+}
+.handle.southWest {
+  bottom: 0;
+  left: 0;
+  translate: -50% 50%;
+  cursor: nesw-resize;
+}
+.handle.southEast {
+  bottom: 0;
+  right: 0;
+  translate: 50% 50%;
+  cursor: nwse-resize;
+}
+
+.horizontalRuler {
+  display: grid;
+  align-content: center;
+  position: absolute;
+  bottom: -1rem;
+  left: -2px;
+  right: -2px;
+  translate: 0 100%;
+  height: 1px;
+  background: #ccc;
+}
+.horizontalRuler::after {
+  content: attr(data-value);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  padding: 0.2rem 0.6rem;
+  font-family: monospace;
+  font-size: 0.5rem;
+  background: #fafafa;
+}
+
+.verticalRuler {
+  display: grid;
+  align-content: center;
+  position: absolute;
+  top: -2px;
+  left: -1rem;
+  bottom: -2px;
+  width: 1px;
+  background: #ccc;
+}
+.verticalRuler::after {
+  content: attr(data-value);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  rotate: -90deg;
+  padding: 0.2rem 0.6rem;
+  font-family: monospace;
+  font-size: 0.5rem;
+  white-space: nowrap;
+  background: #fafafa;
+}

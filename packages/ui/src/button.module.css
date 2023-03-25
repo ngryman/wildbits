@@ -24,13 +24,14 @@
 
 .root.type-normal {
   background: transparent;
-  color: hsl(214deg 11% 12% / 80%);
+  /* color: hsl(214deg 11% 12% / 80%); */
 }
 .root.type-normal:hover {
-  background: rgb(46 50 56 / 15%);
+  background: #ddd;
 }
 
 .root.active {
-  background: rgb(51 112 255 / 10%);
-  color: rgb(51 112 255);
+  background: #eee;
+  /* background: rgb(51 112 255 / 10%);
+  color: rgb(51 112 255); */
 }

@@ -26,6 +26,8 @@ export type ImageAttributes = {
   alt?: string
   src: string
   title?: string
+  width?: number
+  originalWidth?: number
 }
 
 /**
@@ -65,19 +67,12 @@ export const Image = Node.create<ImageOptions>({
 
   addAttributes() {
     return {
-      align: {
-        default: 'center',
-        rendered: false,
-      },
-      alt: {
-        default: null,
-      },
-      src: {
-        default: null,
-      },
-      title: {
-        default: null,
-      },
+      align: { default: 'center', rendered: false },
+      alt: { default: null },
+      src: { default: null },
+      title: { default: null },
+      width: { default: null },
+      originalWidth: { default: null },
     }
   },
 

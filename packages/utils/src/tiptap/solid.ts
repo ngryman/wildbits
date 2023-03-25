@@ -1,10 +1,10 @@
 import { DecorationWithType, NodeView, NodeViewRenderer, NodeViewRendererProps } from '@tiptap/core'
-import { Attrs, DOMSerializer } from '@tiptap/pm/model'
-import { Component, Setter, createRoot } from 'solid-js'
-import { createStore } from 'solid-js/store'
+import { DOMSerializer } from '@tiptap/pm/model'
+import { Component, createRoot } from 'solid-js'
+import { createStore, SetStoreFunction } from 'solid-js/store'
 
 export type NodeViewProps<Attributes> = {
-  attributes: Attributes
+  attrs: Attributes
   children: globalThis.Node | null
   decorations: DecorationWithType[]
   selected: boolean
@@ -12,12 +12,12 @@ export type NodeViewProps<Attributes> = {
   deleteNode: VoidFunction
 }
 
-class SolidNodeView<A> extends NodeView<Component<NodeViewProps<A>>> {
+class SolidNodeView<Attributes> extends NodeView<Component<NodeViewProps<Attributes>>> {
   dispose!: VoidFunction
   domElement!: HTMLElement
-  setComponentProps!: Setter<Partial<NodeViewProps<A>>>
+  setComponentProps!: SetStoreFunction<NodeViewProps<Attributes>>
 
-  constructor(component: Component<NodeViewProps<A>>, props: NodeViewRendererProps) {
+  constructor(component: Component<NodeViewProps<Attributes>>, props: NodeViewRendererProps) {
     super(component, props, {})
 
     const { toDOM } = this.node.type.spec
@@ -26,12 +26,12 @@ class SolidNodeView<A> extends NodeView<Component<NodeViewProps<A>>> {
     createRoot(dispose => {
       this.dispose = dispose
 
-      const [componentProps, setComponentProps] = createStore<NodeViewProps<A>>({
-        attributes: this.node.attrs as A,
+      const [componentProps, setComponentProps] = createStore<NodeViewProps<Attributes>>({
+        attrs: this.node.attrs as Attributes,
         children,
         decorations: this.decorations,
         selected: false,
-        setAttributes: attributes => this.updateAttributes(attributes as Attrs),
+        setAttributes: attrs => this.updateAttributes(attrs),
         deleteNode: () => this.deleteNode(),
       })
       this.setComponentProps = setComponentProps
@@ -52,6 +52,19 @@ class SolidNodeView<A> extends NodeView<Component<NodeViewProps<A>>> {
 
   deselectNode() {
     this.setComponentProps({ selected: false })
+  }
+
+  /**
+   * Prevents PM to re-create the underlying DOM node when attributes are
+   * updated.
+   */
+  update() {
+    return true
+  }
+
+  updateAttributes(attrs: Partial<Attributes>) {
+    super.updateAttributes(attrs as Record<string, unknown>)
+    this.setComponentProps(props => ({ ...props, attrs: { ...props.attrs, ...attrs } }))
   }
 
   destroy() {

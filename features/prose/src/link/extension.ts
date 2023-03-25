@@ -38,9 +38,7 @@ export const Link = LinkExtension.extend({
   addAttributes() {
     return {
       ...this.parent?.(),
-      title: {
-        default: null,
-      },
+      title: { default: null },
     }
   },
 
