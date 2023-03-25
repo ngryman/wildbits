@@ -31,7 +31,6 @@ importers:
     specifiers:
       '@motionone/solid': ^10.16.0
       '@solid-primitives/keyboard': ^1.0.11
-      '@solid-primitives/map': ^0.4.3
       '@solidjs/router': ^0.8.1
       '@wildbits/collaboration': workspace:*
       '@wildbits/editor': workspace:*
@@ -47,7 +46,6 @@ importers:
     dependencies:
       '@motionone/solid': 10.16.0_solid-js@1.6.15
       '@solid-primitives/keyboard': 1.0.11_solid-js@1.6.15
-      '@solid-primitives/map': 0.4.3_solid-js@1.6.15
       '@solidjs/router': 0.8.1_solid-js@1.6.15
       '@wildbits/collaboration': link:../features/collaboration
       '@wildbits/editor': link:../packages/editor
