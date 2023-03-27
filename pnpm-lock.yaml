@@ -135,6 +135,7 @@ importers:
       '@tiptap/extension-horizontal-rule': 2.0.0-beta.220
       '@tiptap/extension-italic': 2.0.0-beta.220
       '@tiptap/extension-link': 2.0.0-beta.220
+      '@tiptap/extension-underline': 2.0.0-beta.220
       '@tiptap/pm': 2.0.0-beta.220
       '@wildbits/utils': workspace:*
     dependencies:
@@ -143,6 +144,7 @@ importers:
       '@tiptap/extension-horizontal-rule': 2.0.0-beta.220_ohumfzynigfck3hzagxvh2a4ky
       '@tiptap/extension-italic': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@tiptap/extension-link': 2.0.0-beta.220_ohumfzynigfck3hzagxvh2a4ky
+      '@tiptap/extension-underline': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@wildbits/utils': link:../../packages/utils
 
@@ -1497,6 +1499,14 @@ packages:
 
   /@tiptap/extension-typography/2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q:
     resolution: {integrity: sha512-MsQ5WFPUzoC/l8kxnUEYc2dR2eWgve0Ga8+qAJ/s0CLcf7UYGGoFGGobSYwjk++fgNUJMPKEvTpZU2eqjTYAPA==}
+    peerDependencies:
+      '@tiptap/core': ^2.0.0-beta.209
+    dependencies:
+      '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
+    dev: false
+
+  /@tiptap/extension-underline/2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q:
+    resolution: {integrity: sha512-MW2EjL12xW01Nmlwih7wHwHSn8zGUtsyruqPH8sTxnOtbVOmMBnmFj0/LW+TvwqjlNdkwkrteZO4svLdD0MEhw==}
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.209
     dependencies:

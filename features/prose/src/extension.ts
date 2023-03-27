@@ -1,4 +1,5 @@
 import { Extension } from '@tiptap/core'
+import { Underline } from '@tiptap/extension-underline'
 
 import { Bold } from './bold'
 import { HorizontalRule } from './horizontal-rule'
@@ -9,6 +10,6 @@ export const Prose = Extension.create({
   name: 'prose',
 
   addExtensions() {
-    return [Bold, HorizontalRule, Italic, Link]
+    return [Bold, HorizontalRule, Italic, Link, Underline]
   },
 })
