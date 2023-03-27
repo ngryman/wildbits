@@ -1,4 +1,4 @@
-import { createEffect, createMemo, onMount } from 'solid-js'
+import { createMemo, onMount } from 'solid-js'
 import { createStore, produce } from 'solid-js/store'
 
 import styles from './resize.module.css'
@@ -58,10 +58,6 @@ export function Resize(props: Props) {
 
   const aspectRatio = () => state.startHeight / state.startWidth
   const height = () => Math.ceil(width() * aspectRatio())
-
-  createEffect(() => {
-    console.log(width(), aspectRatio(), height())
-  })
 
   const startResize = (handle: ResizeHandle, e: PointerEvent) => {
     const { width, height } = props.target.getBoundingClientRect()

@@ -10,7 +10,7 @@ import styles from './image.module.css'
 // TODO: sync with CSS
 const MIN_WITH_REM = 10
 
-export function ImageView(props: NodeViewProps<ImageAttributes>) {
+export function Image(props: NodeViewProps<ImageAttributes>) {
   let figureEl!: HTMLImageElement
   let imageEl!: HTMLImageElement
   const minWidth = remToPx(MIN_WITH_REM)

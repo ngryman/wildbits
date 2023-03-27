@@ -10,7 +10,8 @@ type Props = ParentProps & {
   active?: boolean
   size?: Size
   type?: Type
-  onClick?(): void
+  disabled?: boolean
+  onClick?(e: MouseEvent): void
 }
 
 export function Button(props: Props) {
@@ -22,7 +23,8 @@ export function Button(props: Props) {
         [styles['size-' + (props.size || 'normal')]]: true,
         [styles['type-' + (props.type || 'normal')]]: true,
       }}
-      onClick={() => props.onClick?.()}
+      disabled={props.disabled}
+      onClick={e => props.onClick?.(e)}
     >
       {props.children}
     </button>

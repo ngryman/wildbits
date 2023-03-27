@@ -5,7 +5,7 @@
   align-items: center;
   border: 0 solid transparent;
   border-radius: 2px;
-  padding: 0.6em;
+  padding: 0.6rem;
   user-select: none;
   cursor: pointer;
   vertical-align: middle;
@@ -13,17 +13,18 @@
 }
 
 .root.size-small {
-  font-size: 0.7em;
+  font-size: 0.9rem;
 }
 .root.size-normal {
-  font-size: 1em;
+  font-size: 1rem;
 }
 .root.size-large {
-  font-size: 1em;
+  font-size: 1rem;
 }
 
 .root.type-normal {
   background: transparent;
+  color: #444;
   /* color: hsl(214deg 11% 12% / 80%); */
 }
 .root.type-normal:hover {

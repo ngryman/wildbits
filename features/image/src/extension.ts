@@ -11,7 +11,7 @@ import {
 } from '@wildbits/utils'
 
 import * as commands from './commands'
-import { ImageView } from './components'
+import { Image as ImageView } from './components'
 
 import styles from './components/image.module.css'
 

@@ -100,6 +100,20 @@ importers:
       '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@wildbits/utils': link:../../packages/utils
 
+  features/floating-menu:
+    specifiers:
+      '@tiptap/core': 2.0.0-beta.220
+      '@tiptap/pm': 2.0.0-beta.220
+      '@wildbits/ui': workspace:*
+      '@wildbits/utils': workspace:*
+      solid-js: ^1.6.15
+    dependencies:
+      '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
+      '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
+      '@wildbits/ui': link:../../packages/ui
+      '@wildbits/utils': link:../../packages/utils
+      solid-js: 1.6.15
+
   features/image:
     specifiers:
       '@tiptap/core': 2.0.0-beta.220
@@ -163,6 +177,7 @@ importers:
       '@tiptap/starter-kit': 2.0.0-beta.220
       '@wildbits/collaboration': workspace:*
       '@wildbits/columns': workspace:*
+      '@wildbits/floating-menu': workspace:*
       '@wildbits/image': workspace:*
       '@wildbits/prose': workspace:*
       '@wildbits/utils': workspace:*
@@ -182,6 +197,7 @@ importers:
       '@tiptap/starter-kit': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
       '@wildbits/collaboration': link:../../features/collaboration
       '@wildbits/columns': link:../../features/columns
+      '@wildbits/floating-menu': link:../../features/floating-menu
       '@wildbits/image': link:../../features/image
       '@wildbits/prose': link:../../features/prose
       '@wildbits/utils': link:../utils
