@@ -14,6 +14,6 @@ export function createPersistence(locator: Accessor<Locator>, doc: Accessor<Doc>
       persistence.destroy()
     }
 
-    return new IndexeddbPersistence(locator().noteId, doc())
+    return new IndexeddbPersistence(locator().id, doc())
   })
 }

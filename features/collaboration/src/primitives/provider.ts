@@ -38,8 +38,8 @@ export function createProvider(options: ProviderOptions): Accessor<Provider> {
       provider.destroy()
     }
 
-    const { noteId, key } = options.locator()
-    return new WebrtcProvider(noteId, options.doc(), {
+    const { id, key } = options.locator()
+    return new WebrtcProvider(id, options.doc(), {
       password: key,
       signaling: [options.signalingServer],
       peerOpts: { config: { iceServers } },

@@ -1,25 +1,17 @@
 import { Navigate } from '@solidjs/router'
-import { generateKey } from '@wildbits/utils'
-import { nanoid } from 'nanoid'
+import { Locator } from '@wildbits/note'
 import { createResource, Resource, Show } from 'solid-js'
 
 export default function HomePage() {
-  const path = createPath()
+  const locator = createLocator()
 
   return (
-    <Show when={path()}>
-      <Navigate href={path()!} />
+    <Show when={locator()}>
+      <Navigate href={locator()!.path} />
     </Show>
   )
 }
 
-function createPath(): Resource<string> {
-  return createResource(generatePath)[0]
-}
-
-async function generatePath(): Promise<string> {
-  const id = nanoid()
-  const key = await generateKey()
-  const path = `/${id}#${key}`
-  return path
+function createLocator(): Resource<Locator> {
+  return createResource(Locator.generate)[0]
 }

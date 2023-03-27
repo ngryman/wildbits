@@ -37,7 +37,6 @@ importers:
       '@wildbits/note': workspace:*
       '@wildbits/ui': workspace:*
       '@wildbits/utils': workspace:*
-      nanoid: ^4.0.1
       solid-js: ^1.6.15
       vite: ^4.2.1
       vite-plugin-solid: ^2.5.0
@@ -52,7 +51,6 @@ importers:
       '@wildbits/note': link:../features/note
       '@wildbits/ui': link:../packages/ui
       '@wildbits/utils': link:../packages/utils
-      nanoid: 4.0.1
       solid-js: 1.6.15
       y-indexeddb: 9.0.9_yjs@13.5.51
       yjs: 13.5.51
@@ -119,10 +117,14 @@ importers:
   features/note:
     specifiers:
       '@solid-primitives/map': ^0.4.3
+      '@wildbits/utils': workspace:^0.0.0
+      nanoid: ^4.0.1
       solid-js: ^1.6.15
       yjs: ^13.5.51
     dependencies:
       '@solid-primitives/map': 0.4.3_solid-js@1.6.15
+      '@wildbits/utils': link:../../packages/utils
+      nanoid: 4.0.1
       solid-js: 1.6.15
       yjs: 13.5.51
 

@@ -8,42 +8,41 @@ import styles from './menu.module.css'
 
 type Props = {
   notes: Note[]
-  onDeleteNote: (noteId: string) => void
+  onCreateNote?(): void
+  onDeleteNote?(id: string): void
 }
 
 export function Menu(props: Props) {
   const overIndex = createAtom(-1)
 
-  function handleOver(index: number) {
-    overIndex(index)
-  }
+  const createNote = () => props.onCreateNote?.()
+  const resetOverIndex = () => overIndex(-1)
 
-  function handleLeave() {
-    overIndex(-1)
-  }
-
-  function handleDeleteClick() {
+  const deleteNote = () => {
     const note = props.notes[overIndex()]
-    props.onDeleteNote(note.id)
+    props.onDeleteNote?.(note.id)
   }
 
   return (
-    <nav class={styles.root} onPointerLeave={handleLeave}>
+    <nav class={styles.root} onPointerLeave={resetOverIndex}>
       <For each={props.notes}>
         {(note, i) => (
           <A
             class={styles.link}
             activeClass={styles.active}
             href={note.path}
-            onPointerOver={[handleOver, i()]}
+            onPointerOver={[overIndex, i()]}
           >
             {note.title}
           </A>
         )}
       </For>
+      <Button onClick={createNote}>
+        <Icons.Plus />
+      </Button>
       <Show when={overIndex() !== -1}>
         <div class={styles.actions} style={{ ['--index']: overIndex() }}>
-          <Button size="normal" onClick={handleDeleteClick}>
+          <Button size="normal" onClick={deleteNote}>
             <Icons.Delete />
           </Button>
         </div>

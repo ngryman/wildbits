@@ -13,11 +13,10 @@
     "@solid-primitives/keyboard": "^1.0.11",
     "@solidjs/router": "^0.8.1",
     "@wildbits/collaboration": "workspace:*",
-    "@wildbits/note": "workspace:*",
     "@wildbits/editor": "workspace:*",
+    "@wildbits/note": "workspace:*",
     "@wildbits/ui": "workspace:*",
     "@wildbits/utils": "workspace:*",
-    "nanoid": "^4.0.1",
     "solid-js": "^1.6.15",
     "y-indexeddb": "^9.0.9",
     "yjs": "^13.5.51"

@@ -9,13 +9,13 @@ import { Workspace } from '../layout'
 import { createPersistence } from '../signals'
 
 export default function EditorPage() {
-  const [notes, { createNoteIfNotExists, deleteNote, updateNoteTitle }] = createNotes()
+  const [notes, { createNote, createNoteIfNotExists, deleteNote, updateNoteTitle }] = createNotes()
   const user = createUser()
   const params = useParams()
   const location = useLocation()
   const navigate = useNavigate()
 
-  const locator: Accessor<Locator> = () => ({ noteId: params.id, key: location.hash.slice(1) })
+  const locator: Accessor<Locator> = () => new Locator(params.id, location.hash.slice(1))
   const doc = createMemo(() => new Doc({ guid: params.id }))
   createPersistence(locator, doc)
 
@@ -38,7 +38,7 @@ export default function EditorPage() {
   createEffect(() => {
     editor().on('create', ({ editor }) => {
       editor.on('update', () => {
-        updateNoteTitle(locator().noteId, editor.storage.metadata.title)
+        updateNoteTitle(locator().id, editor.storage.metadata.title)
       })
     })
   })
@@ -52,7 +52,12 @@ export default function EditorPage() {
   //   editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: false }).run()
   // })
 
-  function handleDeleteNote(noteId: string) {
+  const handleCreateNote = async () => {
+    const locator = await createNote()
+    navigate(locator.path)
+  }
+
+  const handleDeleteNote = (noteId: string) => {
     deleteNote(noteId)
 
     if (notes().length > 0) {
@@ -63,7 +68,7 @@ export default function EditorPage() {
   }
 
   return (
-    <Workspace notes={notes()} onDeleteNote={handleDeleteNote}>
+    <Workspace notes={notes()} onCreateNote={handleCreateNote} onDeleteNote={handleDeleteNote}>
       <EditorView editor={editor} />
       <Peers peers={peers} />
     </Workspace>

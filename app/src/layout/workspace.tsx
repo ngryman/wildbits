@@ -7,13 +7,18 @@ import styles from './workspace.module.css'
 
 type Props = ParentProps & {
   notes: Note[]
-  onDeleteNote: (noteId: string) => void
+  onCreateNote: () => void
+  onDeleteNote: (id: string) => void
 }
 
 export function Workspace(props: Props) {
   return (
     <main class={styles.root}>
-      <Menu notes={props.notes} onDeleteNote={props.onDeleteNote} />
+      <Menu
+        notes={props.notes}
+        onCreateNote={props.onCreateNote}
+        onDeleteNote={props.onDeleteNote}
+      />
       {props.children}
     </main>
   )
