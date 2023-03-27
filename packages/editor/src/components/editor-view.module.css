@@ -105,7 +105,7 @@
   letter-spacing: var(--link-font-tracking);
 }
 
-.editor code {
+.editor :not(pre) code {
   border: 1px solid #eee;
   border-radius: 4px;
   padding: 0.2em 0.5rem;
@@ -132,6 +132,10 @@
 }
 
 .editor pre {
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 1rem;
+  background: #fff;
   white-space: pre-wrap;
 }
 
