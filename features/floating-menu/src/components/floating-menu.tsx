@@ -46,12 +46,13 @@ export function FloatingMenu(props: PluginViewProps<FloatingMenuOptions>) {
 
     const start = view.coordsAtPos(from)
     const end = view.coordsAtPos(to, -1)
-    const top = Math.min(start.top, end.top)
+    const top = Math.min(start.top, end.top) + window.scrollY
 
+    // Compute new bounds if we're on the same line or if we go upwards.
     if (start.top === end.top || top !== prevBounds.top) {
       return new DOMRect(
         Math.min(start.left, end.left),
-        start.top + window.scrollY,
+        top,
         Math.abs(end.right - start.left),
         Math.abs(end.bottom - start.top)
       )
