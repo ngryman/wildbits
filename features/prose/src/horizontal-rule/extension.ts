@@ -2,6 +2,8 @@ import { HorizontalRule as HorizontalRuleExtension } from '@tiptap/extension-hor
 import { nodeInputRule } from './utils'
 
 export const HorizontalRule = HorizontalRuleExtension.extend({
+  selectable: false,
+
   addInputRules() {
     return [
       nodeInputRule({
