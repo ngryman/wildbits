@@ -3,7 +3,8 @@
   grid-auto-flow: row;
   grid-auto-columns: 1fr;
   align-content: start;
-  padding: 1em;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  padding: 0.75em;
   word-break: break-word;
-  background: lightgoldenrodyellow;
 }
