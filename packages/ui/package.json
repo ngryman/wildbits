@@ -6,6 +6,7 @@
   "module": "src/index.ts",
   "types": "src/index.ts",
   "dependencies": {
+    "@wildbits/utils": "workspace:*",
     "solid-js": "^1.6.15"
   }
 }

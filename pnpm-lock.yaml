@@ -206,8 +206,10 @@ importers:
 
   packages/ui:
     specifiers:
+      '@wildbits/utils': workspace:*
       solid-js: ^1.6.15
     dependencies:
+      '@wildbits/utils': link:../utils
       solid-js: 1.6.15
 
   packages/utils:
