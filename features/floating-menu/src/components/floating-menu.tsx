@@ -1,4 +1,4 @@
-import { isTextSelection } from '@tiptap/core'
+import { findParentNodeClosestToPos, isTextSelection } from '@tiptap/core'
 import { BubbleMenu } from '@wildbits/ui'
 import { PluginViewProps } from '@wildbits/utils'
 import { createMemo, For, Show } from 'solid-js'
@@ -11,7 +11,7 @@ const emptyRect = new DOMRect(0, 0, 0, 0)
 export function FloatingMenu(props: PluginViewProps<FloatingMenuOptions>) {
   const show = () => {
     const { doc, selection } = props.state
-    const { empty, from, to } = selection
+    const { $anchor, empty, from, to } = selection
 
     // NOTE: Sometime check for `empty` is not enough. For example, double
     // clicking an empty paragraph returns a node size of 2. So we also check
@@ -19,7 +19,14 @@ export function FloatingMenu(props: PluginViewProps<FloatingMenuOptions>) {
     const isEmptyTextBlock =
       !doc.textBetween(from, to).length && isTextSelection(props.state.selection)
 
-    return props.editor.view.hasFocus() && !empty && !isEmptyTextBlock
+    // Hide in code blocks.
+    // TODO: We might want to provide a way to configure that instead of hard
+    // coding it here.
+    const isInCodeBlock = Boolean(
+      findParentNodeClosestToPos($anchor, node => node.type.name === 'codeBlock')
+    )
+
+    return props.editor.view.hasFocus() && !empty && !isEmptyTextBlock && !isInCodeBlock
   }
 
   const bounds = createMemo<DOMRect>(prevBounds => {
