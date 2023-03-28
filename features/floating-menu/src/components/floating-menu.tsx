@@ -1,4 +1,4 @@
-import { posToDOMRect, isTextSelection } from '@tiptap/core'
+import { isTextSelection } from '@tiptap/core'
 import { BubbleMenu } from '@wildbits/ui'
 import { PluginViewProps } from '@wildbits/utils'
 import { createMemo, For, Show } from 'solid-js'
@@ -22,11 +22,28 @@ export function FloatingMenu(props: PluginViewProps<FloatingMenuOptions>) {
     return props.editor.view.hasFocus() && !empty && !isEmptyTextBlock
   }
 
-  const bounds = createMemo(() =>
-    show()
-      ? posToDOMRect(props.editor.view, props.state.selection.from, props.state.selection.to)
-      : emptyRect
-  )
+  const bounds = createMemo<DOMRect>(prevBounds => {
+    if (!show()) return emptyRect
+
+    const { view } = props.editor
+    const { selection } = props.state
+    const { from, to } = selection
+
+    const start = view.coordsAtPos(from)
+    const end = view.coordsAtPos(to, -1)
+    const top = Math.min(start.top, end.top)
+
+    if (start.top === end.top || top !== prevBounds.top) {
+      return new DOMRect(
+        Math.min(start.left, end.left),
+        start.top + window.scrollY,
+        Math.abs(end.right - start.left),
+        Math.abs(end.bottom - start.top)
+      )
+    }
+
+    return prevBounds
+  }, emptyRect)
 
   return (
     <Show when={show()}>
