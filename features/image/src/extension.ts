@@ -1,5 +1,5 @@
 import { mergeAttributes, Node } from '@tiptap/core'
-import { Plugin } from '@tiptap/pm/state'
+import { Plugin, PluginKey } from '@tiptap/pm/state'
 import {
   createNodeView,
   nodeInputRule,
@@ -127,6 +127,7 @@ export const Image = Node.create<ImageOptions>({
   addProseMirrorPlugins() {
     return [
       new Plugin({
+        key: new PluginKey(this.name),
         props: {
           handleDOMEvents: {
             drop(view, event) {

@@ -22,7 +22,7 @@ export const FloatingMenu = Extension.create<FloatingMenuOptions>({
   addProseMirrorPlugins() {
     return [
       new Plugin({
-        key: new PluginKey('floating-menu-internal'),
+        key: new PluginKey(this.name),
         view: () => createPluginView(FloatingMenuView, this.options, this.editor),
       }),
     ]
