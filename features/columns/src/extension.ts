@@ -15,6 +15,10 @@ import { Column } from './extensions'
 
 import styles from './components/columns.module.css'
 
+export type ColumnsOptions = {
+  HTMLAttributes: Record<string, unknown>
+}
+
 export type ColumnsAttributes = {
   count?: number
 }
@@ -27,6 +31,12 @@ export const Columns = Node.create({
   defining: true,
   isolating: true,
   content: 'column{2,}',
+
+  addOptions() {
+    return {
+      HTMLAttributes: { class: styles.root },
+    }
+  },
 
   addExtensions() {
     return [Column]
@@ -47,7 +57,7 @@ export const Columns = Node.create({
   },
 
   renderHTML({ HTMLAttributes }) {
-    return ['div', mergeAttributes(HTMLAttributes, { class: styles.root }), 0]
+    return ['div', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0]
   },
 
   addCommands() {
