@@ -5,7 +5,8 @@
   position: absolute;
   z-index: 1;
   top: -1rem;
-  translate: 0 -100%;
+  left: 50%;
+  translate: -50% -100%;
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 0.4rem;

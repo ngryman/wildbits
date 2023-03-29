@@ -21,6 +21,7 @@
     "@wildbits/columns": "workspace:*",
     "@wildbits/floating-menu": "workspace:*",
     "@wildbits/image": "workspace:*",
+    "@wildbits/katex": "workspace:*",
     "@wildbits/prose": "workspace:*",
     "@wildbits/utils": "workspace:*",
     "solid-js": "^1.6.15",

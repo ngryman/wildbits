@@ -1,0 +1,19 @@
+{
+  "name": "@wildbits/katex",
+  "version": "0.0.0",
+  "description": "The katex feature of Wildbits.",
+  "type": "module",
+  "module": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@tiptap/core": "2.0.0-beta.220",
+    "@tiptap/pm": "2.0.0-beta.220",
+    "@wildbits/ui": "workspace:*",
+    "@wildbits/utils": "workspace:*",
+    "katex": "^0.16.4",
+    "solid-js": "^1.6.15"
+  },
+  "devDependencies": {
+    "@types/katex": "^0.16.0"
+  }
+}

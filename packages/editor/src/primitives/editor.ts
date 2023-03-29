@@ -19,6 +19,7 @@ import styles from '../components/editor-view.module.css'
 import { createThemeCSSVars, loadFonts, Theme } from '../theme'
 import { createTypographyCSSVars, Typography } from '../typography'
 import { Metadata } from '../extensions'
+import { Katex } from '@wildbits/katex'
 
 export type EditorOptions = {
   debug?: boolean
@@ -93,6 +94,7 @@ export function createEditor(options: EditorOptions): Accessor<Editor> {
           actions: ['bold', 'italic', 'underline', 'strike', 'code'],
         }),
         Image,
+        Katex,
         Prose,
         Metadata,
         StarterKit.configure({

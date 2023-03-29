@@ -1,0 +1,13 @@
+.form {
+  display: flex;
+}
+
+.input {
+  border: 0;
+  box-sizing: content-box;
+  padding: 0.2em;
+  min-width: 20ch;
+  max-width: 80ch;
+  line-height: 1em;
+  font-family: monospace;
+}

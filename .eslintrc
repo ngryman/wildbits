@@ -10,6 +10,7 @@
   ],
   "rules": {
     "no-redeclare": ["error", { "builtinGlobals": false }],
+    "solid/no-innerhtml": "off",
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/no-namespace": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
