@@ -18,7 +18,7 @@ const COLORS = [
 
 const defaultUser: User = {
   name: `anonymous${Math.random().toString().slice(2, 6)}`,
-  color: 'black',
+  color: getRandomColor(),
 }
 
 export function createUser(): Accessor<User> {
