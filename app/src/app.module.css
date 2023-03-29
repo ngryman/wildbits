@@ -6,6 +6,7 @@ html {
   /* background: #272727; */
   background: #fafafa;
   font-family: var(--font-family);
+  overflow-y: scroll;
 }
 
 *,
