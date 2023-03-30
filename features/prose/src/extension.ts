@@ -2,6 +2,7 @@ import { Extension } from '@tiptap/core'
 import { Underline } from '@tiptap/extension-underline'
 
 import { Bold } from './bold'
+import { BulletList } from './bullet-list'
 import { Heading } from './heading'
 import { HorizontalRule } from './horizontal-rule'
 import { Italic } from './italic'
@@ -14,6 +15,7 @@ export const Prose = Extension.create({
   addExtensions() {
     return [
       Bold,
+      BulletList,
       Heading,
       HorizontalRule,
       Italic,

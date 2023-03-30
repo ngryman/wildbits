@@ -98,6 +98,7 @@ export function createEditor(options: EditorOptions): Accessor<Editor> {
         Prose,
         Metadata,
         StarterKit.configure({
+          bulletList: false,
           gapcursor: false,
           history: false,
           bold: false,
