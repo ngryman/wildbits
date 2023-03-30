@@ -1,17 +1,13 @@
 import { Navigate } from '@solidjs/router'
-import { Locator } from '@wildbits/note'
-import { createResource, Resource, Show } from 'solid-js'
+import { useLastLocator } from '@wildbits/note'
+import { Show } from 'solid-js'
 
 export default function HomePage() {
-  const locator = createLocator()
+  const [lastLocator] = useLastLocator()
 
   return (
-    <Show when={locator()}>
-      <Navigate href={locator()!.path} />
+    <Show when={lastLocator()}>
+      <Navigate href={lastLocator()!.path} />
     </Show>
   )
-}
-
-function createLocator(): Resource<Locator> {
-  return createResource(Locator.generate)[0]
 }

@@ -29,12 +29,14 @@ export function createUser(): Accessor<User> {
 }
 
 async function getInitialUser(): Promise<User> {
-  return (
-    JSON.parse(window.localStorage.getItem('user')!) || {
+  try {
+    return JSON.parse(localStorage.getItem('user')!)
+  } catch (e) {
+    return {
       name: await getRandomName(),
       color: getRandomColor(),
     }
-  )
+  }
 }
 
 async function getRandomName(): Promise<string> {
