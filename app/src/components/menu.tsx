@@ -1,7 +1,7 @@
 import { A } from '@solidjs/router'
+import { Note } from '@wildbits/model'
 import { Button, Icons } from '@wildbits/ui'
 import { createAtom } from '@wildbits/utils'
-import { Note } from '@wildbits/note'
 import { For, Show } from 'solid-js'
 
 import styles from './menu.module.css'

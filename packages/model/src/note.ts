@@ -1,7 +1,7 @@
 import { ReactiveMap } from '@solid-primitives/map'
 import { Accessor, createEffect } from 'solid-js'
 
-import { Locator } from '..'
+import { Locator } from '.'
 
 export type Note = {
   id: string

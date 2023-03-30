@@ -1,4 +1,4 @@
-import { Locator } from '@wildbits/note'
+import { Locator } from '@wildbits/model'
 import { Accessor, createMemo } from 'solid-js'
 import { WebrtcProvider } from 'y-webrtc'
 import { Doc } from 'yjs'

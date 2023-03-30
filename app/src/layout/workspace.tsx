@@ -1,4 +1,4 @@
-import { Note } from '@wildbits/note'
+import { Note } from '@wildbits/model'
 import { ParentProps } from 'solid-js'
 
 import { Menu } from '../components'

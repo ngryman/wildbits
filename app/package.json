@@ -14,7 +14,7 @@
     "@solidjs/router": "^0.8.1",
     "@wildbits/collaboration": "workspace:*",
     "@wildbits/editor": "workspace:*",
-    "@wildbits/note": "workspace:*",
+    "@wildbits/model": "workspace:*",
     "@wildbits/ui": "workspace:*",
     "@wildbits/utils": "workspace:*",
     "solid-js": "^1.6.15",

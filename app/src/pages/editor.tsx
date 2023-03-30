@@ -1,12 +1,11 @@
 import { createPeers, createProvider, createUser, Peers } from '@wildbits/collaboration'
 import { EditorView, createEditor } from '@wildbits/editor'
-import { createDoc, createNotes, Locator, useLastLocator } from '@wildbits/note'
+import { createDoc, createNotes, createState, Locator, useLastLocator } from '@wildbits/model'
 import { useParams, useLocation, useNavigate } from '@solidjs/router'
 import { createEffect, createRenderEffect, on } from 'solid-js'
 
 import { Workspace } from '../layout'
 import { createPersistence } from '../signals'
-import { createState } from '../primitives'
 import welcomeContent from '../welcome.html?raw'
 
 export default function EditorPage() {
@@ -54,7 +53,7 @@ export default function EditorPage() {
       persistence().once('synced', () => {
         if (editor.isEmpty && state.pristine) {
           editor.commands.setContent(welcomeContent)
-          // XXX: The update event doesn't get triggered so we manullay change
+          // XXX: The update event doesn't get triggered so we manually change
           // the title
           updateNoteTitle(locator().id, 'Welcome to Wildbits!')
         }

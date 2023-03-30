@@ -34,7 +34,7 @@ importers:
       '@solidjs/router': ^0.8.1
       '@wildbits/collaboration': workspace:*
       '@wildbits/editor': workspace:*
-      '@wildbits/note': workspace:*
+      '@wildbits/model': workspace:*
       '@wildbits/ui': workspace:*
       '@wildbits/utils': workspace:*
       solid-js: ^1.6.15
@@ -48,7 +48,7 @@ importers:
       '@solidjs/router': 0.8.1_solid-js@1.6.15
       '@wildbits/collaboration': link:../features/collaboration
       '@wildbits/editor': link:../packages/editor
-      '@wildbits/note': link:../features/note
+      '@wildbits/model': link:../packages/model
       '@wildbits/ui': link:../packages/ui
       '@wildbits/utils': link:../packages/utils
       solid-js: 1.6.15
@@ -74,7 +74,7 @@ importers:
       '@tiptap/extension-collaboration': 2.0.0-beta.220
       '@tiptap/extension-collaboration-cursor': 2.0.0-beta.220
       '@tiptap/pm': 2.0.0-beta.220
-      '@wildbits/note': workspace:*
+      '@wildbits/model': workspace:*
       '@wildbits/utils': workspace:*
       prosemirror-model: ^1.19.0
       prosemirror-state: ^1.4.2
@@ -89,7 +89,7 @@ importers:
       '@tiptap/extension-collaboration': 2.0.0-beta.220_ynezejixgkllukncpjhwuvpzpq
       '@tiptap/extension-collaboration-cursor': 2.0.0-beta.220_esdptbacmf7cqkdw5oju3chb2u
       '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
-      '@wildbits/note': link:../note
+      '@wildbits/model': link:../../packages/model
       '@wildbits/utils': link:../../packages/utils
       prosemirror-model: 1.19.0
       prosemirror-state: 1.4.2
@@ -157,20 +157,6 @@ importers:
     devDependencies:
       '@types/katex': 0.16.0
 
-  features/note:
-    specifiers:
-      '@solid-primitives/map': ^0.4.3
-      '@wildbits/utils': workspace:^0.0.0
-      nanoid: ^4.0.1
-      solid-js: ^1.6.15
-      yjs: ^13.5.51
-    dependencies:
-      '@solid-primitives/map': 0.4.3_solid-js@1.6.15
-      '@wildbits/utils': link:../../packages/utils
-      nanoid: 4.0.1
-      solid-js: 1.6.15
-      yjs: 13.5.51
-
   features/prose:
     specifiers:
       '@tiptap/core': 2.0.0-beta.220
@@ -236,6 +222,20 @@ importers:
       '@wildbits/katex': link:../../features/katex
       '@wildbits/prose': link:../../features/prose
       '@wildbits/utils': link:../utils
+      solid-js: 1.6.15
+      yjs: 13.5.51
+
+  packages/model:
+    specifiers:
+      '@solid-primitives/map': ^0.4.3
+      '@wildbits/utils': workspace:^0.0.0
+      nanoid: ^4.0.1
+      solid-js: ^1.6.15
+      yjs: ^13.5.51
+    dependencies:
+      '@solid-primitives/map': 0.4.3_solid-js@1.6.15
+      '@wildbits/utils': link:../utils
+      nanoid: 4.0.1
       solid-js: 1.6.15
       yjs: 13.5.51
 

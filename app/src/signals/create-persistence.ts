@@ -1,4 +1,4 @@
-import { Locator } from '@wildbits/note'
+import { Locator } from '@wildbits/model'
 import { Accessor, createMemo } from 'solid-js'
 import { IndexeddbPersistence } from 'y-indexeddb'
 import { Doc } from 'yjs'
