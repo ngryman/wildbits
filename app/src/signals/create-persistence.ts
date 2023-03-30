@@ -1,5 +1,5 @@
 import { Locator } from '@wildbits/note'
-import { Accessor, createEffect } from 'solid-js'
+import { Accessor, createMemo } from 'solid-js'
 import { IndexeddbPersistence } from 'y-indexeddb'
 import { Doc } from 'yjs'
 
@@ -8,12 +8,15 @@ export type PersistenceOptions = {
   doc: Doc
 }
 
-export function createPersistence(locator: Accessor<Locator>, doc: Accessor<Doc>) {
-  createEffect<IndexeddbPersistence>(persistence => {
-    if (persistence) {
-      persistence.destroy()
+export function createPersistence(
+  locator: Accessor<Locator>,
+  doc: Accessor<Doc>
+): Accessor<IndexeddbPersistence> {
+  const persistence = createMemo<IndexeddbPersistence>(prevPersistence => {
+    if (prevPersistence) {
+      prevPersistence.destroy()
     }
-
     return new IndexeddbPersistence(locator().id, doc())
   })
+  return persistence
 }

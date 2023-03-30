@@ -1,19 +1,7 @@
 import { ReactiveMap } from '@solid-primitives/map'
-import { generateKey } from '@wildbits/utils'
-import { nanoid } from 'nanoid'
 import { Accessor, createEffect } from 'solid-js'
 
-export class Locator {
-  constructor(readonly id: string, readonly key: string) {}
-
-  get path(): string {
-    return `/${this.id}#${this.key}`
-  }
-
-  static async generate(): Promise<Locator> {
-    return new Locator(nanoid(), await generateKey())
-  }
-}
+import { Locator } from '..'
 
 export type Note = {
   id: string

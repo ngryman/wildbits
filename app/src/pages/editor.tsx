@@ -1,23 +1,27 @@
 import { createPeers, createProvider, createUser, Peers } from '@wildbits/collaboration'
 import { EditorView, createEditor } from '@wildbits/editor'
-import { createNotes, Locator } from '@wildbits/note'
+import { createDoc, createNotes, Locator, useLastLocator } from '@wildbits/note'
 import { useParams, useLocation, useNavigate } from '@solidjs/router'
-import { Accessor, createEffect, createMemo, createRenderEffect, on } from 'solid-js'
-import { Doc } from 'yjs'
+import { createEffect, createRenderEffect, on } from 'solid-js'
 
 import { Workspace } from '../layout'
 import { createPersistence } from '../signals'
+import { createState } from '../primitives'
+import welcomeContent from '../welcome.html?raw'
 
 export default function EditorPage() {
   const [notes, { createNote, createNoteIfNotExists, deleteNote, updateNoteTitle }] = createNotes()
   const user = createUser()
+  const [state, setState] = createState()
+
   const params = useParams()
   const location = useLocation()
   const navigate = useNavigate()
+  const [, setLastLocator] = useLastLocator()
 
-  const locator: Accessor<Locator> = () => new Locator(params.id, location.hash.slice(1))
-  const doc = createMemo(() => new Doc({ guid: params.id }))
-  createPersistence(locator, doc)
+  const locator = () => new Locator(params.id, location.hash.slice(1))
+  const doc = createDoc(() => params.id)
+  const persistence = createPersistence(locator, doc)
 
   const provider = createProvider({
     locator,
@@ -26,19 +30,36 @@ export default function EditorPage() {
     signalingServer: import.meta.env.VITE_COLLABORATION_SIGNALING_SERVER,
   })
 
-  const editor = createEditor({ debug: import.meta.env.DEV, provider })
+  const editor = createEditor({
+    debug: import.meta.env.DEV,
+    provider,
+  })
   const peers = createPeers({ provider })
-
-  createRenderEffect(() => user())
 
   // NOTE: For some reason this is called when notes change so make sure we only are
   // interested in `locator` changes
-  createEffect(on(locator, () => createNoteIfNotExists(locator())))
+  createEffect(
+    on(locator, () => {
+      setLastLocator(locator())
+      createNoteIfNotExists(locator())
+    })
+  )
 
   createEffect(() => {
     editor().on('create', ({ editor }) => {
       editor.on('update', () => {
         updateNoteTitle(locator().id, editor.storage.metadata.title)
+      })
+
+      persistence().once('synced', () => {
+        if (editor.isEmpty && state.pristine) {
+          editor.commands.setContent(welcomeContent)
+          // XXX: The update event doesn't get triggered so we manullay change
+          // the title
+          updateNoteTitle(locator().id, 'Welcome to Wildbits!')
+        }
+
+        setState('pristine', false)
       })
     })
   })
@@ -47,10 +68,6 @@ export default function EditorPage() {
     localStorage.setItem('user', JSON.stringify(user()))
     editor().commands.updateUser(user())
   })
-
-  // createShortcut(['Control', 'T'], () => {
-  //   editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: false }).run()
-  // })
 
   const handleCreateNote = async () => {
     const locator = await createNote()
@@ -66,6 +83,8 @@ export default function EditorPage() {
       navigate('/')
     }
   }
+
+  createRenderEffect(() => user())
 
   return (
     <Workspace notes={notes()} onCreateNote={handleCreateNote} onDeleteNote={handleDeleteNote}>

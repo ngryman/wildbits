@@ -30,12 +30,16 @@ export function createUser(): Accessor<User> {
 
 async function getInitialUser(): Promise<User> {
   try {
-    return JSON.parse(localStorage.getItem('user')!)
+    return JSON.parse(localStorage.getItem('user')!) || (await getRandomUser())
   } catch (e) {
-    return {
-      name: await getRandomName(),
-      color: getRandomColor(),
-    }
+    return await getRandomUser()
+  }
+}
+
+async function getRandomUser(): Promise<User> {
+  return {
+    name: await getRandomName(),
+    color: getRandomColor(),
   }
 }
 
