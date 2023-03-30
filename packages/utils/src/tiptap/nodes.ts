@@ -1,6 +1,41 @@
-import { callOrReturn, ExtendedRegExpMatchArray, InputRule, PasteRule, Range } from '@tiptap/core'
+import {
+  callOrReturn,
+  ChainedCommands,
+  Command,
+  Editor,
+  ExtendedRegExpMatchArray,
+  InputRule,
+  PasteRule,
+  Range,
+} from '@tiptap/core'
 import { EditorState } from '@tiptap/pm/state'
 import { Node, NodeType } from 'prosemirror-model'
+
+export type Action<Params> = (props: ActionsProps<Params>) => boolean
+
+export type ActionsProps<Params> = {
+  editor: Editor
+  name: string
+  type: NodeType
+  params?: Params
+  chain: () => ChainedCommands
+}
+
+export function createActionCommand<Params>(
+  props: { name: string; type: NodeType },
+  action: Action<Params>,
+  params?: Params
+): Command {
+  return commandProps => action({ ...commandProps, ...props, params })
+}
+
+export function createActionShortcut<Params>(
+  props: { name: string; type: NodeType; editor: Editor },
+  action: Action<Params>,
+  params?: Params
+): () => boolean {
+  return () => action({ ...props, params, chain: () => props.editor.chain() })
+}
 
 /**
  * Adapted version of Tiptap config for node rules with the following

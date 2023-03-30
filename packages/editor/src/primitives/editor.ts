@@ -8,6 +8,7 @@ import { TaskList } from '@tiptap/extension-task-list'
 import { Typography as TypographyExtension } from '@tiptap/extension-typography'
 import { Youtube } from '@tiptap/extension-youtube'
 import { Editor } from '@tiptap/core'
+import { CodeBlock } from '@wildbits/code'
 import { Collaboration, Provider } from '@wildbits/collaboration'
 import { Columns } from '@wildbits/columns'
 import { FloatingMenu } from '@wildbits/floating-menu'
@@ -88,6 +89,7 @@ export function createEditor(options: EditorOptions): Accessor<Editor> {
         },
       },
       extensions: [
+        CodeBlock,
         Collaboration.configure({ provider: options.provider() }),
         Columns,
         FloatingMenu.configure({
@@ -99,6 +101,7 @@ export function createEditor(options: EditorOptions): Accessor<Editor> {
         Metadata,
         StarterKit.configure({
           bulletList: false,
+          codeBlock: false,
           gapcursor: false,
           history: false,
           bold: false,

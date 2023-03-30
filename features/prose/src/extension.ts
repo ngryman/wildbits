@@ -21,7 +21,7 @@ export const Prose = Extension.create({
       Italic,
       Link,
       Underline,
-      Trailing.configure({ afterNodes: ['codeBlock', 'columns', 'image', 'table', 'youtube'] }),
+      // Trailing.configure({ afterNodes: ['codeBlock', 'columns', 'image', 'table', 'youtube'] }),
     ]
   },
 })

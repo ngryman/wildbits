@@ -58,6 +58,16 @@ importers:
       vite: 4.2.1
       vite-plugin-solid: 2.6.1_solid-js@1.6.15+vite@4.2.1
 
+  features/code:
+    specifiers:
+      '@tiptap/core': 2.0.0-beta.220
+      '@tiptap/pm': 2.0.0-beta.220
+      '@wildbits/utils': workspace:*
+    dependencies:
+      '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
+      '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
+      '@wildbits/utils': link:../../packages/utils
+
   features/collaboration:
     specifiers:
       '@tiptap/core': 2.0.0-beta.220
@@ -196,6 +206,7 @@ importers:
       '@tiptap/extension-youtube': 2.0.0-beta.220
       '@tiptap/pm': 2.0.0-beta.220
       '@tiptap/starter-kit': 2.0.0-beta.220
+      '@wildbits/code': workspace:^0.0.0
       '@wildbits/collaboration': workspace:*
       '@wildbits/columns': workspace:*
       '@wildbits/floating-menu': workspace:*
@@ -217,6 +228,7 @@ importers:
       '@tiptap/extension-youtube': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@tiptap/starter-kit': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
+      '@wildbits/code': link:../../features/code
       '@wildbits/collaboration': link:../../features/collaboration
       '@wildbits/columns': link:../../features/columns
       '@wildbits/floating-menu': link:../../features/floating-menu

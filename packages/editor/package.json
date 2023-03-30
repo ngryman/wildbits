@@ -17,6 +17,7 @@
     "@tiptap/extension-youtube": "2.0.0-beta.220",
     "@tiptap/pm": "2.0.0-beta.220",
     "@tiptap/starter-kit": "2.0.0-beta.220",
+    "@wildbits/code": "workspace:^0.0.0",
     "@wildbits/collaboration": "workspace:*",
     "@wildbits/columns": "workspace:*",
     "@wildbits/floating-menu": "workspace:*",
