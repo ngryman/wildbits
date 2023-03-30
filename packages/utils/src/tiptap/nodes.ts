@@ -9,7 +9,7 @@ import { Node, NodeType } from 'prosemirror-model'
  * 1. Accepts a `type` thunk to give the ability to dynamically create a mark.
  * 2. Renames `getAttributes` to `attributes`.
  */
-export type NodeRuleConfig<Attributes> = {
+export type NodeRuleConfig<Attributes = undefined> = {
   find: RegExp
   type: NodeType | ((attrs?: Attributes) => Node)
   attributes?: Attributes | ((match: ExtendedRegExpMatchArray) => Attributes) | false | null

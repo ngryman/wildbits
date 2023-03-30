@@ -6,10 +6,10 @@ import {
   PasteRuleFinder,
 } from '@tiptap/core'
 import { BulletList as BulletListExtension } from '@tiptap/extension-bullet-list'
-import { NodeType } from '@tiptap/pm/model'
+import { Node, NodeType } from '@tiptap/pm/model'
 import { canJoin, findWrapping } from '@tiptap/pm/transform'
 
-const pasteRegex = /^\s*([-+*])\s/g
+const pasteRegex = /^(\s*)([-+*])\s/g
 
 export const BulletList = BulletListExtension.extend({
   addPasteRules() {
@@ -35,7 +35,7 @@ function wrappingPasteRule(config: {
     | ((match: ExtendedRegExpMatchArray) => Record<string, any>)
     | false
     | null
-  joinPredicate?: (match: ExtendedRegExpMatchArray, node: ProseMirrorNode) => boolean
+  joinPredicate?: (match: ExtendedRegExpMatchArray, node: Node) => boolean
 }) {
   return new PasteRule({
     find: config.find,
@@ -64,7 +64,7 @@ function wrappingPasteRule(config: {
         }
       }
       if (config.keepAttributes) {
-        /** If the nodeType is `bulletList` or `orderedList` set the `nodeType` as `listItem` */
+        // If the nodeType is `bulletList` or `orderedList` set the `nodeType` as `listItem`
         const nodeType =
           config.type.name === 'bulletList' || config.type.name === 'orderedList'
             ? 'listItem'
