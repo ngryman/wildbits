@@ -18,8 +18,9 @@ export class Locator {
 export type Note = {
   id: string
   key: string
-  title: string
+  title?: string
   path: string
+  createdAt: number
 }
 
 export type NoteActions = {
@@ -44,8 +45,8 @@ export function createNotes(): [Accessor<Note[]>, NoteActions] {
       notes.set(id, {
         id,
         key,
-        title: 'A new beginning',
         path: `/${id}#${key}`,
+        createdAt: Date.now(),
       })
     }
   }

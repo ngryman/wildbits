@@ -1,10 +1,10 @@
 import { Extension } from '@tiptap/core'
 import { Collaboration as CollaborationExtension } from '@tiptap/extension-collaboration'
 import { CollaborationCursor } from '@tiptap/extension-collaboration-cursor'
-import { Provider } from '@wildbits/provider'
 import { createComponent, createRoot } from 'solid-js'
 
 import { Cursor } from './components'
+import { Provider } from './primitives'
 
 export interface CollaborationOptions {
   provider: Provider

@@ -12,6 +12,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: bold;
 }
 .link:hover {
   background: #eee;

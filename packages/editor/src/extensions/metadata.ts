@@ -16,7 +16,7 @@ export const Metadata = Extension.create({
     const node = this.editor.state.doc.firstChild!
     const nodeText = node.content.textBetween(0, node.content.size)
 
-    const title = nodeText && !nodeText.startsWith('#') ? nodeText : 'A new beginning'
+    const title = nodeText && !nodeText.startsWith('#') ? nodeText : null
 
     if (title !== this.storage.title) {
       this.storage.title = title

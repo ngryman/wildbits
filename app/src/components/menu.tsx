@@ -33,7 +33,7 @@ export function Menu(props: Props) {
             href={note.path}
             onPointerOver={[overIndex, i()]}
           >
-            {note.title}
+            {note.title || 'New note'}
           </A>
         )}
       </For>
