@@ -102,6 +102,7 @@ export function createEditor(options: EditorOptions): Accessor<Editor> {
           history: false,
           bold: false,
           italic: false,
+          heading: false,
           horizontalRule: false,
         }),
         TypographyExtension,
