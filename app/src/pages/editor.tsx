@@ -1,23 +1,16 @@
-import {
-  createPeers,
-  createProvider,
-  createUser,
-  defaultUser,
-  Peers,
-} from '@wildbits/collaboration'
+import { createPeers, createProvider, createUser, Peers } from '@wildbits/collaboration'
 import { EditorView, createEditor } from '@wildbits/editor'
 import { createDoc, createLocator, createNotes, createState, getLocatorPath } from '@wildbits/model'
 import { useParams, useLocation, useNavigate } from '@solidjs/router'
-import { createEffect, createRenderEffect, on } from 'solid-js'
+import { createEffect, on } from 'solid-js'
 
 import { Workspace } from '../layout'
 import { createPersistence } from '../signals'
 import welcomeContent from '../welcome.html?raw'
 
 export default function EditorPage() {
-  const debug = import.meta.env.DEV
   const [notes, { createNote, createNoteIfNotExists, deleteNote, updateNoteTitle }] = createNotes()
-  const user = !debug ? createUser() : () => defaultUser
+  const [user] = createUser()
   const [state, setState] = createState()
 
   const params = useParams()
@@ -35,7 +28,7 @@ export default function EditorPage() {
     signalingServer: import.meta.env.VITE_COLLABORATION_SIGNALING_SERVER,
   })
 
-  const editor = createEditor({ debug, provider })
+  const editor = createEditor({ provider })
   const peers = createPeers({ provider })
 
   // NOTE: For some reason this is called when notes change so make sure we only are
@@ -67,7 +60,6 @@ export default function EditorPage() {
   })
 
   createEffect(() => {
-    localStorage.setItem('user', JSON.stringify(user()))
     editor().commands.updateUser(user())
   })
 
@@ -85,8 +77,6 @@ export default function EditorPage() {
       navigate('/')
     }
   }
-
-  createRenderEffect(() => user())
 
   return (
     <Workspace notes={notes()} onCreateNote={handleCreateNote} onDeleteNote={handleDeleteNote}>

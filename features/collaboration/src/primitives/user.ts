@@ -1,4 +1,4 @@
-import { Accessor, createResource } from 'solid-js'
+import { Accessor, createEffect, createResource, Setter } from 'solid-js'
 
 export type User = {
   name: string
@@ -16,16 +16,19 @@ const COLORS = [
   '#222222',
 ]
 
-export const defaultUser: User = {
-  name: `anonymous${Math.random().toString().slice(2, 6)}`,
+const defaultUser: User = {
+  name: `anonymous ${Math.random().toString().slice(2, 6)}`,
   color: getRandomColor(),
 }
 
-export function createUser(): Accessor<User> {
-  const [user] = createResource<User>(loadUser, {
-    initialValue: defaultUser,
+export function createUser(): [Accessor<User>, Setter<User>] {
+  const [user, { mutate }] = createResource<User>(loadUser, { initialValue: defaultUser })
+
+  createEffect(() => {
+    localStorage.setItem('user', JSON.stringify(user()))
   })
-  return user
+
+  return [user, mutate]
 }
 
 async function loadUser(): Promise<User> {
@@ -56,4 +59,8 @@ async function getRandomName(): Promise<string> {
 
 function getRandomColor(): string {
   return COLORS[Math.floor(Math.random() * COLORS.length)]
+}
+
+export function getUserInitials(user: User): string {
+  return user.name.replaceAll(/(?:^|\s)(\w)\S+/g, (_, c) => c.toUpperCase())
 }

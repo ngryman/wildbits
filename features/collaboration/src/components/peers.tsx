@@ -1,6 +1,6 @@
 import { Accessor, For } from 'solid-js'
 
-import { Peer } from '..'
+import { getUserInitials, Peer } from '..'
 
 import styles from './peers.module.css'
 
@@ -13,8 +13,12 @@ export function Peers(props: Props) {
     <ul class={styles.root}>
       <For each={props.peers()}>
         {peer => (
-          <li style={{ ['--color']: peer.user.color }} class={styles.peer}>
-            {peer.user.name}
+          <li
+            style={{ ['--color']: peer.user.color }}
+            class={styles.peer}
+            data-name={peer.user.name}
+          >
+            {getUserInitials(peer.user)}
           </li>
         )}
       </For>
