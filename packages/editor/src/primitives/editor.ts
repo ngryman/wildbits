@@ -63,7 +63,8 @@ const DEFAULT_THEME: Theme = {
     },
     heading: {
       // family: 'Lobster',
-      weight: 'bold',
+      family: 'Plus Jakarta Sans',
+      weight: 'bolder',
     },
     link: {
       color: '#f44336',
@@ -93,7 +94,20 @@ export function createEditor(options: EditorOptions): Accessor<Editor> {
         Collaboration.configure({ provider: options.provider() }),
         Columns,
         FloatingMenu.configure({
-          actions: ['bold', 'italic', 'underline', 'strike', 'code'],
+          actions: [
+            'bold',
+            'italic',
+            'underline',
+            'strike',
+            'code',
+            {
+              name: 'link',
+              command: 'setLink',
+              commandIf: [attrs => !attrs.href, 'unsetLink'],
+              extend: true,
+              fields: [{ key: 'href', name: 'URL' }],
+            },
+          ],
         }),
         Image,
         Katex,
