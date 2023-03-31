@@ -1,6 +1,6 @@
 import { createPeers, createProvider, createUser, Peers } from '@wildbits/collaboration'
 import { EditorView, createEditor } from '@wildbits/editor'
-import { createDoc, createNotes, createState, Locator, useLastLocator } from '@wildbits/model'
+import { createDoc, createNotes, createState, getLocatorPath } from '@wildbits/model'
 import { useParams, useLocation, useNavigate } from '@solidjs/router'
 import { createEffect, createRenderEffect, on } from 'solid-js'
 
@@ -16,9 +16,8 @@ export default function EditorPage() {
   const params = useParams()
   const location = useLocation()
   const navigate = useNavigate()
-  const [, setLastLocator] = useLastLocator()
 
-  const locator = () => new Locator(params.id, location.hash.slice(1))
+  const locator = () => ({ id: params.id, key: location.hash.slice(1) })
   const doc = createDoc(() => params.id)
   const persistence = createPersistence(locator, doc)
 
@@ -39,7 +38,7 @@ export default function EditorPage() {
   // interested in `locator` changes
   createEffect(
     on(locator, () => {
-      setLastLocator(locator())
+      setState('locator', locator())
       createNoteIfNotExists(locator())
     })
   )
@@ -68,9 +67,9 @@ export default function EditorPage() {
     editor().commands.updateUser(user())
   })
 
-  const handleCreateNote = async () => {
-    const locator = await createNote()
-    navigate(locator.path)
+  const handleCreateNote = () => {
+    const locator = createNote()
+    navigate(getLocatorPath(locator))
   }
 
   const handleDeleteNote = (noteId: string) => {

@@ -1,7 +1,7 @@
 import { ReactiveMap } from '@solid-primitives/map'
 import { Accessor, createEffect } from 'solid-js'
 
-import { Locator } from '.'
+import { createLocator, Locator } from '.'
 
 export type Note = {
   id: string
@@ -12,7 +12,7 @@ export type Note = {
 }
 
 export type NoteActions = {
-  createNote(): Promise<Locator>
+  createNote(): Locator
   createNoteIfNotExists(locator: Locator): void
   deleteNote(id: string): void
   updateNoteTitle(id: string, title: string): void
@@ -21,8 +21,8 @@ export type NoteActions = {
 export function createNotes(): [Accessor<Note[]>, NoteActions] {
   const notes = new ReactiveMap<string, Note>(JSON.parse(localStorage.getItem('notes')!) || [])
 
-  const createNote = async (): Promise<Locator> => {
-    const locator = await Locator.generate()
+  const createNote = (): Locator => {
+    const locator = createLocator()
     createNoteIfNotExists(locator)
     return locator
   }

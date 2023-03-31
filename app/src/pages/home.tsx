@@ -1,13 +1,9 @@
 import { Navigate } from '@solidjs/router'
-import { useLastLocator } from '@wildbits/model'
-import { Show } from 'solid-js'
+import { createState, getLocatorPath } from '@wildbits/model'
 
 export default function HomePage() {
-  const [lastLocator] = useLastLocator()
+  const [state] = createState()
+  const path = getLocatorPath(state.locator)
 
-  return (
-    <Show when={lastLocator()}>
-      <Navigate href={lastLocator()!.path} />
-    </Show>
-  )
+  return <Navigate href={path} />
 }

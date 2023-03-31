@@ -22,13 +22,13 @@ const defaultUser: User = {
 }
 
 export function createUser(): Accessor<User> {
-  const [user] = createResource<User>(getInitialUser, {
+  const [user] = createResource<User>(loadUser, {
     initialValue: defaultUser,
   })
   return user
 }
 
-async function getInitialUser(): Promise<User> {
+async function loadUser(): Promise<User> {
   try {
     return JSON.parse(localStorage.getItem('user')!) || (await getRandomUser())
   } catch (e) {
