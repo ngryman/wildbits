@@ -32,13 +32,14 @@ export type List = {
 }
 
 export type FontStyle = 'normal' | 'italic'
-export type FontWeight = 'normal' | 'bold'
+export type FontWeight = 'normal' | 'bold' | 'bolder'
 
 type FamilySpecs = Map<string, Set<FontWeight>>
 
 const WEIGHT_VALUE: Record<FontWeight, number> = {
   normal: 400,
   bold: 700,
+  bolder: 800,
 }
 
 export function createThemeCSSVars(theme: Theme): string {
@@ -90,7 +91,7 @@ export function loadFonts(theme: Theme) {
     fontsEl.rel = 'stylesheet'
     document.head.appendChild(fontsEl)
   }
-  fontsEl.href = `https://fonts.googleapis.com/css?family=${fontParam}&display=swap`
+  fontsEl.href = `https://fonts.googleapis.com/css2?family=${fontParam}&display=swap`
 }
 
 const loadedFontPairs = new Map()
@@ -133,10 +134,10 @@ function getFontQueryParam(specs: FamilySpecs): string {
   type FamilyWeightEntry = [string, Set<FontWeight>]
 
   const mapper = ([family, weights]: FamilyWeightEntry): string => {
-    const safeFamily = family.replace(' ', '+')
+    const safeFamily = family.replaceAll(' ', '+')
     const numericWeights = Array.from(weights.values())
       .map(weight => WEIGHT_VALUE[weight])
-      .join(',')
+      .join(';')
     return `${safeFamily}:wght@${numericWeights}`
   }
 
