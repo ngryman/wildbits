@@ -37,7 +37,7 @@ export function Nav(props: Props) {
       </For>
       <Show when={overIndex() !== -1}>
         <div class={styles.actions} style={{ ['--index']: overIndex() }}>
-          <Button size="normal" onClick={deleteNote}>
+          <Button class={styles.delete} size="normal" onClick={deleteNote}>
             <Icons.Delete />
           </Button>
         </div>

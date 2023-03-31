@@ -7,9 +7,9 @@
   grid-auto-flow: row;
   align-content: start;
   gap: 1rem;
-  width: 15rem;
+  width: 18rem;
   height: 100vh;
-  padding: 4rem 1rem 1rem;
+  padding: 5rem 1rem 1rem;
   background: #fafafa;
   transition: translate 200ms;
 }

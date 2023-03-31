@@ -10,6 +10,7 @@
   cursor: pointer;
   vertical-align: middle;
   white-space: nowrap;
+  color: inherit;
 }
 
 .root.size-small {
@@ -24,7 +25,6 @@
 
 .root.type-normal {
   background: transparent;
-  color: #444;
   /* color: hsl(214deg 11% 12% / 80%); */
 }
 .root.type-normal:hover {

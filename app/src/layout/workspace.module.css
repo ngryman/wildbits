@@ -3,18 +3,18 @@
   transition: margin-left 200ms;
 }
 .root.menuVisible {
-  margin-left: 15rem;
+  margin-left: 18rem;
 }
 
 .toggle {
   position: fixed;
   z-index: 1;
-  top: 0.5rem;
-  left: 0.5rem;
+  top: 1rem;
+  left: 1rem;
   justify-self: end;
   transition: translate 200ms;
 }
 .root.menuVisible .toggle {
-  translate: 11.5rem;
+  translate: 13.5rem;
   transition: translate 200ms;
 }
