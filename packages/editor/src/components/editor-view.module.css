@@ -108,6 +108,7 @@
   font: var(--link-font-style) var(--link-font-weight) var(--size-m) var(--link-font-family);
   color: var(--link-font-color);
   letter-spacing: var(--link-font-tracking);
+  cursor: pointer;
 }
 
 .editor :not(pre) code {

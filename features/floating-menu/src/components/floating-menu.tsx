@@ -3,12 +3,16 @@ import { BubbleMenu } from '@wildbits/ui'
 import { PluginViewProps } from '@wildbits/utils'
 import { createMemo, For, on, Show } from 'solid-js'
 
-import { FloatingMenuOptions } from '../extension'
+import { Action } from '../extension'
 import { ActionItem } from './action-item'
+
+type Props = {
+  actions: Action[]
+}
 
 const emptyRect = new DOMRect(0, 0, 0, 0)
 
-export function FloatingMenu(props: PluginViewProps<FloatingMenuOptions>) {
+export function FloatingMenu(props: PluginViewProps<Props>) {
   const show = createMemo(
     on(
       () => props.state.selection,

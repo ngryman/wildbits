@@ -31,7 +31,7 @@ export const Link = LinkExtension.extend({
     return {
       ...this.parent?.(),
       linkOnPaste: false,
-      openOnClick: false,
+      openOnClick: true,
     }
   },
 
