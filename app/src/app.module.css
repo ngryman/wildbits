@@ -3,8 +3,6 @@ html {
     Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
   box-sizing: border-box;
-  /* background: #272727; */
-  background: #fafafa;
   font-family: var(--font-family);
   overflow-y: scroll;
 }
@@ -17,8 +15,6 @@ html {
 }
 
 body {
-  display: grid;
-  justify-content: center;
   margin: 0;
 }
 

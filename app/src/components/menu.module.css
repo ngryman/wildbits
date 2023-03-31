@@ -1,23 +1,32 @@
 .root {
   position: sticky;
-  top: 2.5rem;
+  top: 0;
   display: grid;
   grid-auto-flow: row;
   align-content: start;
+  height: 100vh;
+  padding: 1rem;
+  background: #fafafa;
+}
+
+.root button {
+  margin-top: 1rem;
 }
 
 .link {
   padding: 0 1rem;
-  line-height: 3rem;
+  line-height: 2.5rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-weight: bold;
+  color: #444;
 }
 .link:hover {
+  border-radius: 4px;
   background: #eee;
 }
 .link.active {
+  border-radius: 4px;
   background: #eee;
 }
 
