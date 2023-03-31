@@ -1,0 +1,35 @@
+.root {
+  display: grid;
+  grid-auto-flow: row;
+  align-content: start;
+}
+
+.link {
+  padding: 0 1rem;
+  line-height: 2.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #444;
+}
+.link:hover {
+  border-radius: 4px;
+  background: #eee;
+}
+.link.active {
+  border-radius: 4px;
+  background: #eee;
+}
+
+.actions {
+  --index: -1;
+
+  display: grid;
+  place-content: center;
+  position: absolute;
+  top: 0;
+  left: -2.5rem;
+  padding-right: 2.5rem;
+  height: 3rem;
+  translate: 0 calc(var(--index) * 3rem);
+}

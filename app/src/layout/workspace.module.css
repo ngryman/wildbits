@@ -1,6 +1,20 @@
 .root {
-  display: grid;
-  grid-template-columns: 18rem 1fr;
-  width: 100%;
   min-height: 100vh;
+  transition: margin-left 200ms;
+}
+.root.menuVisible {
+  margin-left: 15rem;
+}
+
+.toggle {
+  position: fixed;
+  z-index: 1;
+  top: 0.5rem;
+  left: 0.5rem;
+  justify-self: end;
+  transition: translate 200ms;
+}
+.root.menuVisible .toggle {
+  translate: 11.5rem;
+  transition: translate 200ms;
 }

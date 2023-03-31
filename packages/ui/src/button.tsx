@@ -8,6 +8,7 @@ type Type = 'primary' | 'normal'
 
 type Props = ParentProps & {
   active?: boolean
+  class?: string
   size?: Size
   type?: Type
   disabled?: boolean
@@ -17,8 +18,9 @@ type Props = ParentProps & {
 export function Button(props: Props) {
   return (
     <button
-      class={styles.root}
+      class={props.class}
       classList={{
+        [styles.root]: true,
         [styles.active]: props.active,
         [styles['size-' + (props.size || 'normal')]]: true,
         [styles['type-' + (props.type || 'normal')]]: true,

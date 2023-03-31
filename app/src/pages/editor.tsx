@@ -63,6 +63,10 @@ export default function EditorPage() {
     editor().commands.updateUser(user())
   })
 
+  const toggleMenu = () => {
+    setState('menuVisible', menuVisible => !menuVisible)
+  }
+
   const handleCreateNote = () => {
     const locator = createNote()
     navigate(getLocatorPath(locator))
@@ -79,7 +83,13 @@ export default function EditorPage() {
   }
 
   return (
-    <Workspace notes={notes()} onCreateNote={handleCreateNote} onDeleteNote={handleDeleteNote}>
+    <Workspace
+      notes={notes()}
+      menuVisible={state.menuVisible}
+      onToggleMenu={toggleMenu}
+      onCreateNote={handleCreateNote}
+      onDeleteNote={handleDeleteNote}
+    >
       <EditorView editor={editor} />
       <Peers peers={peers} />
     </Workspace>

@@ -3,8 +3,7 @@
   display: flex;
   justify-content: center;
   min-height: 100%;
-  padding: 2rem;
-  /* background: #fafafa; */
+  padding: 2rem 0;
 }
 
 .editor {

@@ -49,5 +49,5 @@ export function EditorView(props: EditorViewProps) {
     return editor
   })
 
-  return <div class={styles.root} ref={ref} />
+  return <article class={styles.root} ref={ref} />
 }

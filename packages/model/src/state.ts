@@ -10,6 +10,7 @@ export type Locator = {
 export type State = {
   locator: Locator
   pristine: boolean
+  menuVisible: boolean
 }
 
 export function createState(): [State, SetStoreFunction<State>] {
@@ -42,5 +43,6 @@ function getInitialState(): State {
   return {
     pristine: true,
     locator: createLocator('welcome'),
+    menuVisible: true,
   }
 }
