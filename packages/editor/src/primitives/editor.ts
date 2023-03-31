@@ -23,7 +23,6 @@ import { Metadata } from '../extensions'
 import { Katex } from '@wildbits/katex'
 
 export type EditorOptions = {
-  debug?: boolean
   provider: Accessor<Provider>
   theme?: Theme
   typography?: Partial<Typography>
@@ -140,7 +139,7 @@ export function createEditor(options: EditorOptions): Accessor<Editor> {
     })
 
     // Expose the editor globally in development mode for debugging purpose.
-    if (options.debug) {
+    if (import.meta.env.DEV) {
       window.editor = editor
     }
 
