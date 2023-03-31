@@ -16,7 +16,7 @@ const COLORS = [
   '#222222',
 ]
 
-const defaultUser: User = {
+export const defaultUser: User = {
   name: `anonymous${Math.random().toString().slice(2, 6)}`,
   color: getRandomColor(),
 }
@@ -45,7 +45,7 @@ async function getRandomUser(): Promise<User> {
 
 async function getRandomName(): Promise<string> {
   try {
-    const { nickname } = await (await window.fetch('https://nicknames.ngryman.workers.dev/')).json()
+    const { nickname } = await (await fetch('https://nicknames.ngryman.workers.dev/')).json()
     return nickname
   } catch {
     // If for some reason the endpoint fails, return the `DEFAULT_USER` name.

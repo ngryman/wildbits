@@ -10,8 +10,8 @@
     "dev:server": "pnpm run --filter app dev",
     "lint": "eslint --cache --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "preview": "pnpm run --filter app preview",
-    "test:open": "start-server-and-test dev:app http://localhost:3000 cy:open",
-    "test": "start-server-and-test dev:app http://localhost:3000 cy"
+    "test:open": "start-server-and-test dev http://localhost:3000 cy:open",
+    "test": "start-server-and-test dev http://localhost:3000 cy"
   },
   "devDependencies": {
     "@types/node": "^18.15.5",

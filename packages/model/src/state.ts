@@ -22,8 +22,8 @@ export function createState(): [State, SetStoreFunction<State>] {
   return [state, setState]
 }
 
-export function createLocator(): Locator {
-  return { id: nanoid(), key: nanoid() }
+export function createLocator(id?: string, key?: string): Locator {
+  return { id: id || nanoid(), key: key || nanoid() }
 }
 
 export function getLocatorPath(locator: Locator): string {
@@ -41,6 +41,6 @@ function loadState(): State {
 function getInitialState(): State {
   return {
     pristine: true,
-    locator: createLocator(),
+    locator: createLocator('welcome'),
   }
 }

@@ -1,6 +1,12 @@
-import { createPeers, createProvider, createUser, Peers } from '@wildbits/collaboration'
+import {
+  createPeers,
+  createProvider,
+  createUser,
+  defaultUser,
+  Peers,
+} from '@wildbits/collaboration'
 import { EditorView, createEditor } from '@wildbits/editor'
-import { createDoc, createNotes, createState, getLocatorPath } from '@wildbits/model'
+import { createDoc, createLocator, createNotes, createState, getLocatorPath } from '@wildbits/model'
 import { useParams, useLocation, useNavigate } from '@solidjs/router'
 import { createEffect, createRenderEffect, on } from 'solid-js'
 
@@ -9,15 +15,16 @@ import { createPersistence } from '../signals'
 import welcomeContent from '../welcome.html?raw'
 
 export default function EditorPage() {
+  const debug = import.meta.env.DEV
   const [notes, { createNote, createNoteIfNotExists, deleteNote, updateNoteTitle }] = createNotes()
-  const user = createUser()
+  const user = !debug ? createUser() : () => defaultUser
   const [state, setState] = createState()
 
   const params = useParams()
   const location = useLocation()
   const navigate = useNavigate()
 
-  const locator = () => ({ id: params.id, key: location.hash.slice(1) })
+  const locator = () => createLocator(params.id, location.hash.slice(1))
   const doc = createDoc(() => params.id)
   const persistence = createPersistence(locator, doc)
 
@@ -28,10 +35,7 @@ export default function EditorPage() {
     signalingServer: import.meta.env.VITE_COLLABORATION_SIGNALING_SERVER,
   })
 
-  const editor = createEditor({
-    debug: import.meta.env.DEV,
-    provider,
-  })
+  const editor = createEditor({ debug, provider })
   const peers = createPeers({ provider })
 
   // NOTE: For some reason this is called when notes change so make sure we only are
@@ -50,7 +54,7 @@ export default function EditorPage() {
       })
 
       persistence().once('synced', () => {
-        if (editor.isEmpty && state.pristine) {
+        if (editor.isEmpty && state.pristine && locator().id === 'welcome') {
           editor.commands.setContent(welcomeContent)
           // XXX: The update event doesn't get triggered so we manually change
           // the title
