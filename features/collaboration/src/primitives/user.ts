@@ -47,7 +47,7 @@ async function getRandomUser(): Promise<User> {
 }
 
 async function getRandomName(): Promise<string> {
-  if (import.meta.env.DEV) return defaultUser.name
+  if (import.meta.env.MODE === 'testing') return defaultUser.name
 
   try {
     const { nickname } = await (await fetch('https://nicknames.ngryman.workers.dev/')).json()
