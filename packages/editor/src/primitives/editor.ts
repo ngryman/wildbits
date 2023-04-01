@@ -34,7 +34,7 @@ export type EditorOptions = {
 const DEFAULT_TYPOGRAPHY: Typography = {
   rhythm: {
     baseSize: 20,
-    leading: 1.6,
+    leading: 1.8,
     lineLength: 80,
     scaleRatio: 1.25,
   },

@@ -29,7 +29,8 @@ h3,
 h4,
 hr,
 p,
-pre {
+pre,
+blockquote {
   margin: 0;
 }
 

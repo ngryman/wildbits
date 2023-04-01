@@ -1,4 +1,5 @@
 .root {
+  display: grid;
   min-height: 100vh;
   transition: margin-left 200ms;
 }
