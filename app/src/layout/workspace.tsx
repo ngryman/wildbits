@@ -17,7 +17,12 @@ type Props = ParentProps & {
 export function Workspace(props: Props) {
   return (
     <main class={styles.root} classList={{ [styles.menuVisible]: props.menuVisible }}>
-      <Button class={styles.toggle} size="large" onClick={props.onToggleMenu}>
+      <Button
+        class={styles.toggle}
+        size="large"
+        active={props.menuVisible}
+        onClick={props.onToggleMenu}
+      >
         <Icons.Menu />
       </Button>
       <Menu

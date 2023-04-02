@@ -10,12 +10,12 @@
 .toggle {
   position: fixed;
   z-index: 1;
-  top: 1rem;
-  left: 1rem;
+  top: 2rem;
+  left: 2rem;
   justify-self: end;
   transition: translate 200ms;
 }
 .root.menuVisible .toggle {
-  translate: 13.5rem;
+  translate: 12.5rem;
   transition: translate 200ms;
 }
