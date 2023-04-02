@@ -1,4 +1,4 @@
-import { Note } from '@wildbits/model'
+import { Note, useState } from '@wildbits/model'
 import { Button, Icons } from '@wildbits/ui'
 import { ParentProps } from 'solid-js'
 
@@ -8,26 +8,26 @@ import styles from './workspace.module.css'
 
 type Props = ParentProps & {
   notes: Note[]
-  menuVisible?: boolean
   onToggleMenu: () => void
   onCreateNote: () => void
   onDeleteNote: (id: string) => void
 }
 
 export function Workspace(props: Props) {
+  const [state] = useState()
+
   return (
-    <main class={styles.root} classList={{ [styles.menuVisible]: props.menuVisible }}>
+    <main class={styles.root} classList={{ [styles.menuVisible]: state.menuVisible }}>
       <Button
         class={styles.toggle}
         size="large"
-        active={props.menuVisible}
+        active={state.menuVisible}
         onClick={props.onToggleMenu}
       >
         <Icons.Menu />
       </Button>
       <Menu
         notes={props.notes}
-        visible={props.menuVisible}
         onCreateNote={props.onCreateNote}
         onDeleteNote={props.onDeleteNote}
       />

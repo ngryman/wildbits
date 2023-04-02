@@ -1,8 +1,8 @@
 import { Navigate } from '@solidjs/router'
-import { createState, getLocatorPath } from '@wildbits/model'
+import { getLocatorPath, useState } from '@wildbits/model'
 
 export default function HomePage() {
-  const [state] = createState()
+  const [state] = useState()
   const path = getLocatorPath(state.locator)
 
   return <Navigate href={path} />

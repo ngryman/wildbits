@@ -1,5 +1,6 @@
 import { render } from 'solid-js/web'
 import { Router } from '@solidjs/router'
+import { StateProvider } from '@wildbits/model'
 
 import App from './app'
 
@@ -9,7 +10,9 @@ import App from './app'
 render(
   () => (
     <Router>
-      <App />
+      <StateProvider>
+        <App />
+      </StateProvider>
     </Router>
   ),
   document.body

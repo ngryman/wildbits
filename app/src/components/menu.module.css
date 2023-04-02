@@ -1,5 +1,6 @@
 .root {
   position: fixed;
+  z-index: 1;
   top: 0;
   left: 0;
   translate: -100%;
@@ -15,6 +16,12 @@
 }
 .root.visible {
   translate: 0;
+}
+
+@media (max-width: 1200px) {
+  .root {
+    padding-top: 1rem;
+  }
 }
 
 .logo {

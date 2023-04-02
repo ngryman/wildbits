@@ -3,8 +3,20 @@
   display: flex;
   justify-content: center;
   margin: 1rem 0;
-  padding: 0 1rem;
+  padding: 0 2rem;
   cursor: text;
+}
+
+@media (max-width: 1200px) {
+  .root {
+    margin-top: 4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .root {
+    padding: 0 1rem;
+  }
 }
 
 .editor {
@@ -38,7 +50,7 @@
   grid-auto-columns: 1fr;
   align-content: start;
   gap: var(--size-m);
-  width: var(--line-length);
+  max-width: var(--line-length);
   font-size: var(--size-m);
   caret-color: var(--caret-color);
 }

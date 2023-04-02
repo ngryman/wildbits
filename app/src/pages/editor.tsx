@@ -1,6 +1,6 @@
 import { createPeers, createProvider, createUser, Peers } from '@wildbits/collaboration'
 import { EditorView, createEditor } from '@wildbits/editor'
-import { createDoc, createLocator, createNotes, createState, getLocatorPath } from '@wildbits/model'
+import { createDoc, createLocator, createNotes, getLocatorPath, useState } from '@wildbits/model'
 import { useParams, useLocation, useNavigate } from '@solidjs/router'
 import { createEffect, on } from 'solid-js'
 
@@ -11,8 +11,8 @@ import welcomeContent from '../welcome.html?raw'
 export default function EditorPage() {
   const [notes, { createNote, createNoteIfNotExists, deleteNote, updateNoteTitle }] = createNotes()
   const [user] = createUser()
-  const [state, setState] = createState()
 
+  const [state, setState] = useState()
   const params = useParams()
   const location = useLocation()
   const navigate = useNavigate()
@@ -37,6 +37,10 @@ export default function EditorPage() {
     on(locator, () => {
       setState('locator', locator())
       createNoteIfNotExists(locator())
+
+      if (matchMedia('(max-width: 1200px)').matches) {
+        setState('menuVisible', false)
+      }
     })
   )
 
@@ -85,7 +89,6 @@ export default function EditorPage() {
   return (
     <Workspace
       notes={notes()}
-      menuVisible={state.menuVisible}
       onToggleMenu={toggleMenu}
       onCreateNote={handleCreateNote}
       onDeleteNote={handleDeleteNote}

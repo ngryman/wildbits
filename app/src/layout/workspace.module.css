@@ -7,9 +7,15 @@
   margin-left: 18rem;
 }
 
+@media (max-width: 1200px) {
+  .root.menuVisible {
+    margin-left: 0;
+  }
+}
+
 .toggle {
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   top: 2rem;
   left: 2rem;
   justify-self: end;
@@ -18,4 +24,17 @@
 .root.menuVisible .toggle {
   translate: 12.5rem;
   transition: translate 200ms;
+}
+
+@media (max-width: 1200px) {
+  .toggle {
+    top: 1rem;
+    left: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .toggle {
+    left: 0.5rem;
+  }
 }

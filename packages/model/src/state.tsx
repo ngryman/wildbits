@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid'
-import { createEffect } from 'solid-js'
+import { createContext, createEffect, ParentProps, useContext } from 'solid-js'
 import { createStore, SetStoreFunction } from 'solid-js/store'
 
 export type Locator = {
@@ -13,14 +13,20 @@ export type State = {
   menuVisible: boolean
 }
 
-export function createState(): [State, SetStoreFunction<State>] {
+const StateContext = createContext<[State, SetStoreFunction<State>]>()
+
+export function StateProvider(props: ParentProps) {
   const [state, setState] = createStore(loadState())
 
   createEffect(() => {
     localStorage.setItem('state', JSON.stringify(state))
   })
 
-  return [state, setState]
+  return <StateContext.Provider value={[state, setState]}>{props.children}</StateContext.Provider>
+}
+
+export function useState() {
+  return useContext(StateContext)!
 }
 
 export function createLocator(id?: string, key?: string): Locator {
