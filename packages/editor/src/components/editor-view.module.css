@@ -50,9 +50,19 @@
   grid-auto-columns: 1fr;
   align-content: start;
   gap: var(--size-m);
-  max-width: var(--line-length);
+  /* TODO: set the width in the workspace component where we have more control
+on min/max thanks to the CSS grid. We need to have a global theme with these CSS
+variables being accessible globally. */
+  width: var(--line-length);
   font-size: var(--size-m);
   caret-color: var(--caret-color);
+}
+
+/* XXX: temporary workaround, remove when width is set via the workspace */
+@media (max-width: 1370px) {
+  .editor {
+    width: 100%;
+  }
 }
 
 /* TODO: plug with theme colors */
