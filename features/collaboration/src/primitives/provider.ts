@@ -16,19 +16,9 @@ const iceServers = [
     urls: 'stun:relay.metered.ca:80',
   },
   {
-    urls: 'turn:relay.metered.ca:80',
-    username: 'fc383dd5cae9548765b98b89',
-    credential: 'FtPmYMMuKpRuAtvE',
-  },
-  {
-    urls: 'turn:relay.metered.ca:443',
-    username: 'fc383dd5cae9548765b98b89',
-    credential: 'FtPmYMMuKpRuAtvE',
-  },
-  {
-    urls: 'turn:relay.metered.ca:443?transport=tcp',
-    username: 'fc383dd5cae9548765b98b89',
-    credential: 'FtPmYMMuKpRuAtvE',
+    urls: 'turn:44.214.52.65',
+    username: 'test',
+    credential: 'test',
   },
 ]
 
