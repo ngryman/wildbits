@@ -5,6 +5,7 @@ html {
   box-sizing: border-box;
   font-family: var(--font-family);
   overflow-y: scroll;
+  color: #2c2c2c;
 }
 
 *,
