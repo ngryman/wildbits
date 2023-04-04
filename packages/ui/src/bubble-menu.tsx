@@ -14,7 +14,7 @@ export function BubbleMenu(props: Props) {
   const refBounds = createAtom<DOMRect | undefined>(undefined)
 
   const style = createMemo(() => {
-    const { bounds } = props
+    const bounds = props.bounds
 
     // By default the menu will be displayed above the first ancestor with a
     // `position: relative`.

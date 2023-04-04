@@ -73,6 +73,7 @@ class SolidNodeView<Attributes> extends NodeView<Component<NodeViewProps<Attribu
 
   updateAttributes(attrs: Partial<Attributes>) {
     super.updateAttributes(attrs as Record<string, unknown>)
+    // eslint-disable-next-line solid/reactivity
     this.setComponentProps(props => ({ ...props, attrs: { ...props.attrs, ...attrs } }))
   }
 

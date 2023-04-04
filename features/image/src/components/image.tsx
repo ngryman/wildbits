@@ -12,7 +12,7 @@ const MIN_WITH_REM = 10
 
 export function Image(props: NodeViewProps<ImageAttributes>) {
   let figureEl!: HTMLImageElement
-  const imageEl = props.children as HTMLImageElement
+  const imageEl = () => props.children as HTMLImageElement
   const minWidth = remToPx(MIN_WITH_REM)
 
   const attrs = () => props.attrs
@@ -29,7 +29,7 @@ export function Image(props: NodeViewProps<ImageAttributes>) {
 
   createEffect(() => {
     if (width()) {
-      imageEl.width = width()!
+      imageEl().width = width()!
     }
   })
 
@@ -53,7 +53,12 @@ export function Image(props: NodeViewProps<ImageAttributes>) {
         <figcaption class={styles.caption}>{attrs().title || attrs().alt}</figcaption>
       </Show>
       <Show when={selected()}>
-        <Resize target={imageEl} minWidth={minWidth} onResize={resize} onResizeEnd={finishResize} />
+        <Resize
+          target={imageEl()}
+          minWidth={minWidth}
+          onResize={resize}
+          onResizeEnd={finishResize}
+        />
         <BubbleMenu>
           <Button size="small" active={attrs().align === 'left'} onClick={setAlignLeft}>
             <Icons.ImageAlignLeft />

@@ -7,7 +7,7 @@ import { Heading } from './heading'
 import { HorizontalRule } from './horizontal-rule'
 import { Italic } from './italic'
 import { Link } from './link'
-import { Trailing } from './trailing'
+// import { Trailing } from './trailing'
 
 export const Prose = Extension.create({
   name: 'prose',

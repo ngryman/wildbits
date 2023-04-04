@@ -31,8 +31,8 @@ function wrappingPasteRule(config: {
   keepAttributes?: boolean
   editor?: Editor
   getAttributes?:
-    | Record<string, any>
-    | ((match: ExtendedRegExpMatchArray) => Record<string, any>)
+    | Record<string, unknown>
+    | ((match: ExtendedRegExpMatchArray) => Record<string, unknown>)
     | false
     | null
   joinPredicate?: (match: ExtendedRegExpMatchArray, node: Node) => boolean

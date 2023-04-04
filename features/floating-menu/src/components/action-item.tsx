@@ -13,12 +13,10 @@ type Props = {
   state: EditorState
 }
 
-/**
- */
 export function ActionItem(props: Props) {
-  const titleCasedAction = titleCase(props.action.name)
+  const titleCasedAction = () => titleCase(props.action.name)
   // @ts-ignore
-  const Icon = Icons[titleCasedAction]
+  const Icon = () => Icons[titleCasedAction()]
 
   const openForm = createAtom(false)
 
