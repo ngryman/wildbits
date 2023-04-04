@@ -12,12 +12,12 @@ const MIN_WITH_REM = 10
 
 export function Image(props: NodeViewProps<ImageAttributes>) {
   let figureEl!: HTMLImageElement
-  let imageEl!: HTMLImageElement
+  const imageEl = props.children as HTMLImageElement
   const minWidth = remToPx(MIN_WITH_REM)
 
   const attrs = () => props.attrs
   const selected = () => props.selected
-  const [width, setWidth] = createSignal<number | string>('auto')
+  const [width, setWidth] = createSignal<number | null>(null)
 
   const setAlign = (align: ImageAlign) => props.setAttributes({ align })
   const setAlignLeft = () => setAlign('left')
@@ -26,6 +26,12 @@ export function Image(props: NodeViewProps<ImageAttributes>) {
   const deleteNode = () => props.deleteNode()
   const resize = (width: number) => setWidth(width)
   const finishResize = (width: number) => props.setAttributes({ width })
+
+  createEffect(() => {
+    if (width()) {
+      imageEl.width = width()!
+    }
+  })
 
   createEffect(() => {
     if (attrs().width) {
@@ -42,14 +48,7 @@ export function Image(props: NodeViewProps<ImageAttributes>) {
         [styles['align-' + (attrs().align || 'center')]]: true,
       }}
     >
-      <img
-        ref={imageEl}
-        class={styles.image}
-        src={attrs().src}
-        alt={attrs().alt}
-        width={width()}
-        data-drag-handle
-      />
+      {props.children}
       <Show when={attrs().title || attrs().alt}>
         <figcaption class={styles.caption}>{attrs().title || attrs().alt}</figcaption>
       </Show>
