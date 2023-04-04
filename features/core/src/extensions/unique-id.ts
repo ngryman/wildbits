@@ -53,6 +53,7 @@ export const UniqueId = Extension.create<UniqueIdOptions>({
           // For each transaction, add the `id` attribute to every node that is
           // in between the affected range.
           changedTransactions.forEach(transaction => {
+            const existingIds: string[] = []
             const range = getChangesRange(transaction)
 
             // Discard ranges that are not creating nodes. A node has at least a
@@ -65,8 +66,18 @@ export const UniqueId = Extension.create<UniqueIdOptions>({
               Math.max(range.from, 0),
               Math.min(range.to, tr.doc.content.size),
               (node, pos) => {
-                if (!types.includes(node.type.name) || node.attrs.id) return
-                console.log(node.type.name)
+                // Bail out if the node shouldn't have an `id` attribute.
+                if (!types.includes(node.type.name)) return
+
+                // New nodes can be created with the same id of the previous
+                // (e.g. paragraphs). We make sure to store existing ids and
+                // store them. If a new has no ID, or if its ID is part of
+                // existing id, we generate a new ID.
+                if (node.attrs.id && !existingIds.includes(node.attrs.id)) {
+                  existingIds.push(node.attrs.id)
+                  return
+                }
+
                 tr.setNodeAttribute(pos, 'id', nanoid())
               }
             )
