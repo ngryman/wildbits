@@ -20,6 +20,7 @@
     "@wildbits/code": "workspace:^0.0.0",
     "@wildbits/collaboration": "workspace:*",
     "@wildbits/columns": "workspace:*",
+    "@wildbits/core": "workspace:^0.0.0",
     "@wildbits/floating-menu": "workspace:*",
     "@wildbits/image": "workspace:*",
     "@wildbits/katex": "workspace:*",

@@ -9,6 +9,7 @@ import { Typography as TypographyExtension } from '@tiptap/extension-typography'
 import { Youtube } from '@tiptap/extension-youtube'
 import { Editor } from '@tiptap/core'
 import { CodeBlock } from '@wildbits/code'
+import { UniqueId } from '@wildbits/core'
 import { Collaboration, Provider } from '@wildbits/collaboration'
 import { Columns } from '@wildbits/columns'
 import { FloatingMenu } from '@wildbits/floating-menu'
@@ -129,6 +130,7 @@ export function createEditor(options: EditorOptions): Accessor<Editor> {
         TableRow,
         TaskList,
         TaskItem.configure({ nested: true }),
+        UniqueId.configure({ types: ['codeBlock', 'heading', 'image', 'paragraph'] }),
         Youtube.configure({ modestBranding: true, width: 0, height: 0 }),
       ],
       injectCSS: false,

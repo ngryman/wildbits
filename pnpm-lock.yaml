@@ -110,6 +110,18 @@ importers:
       '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
       '@wildbits/utils': link:../../packages/utils
 
+  features/core:
+    specifiers:
+      '@tiptap/core': 2.0.0-beta.220
+      '@tiptap/pm': 2.0.0-beta.220
+      '@wildbits/utils': workspace:*
+      nanoid: ^4.0.1
+    dependencies:
+      '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
+      '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
+      '@wildbits/utils': link:../../packages/utils
+      nanoid: 4.0.1
+
   features/floating-menu:
     specifiers:
       '@tiptap/core': 2.0.0-beta.220
@@ -195,6 +207,7 @@ importers:
       '@wildbits/code': workspace:^0.0.0
       '@wildbits/collaboration': workspace:*
       '@wildbits/columns': workspace:*
+      '@wildbits/core': workspace:^0.0.0
       '@wildbits/floating-menu': workspace:*
       '@wildbits/image': workspace:*
       '@wildbits/katex': workspace:*
@@ -217,6 +230,7 @@ importers:
       '@wildbits/code': link:../../features/code
       '@wildbits/collaboration': link:../../features/collaboration
       '@wildbits/columns': link:../../features/columns
+      '@wildbits/core': link:../../features/core
       '@wildbits/floating-menu': link:../../features/floating-menu
       '@wildbits/image': link:../../features/image
       '@wildbits/katex': link:../../features/katex
