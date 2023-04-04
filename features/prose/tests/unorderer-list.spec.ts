@@ -5,20 +5,20 @@ describe('unordered list node', () => {
 
   describe('markdown', () => {
     it('supports the * syntax', () => {
-      cy.typeInEditor('* item').should('have.html', '<ul><li><p>item</p></li></ul>')
+      cy.typeInEditor('* item').should('matchHTML', '<ul><li><p>item</p></li></ul>')
     })
 
     it('supports the - syntax', () => {
-      cy.typeInEditor('- item').should('have.html', '<ul><li><p>item</p></li></ul>')
+      cy.typeInEditor('- item').should('matchHTML', '<ul><li><p>item</p></li></ul>')
     })
 
     it('supports the + syntax', () => {
-      cy.typeInEditor('+ item').should('have.html', '<ul><li><p>item</p></li></ul>')
+      cy.typeInEditor('+ item').should('matchHTML', '<ul><li><p>item</p></li></ul>')
     })
 
     it('preserves nodes around', () => {
       cy.typeInEditor('above\nbelow{uparrow}\n* 🥖').should(
-        'have.html',
+        'matchHTML',
         `<p>above</p><ul><li><p>🥖</p></li></ul><p>below</p>`
       )
     })
@@ -28,13 +28,13 @@ describe('unordered list node', () => {
   describe.skip('update', () => {
     it('wraps a paragraph', () => {
       cy.typeInEditor('paragraph{moveToStart}* ').should(
-        'have.html',
+        'matchHTML',
         `<ul><li><p>paragraph</p></li></ul>`
       )
     })
 
     it('does not wrap a heading', () => {
-      cy.typeInEditor('# heading{moveToStart}* ').should('have.html', `<h1>&gt; heading</h1>`)
+      cy.typeInEditor('# heading{moveToStart}* ').should('matchHTML', `<h1>&gt; heading</h1>`)
     })
   })
 })

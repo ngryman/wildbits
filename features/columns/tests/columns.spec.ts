@@ -5,11 +5,11 @@ describe('columns node', () => {
 
   // describe('markdown', () => {
   //   it('supports the ** syntax', () => {
-  //     cy.typeInEditor('**columns**🥖').should('have.html', '<p><strong>columns</strong>🥖</p>')
+  //     cy.typeInEditor('**columns**🥖').should('matchHTML', '<p><strong>columns</strong>🥖</p>')
   //   })
 
   //   it('supports the __ syntax', () => {
-  //     cy.typeInEditor('__bold__🥖').should('have.html', '<p><strong>columns</strong>🥖</p>')
+  //     cy.typeInEditor('__bold__🥖').should('matchHTML', '<p><strong>columns</strong>🥖</p>')
   //   })
   // })
 

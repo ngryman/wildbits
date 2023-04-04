@@ -5,39 +5,39 @@ describe('code mark', () => {
 
   describe('markdown', () => {
     it('supports the ` syntax', () => {
-      cy.typeInEditor('`code`🥖').should('have.html', '<p><code>code</code>🥖</p>')
+      cy.typeInEditor('`code`🥖').should('matchHTML', '<p><code>code</code>🥖</p>')
     })
 
     it('excludes another mark', () => {
-      cy.typeInEditor('`_code_`').should('have.html', `<p><code>code</code></p>`)
+      cy.typeInEditor('`_code_`').should('matchHTML', `<p><code>code</code></p>`)
     })
 
     it('excludes another mark with a space', () => {
-      cy.typeInEditor('` _code_ `').should('have.html', `<p><code> code </code></p>`)
+      cy.typeInEditor('` _code_ `').should('matchHTML', `<p><code> code </code></p>`)
     })
 
     it('excludes another mark in the middle', () => {
-      cy.typeInEditor('`1**2**3`').should('have.html', `<p><code>123</code></p>`)
+      cy.typeInEditor('`1**2**3`').should('matchHTML', `<p><code>123</code></p>`)
     })
 
     it('excludes another mark in the middle with space', () => {
-      cy.typeInEditor('`1 **2** 3`').should('have.html', `<p><code>1 2 3</code></p>`)
+      cy.typeInEditor('`1 **2** 3`').should('matchHTML', `<p><code>1 2 3</code></p>`)
     })
 
     it('excludes another mark at the beginning', () => {
-      cy.typeInEditor('`**1**2`').should('have.html', `<p><code>12</code></p>`)
+      cy.typeInEditor('`**1**2`').should('matchHTML', `<p><code>12</code></p>`)
     })
 
     it('excludes another mark at the beginning with space', () => {
-      cy.typeInEditor('`**1** 2`').should('have.html', `<p><code>1 2</code></p>`)
+      cy.typeInEditor('`**1** 2`').should('matchHTML', `<p><code>1 2</code></p>`)
     })
 
     it('excludes another mark at the end', () => {
-      cy.typeInEditor('`1**2**`').should('have.html', `<p><code>12</code></p>`)
+      cy.typeInEditor('`1**2**`').should('matchHTML', `<p><code>12</code></p>`)
     })
 
     it('excludes another mark at the end with space', () => {
-      cy.typeInEditor('`1 **2**`').should('have.html', `<p><code>1 2</code></p>`)
+      cy.typeInEditor('`1 **2**`').should('matchHTML', `<p><code>1 2</code></p>`)
     })
   })
 

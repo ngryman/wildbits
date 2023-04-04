@@ -88,21 +88,21 @@ describe('link mark', () => {
   describe('clipboard', () => {
     it('supports pasting markdown', () => {
       cy.pasteInEditor('text/plain', `[](${url})`).should(
-        'have.html',
+        'matchHTML',
         `<p><a target="_blank" rel="noopener noreferrer nofollow" href="${url}">${url}</a></p>`
       )
     })
 
     it('supports pasting anchor html tag', () => {
       cy.pasteInEditor('text/html', `<a href="${url}">Wildbits</a>`).should(
-        'have.html',
+        'matchHTML',
         `<p><a target="_blank" rel="noopener noreferrer nofollow" href="${url}">Wildbits</a></p>`
       )
     })
 
     it('supports pasting a vanilla url', () => {
       cy.pasteInEditor('text/plain', url).should(
-        'have.html',
+        'matchHTML',
         `<p><a target="_blank" rel="noopener noreferrer nofollow" href="${url}">${url}</a></p>`
       )
     })
