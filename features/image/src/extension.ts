@@ -85,6 +85,7 @@ export const Image = Node.create<ImageOptions>({
       'img',
       mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
         class: styles.image,
+        'data-drag-handle': true,
       }),
     ]
   },
