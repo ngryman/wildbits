@@ -4,6 +4,10 @@ export * from './marks'
 export * from './nodes'
 export * from './solid'
 
+export type IdAttributes = {
+  id: string
+}
+
 export function createInlineRegexp(parts: string[], suffix: string, flags?: string): RegExp {
   return new RegExp(['(?:^|\\s)', '(', ...parts, ')', suffix].join(''), flags)
 }
