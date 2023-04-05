@@ -1,7 +1,0 @@
-{
-  "exec": "pnpm exec ts-node ./src/main.ts",
-  "ext": ".ts,.js",
-  "ignore": [],
-  "quiet": true,
-  "watch": ["src"]
-}
