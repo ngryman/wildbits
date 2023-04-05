@@ -4,7 +4,7 @@ import { Array as YArray, Doc as YDoc, UndoManager as YUndoManager } from 'yjs'
 import { Point, Stroke } from '../types'
 
 export type StrokeActions = {
-  startStroke(): void
+  startStroke(point: Point): void
   addPointToStroke(point: Point): void
   finishStroke(): void
   undoStroke(): void
@@ -23,9 +23,11 @@ export function useStrokes(doc: YDoc, id: string): [Stroke[], StrokeActions] {
     setStrokes(board.toJSON())
   })
 
-  const startStroke = () => {
+  const startStroke = (point: Point) => {
     currentIndex = board.length
-    board.push([new YArray()])
+    const stroke = new YArray<Point>()
+    stroke.push([point])
+    board.push([stroke])
   }
 
   const addPointToStroke = (point: Point) => {

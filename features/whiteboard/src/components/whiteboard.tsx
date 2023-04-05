@@ -18,9 +18,9 @@ export function Whiteboard(props: NodeViewProps<IdAttributes>) {
   let nextPoint: Point
   let nextTick = 0
 
-  function handleStart() {
+  function handleStart(e: PointerEvent) {
     drawing = true
-    startStroke()
+    startStroke([e.offsetX, e.offsetY, 1])
     svg.addEventListener('pointermove', handleMove)
   }
 
