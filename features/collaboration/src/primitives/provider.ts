@@ -1,5 +1,5 @@
 import { Locator } from '@wildbits/model'
-import { Accessor, createMemo } from 'solid-js'
+import { Accessor, createMemo, onCleanup } from 'solid-js'
 import { WebrtcProvider } from 'y-webrtc'
 import { Doc as YDoc } from 'yjs'
 
@@ -34,6 +34,10 @@ export function createProvider(options: ProviderOptions): Accessor<Provider> {
       signaling: [options.signalingServer],
       peerOpts: { config: { iceServers } },
     })
+  })
+
+  onCleanup(() => {
+    provider().destroy()
   })
 
   return provider
