@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "vite": "^4.2.1",
+    "vite-plugin-pwa": "^0.14.7",
     "vite-plugin-solid": "^2.5.0"
   }
 }
