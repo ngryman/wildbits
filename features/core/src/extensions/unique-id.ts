@@ -1,7 +1,8 @@
-import { Extension } from '@tiptap/core'
+import { Extension, getChangedRanges } from '@tiptap/core'
 import { Attrs } from '@tiptap/pm/model'
+import { Fragment, Node, Slice } from '@tiptap/pm/model'
 import { Plugin, PluginKey } from '@tiptap/pm/state'
-import { getChangesRange, isChangeOrigin } from '@wildbits/utils'
+import { isChangeOrigin } from '@wildbits/utils'
 import { nanoid } from 'nanoid'
 
 export type UniqueIdOptions = {
@@ -10,6 +11,7 @@ export type UniqueIdOptions = {
 
 export const UniqueId = Extension.create<UniqueIdOptions>({
   name: 'unique-id',
+  priority: 1000,
 
   addOptions() {
     return {
@@ -54,20 +56,16 @@ export const UniqueId = Extension.create<UniqueIdOptions>({
           // in between the affected range.
           changedTransactions.forEach(transaction => {
             const existingIds: string[] = []
-            const range = getChangesRange(transaction)
+            const ranges = getChangedRanges(transaction)
 
-            // Discard ranges that are not creating nodes. A node has at least a
-            // size of 2.
-            if (range.to - range.from < 2) return
+            ranges.forEach(change => {
+              const { newRange } = change
 
-            // In the post-document, get all nodes within the change range and
-            // ensure they have the `id` attribute.
-            tr.doc.nodesBetween(
-              Math.max(range.from, 0),
-              Math.min(range.to, tr.doc.content.size),
-              (node, pos) => {
+              // In the post-document, get all nodes within the change range and
+              // ensure they have the `id` attribute.
+              tr.doc.nodesBetween(newRange.from, newRange.to, (node, pos) => {
                 // Bail out if the node shouldn't have an `id` attribute.
-                if (!types.includes(node.type.name)) return
+                if (!node.isBlock && !types.includes(node.type.name)) return
 
                 // New nodes can be created with the same id of the previous
                 // (e.g. paragraphs). We make sure to store existing ids and
@@ -77,15 +75,45 @@ export const UniqueId = Extension.create<UniqueIdOptions>({
                   existingIds.push(node.attrs.id)
                   return
                 }
-
                 tr.setNodeAttribute(pos, 'id', nanoid())
-              }
-            )
+              })
+            })
           })
 
           return tr.steps.length > 0 ? tr : undefined
+        },
+        props: {
+          transformPasted: slice => {
+            const { types } = this.options
+            return new Slice(removeId(slice.content, types), slice.openStart, slice.openEnd)
+          },
         },
       }),
     ]
   },
 })
+
+function removeId(fragment: Fragment, types: string[]): Fragment {
+  const nodes: Node[] = []
+  fragment.forEach(node => {
+    // Bail out if the node shouldn't have an `id` attribute. Remove IDs of its
+    // children though.
+    if (!node.isBlock && !types.includes(node.type.name)) {
+      nodes.push(node.copy(removeId(node.content, types)))
+    }
+
+    // Remove ID
+    nodes.push(
+      node.type.create(
+        {
+          ...node.attrs,
+          id: null,
+        },
+        removeId(node.content, types),
+        node.marks
+      )
+    )
+  })
+
+  return Fragment.from(nodes)
+}
