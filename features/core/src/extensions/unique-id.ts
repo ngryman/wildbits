@@ -56,9 +56,9 @@ export const UniqueId = Extension.create<UniqueIdOptions>({
           // in between the affected range.
           changedTransactions.forEach(transaction => {
             const existingIds: string[] = []
-            const ranges = getChangedRanges(transaction)
+            const changes = getChangedRanges(transaction)
 
-            ranges.forEach(change => {
+            changes.forEach(change => {
               const { newRange } = change
 
               // In the post-document, get all nodes within the change range and

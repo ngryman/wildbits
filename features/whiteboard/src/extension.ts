@@ -1,5 +1,5 @@
-import { CommandProps, JSONContent, mergeAttributes, Node } from '@tiptap/core'
-import { createNodeView, getChangesRange, isChangeOrigin, nodeInputRule } from '@wildbits/utils'
+import { CommandProps, getChangedRanges, JSONContent, mergeAttributes, Node } from '@tiptap/core'
+import { createNodeView, isChangeOrigin, nodeInputRule } from '@wildbits/utils'
 import { Plugin, PluginKey } from '@tiptap/pm/state'
 import { Array as YArray, Doc as YDoc } from 'yjs'
 
@@ -93,66 +93,46 @@ export const Whiteboard = Node.create({
           // For each transaction, check for addition or removal of a whiteboard
           // node.
           changedTransactions.forEach(transaction => {
-            const range = getChangesRange(transaction)
+            const changes = getChangedRanges(transaction)
 
-            // If it's an addition
-            if (range.to - range.from >= 2) {
-              // In the post-document, get all the whiteboard nodes within the
-              // change range and create the appropriate board in the YDoc
-              tr.doc.nodesBetween(
-                Math.max(range.from, 0),
-                Math.min(range.to, tr.doc.content.size),
-                node => {
-                  // Bail out if the node is not a whiteboard
-                  if (node.type.name !== this.name) return
+            changes.forEach(change => {
+              const { newRange, oldRange } = change
 
-                  if (!boards.has(node.attrs.id)) {
-                    boards.set(node.attrs.id, new YArray())
+              // If it's an addition
+              if (newRange.to - newRange.from >= 2) {
+                // In the post-document, get all the whiteboard nodes within the
+                // change newRange and create the appropriate board in the YDoc
+                tr.doc.nodesBetween(
+                  Math.max(newRange.from, 0),
+                  Math.min(newRange.to, tr.doc.content.size),
+                  node => {
+                    // Bail out if the node is not a whiteboard
+                    if (node.type.name !== this.name) return
+
+                    if (!boards.has(node.attrs.id)) {
+                      boards.set(node.attrs.id, new YArray())
+                    }
                   }
-                }
-              )
-            }
-            // If it's a deletion
-            else if (range.prevTo > range.to) {
-              // In the pre-document, get all the whiteboard nodes within the
-              // change range and delete the associated board in the YDoc
-              prevState.doc.nodesBetween(
-                Math.max(range.prevFrom, 0),
-                Math.min(range.prevTo, prevState.doc.content.size),
-                node => {
-                  // Bail out if the node is not a whiteboard
-                  if (node.type.name !== this.name) return
+                )
+              }
+              // If it's a deletion
+              else if (oldRange.to > newRange.to) {
+                // In the pre-document, get all the whiteboard nodes within the
+                // change newRange and delete the associated board in the YDoc
+                prevState.doc.nodesBetween(
+                  Math.max(oldRange.from, 0),
+                  Math.min(oldRange.to, prevState.doc.content.size),
+                  node => {
+                    // Bail out if the node is not a whiteboard
+                    if (node.type.name !== this.name) return
 
-                  if (boards.has(node.attrs.id)) {
-                    boards.delete(node.attrs.id)
+                    if (boards.has(node.attrs.id)) {
+                      boards.delete(node.attrs.id)
+                    }
                   }
-                }
-              )
-            }
-
-            // if (range.to - range.from < 2) return
-
-            // // In the post-document, get all nodes within the change range and
-            // // ensure they have the `id` attribute.
-            // tr.doc.nodesBetween(
-            //   Math.max(range.from, 0),
-            //   Math.min(range.to, tr.doc.content.size),
-            //   (node, pos) => {
-            //     // Bail out if the node shouldn't have an `id` attribute.
-            //     if (!types.includes(node.type.name)) return
-
-            //     // New nodes can be created with the same id of the previous
-            //     // (e.g. paragraphs). We make sure to store existing ids and
-            //     // store them. If a new has no ID, or if its ID is part of
-            //     // existing id, we generate a new ID.
-            //     if (node.attrs.id && !existingIds.includes(node.attrs.id)) {
-            //       existingIds.push(node.attrs.id)
-            //       return
-            //     }
-
-            //     tr.setNodeAttribute(pos, 'id', nanoid())
-            //   }
-            // )
+                )
+              }
+            })
           })
 
           return tr.steps.length > 0 ? tr : undefined
