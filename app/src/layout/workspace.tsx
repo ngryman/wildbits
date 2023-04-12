@@ -1,4 +1,4 @@
-import { Note, useState } from '@wildbits/model'
+import { useState } from '@wildbits/model'
 import { Button, Icons } from '@wildbits/ui'
 import { ParentProps } from 'solid-js'
 
@@ -7,10 +7,7 @@ import { Menu } from '../components'
 import styles from './workspace.module.css'
 
 type Props = ParentProps & {
-  notes: Note[]
   onToggleMenu: () => void
-  onCreateNote: () => void
-  onDeleteNote: (id: string) => void
 }
 
 export function Workspace(props: Props) {
@@ -26,11 +23,7 @@ export function Workspace(props: Props) {
       >
         <Icons.Menu />
       </Button>
-      <Menu
-        notes={props.notes}
-        onCreateNote={props.onCreateNote}
-        onDeleteNote={props.onDeleteNote}
-      />
+      <Menu />
       {props.children}
     </main>
   )

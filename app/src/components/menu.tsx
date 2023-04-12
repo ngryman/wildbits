@@ -1,22 +1,19 @@
-import { Note, useState } from '@wildbits/model'
+import { createLocator, createNote, getLocatorPath, useNotes, useState } from '@wildbits/model'
 import { Button, Icons } from '@wildbits/ui'
 import { clickOutside } from '@wildbits/utils'
 
 import { Nav } from './nav'
 
 import styles from './menu.module.css'
+import { useNavigate } from '@solidjs/router'
 
 // Make sure the directive is included in the final bundle.
 // https://www.solidjs.com/guides/typescript#use___
 false && clickOutside
 
-type Props = {
-  notes: Note[]
-  onCreateNote(): void
-  onDeleteNote(id: string): void
-}
-
-export function Menu(props: Props) {
+export function Menu() {
+  const navigate = useNavigate()
+  const notes = useNotes()
   const [state, setState] = useState()
 
   const hideOnMobile = () => {
@@ -24,6 +21,14 @@ export function Menu(props: Props) {
       setState('menuVisible', false)
     }
   }
+
+  const handleCreateNote = () => {
+    const locator = createLocator()
+    const note = createNote(locator)
+    notes.set(locator.id, note)
+    navigate(getLocatorPath(locator))
+  }
+
   return (
     <div
       class={styles.root}
@@ -34,8 +39,8 @@ export function Menu(props: Props) {
         <Icons.Logo />
         wildbits
       </h1>
-      <Nav notes={props.notes} onDeleteNote={props.onDeleteNote} />
-      <Button class={styles.add} onClick={props.onCreateNote}>
+      <Nav />
+      <Button class={styles.add} onClick={handleCreateNote}>
         <Icons.Plus />
       </Button>
     </div>
