@@ -96,9 +96,12 @@ export const File = Node.create<FileOptions>({
 })
 
 async function uploadFile(file: File) {
-  const signedUrl = await fetch(`https://sign-url.ngryman.workers.dev/${file.name}`, {
-    mode: 'cors',
-  }).then(res => res.text())
+  const signedUrl = await fetch(
+    `https://sign-url.ngryman.workers.dev/${file.name}?type=${file.type}&size=${file.size}`,
+    {
+      mode: 'cors',
+    }
+  ).then(res => res.text())
 
   const xhr = new XMLHttpRequest()
   xhr.open('PUT', signedUrl, true)
