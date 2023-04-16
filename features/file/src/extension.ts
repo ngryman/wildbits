@@ -101,9 +101,8 @@ async function uploadFile(file: File) {
   }).then(res => res.text())
 
   const xhr = new XMLHttpRequest()
-  // xhr.open('PUT', `http://localhost:4000/${file.name}`, true)
   xhr.open('PUT', signedUrl, true)
-  xhr.setRequestHeader('content-type', file.type)
+  xhr.setRequestHeader('Content-Type', file.type)
 
   return new Promise((resolve, reject) => {
     xhr.upload.addEventListener('progress', e => {
