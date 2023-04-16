@@ -26,6 +26,9 @@ importers:
       eslint-plugin-solid:
         specifier: ^0.11.0
         version: 0.11.0(eslint@8.36.0)(typescript@5.0.2)
+      http-proxy:
+        specifier: ^1.18.1
+        version: 1.18.1
       nanoid:
         specifier: ^4.0.1
         version: 4.0.1
@@ -162,6 +165,21 @@ importers:
       nanoid:
         specifier: ^4.0.1
         version: 4.0.1
+
+  features/file:
+    dependencies:
+      '@tiptap/core':
+        specifier: 2.0.0-beta.220
+        version: 2.0.0-beta.220(@tiptap/pm@2.0.0-beta.220)
+      '@tiptap/pm':
+        specifier: 2.0.0-beta.220
+        version: 2.0.0-beta.220(@tiptap/core@2.0.0-beta.220)
+      '@wildbits/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
+      solid-js:
+        specifier: ^1.6.15
+        version: 1.6.15
 
   features/floating-menu:
     dependencies:
@@ -325,6 +343,9 @@ importers:
       '@wildbits/core':
         specifier: workspace:^0.0.0
         version: link:../../features/core
+      '@wildbits/file':
+        specifier: workspace:*
+        version: link:../../features/file
       '@wildbits/floating-menu':
         specifier: workspace:*
         version: link:../../features/floating-menu
@@ -2660,6 +2681,10 @@ packages:
     resolution: {integrity: sha512-tYUSVOGeQPKt/eC1ABfhHy5Xd96N3oIijJvN3O9+TsC28T5V9yX9oEfEK5faP0EFSNVOG97qtAS68GBrQB2hDg==}
     dev: true
 
+  /eventemitter3@4.0.7:
+    resolution: {integrity: sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==}
+    dev: true
+
   /execa@4.1.0:
     resolution: {integrity: sha512-j5W0//W7f8UxAn8hXVnwG8tLwdiUy4FJLcSupCg6maBYZDpyBvTApK7KyuI4bKj8KOh1r2YH+6ucuYtJv1bTZA==}
     engines: {node: '>=10'}
@@ -3059,6 +3084,17 @@ packages:
   /html-tags@3.2.0:
     resolution: {integrity: sha512-vy7ClnArOZwCnqZgvv+ddgHgJiAFXe3Ge9ML5/mBctVJoUoYPCdxVucOywjDARn6CVoh3dRSFdPHy2sX80L0Wg==}
     engines: {node: '>=8'}
+    dev: true
+
+  /http-proxy@1.18.1:
+    resolution: {integrity: sha512-7mz/721AbnJwIVbnaSv1Cz3Am0ZLT/UBwkC92VlxhXv/k/BBQfM2fXElQNC27BVGr0uwUpplYPQM9LnaBMR5NQ==}
+    engines: {node: '>=8.0.0'}
+    dependencies:
+      eventemitter3: 4.0.7
+      follow-redirects: 1.15.2(debug@4.3.4)
+      requires-port: 1.0.0
+    transitivePeerDependencies:
+      - debug
     dev: true
 
   /http-signature@1.3.6:
@@ -4034,6 +4070,10 @@ packages:
     resolution: {integrity: sha512-MnWzEHHaxHO2iWiQuHrUPBi/1WeBf5PkxQqNyNvLl9VAYSdXkP8tQ3pBSeCPD+yw0v0Aq1zosWLz0BdeXpWwZg==}
     dependencies:
       throttleit: 1.0.0
+    dev: true
+
+  /requires-port@1.0.0:
+    resolution: {integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==}
     dev: true
 
   /resolve-from@4.0.0:

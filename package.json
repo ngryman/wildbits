@@ -19,6 +19,7 @@
     "cypress": "^12.8.1",
     "eslint": "^8.36.0",
     "eslint-plugin-solid": "^0.11.0",
+    "http-proxy": "^1.18.1",
     "nanoid": "^4.0.1",
     "start-server-and-test": "^2.0.0",
     "typescript": "^5.0.2"

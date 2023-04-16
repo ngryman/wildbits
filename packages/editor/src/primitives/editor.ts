@@ -12,6 +12,7 @@ import { CodeBlock } from '@wildbits/code'
 import { UniqueId } from '@wildbits/core'
 import { Collaboration, Provider } from '@wildbits/collaboration'
 import { Columns } from '@wildbits/columns'
+import { File } from '@wildbits/file'
 import { FloatingMenu } from '@wildbits/floating-menu'
 import { Image } from '@wildbits/image'
 import { Prose } from '@wildbits/prose'
@@ -94,6 +95,7 @@ export function createEditor(options: EditorOptions): Accessor<Editor> {
         CodeBlock,
         Collaboration.configure({ provider: options.provider() }),
         Columns,
+        File,
         FloatingMenu.configure({
           actions: [
             'bold',

@@ -152,8 +152,8 @@ export const Image = Node.create<ImageOptions>({
                   const node = schema.nodes.image.create({
                     src: e.target!.result,
                   })
-                  const transaction = view.state.tr.insert(coordinates.pos, node)
-                  view.dispatch(transaction)
+                  const tr = view.state.tr.insert(coordinates.pos, node)
+                  view.dispatch(tr)
                 }
                 reader.readAsDataURL(image)
               }
