@@ -96,15 +96,15 @@ export const File = Node.create<FileOptions>({
 })
 
 async function uploadFile(file: File) {
-  const signedUrl = await fetch(
+  const { fileKey, uploadUrl } = await fetch(
     `https://sign-url.ngryman.workers.dev/${file.name}?type=${file.type}&size=${file.size}`,
     {
       mode: 'cors',
     }
-  ).then(res => res.text())
+  ).then(res => res.json())
 
   const xhr = new XMLHttpRequest()
-  xhr.open('PUT', signedUrl, true)
+  xhr.open('PUT', uploadUrl, true)
   xhr.setRequestHeader('Content-Type', file.type)
 
   return new Promise((resolve, reject) => {
@@ -115,6 +115,7 @@ async function uploadFile(file: File) {
     })
     xhr.addEventListener('loadend', () => {
       if (xhr.readyState === 4 && xhr.status === 200) {
+        console.log('uploaded', fileKey)
         resolve(null)
       }
     })
