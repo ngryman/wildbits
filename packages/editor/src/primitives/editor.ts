@@ -1,4 +1,6 @@
-import { StarterKit } from '@tiptap/starter-kit'
+import { Accessor, createEffect, createMemo, onCleanup } from 'solid-js'
+
+import { Editor } from '@tiptap/core'
 import { Table } from '@tiptap/extension-table'
 import { TableCell } from '@tiptap/extension-table-cell'
 import { TableHeader } from '@tiptap/extension-table-header'
@@ -7,22 +9,21 @@ import { TaskItem } from '@tiptap/extension-task-item'
 import { TaskList } from '@tiptap/extension-task-list'
 import { Typography as TypographyExtension } from '@tiptap/extension-typography'
 import { Youtube } from '@tiptap/extension-youtube'
-import { Editor } from '@tiptap/core'
+import { StarterKit } from '@tiptap/starter-kit'
 import { CodeBlock } from '@wildbits/code'
-import { UniqueId } from '@wildbits/core'
 import { Collaboration, Provider } from '@wildbits/collaboration'
 import { Columns } from '@wildbits/columns'
+import { UniqueId } from '@wildbits/core'
 import { FloatingMenu } from '@wildbits/floating-menu'
 import { Image } from '@wildbits/image'
+import { Katex } from '@wildbits/katex'
 import { Prose } from '@wildbits/prose'
 import { Whiteboard } from '@wildbits/whiteboard'
-import { Accessor, createEffect, createMemo, onCleanup } from 'solid-js'
 
 import styles from '../components/editor-view.module.css'
-import { createThemeCSSVars, loadFonts, Theme } from '../theme'
-import { createTypographyCSSVars, Typography } from '../typography'
 import { Metadata } from '../extensions'
-import { Katex } from '@wildbits/katex'
+import { Theme, createThemeCSSVars, loadFonts } from '../theme'
+import { Typography, createTypographyCSSVars } from '../typography'
 
 export type EditorOptions = {
   provider: Accessor<Provider>
@@ -115,14 +116,14 @@ export function createEditor(options: EditorOptions): Accessor<Editor> {
         Prose,
         Metadata,
         StarterKit.configure({
+          bold: false,
           bulletList: false,
           codeBlock: false,
           gapcursor: false,
-          history: false,
-          bold: false,
-          italic: false,
           heading: false,
+          history: false,
           horizontalRule: false,
+          italic: false,
         }),
         TypographyExtension,
         Table.configure({ allowTableNodeSelection: true, resizable: true }),
