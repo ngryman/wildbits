@@ -29,7 +29,7 @@ export function createProvider(options: ProviderOptions): Accessor<Provider> {
 
     const { id, key } = options.locator()
     return new WebrtcProvider(id, options.doc(), {
-      password: key,
+      // password: key,
       signaling: [options.signalingServer],
       peerOpts: { config: { iceServers } },
     })
