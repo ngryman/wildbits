@@ -1,7 +1,8 @@
-import { Locator } from '@wildbits/model'
 import { Accessor, createMemo, onCleanup } from 'solid-js'
 import { WebrtcProvider } from 'y-webrtc'
 import { Doc as YDoc } from 'yjs'
+
+import { Locator } from '@wildbits/model'
 
 export type Provider = WebrtcProvider
 
@@ -12,13 +13,11 @@ export type ProviderOptions = {
 }
 
 const iceServers = [
+  // {
+  //   urls: 'turn:turn.wildbits.app:3478',
+  // },
   {
-    urls: 'stun:relay.metered.ca:80',
-  },
-  {
-    urls: 'turn:44.214.52.65',
-    username: 'test',
-    credential: 'test',
+    urls: 'stun.l.google.com:19302',
   },
 ]
 
